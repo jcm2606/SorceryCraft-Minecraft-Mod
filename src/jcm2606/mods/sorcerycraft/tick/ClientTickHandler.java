@@ -92,19 +92,26 @@ public class ClientTickHandler extends TickHandlerClientBase {
                 }
             }
             
-            if(mc.thePlayer.inventory.hasItem(SCObjects.astralenergycell.itemID))
-            {
-                // TODO: Once I have an Abilities system, move this over to a new ability.
-                this.renderAstralEnergyOverlay(mc, mc.thePlayer);
-            }
-            
             if(mc.thePlayer.getCurrentEquippedItem() != null)
             {
                 if(mc.thePlayer.getCurrentEquippedItem().getItem() == SCObjects.astralgauntlet)
                 {
                     renderAstralGauntletOverlay(mc, mc.thePlayer, mc.thePlayer.getCurrentEquippedItem());
-                    renderAstralEnergyOverlay(mc, mc.thePlayer);
                 }
+            }
+            
+            if(mc.thePlayer.inventory.hasItem(SCObjects.astralenergycell.itemID))
+            {
+                if(mc.thePlayer.getCurrentEquippedItem() != null)
+                {
+                    if(mc.thePlayer.getCurrentEquippedItem().getItem() == SCObjects.astralgauntlet)
+                    {
+                        return;
+                    }
+                }
+                
+                // TODO: Once I have an Abilities system, move this over to a new ability.
+                this.renderAstralEnergyOverlay(mc, mc.thePlayer);
             }
         }
     }
@@ -224,7 +231,7 @@ public class ClientTickHandler extends TickHandlerClientBase {
         
         minecraft.fontRenderer.drawString("\2477" + fullCellsInInv, 11, 10, 0xffffff);
         
-        minecraft.fontRenderer.drawStringWithShadow("\2477" + currentEnergy + " / " + maxEnergy, 30, 13, 0xffffff);
+        minecraft.fontRenderer.drawStringWithShadow("\2477" + currentEnergy + " / " + maxEnergy, 30, 2, 0xffffff);
     }
     
     private static void renderAstralGauntletOverlay(Minecraft minecraft, EntityPlayer player, ItemStack stack)
@@ -237,5 +244,39 @@ public class ClientTickHandler extends TickHandlerClientBase {
         } else {
             minecraft.fontRenderer.drawStringWithShadow("\247c" + AstralGauntletManager.getMode(gauntlet.getMode(stack)).name, 30, 2, 0xffffff);
         }
+        
+        int maxEnergy = 0;
+        int currentEnergy = 0;
+        int cellsInInv = 0;
+        int fullCellsInInv = 0;
+        
+        for(int i = 0; i < player.inventory.mainInventory.length; i++)
+        {
+            ItemStack stack2 = player.inventory.mainInventory[i];
+            
+            if(stack2 != null)
+            {
+                if(stack2.getItem() == SCObjects.astralenergycell)
+                {
+                    ItemAstralEnergyCell cell = (ItemAstralEnergyCell) stack2.getItem();
+                    
+                    maxEnergy = maxEnergy + 1000;
+                    currentEnergy = currentEnergy + (1000 - cell.getEnergy(stack2));
+                    cellsInInv++;
+                    
+                    if(cell.getEnergy(stack2) < 1000)
+                    {
+                        fullCellsInInv++;
+                    }
+                }
+            }
+        }
+        
+        RenderUtil.renderEngine.bindTexture(Reference.PATH_TEXTURES_GUI_HUD + "astral_energy_cell_hud.png");
+        RenderUtil.getInstance().drawTextureRect(1, 1, 0, 0, 256, 256, 0.1f);
+        
+        minecraft.fontRenderer.drawString("\2477" + fullCellsInInv, 11, 10, 0xffffff);
+        
+        minecraft.fontRenderer.drawStringWithShadow("\2477" + currentEnergy + " / " + maxEnergy, 30, 13, 0xffffff);
     }
 }

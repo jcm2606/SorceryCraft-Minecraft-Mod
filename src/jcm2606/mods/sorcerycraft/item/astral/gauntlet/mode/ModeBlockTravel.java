@@ -16,7 +16,7 @@ public class ModeBlockTravel extends GauntletMode {
     public final String NBT_TAG_HAS_STORED_COORDS = "hasStoredCoords";
     
     public ModeBlockTravel() {
-        super(AstralGauntletManager.getNextAvailableId(), "Astral Block Travelling", "");
+        super(AstralGauntletManager.getNextAvailableId(), "Block Travelling", "");
     }
 
     @Override
@@ -62,12 +62,12 @@ public class ModeBlockTravel extends GauntletMode {
                             {
                                 for(int i = 0; i < portalParticleMultiplier; i++)
                                 {
-                                    float var7 = (x + 0.5f + 1) - storedX;
-                                    float var9 = (y + 0.5f) - storedY;
-                                    float var11 = (z + 0.5f) - storedZ;
+                                    float var7 = x + 1 - storedX;
+                                    float var9 = y - storedY;
+                                    float var11 = z - storedZ;
                                     int distance = (int)MathHelper.sqrt_double(var7 * var7 + var9 * var9 + var11 * var11);
                                     
-                                    SCParticle.spawnAstralEnergyFX(storedX + 0.5, storedY + 0.5, storedZ + 0.5, x + 1, y, z, false, distance / 2, false);
+                                    SCParticle.spawnAstralEnergyFX(storedX + 0.5, storedY + 0.5, storedZ + 0.5, x + 1, y, z, false, distance, false);
                                 }
                             }
                             
@@ -88,12 +88,12 @@ public class ModeBlockTravel extends GauntletMode {
                             {
                                 for(int i = 0; i < portalParticleMultiplier; i++)
                                 {
-                                    float var7 = (x + 0.5f) - (storedX + 0.5f);
-                                    float var9 = (y - 0.5f) - (storedY - 0.5f);
-                                    float var11 = (z + 0.5f - 1) - (storedZ + 0.5f);
+                                    float var7 = x - storedX;
+                                    float var9 = y - storedY;
+                                    float var11 = z - 1 - storedZ;
                                     int distance = (int)MathHelper.sqrt_double(var7 * var7 + var9 * var9 + var11 * var11);
                                     
-                                    SCParticle.spawnAstralEnergyFX(storedX + 0.5, storedY + 0.5, storedZ + 0.5, x, y, z - 1, false, distance / 2, false);
+                                    SCParticle.spawnAstralEnergyFX(storedX + 0.5, storedY + 0.5, storedZ + 0.5, x + 0.5, y + 0.5, z - 1 + 0.5, false, distance, false);
                                 }
                             }
                             
@@ -114,12 +114,12 @@ public class ModeBlockTravel extends GauntletMode {
                             {
                                 for(int i = 0; i < portalParticleMultiplier; i++)
                                 {
-                                    float var7 = (x + 0.5f - 1) - (storedX + 0.5f);
-                                    float var9 = (y + 0.5f) - (storedY - 0.5f);
-                                    float var11 = (z + 0.5f) - (storedZ + 0.5f);
+                                    float var7 = x - 1 - storedX;
+                                    float var9 = y - storedY;
+                                    float var11 = z - storedZ;
                                     int distance = (int)MathHelper.sqrt_double(var7 * var7 + var9 * var9 + var11 * var11);
                                     
-                                    SCParticle.spawnAstralEnergyFX(storedX + 0.5, storedY + 0.5, storedZ + 0.5, x - 1, y, z, false, distance / 2, false);
+                                    SCParticle.spawnAstralEnergyFX(storedX + 0.5, storedY + 0.5, storedZ + 0.5, x - 1 + 0.5, y + 0.5, z + 0.5, false, distance, false);
                                 }
                             }
                             
@@ -140,12 +140,12 @@ public class ModeBlockTravel extends GauntletMode {
                             {
                                 for(int i = 0; i < portalParticleMultiplier; i++)
                                 {
-                                    float var7 = (x + 0.5f) - (storedX + 0.5f);
-                                    float var9 = (y + 0.5f) - (storedY - 0.5f);
-                                    float var11 = (z + 0.5f + 1) - (storedZ + 0.5f);
+                                    float var7 = x - storedX;
+                                    float var9 = y - storedY;
+                                    float var11 = z + 1 - storedZ;
                                     int distance = (int)MathHelper.sqrt_double(var7 * var7 + var9 * var9 + var11 * var11);
                                     
-                                    SCParticle.spawnAstralEnergyFX(storedX + 0.5, storedY + 0.5, storedZ + 0.5, x, y, z + 1, false, distance / 2, false);
+                                    SCParticle.spawnAstralEnergyFX(storedX + 0.5, storedY + 0.5, storedZ + 0.5, x + 0.5, y + 0.5, z + 1 + 0.5, false, distance, false);
                                 }
                             }
                             
@@ -166,12 +166,12 @@ public class ModeBlockTravel extends GauntletMode {
                             {
                                 for(int i = 0; i < portalParticleMultiplier; i++)
                                 {
-                                    float var7 = (x + 0.5f) - (storedX + 0.5f);
-                                    float var9 = (y + 0.5f + 1) - (storedY - 0.5f);
-                                    float var11 = (z + 0.5f) - (storedZ + 0.5f);
+                                    float var7 = x - storedX;
+                                    float var9 = y + 1 - storedY;
+                                    float var11 = z - storedZ;
                                     int distance = (int)MathHelper.sqrt_double(var7 * var7 + var9 * var9 + var11 * var11);
                                     
-                                    SCParticle.spawnAstralEnergyFX(storedX + 0.5, storedY + 0.5, storedZ + 0.5, x, y + 1, z, false, distance / 2, false);
+                                    SCParticle.spawnAstralEnergyFX(storedX + 0.5, storedY + 0.5, storedZ + 0.5, x + 0.5, y + 1 + 0.5, z + 0.5, false, distance, false);
                                 }
                             }
                             
@@ -192,12 +192,12 @@ public class ModeBlockTravel extends GauntletMode {
                             {
                                 for(int i = 0; i < portalParticleMultiplier; i++)
                                 {
-                                    float var7 = (x + 0.5f) - (storedX + 0.5f);
-                                    float var9 = (y + 0.5f - 1) - (storedY - 0.5f);
-                                    float var11 = (z + 0.5f) - (storedX + 0.5f);
+                                    float var7 = x - storedX;
+                                    float var9 = y - 1 - storedY;
+                                    float var11 = z - storedZ;
                                     int distance = (int)MathHelper.sqrt_double(var7 * var7 + var9 * var9 + var11 * var11);
                                     
-                                    SCParticle.spawnAstralEnergyFX(storedX + 0.5, storedY - 0.5, storedZ + 0.5, x, y - 1, z, false, 100, false);
+                                    SCParticle.spawnAstralEnergyFX(storedX + 0.5, storedY - 0.5, storedZ + 0.5, x + 0.5, y - 1 + 0.5, z + 0.5, false, distance, false);
                                 }
                             }
                             
@@ -260,7 +260,7 @@ public class ModeBlockTravel extends GauntletMode {
     {}
 
     @Override
-    public int energyRequired(String type)
+    public int energyRequired(String type, EntityPlayer player)
     {
         return 10;
     }

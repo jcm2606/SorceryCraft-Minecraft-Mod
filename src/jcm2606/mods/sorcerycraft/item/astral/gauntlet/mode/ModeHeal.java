@@ -35,7 +35,7 @@ public class ModeHeal extends GauntletMode {
     {}
 
     @Override
-    public int energyRequired(String type)
+    public int energyRequired(String type, EntityPlayer player)
     {
         return 1000;
     }

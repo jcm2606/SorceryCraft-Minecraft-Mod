@@ -58,6 +58,9 @@ public abstract class GauntletMode {
 
     /**
      * Returns the amount of energy required for this mode.
+     * 
+     * @param type The mode type.
+     * @param player The {@link EntityPlayer}
      */
-    public abstract int energyRequired(String type);
+    public abstract int energyRequired(String type, EntityPlayer player);
 }

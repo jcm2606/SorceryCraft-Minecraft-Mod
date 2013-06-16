@@ -51,6 +51,7 @@ import jcm2606.mods.sorcerycraft.item.astral.ItemAstralGauntlet;
 import jcm2606.mods.sorcerycraft.item.astral.ItemAstralTablet;
 import jcm2606.mods.sorcerycraft.item.astral.ItemIngotAstralSteel;
 import jcm2606.mods.sorcerycraft.item.astral.gauntlet.AstralGauntletManager;
+import jcm2606.mods.sorcerycraft.item.astral.gauntlet.mode.ModeCooling;
 import jcm2606.mods.sorcerycraft.item.charm.ItemCharm;
 import jcm2606.mods.sorcerycraft.item.charm.ItemCharmMortality;
 import jcm2606.mods.sorcerycraft.item.charm.ItemCharmSight;
@@ -397,6 +398,7 @@ public class SCObjects implements IObjectCore {
         ItemCharm.registerCurses();
         WandManager.loadBehaviours();
         AstralGauntletManager.loadCoreModes();
+        ModeCooling.loadCoolingEntries();
         
         registerBlocks();
         registerFluids();

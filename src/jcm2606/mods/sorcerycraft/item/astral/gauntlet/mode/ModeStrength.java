@@ -29,7 +29,7 @@ public class ModeStrength extends GauntletMode {
     {}
 
     @Override
-    public int energyRequired(String type)
+    public int energyRequired(String type, EntityPlayer player)
     {
         if(type.equals(this.USE_ENTITY_ATTACK))
         {

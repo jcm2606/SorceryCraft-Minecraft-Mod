@@ -117,7 +117,7 @@ public class ModeFireball extends GauntletMode {
     }
 
     @Override
-    public int energyRequired(String type)
+    public int energyRequired(String type, EntityPlayer player)
     {
         if(type.equals(this.USE_BLOCK_ACTIVATE))
         {

@@ -18,28 +18,28 @@ public class ModeBlockBreak extends GauntletMode {
     {
         if(type.equals(this.USE_BLOCK_ACTIVATE))
         {
-            if(world.canMineBlock(player, x, y, z) && Block.blocksList[world.getBlockId(x, y, z)].getBlockHardness(world, x, y, z) != -1)
+            Block block = Block.blocksList[world.getBlockId(x, y, z)];
+            
+            if(block != null)
             {
-                if(player.isSneaking())
+                if(world.canMineBlock(player, x, y, z) && block.getBlockHardness(world, x, y, z) != -1)
                 {
-                    Block block = Block.blocksList[world.getBlockId(x, y, z)];
-                    
-                    if(block != null)
+                    if(player.isSneaking())
                     {
                         if(!world.isRemote)
                         {
                             world.spawnEntityInWorld(new EntityItem(world, x, y, z, new ItemStack(block.idDropped(0, world.rand, 0), 1 + world.rand.nextInt(3), world.getBlockMetadata(x, y, z))));
                             world.setBlock(x, y, z, 0);
                         }
+                    } else {
+                        if(!world.isRemote)
+                        {
+                            world.destroyBlock(x, y, z, true);
+                        }
                     }
-                } else {
-                    if(!world.isRemote)
-                    {
-                        world.destroyBlock(x, y, z, true);
-                    }
+                    
+                    return true;
                 }
-                
-                return true;
             }
         }
         
@@ -51,8 +51,13 @@ public class ModeBlockBreak extends GauntletMode {
     {}
 
     @Override
-    public int energyRequired(String type)
+    public int energyRequired(String type, EntityPlayer player)
     {
+        if(player.isSneaking())
+        {
+            return 10;
+        }
+        
         return 4;
     }
 }

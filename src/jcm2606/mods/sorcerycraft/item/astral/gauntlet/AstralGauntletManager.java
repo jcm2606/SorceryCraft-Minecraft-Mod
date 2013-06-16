@@ -5,6 +5,7 @@ import jcm2606.mods.sorcerycraft.item.astral.ItemAstralEnergyCell;
 import jcm2606.mods.sorcerycraft.item.astral.gauntlet.mode.GauntletMode;
 import jcm2606.mods.sorcerycraft.item.astral.gauntlet.mode.ModeBlockBreak;
 import jcm2606.mods.sorcerycraft.item.astral.gauntlet.mode.ModeBlockTravel;
+import jcm2606.mods.sorcerycraft.item.astral.gauntlet.mode.ModeCooling;
 import jcm2606.mods.sorcerycraft.item.astral.gauntlet.mode.ModeEnergyAbsorb;
 import jcm2606.mods.sorcerycraft.item.astral.gauntlet.mode.ModeFireball;
 import jcm2606.mods.sorcerycraft.item.astral.gauntlet.mode.ModeHeal;
@@ -26,6 +27,7 @@ public class AstralGauntletManager {
         registerMode(new ModeBlockBreak());
         registerMode(new ModeHeal());
         registerMode(new ModeStrength());
+        registerMode(new ModeCooling());
     }
     
     public static void registerMode(GauntletMode mode)
@@ -61,11 +63,11 @@ public class AstralGauntletManager {
                     
                     if(mode != null)
                     {
-                        if(cell.getEnergy(stack2) <= 1000 && (1000 - cell.getEnergy(stack2) >= mode.energyRequired(useType)))
+                        if(cell.getEnergy(stack2) <= 1000 && (1000 - cell.getEnergy(stack2) >= mode.energyRequired(useType, player)))
                         {
                             if(mode.onUse(useType, stack, world, player, living, x, y, z, side))
                             {
-                                cell.setEnergy(stack2, cell.getEnergy(stack2) + mode.energyRequired(useType));
+                                cell.setEnergy(stack2, cell.getEnergy(stack2) + mode.energyRequired(useType, player));
                                 
                                 return true;
                             }

@@ -4,7 +4,9 @@ import java.util.List;
 
 import jcm2606.mods.jccore.helper.RarityHelper;
 import jcm2606.mods.jccore.util.GeneralUtil;
+import jcm2606.mods.sorcerycraft.SCObjects;
 import jcm2606.mods.sorcerycraft.item.SCItem;
+import jcm2606.mods.sorcerycraft.item.astral.ItemAstralEnergyCell;
 import jcm2606.mods.sorcerycraft.lib.Rarities;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
@@ -47,69 +49,139 @@ public class ItemNaturesHighwinds extends SCItem {
                             && item.getItemDamage() <= item.getMaxDamage()) {
                         if(GeneralUtil.isClient())
                         {
-                            if(!player.capabilities.isFlying)
+                            if(player.inventory.hasItem(SCObjects.astralenergycell.itemID))
                             {
-                                if(FMLClientHandler.instance().getClient().inGameHasFocus)
+                                if(!player.capabilities.isFlying)
                                 {
-                                    if(stack.getItemDamage() >= stack.getMaxDamage())
+                                    if(FMLClientHandler.instance().getClient().inGameHasFocus)
                                     {
-                                        player.inventory.consumeInventoryItem(stack.itemID);
-                                    }
-                                    
-                                    if(Keyboard.isKeyDown(FMLClientHandler.instance().getClient().gameSettings.keyBindJump.keyCode) && !Keyboard.isKeyDown(FMLClientHandler.instance().getClient().gameSettings.keyBindSneak.keyCode))
-                                    {
-                                        player.motionY = 0.3f;
-                                        for(int j = 0; j < 4; j++)
+                                        if(stack.getItemDamage() >= stack.getMaxDamage())
                                         {
-                                            int k = 3;
-                                            
-                                            world.spawnParticle("smoke", player.posX + (world.rand.nextGaussian() / k), player.posY - 1.5, player.posZ + (world.rand.nextGaussian() / k), 0.0f, 0.05f, 0.0f);
-                                            world.spawnParticle("smoke", player.posX - (world.rand.nextGaussian() / k), player.posY - 1.5, player.posZ - (world.rand.nextGaussian() / k), 0.0f, 0.05f, 0.0f);
-                                            world.spawnParticle("smoke", player.posX + (world.rand.nextGaussian() / k), player.posY - 1.5, player.posZ + (world.rand.nextGaussian() / k), 0.0f, 0.05f, 0.0f);
-                                            world.spawnParticle("smoke", player.posX - (world.rand.nextGaussian() / k), player.posY - 1.5, player.posZ - (world.rand.nextGaussian() / k), 0.0f, 0.05f, 0.0f);
+                                            player.inventory.consumeInventoryItem(stack.itemID);
                                         }
-                                        stack.damageItem(1, player); 
-                                    }
-                                    
-                                    if(!Keyboard.isKeyDown(FMLClientHandler.instance().getClient().gameSettings.keyBindJump.keyCode) && Keyboard.isKeyDown(FMLClientHandler.instance().getClient().gameSettings.keyBindSneak.keyCode) && player.fallDistance != 0.0f)
-                                    {
-                                        player.motionY = player.motionY / 2;
-                                        player.fallDistance = 0.0f;
-                                        for(int j = 0; j < 8; j++)
+                                        
+                                        if(Keyboard.isKeyDown(FMLClientHandler.instance().getClient().gameSettings.keyBindJump.keyCode) && !Keyboard.isKeyDown(FMLClientHandler.instance().getClient().gameSettings.keyBindSneak.keyCode))
                                         {
-                                            int k = 3;
-                                            
-                                            world.spawnParticle("smoke", player.posX + (world.rand.nextGaussian() / k), player.posY - 1.5, player.posZ + (world.rand.nextGaussian() / k), 0.0f, -0.1f, 0.0f);
-                                            world.spawnParticle("smoke", player.posX - (world.rand.nextGaussian() / k), player.posY - 1.5, player.posZ - (world.rand.nextGaussian() / k), 0.0f, -0.1f, 0.0f);
+                                            if(player.inventory.hasItem(SCObjects.astralenergycell.itemID))
+                                            {
+                                                for(int j = 0; j < player.inventory.mainInventory.length; j++)
+                                                {
+                                                    ItemStack stack2 = player.inventory.mainInventory[j];
+                                                    
+                                                    if(stack2 != null)
+                                                    {
+                                                        if(stack2.getItem() == SCObjects.astralenergycell)
+                                                        {
+                                                            ItemAstralEnergyCell cell = (ItemAstralEnergyCell) stack2.getItem();
+                                                            
+                                                            if(cell.getEnergy(stack2) < 999)
+                                                            {
+                                                                player.motionY = 0.3f;
+                                                                for(int k = 0; k < 4; k++)
+                                                                {
+                                                                    int l = 3;
+                                                                    
+                                                                    world.spawnParticle("smoke", player.posX + (world.rand.nextGaussian() / l), player.posY - 1.5, player.posZ + (world.rand.nextGaussian() / l), 0.0f, 0.05f, 0.0f);
+                                                                    world.spawnParticle("smoke", player.posX - (world.rand.nextGaussian() / l), player.posY - 1.5, player.posZ - (world.rand.nextGaussian() / l), 0.0f, 0.05f, 0.0f);
+                                                                    world.spawnParticle("smoke", player.posX + (world.rand.nextGaussian() / l), player.posY - 1.5, player.posZ + (world.rand.nextGaussian() / l), 0.0f, 0.05f, 0.0f);
+                                                                    world.spawnParticle("smoke", player.posX - (world.rand.nextGaussian() / l), player.posY - 1.5, player.posZ - (world.rand.nextGaussian() / l), 0.0f, 0.05f, 0.0f);
+                                                                }
+                                                                
+                                                                cell.setEnergy(stack2, cell.getEnergy(stack2) + 2);
+                                                                break;
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
                                         }
-                                        stack.damageItem(1, player);
-                                    }
-                                    
-                                    if(Keyboard.isKeyDown(FMLClientHandler.instance().getClient().gameSettings.keyBindJump.keyCode) && Keyboard.isKeyDown(FMLClientHandler.instance().getClient().gameSettings.keyBindSneak.keyCode))
-                                    {
-                                        player.motionY = 0.0f;
-                                        player.fallDistance = 0.0f;
-                                        for(int j = 0; j < 8; j++)
+                                        
+                                        if(!Keyboard.isKeyDown(FMLClientHandler.instance().getClient().gameSettings.keyBindJump.keyCode) && Keyboard.isKeyDown(FMLClientHandler.instance().getClient().gameSettings.keyBindSneak.keyCode) && player.fallDistance != 0.0f)
                                         {
-                                            int k = 3;
-                                            
-                                            world.spawnParticle("smoke", player.posX + (world.rand.nextGaussian() / k), player.posY - 1.5, player.posZ + (world.rand.nextGaussian() / k), 0.0f, -0.1f, 0.0f);
-                                            world.spawnParticle("smoke", player.posX - (world.rand.nextGaussian() / k), player.posY - 1.5, player.posZ - (world.rand.nextGaussian() / k), 0.0f, -0.1f, 0.0f);
+                                            if(player.inventory.hasItem(SCObjects.astralenergycell.itemID))
+                                            {
+                                                for(int j = 0; j < player.inventory.mainInventory.length; j++)
+                                                {
+                                                    ItemStack stack2 = player.inventory.mainInventory[j];
+                                                    
+                                                    if(stack2 != null)
+                                                    {
+                                                        if(stack2.getItem() == SCObjects.astralenergycell)
+                                                        {
+                                                            ItemAstralEnergyCell cell = (ItemAstralEnergyCell) stack2.getItem();
+                                                            
+                                                            if(cell.getEnergy(stack2) < 1000)
+                                                            {
+                                                                player.motionY = player.motionY / 2;
+                                                                player.fallDistance = 0.0f;
+                                                                for(int k = 0; k < 4; k++)
+                                                                {
+                                                                    int l = 3;
+                                                                    
+                                                                    world.spawnParticle("smoke", player.posX + (world.rand.nextGaussian() / l), player.posY - 1.5, player.posZ + (world.rand.nextGaussian() / l), 0.0f, 0.05f, 0.0f);
+                                                                    world.spawnParticle("smoke", player.posX - (world.rand.nextGaussian() / l), player.posY - 1.5, player.posZ - (world.rand.nextGaussian() / l), 0.0f, 0.05f, 0.0f);
+                                                                    world.spawnParticle("smoke", player.posX + (world.rand.nextGaussian() / l), player.posY - 1.5, player.posZ + (world.rand.nextGaussian() / l), 0.0f, 0.05f, 0.0f);
+                                                                    world.spawnParticle("smoke", player.posX - (world.rand.nextGaussian() / l), player.posY - 1.5, player.posZ - (world.rand.nextGaussian() / l), 0.0f, 0.05f, 0.0f);
+                                                                }
+                                                                
+                                                                cell.setEnergy(stack2, cell.getEnergy(stack2) + 1);
+                                                                break;
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
                                         }
-                                        stack.damageItem(1, player);
+                                        
+                                        if(Keyboard.isKeyDown(FMLClientHandler.instance().getClient().gameSettings.keyBindJump.keyCode) && Keyboard.isKeyDown(FMLClientHandler.instance().getClient().gameSettings.keyBindSneak.keyCode))
+                                        {
+                                            if(player.inventory.hasItem(SCObjects.astralenergycell.itemID))
+                                            {
+                                                for(int j = 0; j < player.inventory.mainInventory.length; j++)
+                                                {
+                                                    ItemStack stack2 = player.inventory.mainInventory[j];
+                                                    
+                                                    if(stack2 != null)
+                                                    {
+                                                        if(stack2.getItem() == SCObjects.astralenergycell)
+                                                        {
+                                                            ItemAstralEnergyCell cell = (ItemAstralEnergyCell) stack2.getItem();
+                                                            
+                                                            if(cell.getEnergy(stack2) < 1000)
+                                                            {
+                                                                player.motionY = 0.0f;
+                                                                player.fallDistance = 0.0f;
+                                                                for(int k = 0; k < 4; k++)
+                                                                {
+                                                                    int l = 3;
+                                                                    
+                                                                    world.spawnParticle("smoke", player.posX + (world.rand.nextGaussian() / l), player.posY - 1.5, player.posZ + (world.rand.nextGaussian() / l), 0.0f, 0.05f, 0.0f);
+                                                                    world.spawnParticle("smoke", player.posX - (world.rand.nextGaussian() / l), player.posY - 1.5, player.posZ - (world.rand.nextGaussian() / l), 0.0f, 0.05f, 0.0f);
+                                                                    world.spawnParticle("smoke", player.posX + (world.rand.nextGaussian() / l), player.posY - 1.5, player.posZ + (world.rand.nextGaussian() / l), 0.0f, 0.05f, 0.0f);
+                                                                    world.spawnParticle("smoke", player.posX - (world.rand.nextGaussian() / l), player.posY - 1.5, player.posZ - (world.rand.nextGaussian() / l), 0.0f, 0.05f, 0.0f);
+                                                                }
+                                                                
+                                                                cell.setEnergy(stack2, cell.getEnergy(stack2) + 1);
+                                                                break;
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
                                     }
                                 }
-                            }
-                            
-                            if(player.fallDistance != 0.0f && !Keyboard.isKeyDown(FMLClientHandler.instance().getClient().gameSettings.keyBindJump.keyCode))
-                            {
-                                int k = 4;
                                 
-                                world.spawnParticle("smoke", player.posX + (world.rand.nextGaussian() / k), player.posY + (world.rand.nextGaussian() / 2), player.posZ + (world.rand.nextGaussian() / k), 0.0f, 0.0f, 0.0f);
-                                world.spawnParticle("smoke", player.posX - (world.rand.nextGaussian() / k), player.posY - (world.rand.nextGaussian() / 2), player.posZ - (world.rand.nextGaussian() / k), 0.0f, 0.0f, 0.0f);
+                                if(player.fallDistance != 0.0f && !Keyboard.isKeyDown(FMLClientHandler.instance().getClient().gameSettings.keyBindJump.keyCode))
+                                {
+                                    int k = 4;
+                                    
+                                    world.spawnParticle("smoke", player.posX + (world.rand.nextGaussian() / k), player.posY + (world.rand.nextGaussian() / 2), player.posZ + (world.rand.nextGaussian() / k), 0.0f, 0.0f, 0.0f);
+                                    world.spawnParticle("smoke", player.posX - (world.rand.nextGaussian() / k), player.posY - (world.rand.nextGaussian() / 2), player.posZ - (world.rand.nextGaussian() / k), 0.0f, 0.0f, 0.0f);
+                                }
+                                
+                                break;
                             }
-                            
-                            break;
                         }
                     }
                 }

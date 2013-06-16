@@ -2,7 +2,6 @@ package jcm2606.mods.sorcerycraft.fx;
 
 import jcm2606.mods.jccore.EntityFXJC;
 import jcm2606.mods.sorcerycraft.lib.Reference;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.world.World;
 import cpw.mods.fml.client.FMLClientHandler;
@@ -35,6 +34,15 @@ public class EntityAstralEnergyFX extends EntityFXJC
         this.particleScaleOverTime = this.particleScale = 2.5f;
         this.particleRed = this.particleGreen = this.particleBlue = 0.25F;
         this.particleMaxAge = maxAge = 3 * par14;
+        
+        double dx = par8 - this.posX;
+        double dy = par10 - this.posY;
+        double dz = par12 - this.posZ;
+
+        this.motionX = (dx / this.particleMaxAge);
+        this.motionY = (dy / this.particleMaxAge);
+        this.motionZ = (dz / this.particleMaxAge);
+        
         this.noClip = true;
         this.setAlphaF(0.75f);
         this.setParticleTextureIndex(32);
@@ -68,17 +76,6 @@ public class EntityAstralEnergyFX extends EntityFXJC
     @Override
     public void onUpdate()
     {
-        double d = Minecraft.getMinecraft().thePlayer.posX;
-        double d1 = Minecraft.getMinecraft().thePlayer.posY;
-        double d2 = Minecraft.getMinecraft().thePlayer.posZ;
-        double d4 = (d - this.posX) / 5.0D;
-        double d5 = (d1 - this.posY) / 5.0D;
-        double d6 = (d2 - this.posZ) / 5.0D;
-
-        this.posX += d4;
-        this.posY += d5;
-        this.posZ += d6;
-        
         this.prevPosX = this.posX;
         this.prevPosY = this.posY;
         this.prevPosZ = this.posZ;

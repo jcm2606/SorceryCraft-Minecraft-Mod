@@ -1,12 +1,14 @@
 package jcm2606.mods.sorcerycraft.item.astral.gauntlet.mode;
 
 import jcm2606.mods.sorcerycraft.SCObjects;
+import jcm2606.mods.sorcerycraft.SCParticle;
 import jcm2606.mods.sorcerycraft.item.astral.ItemAstralEnergyCell;
 import jcm2606.mods.sorcerycraft.item.astral.gauntlet.AstralGauntletManager;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumAction;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
 public class ModeEnergyAbsorb extends GauntletMode {
@@ -49,6 +51,17 @@ public class ModeEnergyAbsorb extends GauntletMode {
                                             if(cell.getEnergy(stack2) > 0)
                                             {
                                                 cell.setEnergy(stack2, cell.getEnergy(stack2) - 1);
+                                                
+                                                if(world.isRemote)
+                                                {
+                                                    float var7 = (float) (player.posX - xCoord);
+                                                    float var9 = (float) (player.posY - 1 - yCoord);
+                                                    float var11 = (float) (player.posZ - zCoord);
+                                                    int distance = (int)MathHelper.sqrt_double(var7 * var7 + var9 * var9 + var11 * var11);
+                                                    
+                                                    SCParticle.spawnAstralEnergyFX(xCoord + 0.5, yCoord - 0.5, zCoord + 0.5, player.posX, player.posY, player.posZ, false, distance, false);
+                                                }
+                                                
                                                 break;
                                             }
                                         }
@@ -69,7 +82,7 @@ public class ModeEnergyAbsorb extends GauntletMode {
     {}
 
     @Override
-    public int energyRequired(String type)
+    public int energyRequired(String type, EntityPlayer player)
     {
         return 0;
     }
