@@ -4,7 +4,6 @@ import jcm2606.mods.jccore.EntityFXJC;
 import jcm2606.mods.sorcerycraft.lib.Reference;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.world.World;
-import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -13,24 +12,17 @@ public class EntityAstralEnergyFX extends EntityFXJC
 {
     float particleScaleOverTime;
     
-    private final boolean hasTrail;
-    
     private int maxAge;
     
-    public double x;
-    public double y;
-    public double z;
-
     public EntityAstralEnergyFX(World par1World, double f, double f2, double f4, double par8, double par10, double par12, boolean par13, int par14)
     {
         super(par1World, f, f2, f4, 0.0, 0.0, 0.0);
         this.blendMode = 771;
+        
         this.prevPosX = this.posX;
         this.prevPosY = this.posY;
         this.prevPosZ = this.posZ;
-        this.x = par8;
-        this.y = par10;
-        this.z = par12;
+        
         this.particleScaleOverTime = this.particleScale = 2.5f;
         this.particleRed = this.particleGreen = this.particleBlue = 0.25F;
         this.particleMaxAge = maxAge = 3 * par14;
@@ -46,7 +38,6 @@ public class EntityAstralEnergyFX extends EntityFXJC
         this.noClip = true;
         this.setAlphaF(0.75f);
         this.setParticleTextureIndex(32);
-        this.hasTrail = par13;
     }
 
     @Override
@@ -87,13 +78,6 @@ public class EntityAstralEnergyFX extends EntityFXJC
         if (this.particleAge++ >= this.particleMaxAge)
         {
             this.setDead();
-        }
-        
-        if(hasTrail)
-        {
-            EntityAstralEnergyFX fx = new EntityAstralEnergyFX(this.worldObj, this.posX, this.posY, this.posZ, this.motionX, this.motionY, this.motionZ, false, 30);
-            
-            FMLClientHandler.instance().getClient().effectRenderer.addEffect(fx);
         }
     }
 }
