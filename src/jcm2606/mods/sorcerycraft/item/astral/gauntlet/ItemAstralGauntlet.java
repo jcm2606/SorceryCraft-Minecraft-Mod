@@ -1,13 +1,13 @@
-package jcm2606.mods.sorcerycraft.item.astral;
+package jcm2606.mods.sorcerycraft.item.astral.gauntlet;
 
 import java.util.List;
 
 import jcm2606.mods.jccore.helper.NBTHelper;
 import jcm2606.mods.jccore.helper.RarityHelper;
 import jcm2606.mods.sorcerycraft.item.SCItemShine;
-import jcm2606.mods.sorcerycraft.item.astral.gauntlet.AstralGauntletManager;
 import jcm2606.mods.sorcerycraft.item.astral.gauntlet.mode.GauntletMode;
 import jcm2606.mods.sorcerycraft.lib.Rarities;
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
@@ -18,11 +18,9 @@ import net.minecraft.world.World;
 
 import org.lwjgl.input.Keyboard;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-
 public class ItemAstralGauntlet extends SCItemShine {
     public final String NBT_TAG_MODE = "mode";
+    public final String NBT_TAG_UPGRADE_LIST = "upgradeList";
     
     public ItemAstralGauntlet(int par1) {
         super(par1, "astralGauntlet");
@@ -45,6 +43,37 @@ public class ItemAstralGauntlet extends SCItemShine {
     public int getMode(ItemStack stack)
     {
         return NBTHelper.getInt(NBTHelper.getNBTCompoundForItemStack(stack), NBT_TAG_MODE);
+    }
+    
+    public void addUpgradeToList(ItemStack stack, int id)
+    {
+        int[] intArray = NBTHelper.getIntArray(NBTHelper.getNBTCompoundForItemStack(stack), NBT_TAG_UPGRADE_LIST);
+        intArray[intArray.length + 1] = id;
+        
+        NBTHelper.setIntArray(NBTHelper.getNBTCompoundForItemStack(stack), NBT_TAG_UPGRADE_LIST, intArray);
+    }
+    
+    public int[] getUpgradeList(ItemStack stack)
+    {
+        return NBTHelper.getIntArray(NBTHelper.getNBTCompoundForItemStack(stack), NBT_TAG_UPGRADE_LIST);
+    }
+    
+    public int getUpgradeFromSlotInList(ItemStack stack, int slot)
+    {
+        return getUpgradeList(stack)[slot];
+    }
+    
+    public boolean isUpgradeInList(ItemStack stack, int id)
+    {
+        for(int i = 0; i < getUpgradeList(stack).length; i++)
+        {
+            if(getUpgradeFromSlotInList(stack, i) == id)
+            {
+                return true;
+            }
+        }
+        
+        return false;
     }
     
     @Override
@@ -80,7 +109,6 @@ public class ItemAstralGauntlet extends SCItemShine {
     }
     
     @Override
-    @SideOnly(Side.CLIENT)
     /**
      * allows items to add custom lines of information to the mouseover description
      */
@@ -90,7 +118,9 @@ public class ItemAstralGauntlet extends SCItemShine {
         
         if(mode != null)
         {
-            list.add(mode.name);
+            list.add("\2478\247o" + mode.name);
+            
+            mode.addInfoToItemMouseover(player, stack, Keyboard.isKeyDown(Minecraft.getMinecraft().gameSettings.keyBindSneak.keyCode), list);
         }
     }
     

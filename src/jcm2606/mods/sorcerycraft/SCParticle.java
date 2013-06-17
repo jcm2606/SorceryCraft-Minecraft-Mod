@@ -29,13 +29,21 @@ public class SCParticle
         return fx;
     }
 	
-	public static EntityFX spawnAstralEnergyFX(double x, double y, double z, double motX, double motY, double motZ, boolean trailing, int age, boolean handleParticleSettings)
+	public static EntityFX spawnAstralEnergyFX(double x, double y, double z, double motX, double motY, double motZ, int age, boolean handleParticleSettings)
     {
-        EntityFX fx = new EntityAstralEnergyFX(Minecraft.getMinecraft().theWorld, x, y, z, motX, motY, motZ, trailing, age);
+        EntityFX fx = new EntityAstralEnergyFX(Minecraft.getMinecraft().theWorld, x, y, z, motX, motY, motZ, age);
         
         spawnParticle(fx, handleParticleSettings);
         return fx;
     }
+	
+	public static EntityFX spawnAstralEnergyFX(double x, double y, double z, double motX, double motY, double motZ, int age, int speed, boolean handleParticleSettings)
+	{
+	    EntityFX fx = new EntityAstralEnergyFX(Minecraft.getMinecraft().theWorld, x, y, z, motX, motY, motZ, age, speed);
+        
+        spawnParticle(fx, handleParticleSettings);
+        return fx;
+	}
 	
 	public static void spawnSearFlameFX(double x, double y, double z, double motX, double motY, double motZ, boolean handleParticleSettings)
     {

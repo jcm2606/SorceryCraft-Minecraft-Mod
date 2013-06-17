@@ -1,6 +1,6 @@
 package jcm2606.mods.sorcerycraft.tile.astral;
 
-import jcm2606.mods.jccore.TileEntityJC;
+import jcm2606.mods.jccore.tile.TileEntityJC;
 import net.minecraft.nbt.NBTTagCompound;
 
 public class TileEntityAstralEnergyLink extends TileEntityJC {

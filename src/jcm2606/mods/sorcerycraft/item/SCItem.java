@@ -1,6 +1,6 @@
 package jcm2606.mods.sorcerycraft.item;
 
-import jcm2606.mods.sorcerycraft.IconManager;
+import jcm2606.mods.sorcerycraft.SCIconManager;
 import jcm2606.mods.sorcerycraft.SorceryCraft;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.item.Item;
@@ -21,6 +21,6 @@ public class SCItem extends Item {
     @SideOnly(Side.CLIENT)
     public void registerIcons(IconRegister par1IconRegister)
     {
-        this.itemIcon = IconManager.getIcon(this.name);
+        this.itemIcon = SCIconManager.getIcon(this.name);
     }
 }

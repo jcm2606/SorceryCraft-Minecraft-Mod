@@ -3,7 +3,7 @@ package jcm2606.mods.sorcerycraft.block;
 import java.util.Random;
 
 import jcm2606.mods.jccore.block.BlockJC;
-import jcm2606.mods.sorcerycraft.IconManager;
+import jcm2606.mods.sorcerycraft.SCIconManager;
 import jcm2606.mods.sorcerycraft.SorceryCraft;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
@@ -44,7 +44,7 @@ public class SCBlock extends BlockJC {
     {
 		if(useIconIndex)
 		{
-		    this.blockIcon = IconManager.getIcon(this.name);
+		    this.blockIcon = SCIconManager.getIcon(this.name);
 		}
     }
 	

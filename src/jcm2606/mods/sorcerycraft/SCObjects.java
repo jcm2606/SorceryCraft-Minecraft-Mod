@@ -2,7 +2,7 @@ package jcm2606.mods.sorcerycraft;
 
 import java.util.HashMap;
 
-import jcm2606.mods.jccore.IObjectCore;
+import jcm2606.mods.jccore.core.IObjectCore;
 import jcm2606.mods.jccore.util.GeneralUtil;
 import jcm2606.mods.sorcerycraft.block.BlockAlchMetal;
 import jcm2606.mods.sorcerycraft.block.BlockAlchPodium;
@@ -17,7 +17,6 @@ import jcm2606.mods.sorcerycraft.block.BlockOreVord;
 import jcm2606.mods.sorcerycraft.block.BlockOreVordicGem;
 import jcm2606.mods.sorcerycraft.block.BlockSearTorch;
 import jcm2606.mods.sorcerycraft.block.BlockShimmerStone;
-import jcm2606.mods.sorcerycraft.block.BlockSkull;
 import jcm2606.mods.sorcerycraft.block.BlockStonePodium;
 import jcm2606.mods.sorcerycraft.block.BlockStoneResistant;
 import jcm2606.mods.sorcerycraft.block.BlockVordicTorch;
@@ -47,10 +46,11 @@ import jcm2606.mods.sorcerycraft.item.astral.ItemAstralCrystal;
 import jcm2606.mods.sorcerycraft.item.astral.ItemAstralCrystalShard;
 import jcm2606.mods.sorcerycraft.item.astral.ItemAstralDust;
 import jcm2606.mods.sorcerycraft.item.astral.ItemAstralEnergyCell;
-import jcm2606.mods.sorcerycraft.item.astral.ItemAstralGauntlet;
+import jcm2606.mods.sorcerycraft.item.astral.ItemAstralEnergyPearl;
 import jcm2606.mods.sorcerycraft.item.astral.ItemAstralTablet;
 import jcm2606.mods.sorcerycraft.item.astral.ItemIngotAstralSteel;
 import jcm2606.mods.sorcerycraft.item.astral.gauntlet.AstralGauntletManager;
+import jcm2606.mods.sorcerycraft.item.astral.gauntlet.ItemAstralGauntlet;
 import jcm2606.mods.sorcerycraft.item.astral.gauntlet.mode.ModeCooling;
 import jcm2606.mods.sorcerycraft.item.charm.ItemCharm;
 import jcm2606.mods.sorcerycraft.item.charm.ItemCharmMortality;
@@ -153,6 +153,7 @@ public class SCObjects implements IObjectCore {
     public static Item astralgauntlet;
     public static Item astraltablet;
     public static Item astralenergycell;
+    public static Item astralenergypearl;
     
     public static Block orevordic;
     public static Block alchpodium;
@@ -238,6 +239,7 @@ public class SCObjects implements IObjectCore {
     public static int ID_ASTRAL_GAUNTLET;
     public static int ID_ASTRAL_TABLET;
     public static int ID_ASTRAL_ENERGY_CELL;
+    public static int ID_ASTRAL_ENERGY_PEARL;
     
     public static int ID_ORE_VORDIC;
     public static int ID_ALCHEMICAL_PODIUM;
@@ -348,6 +350,7 @@ public class SCObjects implements IObjectCore {
         astralgauntlet = new ItemAstralGauntlet(ID_ASTRAL_GAUNTLET);
         astraltablet = new ItemAstralTablet(ID_ASTRAL_TABLET);
         astralenergycell = new ItemAstralEnergyCell(ID_ASTRAL_ENERGY_CELL);
+        astralenergypearl = new ItemAstralEnergyPearl(ID_ASTRAL_ENERGY_PEARL);
         
         // Blocks
         orevordic = new BlockOreVord(ID_ORE_VORDIC).setHardness(2.0f).setUnlocalizedName("oreVord");
@@ -367,7 +370,6 @@ public class SCObjects implements IObjectCore {
         vordictorch = new BlockVordicTorch(ID_VORDIC_TORCH).setUnlocalizedName("vordicTorch");
         obsidianfalse = new BlockObsidianFalse(ID_OBSIDIAN_FALSE, Material.rock).setUnlocalizedName("obsidianFalse");
         entitytracker = new BlockEntityTracker(ID_ENTITY_TRACKER);
-        magicskull = new BlockSkull(ID_MAGIC_SKULL);
         stonepodium = new BlockStonePodium(ID_STONE_PODIUM);
         astralviewer = new BlockAstralViewer(ID_ASTRAL_VIEWER);
         oreastral = new BlockOreAstral(ID_ORE_ASTRAL);
@@ -485,6 +487,7 @@ public class SCObjects implements IObjectCore {
         ID_ASTRAL_GAUNTLET = Config.getItemId("astralGantlet", Reference.ITEM_ID_START_VALUE).getInt();
         ID_ASTRAL_TABLET = Config.getItemId("astralTablet", Reference.ITEM_ID_START_VALUE).getInt();
         ID_ASTRAL_ENERGY_CELL = Config.getItemId("astralEnergyCell", Reference.ITEM_ID_START_VALUE).getInt();
+        ID_ASTRAL_ENERGY_PEARL = Config.getItemId("astralEnergyPearl", Reference.ITEM_ID_START_VALUE).getInt();
         
         // Blocks
         ID_ORE_VORDIC = Config.getBlockId("oreVordic", Reference.BLOCK_ID_START_VALUE).getInt();
@@ -622,6 +625,7 @@ public class SCObjects implements IObjectCore {
         LanguageRegistry.addName(astralgauntlet, "Astral Gauntlet");
         LanguageRegistry.addName(astraltablet, "Astral Rune Tablet");
         LanguageRegistry.addName(astralenergycell, "Astral Energy Cell");
+        LanguageRegistry.addName(astralenergypearl, "Astral Energy Pearl");
         
         LanguageRegistry.addName(orevordic, "Solid Vord Stone");
         LanguageRegistry.addName(alchpodium, "Arcane Podium");
@@ -1085,104 +1089,105 @@ public class SCObjects implements IObjectCore {
         
         if(index.getEvent().map == Minecraft.getMinecraft().renderEngine.textureMapBlocks)
         {
-            IconManager.registerIcon("oreVord", true);
-            IconManager.registerIcon("alchMetalBlock", true);
-            IconManager.registerIcon("falseObsidian", true);
-            IconManager.registerIcon("mundaneBouncerTop", true);
-            IconManager.registerIcon("mundaneEntityDetectorTop", true);
-            IconManager.registerIcon("mundaneMechanismBase", true);
-            IconManager.registerIcon("mundaneMechanismBaseOverloaded", true);
-            IconManager.registerIcon("oreVordicGem", true);
-            IconManager.registerIcon("shimmerStone", true);
-            IconManager.registerIcon("shimmerStoneLuminous", true);
-            IconManager.registerIcon("stoneMachineBase", true);
-            IconManager.registerIcon("stoneMachineSide", true);
-            IconManager.registerIcon("stoneResistant", true);
-            IconManager.registerIcon("vordicGem", true);
-            IconManager.registerIcon("vordicTorch", true);
-            IconManager.registerIcon("entityTracker", true);
-            IconManager.registerIcon("emberStone", true);
-            IconManager.registerIcon("ancientBookshelf", true);
-            IconManager.registerIcon("searTorch", true);
-            IconManager.registerIcon("astralSteelBlock", true);
+            SCIconManager.registerIcon("oreVord", true);
+            SCIconManager.registerIcon("alchMetalBlock", true);
+            SCIconManager.registerIcon("falseObsidian", true);
+            SCIconManager.registerIcon("mundaneBouncerTop", true);
+            SCIconManager.registerIcon("mundaneEntityDetectorTop", true);
+            SCIconManager.registerIcon("mundaneMechanismBase", true);
+            SCIconManager.registerIcon("mundaneMechanismBaseOverloaded", true);
+            SCIconManager.registerIcon("oreVordicGem", true);
+            SCIconManager.registerIcon("shimmerStone", true);
+            SCIconManager.registerIcon("shimmerStoneLuminous", true);
+            SCIconManager.registerIcon("stoneMachineBase", true);
+            SCIconManager.registerIcon("stoneMachineSide", true);
+            SCIconManager.registerIcon("stoneResistant", true);
+            SCIconManager.registerIcon("vordicGem", true);
+            SCIconManager.registerIcon("vordicTorch", true);
+            SCIconManager.registerIcon("entityTracker", true);
+            SCIconManager.registerIcon("emberStone", true);
+            SCIconManager.registerIcon("ancientBookshelf", true);
+            SCIconManager.registerIcon("searTorch", true);
+            SCIconManager.registerIcon("astralSteelBlock", true);
             
-            IconManager.registerIcon("astral_viewer_anim", false);
-            IconManager.registerIcon("astral_crystal_anim", false);
-            IconManager.registerIcon("astral_mechanism_anim", false);
+            SCIconManager.registerIcon("astral_viewer_anim", false);
+            SCIconManager.registerIcon("astral_crystal_anim", false);
+            SCIconManager.registerIcon("astral_mechanism_anim", false);
         }
         
         if(index.getEvent().map == Minecraft.getMinecraft().renderEngine.textureMapItems)
         {
-            IconManager.registerIcon("aegisStone", false);
-            IconManager.registerIcon("bookAlch", "alchBook", false);
-            IconManager.registerIcon("matterAlch", false);
-            IconManager.registerIcon("alchStone", false);
-            IconManager.registerIcon("amuletRepair", false);
-            IconManager.registerIcon("charmSight", false);
-            IconManager.registerIcon("invisCloak", false);
-            IconManager.registerIcon("dustVim", false);
-            IconManager.registerIcon("dustFire", false);
-            IconManager.registerIcon("dustVordic", false);
-            IconManager.registerIcon("dustVordicStabilized", false);
-            IconManager.registerIcon("enchantedHilt", false);
-            IconManager.registerIcon("endEssence", false);
-            IconManager.registerIcon("essenceDark", false);
-            IconManager.registerIcon("essenceEarth", false);
-            IconManager.registerIcon("essenceEnergy", false);
-            IconManager.registerIcon("essenceFlame", false);
-            IconManager.registerIcon("essenceMagic", false);
-            IconManager.registerIcon("essenceWater", false);
-            IconManager.registerIcon("fabricIllusion", false);
-            IconManager.registerIcon("flaskGlass", false);
-            IconManager.registerIcon("flaskWater", false);
-            IconManager.registerIcon("ingotAlchMetal", false);
-            IconManager.registerIcon("ingotAlchMetalSoftened", false);
-            IconManager.registerIcon("ingotObsidian", false);
-            IconManager.registerIcon("noteBlank", false);
-            IconManager.registerIcon("parchment", false);
-            IconManager.registerIcon("noteWritten", false);
-            IconManager.registerIcon("perspectiveGlassOrb", false);
-            IconManager.registerIcon("ringMagma", false);
-            IconManager.registerIcon("tabletFormulation", false);
-            IconManager.registerIcon("toolVordic", false);
-            IconManager.registerIcon("weightedStoneSphere", false);
-            IconManager.registerIcon("wovenSilk", false);
-            IconManager.registerIcon("endEye", false);
-            IconManager.registerIcon("charmMortality", false);
-            IconManager.registerIcon("lifeStone", false);
-            IconManager.registerIcon("flaskLiquidFervor", false);
-            IconManager.registerIcon("wandCasting", false);
-            IconManager.registerIcon("wandSorcery", "wandCasting", false);
-            IconManager.registerIcon("astralCrystal", false);
-            IconManager.registerIcon("naturesHighwinds", false);
-            IconManager.registerIcon("bookKnowledge", false);
-            IconManager.registerIcon("cogStone", false);
-            IconManager.registerIcon("cogMetal", false);
-            IconManager.registerIcon("cogAstral", false);
-            IconManager.registerIcon("cogArcane", false);
-            IconManager.registerIcon("ingotAstralSteel", false);
-            IconManager.registerIcon("astralCrystalShard", false);
-            IconManager.registerIcon("astralDust", false);
-            IconManager.registerIcon("astralControlSceptor", false);
-            IconManager.registerIcon("elementSceptorLightning", false);
-            IconManager.registerIcon("sceptorAscension", false);
-            IconManager.registerIcon("astralGauntlet", false);
-            IconManager.registerIcon("astralTablet", false);
-            IconManager.registerIcon("astralEnergyCell", false);
+            SCIconManager.registerIcon("aegisStone", false);
+            SCIconManager.registerIcon("bookAlch", "alchBook", false);
+            SCIconManager.registerIcon("matterAlch", false);
+            SCIconManager.registerIcon("alchStone", false);
+            SCIconManager.registerIcon("amuletRepair", false);
+            SCIconManager.registerIcon("charmSight", false);
+            SCIconManager.registerIcon("invisCloak", false);
+            SCIconManager.registerIcon("dustVim", false);
+            SCIconManager.registerIcon("dustFire", false);
+            SCIconManager.registerIcon("dustVordic", false);
+            SCIconManager.registerIcon("dustVordicStabilized", false);
+            SCIconManager.registerIcon("enchantedHilt", false);
+            SCIconManager.registerIcon("endEssence", false);
+            SCIconManager.registerIcon("essenceDark", false);
+            SCIconManager.registerIcon("essenceEarth", false);
+            SCIconManager.registerIcon("essenceEnergy", false);
+            SCIconManager.registerIcon("essenceFlame", false);
+            SCIconManager.registerIcon("essenceMagic", false);
+            SCIconManager.registerIcon("essenceWater", false);
+            SCIconManager.registerIcon("fabricIllusion", false);
+            SCIconManager.registerIcon("flaskGlass", false);
+            SCIconManager.registerIcon("flaskWater", false);
+            SCIconManager.registerIcon("ingotAlchMetal", false);
+            SCIconManager.registerIcon("ingotAlchMetalSoftened", false);
+            SCIconManager.registerIcon("ingotObsidian", false);
+            SCIconManager.registerIcon("noteBlank", false);
+            SCIconManager.registerIcon("parchment", false);
+            SCIconManager.registerIcon("noteWritten", false);
+            SCIconManager.registerIcon("perspectiveGlassOrb", false);
+            SCIconManager.registerIcon("ringMagma", false);
+            SCIconManager.registerIcon("tabletFormulation", false);
+            SCIconManager.registerIcon("toolVordic", false);
+            SCIconManager.registerIcon("weightedStoneSphere", false);
+            SCIconManager.registerIcon("wovenSilk", false);
+            SCIconManager.registerIcon("endEye", false);
+            SCIconManager.registerIcon("charmMortality", false);
+            SCIconManager.registerIcon("lifeStone", false);
+            SCIconManager.registerIcon("flaskLiquidFervor", false);
+            SCIconManager.registerIcon("wandCasting", false);
+            SCIconManager.registerIcon("wandSorcery", "wandCasting", false);
+            SCIconManager.registerIcon("astralCrystal", false);
+            SCIconManager.registerIcon("naturesHighwinds", false);
+            SCIconManager.registerIcon("bookKnowledge", false);
+            SCIconManager.registerIcon("cogStone", false);
+            SCIconManager.registerIcon("cogMetal", false);
+            SCIconManager.registerIcon("cogAstral", false);
+            SCIconManager.registerIcon("cogArcane", false);
+            SCIconManager.registerIcon("ingotAstralSteel", false);
+            SCIconManager.registerIcon("astralCrystalShard", false);
+            SCIconManager.registerIcon("astralDust", false);
+            SCIconManager.registerIcon("astralControlSceptor", false);
+            SCIconManager.registerIcon("elementSceptorLightning", false);
+            SCIconManager.registerIcon("sceptorAscension", false);
+            SCIconManager.registerIcon("astralGauntlet", false);
+            SCIconManager.registerIcon("astralTablet", false);
+            SCIconManager.registerIcon("astralEnergyCell", false);
+            SCIconManager.registerIcon("astralEnergyPearl", false);
             
-            IconManager.registerIcon("nerollRoot", false);
-            IconManager.registerIcon("dustNeroll", false);
-            IconManager.registerIcon("nerollWater", false);
+            SCIconManager.registerIcon("nerollRoot", false);
+            SCIconManager.registerIcon("dustNeroll", false);
+            SCIconManager.registerIcon("nerollWater", false);
             
-            IconManager.registerIcon("toolSwordFire", false);
-            IconManager.registerIcon("toolSwordPower", false);
-            IconManager.registerIcon("toolSwordMagic", false);
-            IconManager.registerIcon("toolSwordAlchMetal", false);
-            IconManager.registerIcon("toolPickAlchMetal", false);
-            IconManager.registerIcon("toolPickOmni", false);
-            IconManager.registerIcon("toolShovelAlchMetal", false);
-            IconManager.registerIcon("toolAxeAlchMetal", false);
-            IconManager.registerIcon("toolHoeAlchMetal", false);
+            SCIconManager.registerIcon("toolSwordFire", false);
+            SCIconManager.registerIcon("toolSwordPower", false);
+            SCIconManager.registerIcon("toolSwordMagic", false);
+            SCIconManager.registerIcon("toolSwordAlchMetal", false);
+            SCIconManager.registerIcon("toolPickAlchMetal", false);
+            SCIconManager.registerIcon("toolPickOmni", false);
+            SCIconManager.registerIcon("toolShovelAlchMetal", false);
+            SCIconManager.registerIcon("toolAxeAlchMetal", false);
+            SCIconManager.registerIcon("toolHoeAlchMetal", false);
         }
     }
 }

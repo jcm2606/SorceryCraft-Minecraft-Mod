@@ -1,6 +1,6 @@
 package jcm2606.mods.sorcerycraft.block.mundane;
 
-import jcm2606.mods.sorcerycraft.IconManager;
+import jcm2606.mods.sorcerycraft.SCIconManager;
 import jcm2606.mods.sorcerycraft.block.SCBlock;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
@@ -39,7 +39,7 @@ public class BlockBouncer extends SCBlock {
     {
         iconBuffer = new Icon[2]; // 3 machines, 6 sides each, in ON and OFF states
         
-        iconBuffer[0] = IconManager.getIcon("mundaneMechanismBase");
-        iconBuffer[1] = IconManager.getIcon("mundaneBouncerTop"); // top
+        iconBuffer[0] = SCIconManager.getIcon("mundaneMechanismBase");
+        iconBuffer[1] = SCIconManager.getIcon("mundaneBouncerTop"); // top
     }
 }

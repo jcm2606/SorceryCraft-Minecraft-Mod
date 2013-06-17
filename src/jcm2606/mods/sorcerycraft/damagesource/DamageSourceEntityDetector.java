@@ -1,6 +1,6 @@
 package jcm2606.mods.sorcerycraft.damagesource;
 
-import jcm2606.mods.jccore.DamageSourceJC;
+import jcm2606.mods.jccore.damage.DamageSourceJC;
 
 public class DamageSourceEntityDetector extends DamageSourceJC {
 	public DamageSourceEntityDetector(String name) {

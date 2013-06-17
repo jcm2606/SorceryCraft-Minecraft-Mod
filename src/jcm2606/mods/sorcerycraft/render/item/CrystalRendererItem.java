@@ -1,6 +1,6 @@
 package jcm2606.mods.sorcerycraft.render.item;
 
-import jcm2606.mods.jccore.ItemRendererBase;
+import jcm2606.mods.jccore.render.ItemRendererBase;
 import jcm2606.mods.sorcerycraft.lib.Reference;
 import jcm2606.mods.sorcerycraft.model.ModelCrystal;
 import net.minecraft.client.Minecraft;

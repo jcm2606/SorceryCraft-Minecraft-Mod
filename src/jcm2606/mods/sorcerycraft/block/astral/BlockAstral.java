@@ -1,6 +1,6 @@
 package jcm2606.mods.sorcerycraft.block.astral;
 
-import jcm2606.mods.sorcerycraft.IconManager;
+import jcm2606.mods.sorcerycraft.SCIconManager;
 import jcm2606.mods.sorcerycraft.block.SCBlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
@@ -24,6 +24,6 @@ public abstract class BlockAstral extends SCBlockContainer {
     @SideOnly(Side.CLIENT)
     public void registerIcons(IconRegister par1IconRegister)
     {
-        this.blockIcon = IconManager.getIcon(this.texture);
+        this.blockIcon = SCIconManager.getIcon(this.texture);
     }
 }

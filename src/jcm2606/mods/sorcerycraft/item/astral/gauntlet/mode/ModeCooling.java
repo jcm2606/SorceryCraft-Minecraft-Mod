@@ -1,6 +1,7 @@
 package jcm2606.mods.sorcerycraft.item.astral.gauntlet.mode;
 
 import java.util.HashMap;
+import java.util.List;
 
 import jcm2606.mods.sorcerycraft.item.astral.gauntlet.AstralGauntletManager;
 import net.minecraft.block.Block;
@@ -13,7 +14,7 @@ public class ModeCooling extends GauntletMode {
     public static HashMap<Block, Block> coolingList = new HashMap<Block, Block>();
     
     public ModeCooling() {
-        super(AstralGauntletManager.getNextAvailableId(), "Blizzard Cooling", "");
+        super(AstralGauntletManager.getNextAvailableId(), "Subzero Cooling", "");
     }
     
     public static void loadCoolingEntries()
@@ -51,4 +52,8 @@ public class ModeCooling extends GauntletMode {
         
         return 0;
     }
+
+    @Override
+    public void addInfoToItemMouseover(EntityPlayer player, ItemStack stack, boolean isSneaking, List list)
+    {}
 }

@@ -8,7 +8,7 @@ import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.event.ForgeSubscribe;
 import apex.util.ApexIconIndexer;
 
-public class IconManager {
+public class SCIconManager {
     public static HashMap<String, Icon> iconMap = new HashMap<String, Icon>();
     
     @ForgeSubscribe

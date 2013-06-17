@@ -1,7 +1,7 @@
 package jcm2606.mods.sorcerycraft.proxy;
 
-import jcm2606.mods.jccore.IClientProxy;
-import jcm2606.mods.sorcerycraft.IconManager;
+import jcm2606.mods.jccore.core.IClientProxy;
+import jcm2606.mods.sorcerycraft.SCIconManager;
 import jcm2606.mods.sorcerycraft.SCObjects;
 import jcm2606.mods.sorcerycraft.entity.EntityQuidge;
 import jcm2606.mods.sorcerycraft.event.SoundHandler;
@@ -91,6 +91,6 @@ public class ClientProxy extends CommonProxy implements IClientProxy {
         super.registerHandlers();
         
         MinecraftForge.EVENT_BUS.register(new SoundHandler());
-        MinecraftForge.EVENT_BUS.register(new IconManager());
+        MinecraftForge.EVENT_BUS.register(new SCIconManager());
     }
 }

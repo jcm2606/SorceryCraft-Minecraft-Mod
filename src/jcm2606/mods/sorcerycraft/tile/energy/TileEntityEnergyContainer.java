@@ -1,6 +1,6 @@
 package jcm2606.mods.sorcerycraft.tile.energy;
 
-import jcm2606.mods.jccore.TileEntityJC;
+import jcm2606.mods.jccore.tile.TileEntityJC;
 import jcm2606.mods.sorcerycraft.energy.IEnergyContainer;
 import net.minecraft.block.Block;
 import net.minecraft.nbt.NBTTagCompound;

@@ -1,6 +1,6 @@
 package jcm2606.mods.sorcerycraft.render.item.astral;
 
-import jcm2606.mods.jccore.ItemRendererBase;
+import jcm2606.mods.jccore.render.ItemRendererBase;
 import jcm2606.mods.sorcerycraft.block.SCBlock;
 import jcm2606.mods.sorcerycraft.helper.RenderHelperSC;
 import net.minecraft.block.Block;

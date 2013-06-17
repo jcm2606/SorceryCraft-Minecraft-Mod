@@ -143,7 +143,7 @@ public class ItemAstralControlSceptor extends SCItemShine {
                                     double vx = storedX + 0.5 - px;
                                     double vy = storedY - 0.5 - py;
                                     double vz = storedZ + 0.5 - pz;
-                                    SCParticle.spawnAstralEnergyFX(px, py, pz, vx, vy, vz, false, 40, false);
+                                    SCParticle.spawnAstralEnergyFX(px, py, pz, vx, vy, vz, 40, false);
                                 }
                             }
                             
@@ -171,7 +171,7 @@ public class ItemAstralControlSceptor extends SCItemShine {
                                     double vx = storedX + 0.5 - px;
                                     double vy = storedY - 0.5 - py;
                                     double vz = storedZ + 0.5 - pz;
-                                    SCParticle.spawnAstralEnergyFX(px, py, pz, vx, vy, vz, false, 40, false);
+                                    SCParticle.spawnAstralEnergyFX(px, py, pz, vx, vy, vz, 40, false);
                                 }
                             }
                             
@@ -199,7 +199,7 @@ public class ItemAstralControlSceptor extends SCItemShine {
                                     double vx = storedX + 0.5 - px;
                                     double vy = storedY - 0.5 - py;
                                     double vz = storedZ + 0.5 - pz;
-                                    SCParticle.spawnAstralEnergyFX(px, py, pz, vx, vy, vz, false, 40, false);
+                                    SCParticle.spawnAstralEnergyFX(px, py, pz, vx, vy, vz, 40, false);
                                 }
                             }
                             
@@ -227,7 +227,7 @@ public class ItemAstralControlSceptor extends SCItemShine {
                                     double vx = storedX + 0.5 - px;
                                     double vy = storedY - 0.5 - py;
                                     double vz = storedZ + 0.5 - pz;
-                                    SCParticle.spawnAstralEnergyFX(px, py, pz, vx, vy, vz, false, 40, false);
+                                    SCParticle.spawnAstralEnergyFX(px, py, pz, vx, vy, vz, 40, false);
                                 }
                             }
                             
@@ -255,7 +255,7 @@ public class ItemAstralControlSceptor extends SCItemShine {
                                     double vx = storedX + 0.5 - px;
                                     double vy = storedY - 0.5 - py;
                                     double vz = storedZ + 0.5 - pz;
-                                    SCParticle.spawnAstralEnergyFX(px, py, pz, vx, vy, vz, false, 40, false);
+                                    SCParticle.spawnAstralEnergyFX(px, py, pz, vx, vy, vz, 40, false);
                                 }
                             }
                             
@@ -283,7 +283,7 @@ public class ItemAstralControlSceptor extends SCItemShine {
                                     double vx = storedX + 0.5 - px;
                                     double vy = storedY - 0.5 - py;
                                     double vz = storedZ + 0.5 - pz;
-                                    SCParticle.spawnAstralEnergyFX(px, py, pz, vx, vy, vz, false, 40, false);
+                                    SCParticle.spawnAstralEnergyFX(px, py, pz, vx, vy, vz, 40, false);
                                 }
                             }
                             

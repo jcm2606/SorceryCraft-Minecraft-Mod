@@ -9,7 +9,6 @@ import jcm2606.mods.sorcerycraft.fx.EntityAstralEnergyFX;
 import jcm2606.mods.sorcerycraft.item.SCItem;
 import jcm2606.mods.sorcerycraft.lib.Rarities;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.particle.EntityFX;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -57,7 +56,7 @@ public class ItemAstralEnergyCell extends SCItem {
      */
     public void addInformation(ItemStack stack, EntityPlayer player, List list,
             boolean par4) {
-        list.add("Storing" + (1000 - this.getEnergy(stack)) + " Astral energy.");
+        list.add("Storing " + (1000 - this.getEnergy(stack)) + " Astral energy");
     }
     
     @SideOnly(Side.CLIENT)
@@ -83,7 +82,9 @@ public class ItemAstralEnergyCell extends SCItem {
                 {
                     for(int i = 0; i < (1000 - this.getEnergy(stack)) / 10; i++)
                     {
-                        EntityFX fx = new EntityAstralEnergyFX(world, player.posX, player.posY, player.posZ, player.posX + (Minecraft.getMinecraft().theWorld.rand.nextFloat() - Minecraft.getMinecraft().theWorld.rand.nextFloat()) * 2F, player.posY - 2D, player.posZ + (Minecraft.getMinecraft().theWorld.rand.nextFloat() - Minecraft.getMinecraft().theWorld.rand.nextFloat()) * 2F, false, 10);
+                        EntityAstralEnergyFX fx = new EntityAstralEnergyFX(world, player.posX, player.posY, player.posZ, player.posX + (Minecraft.getMinecraft().theWorld.rand.nextFloat() - Minecraft.getMinecraft().theWorld.rand.nextFloat()) * 2F, player.posY - 2D, player.posZ + (Minecraft.getMinecraft().theWorld.rand.nextFloat() - Minecraft.getMinecraft().theWorld.rand.nextFloat()) * 2F, 500, 30);
+                        fx.noClip = false;
+                        fx.fade = true;
                         
                         Minecraft.getMinecraft().effectRenderer.addEffect(fx);
                     }

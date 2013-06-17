@@ -1,6 +1,6 @@
 package jcm2606.mods.sorcerycraft.fx;
 
-import jcm2606.mods.jccore.EntityFXJC;
+import jcm2606.mods.jccore.fx.EntityFXJC;
 import jcm2606.mods.sorcerycraft.lib.Reference;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.world.World;

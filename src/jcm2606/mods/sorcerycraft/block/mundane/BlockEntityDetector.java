@@ -1,7 +1,7 @@
 package jcm2606.mods.sorcerycraft.block.mundane;
 
 import jcm2606.mods.jccore.util.ServerUtil;
-import jcm2606.mods.sorcerycraft.IconManager;
+import jcm2606.mods.sorcerycraft.SCIconManager;
 import jcm2606.mods.sorcerycraft.SCObjects;
 import jcm2606.mods.sorcerycraft.SorceryCraft;
 import jcm2606.mods.sorcerycraft.block.SCBlock;
@@ -37,8 +37,8 @@ public class BlockEntityDetector extends SCBlock {
     {
         iconBuffer = new Icon[2]; // 3 machines, 6 sides each, in ON and OFF states
         
-        iconBuffer[0] = IconManager.getIcon("mundaneMechanismBase");
-        iconBuffer[1] = IconManager.getIcon("mundaneEntityDetectorTop"); // top
+        iconBuffer[0] = SCIconManager.getIcon("mundaneMechanismBase");
+        iconBuffer[1] = SCIconManager.getIcon("mundaneEntityDetectorTop"); // top
     }
 	
 	/**

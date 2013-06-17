@@ -8,7 +8,6 @@ import jcm2606.mods.sorcerycraft.item.astral.gauntlet.mode.ModeBlockTravel;
 import jcm2606.mods.sorcerycraft.item.astral.gauntlet.mode.ModeCooling;
 import jcm2606.mods.sorcerycraft.item.astral.gauntlet.mode.ModeEnergyAbsorb;
 import jcm2606.mods.sorcerycraft.item.astral.gauntlet.mode.ModeFireball;
-import jcm2606.mods.sorcerycraft.item.astral.gauntlet.mode.ModeHeal;
 import jcm2606.mods.sorcerycraft.item.astral.gauntlet.mode.ModeStrength;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
@@ -25,7 +24,6 @@ public class AstralGauntletManager {
         registerMode(new ModeEnergyAbsorb());
         registerMode(new ModeFireball());
         registerMode(new ModeBlockBreak());
-        registerMode(new ModeHeal());
         registerMode(new ModeStrength());
         registerMode(new ModeCooling());
     }
@@ -67,6 +65,8 @@ public class AstralGauntletManager {
                         {
                             if(mode.onUse(useType, stack, world, player, living, x, y, z, side))
                             {
+                                ItemAstralGauntlet gauntlet = (ItemAstralGauntlet) SCObjects.astralgauntlet;
+                                
                                 cell.setEnergy(stack2, cell.getEnergy(stack2) + mode.energyRequired(useType, player));
                                 
                                 return true;

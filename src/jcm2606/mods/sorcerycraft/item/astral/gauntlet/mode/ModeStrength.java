@@ -1,5 +1,7 @@
 package jcm2606.mods.sorcerycraft.item.astral.gauntlet.mode;
 
+import java.util.List;
+
 import jcm2606.mods.sorcerycraft.item.astral.gauntlet.AstralGauntletManager;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
@@ -38,4 +40,8 @@ public class ModeStrength extends GauntletMode {
         
         return 0;
     }
+
+    @Override
+    public void addInfoToItemMouseover(EntityPlayer player, ItemStack stack, boolean isSneaking, List list)
+    {}
 }

@@ -3,14 +3,14 @@ package jcm2606.mods.sorcerycraft.tick;
 import java.util.HashMap;
 import java.util.Map;
 
-import jcm2606.mods.jccore.TickHandlerClientBase;
+import jcm2606.mods.jccore.tick.TickHandlerClientBase;
 import jcm2606.mods.jccore.util.RenderUtil;
 import jcm2606.mods.sorcerycraft.SCObjects;
 import jcm2606.mods.sorcerycraft.SorceryCraft;
 import jcm2606.mods.sorcerycraft.config.Settings;
 import jcm2606.mods.sorcerycraft.item.astral.ItemAstralEnergyCell;
-import jcm2606.mods.sorcerycraft.item.astral.ItemAstralGauntlet;
 import jcm2606.mods.sorcerycraft.item.astral.gauntlet.AstralGauntletManager;
+import jcm2606.mods.sorcerycraft.item.astral.gauntlet.ItemAstralGauntlet;
 import jcm2606.mods.sorcerycraft.item.main.ItemInvisCloak;
 import jcm2606.mods.sorcerycraft.item.wand.ItemWandCasting;
 import jcm2606.mods.sorcerycraft.item.wand.WandManager;

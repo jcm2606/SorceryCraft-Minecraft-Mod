@@ -1,7 +1,7 @@
 package jcm2606.mods.sorcerycraft;
 
-import jcm2606.mods.jccore.LoggerBase;
 import jcm2606.mods.jccore.compat.ModCompatibility;
+import jcm2606.mods.jccore.util.LoggerBase;
 import jcm2606.mods.sorcerycraft.config.Config;
 import jcm2606.mods.sorcerycraft.config.Settings;
 import jcm2606.mods.sorcerycraft.creative.CreativeTabSC;

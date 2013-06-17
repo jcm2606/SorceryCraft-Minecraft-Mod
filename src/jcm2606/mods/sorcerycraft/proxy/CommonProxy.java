@@ -1,6 +1,6 @@
 package jcm2606.mods.sorcerycraft.proxy;
 
-import jcm2606.mods.jccore.ICommonProxy;
+import jcm2606.mods.jccore.core.ICommonProxy;
 import jcm2606.mods.sorcerycraft.event.ItemPickupHandler;
 import jcm2606.mods.sorcerycraft.event.LivingEntityHandler;
 import jcm2606.mods.sorcerycraft.event.PlayerHandler;
@@ -9,7 +9,6 @@ import jcm2606.mods.sorcerycraft.handler.CraftingHandlerMain;
 import jcm2606.mods.sorcerycraft.tile.TileEntityAlchPodium;
 import jcm2606.mods.sorcerycraft.tile.TileEntityCrystal;
 import jcm2606.mods.sorcerycraft.tile.TileEntityInfuseTablet;
-import jcm2606.mods.sorcerycraft.tile.TileEntitySkull;
 import jcm2606.mods.sorcerycraft.tile.TileEntityStonePodium;
 import jcm2606.mods.sorcerycraft.tile.TileEntityTeleporter;
 import jcm2606.mods.sorcerycraft.tile.astral.TileEntityAstralCrystalBlock;
@@ -31,7 +30,6 @@ public class CommonProxy implements ICommonProxy {
         GameRegistry.registerTileEntity(TileEntityInfuseTablet.class, "tileSCInfuseTablet");
         GameRegistry.registerTileEntity(TileEntityCrystal.class, "tileSCCrystal");
         GameRegistry.registerTileEntity(TileEntityTeleporter.class, "tileSCTeleporter");
-        GameRegistry.registerTileEntity(TileEntitySkull.class, "tileSCSkull");
         GameRegistry.registerTileEntity(TileEntityStonePodium.class, "tileSCStonePodium");
         GameRegistry.registerTileEntity(TileEntityAstralOre.class, "tileSCOreAstral");
         GameRegistry.registerTileEntity(TileEntityAstralViewer.class, "tileSCAstralViewer");

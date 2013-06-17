@@ -1,5 +1,6 @@
 package jcm2606.mods.sorcerycraft.item.astral.gauntlet.mode;
 
+import java.util.List;
 import java.util.Random;
 
 import jcm2606.mods.sorcerycraft.SCParticle;
@@ -131,4 +132,8 @@ public class ModeFireball extends GauntletMode {
         
         return 0;
     }
+
+    @Override
+    public void addInfoToItemMouseover(EntityPlayer player, ItemStack stack, boolean isSneaking, List list)
+    {}
 }

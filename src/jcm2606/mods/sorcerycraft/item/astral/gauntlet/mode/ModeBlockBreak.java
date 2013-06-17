@@ -1,5 +1,7 @@
 package jcm2606.mods.sorcerycraft.item.astral.gauntlet.mode;
 
+import java.util.List;
+
 import jcm2606.mods.sorcerycraft.item.astral.gauntlet.AstralGauntletManager;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLiving;
@@ -10,7 +12,7 @@ import net.minecraft.world.World;
 
 public class ModeBlockBreak extends GauntletMode {
     public ModeBlockBreak() {
-        super(AstralGauntletManager.getNextAvailableId(), "Block Destruction", "");
+        super(AstralGauntletManager.getNextAvailableId(), "Block Obliteration", "");
     }
 
     @Override
@@ -59,5 +61,12 @@ public class ModeBlockBreak extends GauntletMode {
         }
         
         return 4;
+    }
+
+    @Override
+    public void addInfoToItemMouseover(EntityPlayer player, ItemStack stack, boolean isSneaking, List list)
+    {
+        list.add("Size: ");
+        list.add(" 1x1x1");
     }
 }

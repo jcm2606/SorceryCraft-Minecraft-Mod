@@ -1,6 +1,6 @@
 package jcm2606.mods.sorcerycraft.handler;
 
-import jcm2606.mods.jccore.CraftingHandlerBase;
+import jcm2606.mods.jccore.util.CraftingHandlerBase;
 import jcm2606.mods.sorcerycraft.SCObjects;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;

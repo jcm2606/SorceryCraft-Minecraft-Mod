@@ -1,6 +1,6 @@
 package jcm2606.mods.sorcerycraft.block;
 
-import jcm2606.mods.sorcerycraft.IconManager;
+import jcm2606.mods.sorcerycraft.SCIconManager;
 import jcm2606.mods.sorcerycraft.SorceryCraft;
 import jcm2606.mods.sorcerycraft.lib.Rarities;
 import jcm2606.mods.sorcerycraft.tile.TileEntityCrystal;
@@ -29,7 +29,7 @@ public class BlockCrystal extends SCBlockContainer {
     @SideOnly(Side.CLIENT)
     public void registerIcons(IconRegister par1IconRegister)
     {
-	    this.blockIcon = IconManager.getIcon(this.name);
+	    this.blockIcon = SCIconManager.getIcon(this.name);
     }
 	
 	@Override

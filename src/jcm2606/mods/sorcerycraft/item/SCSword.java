@@ -1,6 +1,6 @@
 package jcm2606.mods.sorcerycraft.item;
 
-import jcm2606.mods.sorcerycraft.IconManager;
+import jcm2606.mods.sorcerycraft.SCIconManager;
 import jcm2606.mods.sorcerycraft.SCObjects;
 import jcm2606.mods.sorcerycraft.SorceryCraft;
 import jcm2606.mods.sorcerycraft.enchant.Enchantments;
@@ -276,6 +276,6 @@ public class SCSword extends ItemSword {
     @SideOnly(Side.CLIENT)
     public void registerIcons(IconRegister par1IconRegister)
     {
-        this.itemIcon = IconManager.getIcon(this.name);
+        this.itemIcon = SCIconManager.getIcon(this.name);
     }
 }

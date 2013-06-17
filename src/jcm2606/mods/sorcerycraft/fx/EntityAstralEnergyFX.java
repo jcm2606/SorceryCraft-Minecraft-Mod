@@ -1,6 +1,6 @@
 package jcm2606.mods.sorcerycraft.fx;
 
-import jcm2606.mods.jccore.EntityFXJC;
+import jcm2606.mods.jccore.fx.EntityFXJC;
 import jcm2606.mods.sorcerycraft.lib.Reference;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.world.World;
@@ -13,8 +13,10 @@ public class EntityAstralEnergyFX extends EntityFXJC
     float particleScaleOverTime;
     
     private int maxAge;
+    private final int speed;
+    public boolean fade;
     
-    public EntityAstralEnergyFX(World par1World, double f, double f2, double f4, double par8, double par10, double par12, boolean par13, int par14)
+    public EntityAstralEnergyFX(World par1World, double f, double f2, double f4, double par8, double par10, double par12, int par14, int par15)
     {
         super(par1World, f, f2, f4, 0.0, 0.0, 0.0);
         this.blendMode = 771;
@@ -25,24 +27,35 @@ public class EntityAstralEnergyFX extends EntityFXJC
         
         this.particleScaleOverTime = this.particleScale = 2.5f;
         this.particleRed = this.particleGreen = this.particleBlue = 0.25F;
-        this.particleMaxAge = maxAge = 3 * par14;
+        this.particleMaxAge = maxAge = par14;
+        this.speed = par15;
+        this.fade = false;
         
         double dx = par8 - this.posX;
         double dy = par10 - this.posY;
         double dz = par12 - this.posZ;
 
-        this.motionX = (dx / this.particleMaxAge);
-        this.motionY = (dy / this.particleMaxAge);
-        this.motionZ = (dz / this.particleMaxAge);
+        this.motionX = (dx / speed);
+        this.motionY = (dy / speed);
+        this.motionZ = (dz / speed);
         
         this.noClip = true;
         this.setAlphaF(0.75f);
         this.setParticleTextureIndex(32);
     }
+    
+    public EntityAstralEnergyFX(World world, double f, double f2, double f3, double d, double d2, double d3, int par4)
+    {
+        this(world, f, f2, f3, d, d2, d3, par4, par4);
+    }
 
     @Override
     public void renderParticle(Tessellator tessellator, float f, float f1,
             float f2, float f3, float f4, float f5) {
+        if(this.fade)
+        {
+            this.setAlphaF((1.0f - ((this.particleAge / 8.0f) / 10.0f)));
+        }
         super.drawParticle(Reference.SPRITE_SHEET_PARTICLES, tessellator, f, f1, f2, f3, f4, f5);
     }
 

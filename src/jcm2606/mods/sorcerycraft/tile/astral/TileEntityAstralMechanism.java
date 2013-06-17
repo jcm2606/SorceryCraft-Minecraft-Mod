@@ -1,6 +1,6 @@
 package jcm2606.mods.sorcerycraft.tile.astral;
 
-import jcm2606.mods.jccore.TileEntityJC;
+import jcm2606.mods.jccore.tile.TileEntityJC;
 import jcm2606.mods.sorcerycraft.SCObjects;
 import net.minecraft.nbt.NBTTagCompound;
 
