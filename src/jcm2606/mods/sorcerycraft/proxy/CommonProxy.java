@@ -6,12 +6,12 @@ import jcm2606.mods.sorcerycraft.event.LivingEntityHandler;
 import jcm2606.mods.sorcerycraft.event.PlayerHandler;
 import jcm2606.mods.sorcerycraft.handler.CraftingHandlerAchievement;
 import jcm2606.mods.sorcerycraft.handler.CraftingHandlerMain;
-import jcm2606.mods.sorcerycraft.tile.TileEntityAlchPodium;
+import jcm2606.mods.sorcerycraft.tile.TileEntityArcaneWorkbench;
 import jcm2606.mods.sorcerycraft.tile.TileEntityCrystal;
 import jcm2606.mods.sorcerycraft.tile.TileEntityInfuseTablet;
-import jcm2606.mods.sorcerycraft.tile.TileEntityStonePodium;
 import jcm2606.mods.sorcerycraft.tile.TileEntityTeleporter;
 import jcm2606.mods.sorcerycraft.tile.astral.TileEntityAstralCrystalBlock;
+import jcm2606.mods.sorcerycraft.tile.astral.TileEntityAstralEnergyGate;
 import jcm2606.mods.sorcerycraft.tile.astral.TileEntityAstralMechanism;
 import jcm2606.mods.sorcerycraft.tile.astral.TileEntityAstralObsidian;
 import jcm2606.mods.sorcerycraft.tile.astral.TileEntityAstralOre;
@@ -26,17 +26,17 @@ public class CommonProxy implements ICommonProxy {
 
     @Override
     public void loadTileEntities() {
-        GameRegistry.registerTileEntity(TileEntityAlchPodium.class, "tileSCAlchPodium");
+        GameRegistry.registerTileEntity(TileEntityArcaneWorkbench.class, "tileSCArcaneWorkbench");
         GameRegistry.registerTileEntity(TileEntityInfuseTablet.class, "tileSCInfuseTablet");
         GameRegistry.registerTileEntity(TileEntityCrystal.class, "tileSCCrystal");
         GameRegistry.registerTileEntity(TileEntityTeleporter.class, "tileSCTeleporter");
-        GameRegistry.registerTileEntity(TileEntityStonePodium.class, "tileSCStonePodium");
         GameRegistry.registerTileEntity(TileEntityAstralOre.class, "tileSCOreAstral");
         GameRegistry.registerTileEntity(TileEntityAstralViewer.class, "tileSCAstralViewer");
         GameRegistry.registerTileEntity(TileEntityAstralObsidian.class, "tileSCAstralObsidian");
         GameRegistry.registerTileEntity(TileEntityAstralCrystalBlock.class, "tileSCAstralCrystalBlock");
         GameRegistry.registerTileEntity(TileEntityAstralMechanism.class, "tileSCAstralMechanism");
         GameRegistry.registerTileEntity(TileEntityAstralTotem1.class, "tileSCAstralTotem1");
+        GameRegistry.registerTileEntity(TileEntityAstralEnergyGate.class, "tileSCAstralEnergyGate");
     }
 
     @Override

@@ -15,6 +15,11 @@ public class EntityAstralEnergyFX extends EntityFXJC
     private int maxAge;
     private final int speed;
     public boolean fade;
+    public boolean dieOnTravelCompletion;
+    
+    public double travelX;
+    public double travelY;
+    public double travelZ;
     
     public EntityAstralEnergyFX(World par1World, double f, double f2, double f4, double par8, double par10, double par12, int par14, int par15)
     {
@@ -24,6 +29,10 @@ public class EntityAstralEnergyFX extends EntityFXJC
         this.prevPosX = this.posX;
         this.prevPosY = this.posY;
         this.prevPosZ = this.posZ;
+        
+        this.travelX = par8;
+        this.travelY = par10;
+        this.travelZ = par12;
         
         this.particleScaleOverTime = this.particleScale = 2.5f;
         this.particleRed = this.particleGreen = this.particleBlue = 0.25F;
@@ -40,6 +49,7 @@ public class EntityAstralEnergyFX extends EntityFXJC
         this.motionZ = (dz / speed);
         
         this.noClip = true;
+        this.dieOnTravelCompletion = true;
         this.setAlphaF(0.75f);
         this.setParticleTextureIndex(32);
     }
@@ -56,6 +66,7 @@ public class EntityAstralEnergyFX extends EntityFXJC
         {
             this.setAlphaF((1.0f - ((this.particleAge / 8.0f) / 10.0f)));
         }
+        
         super.drawParticle(Reference.SPRITE_SHEET_PARTICLES, tessellator, f, f1, f2, f3, f4, f5);
     }
 
@@ -91,6 +102,14 @@ public class EntityAstralEnergyFX extends EntityFXJC
         if (this.particleAge++ >= this.particleMaxAge)
         {
             this.setDead();
+        }
+        
+        if(this.dieOnTravelCompletion)
+        {
+            if(this.posX == this.travelX && this.posY == this.travelY && this.posZ == this.travelZ)
+            {
+                this.setDead();
+            }
         }
     }
 }

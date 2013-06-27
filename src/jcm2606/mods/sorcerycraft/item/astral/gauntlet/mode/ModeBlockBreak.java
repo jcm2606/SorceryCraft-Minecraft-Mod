@@ -30,8 +30,10 @@ public class ModeBlockBreak extends GauntletMode {
                     {
                         if(!world.isRemote)
                         {
-                            world.spawnEntityInWorld(new EntityItem(world, x, y, z, new ItemStack(block.idDropped(0, world.rand, 0), 1 + world.rand.nextInt(3), world.getBlockMetadata(x, y, z))));
+                            world.spawnEntityInWorld(new EntityItem(world, x, y, z, new ItemStack(block.idDropped(0, world.rand, 0), block.quantityDropped(world.rand) + world.rand.nextInt(4), world.getBlockMetadata(x, y, z))));
                             world.setBlock(x, y, z, 0);
+                        } else {
+                            world.playSound(x, y, z, block.stepSound.getBreakSound(), 1.0f, 0.85f, false);
                         }
                     } else {
                         if(!world.isRemote)

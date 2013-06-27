@@ -4,5 +4,4 @@ public interface ICharmCurse {
 	public String getCurseName();
 	public String getCurseNameLocal();
 	public boolean isCursePositive();
-	public Integer[] getValidIdList();
 }

@@ -3,7 +3,6 @@ package jcm2606.mods.sorcerycraft.helper;
 import jcm2606.mods.sorcerycraft.manager.CraftingManagerAlchLectern;
 import jcm2606.mods.sorcerycraft.manager.CraftingManagerInfuseTablet;
 import net.minecraft.item.ItemStack;
-import cpw.mods.fml.common.registry.GameRegistry;
 
 public class RecipeHelper {
 	public static class InfusionTabletHelper {
@@ -16,7 +15,7 @@ public class RecipeHelper {
 		}
 	}
 
-	public static class AlchemicalPodiumHelper {
+	public static class ArcaneWorkbenchHelper {
 		public static void addRecipe(ItemStack stack, Object... input) {
 			CraftingManagerAlchLectern.addRecipe(stack, input);
 		}
@@ -24,17 +23,5 @@ public class RecipeHelper {
 		public static void addShapelessRecipe(ItemStack stack, Object... input) {
 			CraftingManagerAlchLectern.addShapelessRecipe(stack, input);
 		}
-	}
-	
-	public static void addUniversalRecipe(ItemStack stack, Object... input)
-	{
-		GameRegistry.addRecipe(stack, input);
-		AlchemicalPodiumHelper.addRecipe(stack, input);
-	}
-	
-	public static void addUniversalShapelessRecipe(ItemStack stack, Object... input)
-	{
-		GameRegistry.addShapelessRecipe(stack, input);
-		AlchemicalPodiumHelper.addShapelessRecipe(stack, input);
 	}
 }

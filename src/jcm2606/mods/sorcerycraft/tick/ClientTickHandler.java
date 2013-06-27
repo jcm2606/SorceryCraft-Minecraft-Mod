@@ -12,8 +12,6 @@ import jcm2606.mods.sorcerycraft.item.astral.ItemAstralEnergyCell;
 import jcm2606.mods.sorcerycraft.item.astral.gauntlet.AstralGauntletManager;
 import jcm2606.mods.sorcerycraft.item.astral.gauntlet.ItemAstralGauntlet;
 import jcm2606.mods.sorcerycraft.item.main.ItemInvisCloak;
-import jcm2606.mods.sorcerycraft.item.wand.ItemWandCasting;
-import jcm2606.mods.sorcerycraft.item.wand.WandManager;
 import jcm2606.mods.sorcerycraft.lib.Reference;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
@@ -21,8 +19,6 @@ import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
-
-import org.lwjgl.input.Keyboard;
 
 public class ClientTickHandler extends TickHandlerClientBase {
     private static int playerCounter = -1;
@@ -78,10 +74,6 @@ public class ClientTickHandler extends TickHandlerClientBase {
         if (mc.currentScreen == null) {
             ItemStack currentItem = mc.thePlayer.inventory.getCurrentItem();
 
-            if (mc.thePlayer.inventory.getCurrentItem() != null && (currentItem.getItem() == SCObjects.wandcasting)) {
-                renderCastingWandOverlay(mc, mc.thePlayer, currentItem);
-            }
-
             for (int i = 0; i < mc.thePlayer.inventory.getHotbarSize(); i++) {
                 ItemStack stack = mc.thePlayer.inventory.getStackInSlot(i);
 
@@ -119,77 +111,6 @@ public class ClientTickHandler extends TickHandlerClientBase {
     @Override
     public void onGUITick(Minecraft mc, GuiScreen guiscreen)
     {
-    }
-
-    private static void renderCastingWandOverlay(Minecraft minecraft, EntityPlayer player, ItemStack stack)
-    {
-        ItemWandCasting wand = (ItemWandCasting) stack.getItem();
-        String icon = Reference.PATH_TEXTURES_GUI_HUD + "wand/wand_normal.png";
-        int slot = player.inventory.currentItem;
-
-        if (wand.getActiveBehaviour(stack) != 0) {
-            icon = WandManager.getBehaviour(wand.getActiveBehaviour(stack)).icon;
-        }
-
-        RenderUtil.renderEngine.bindTexture(icon);
-
-        float colourR = 1.0f;
-        float colourG = 1.0f;
-        float colourB = 1.0f;
-
-        if (Keyboard.isKeyDown(Keyboard.KEY_LCONTROL)) {
-            colourR = 0.8f;
-            colourG = 0.8f;
-            colourB = 0.8f;
-        }
-        
-        float scale = 0.05f;
-
-        if (Settings.WAND_CASTING_BEHAVIOUR_ICON_ALIGNMENT == 1) {
-            RenderUtil.getInstance().drawTextureRect((RenderUtil.width / 2 - 16 - 90) * 20, (RenderUtil.height - 34 + 20) * 20, 0, 0, 256, 256, scale, scale,
-                    scale, colourR, colourG, colourB);
-        } else
-            if (Settings.WAND_CASTING_BEHAVIOUR_ICON_ALIGNMENT == 2) {
-                RenderUtil.getInstance().drawTextureRect((RenderUtil.width / 2 - 6) * 20, (RenderUtil.height - 74 + 20) * 20, 0, 0, 256, 256, scale, scale, scale,
-                        colourR, colourG, colourB);
-            } else
-                if (Settings.WAND_CASTING_BEHAVIOUR_ICON_ALIGNMENT == 3) {
-                    RenderUtil.getInstance().drawTextureRect((RenderUtil.width / 2 - 16 + 108) * 20, (RenderUtil.height - 34 + 20) * 20, 0, 0, 256, 256, scale,
-                            scale, scale, colourR, colourG, colourB);
-                } else {
-                    if (slot >= 5) {
-                        RenderUtil.getInstance().drawTextureRect((RenderUtil.width / 2 - 16 + 108) * 20, (RenderUtil.height - 34 + 20) * 20, 0, 0, 256, 256, scale,
-                                scale, scale, colourR, colourG, colourB);
-                    } else
-                        if (slot <= 3) {
-                            RenderUtil.getInstance().drawTextureRect((RenderUtil.width / 2 - 16 - 90) * 20, (RenderUtil.height - 34 + 20) * 20, 0, 0, 256, 256,
-                                    scale, scale, scale, colourR, colourG, colourB);
-                        } else {
-                            RenderUtil.getInstance().drawTextureRect((RenderUtil.width / 2 - 6) * 20, (RenderUtil.height - 74 + 20) * 20, 0, 0, 256, 256, scale,
-                                    scale, scale, colourR, colourG, colourB);
-                        }
-                }
-
-        /*
-         * if(!wand.getMode(stack).equals("")) {
-         * if(player.inventory.hasItem(ItemWandCasting
-         * .modeList.get(wand.getMode(stack)).reqItem(stack).itemID)) { for(int
-         * i = 0; i < player.inventory.getHotbarSize(); i++) { ItemStack
-         * itemStack = player.inventory.getStackInSlot(i);
-         * 
-         * if(itemStack != null) { if(itemStack.getItem() instanceof IWandMode)
-         * { IWandMode wandMode = (IWandMode) itemStack.getItem();
-         * 
-         * if(wandMode.getModeName().equals(wand.getMode(stack))) {
-         * RenderUtil.itemRenderer
-         * .renderItemAndEffectIntoGUI(RenderUtil.fontRenderer,
-         * RenderUtil.renderEngine, itemStack, RenderUtil.width / 2 - 8 + 100,
-         * RenderUtil.height - 18);
-         * RenderUtil.itemRenderer.renderItemOverlayIntoGUI
-         * (RenderUtil.fontRenderer, RenderUtil.renderEngine, itemStack,
-         * RenderUtil.width / 2 - 8 + 100, RenderUtil.height - 18); break; } } }
-         * } } }
-         */
     }
 
     private static void renderCloakInvisOverlay(Minecraft minecraft, ItemStack stack)
@@ -241,9 +162,14 @@ public class ClientTickHandler extends TickHandlerClientBase {
         if(player.inventory.hasItem(SCObjects.astralenergycell.itemID))
         {
             minecraft.fontRenderer.drawStringWithShadow("\2477" + AstralGauntletManager.getMode(gauntlet.getMode(stack)).name, 30, 2, 0xffffff);
-        } else {
-            minecraft.fontRenderer.drawStringWithShadow("\247c" + AstralGauntletManager.getMode(gauntlet.getMode(stack)).name, 30, 2, 0xffffff);
-        }
+        } else
+            if(!AstralGauntletManager.getMode(gauntlet.getMode(stack)).hasErroredName)
+            {
+                minecraft.fontRenderer.drawStringWithShadow("\2477" + AstralGauntletManager.getMode(gauntlet.getMode(stack)).name, 30, 2, 0xffffff);
+            } else
+                {
+                    minecraft.fontRenderer.drawStringWithShadow("\247c" + AstralGauntletManager.getMode(gauntlet.getMode(stack)).name, 30, 2, 0xffffff);
+                }
         
         int maxEnergy = 0;
         int currentEnergy = 0;

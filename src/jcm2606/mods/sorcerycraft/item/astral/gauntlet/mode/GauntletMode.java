@@ -21,6 +21,7 @@ public abstract class GauntletMode {
     public EnumAction useAction;
     public int useActionDuration;
     public boolean hasItemUse;
+    public boolean hasErroredName;
     
     public GauntletMode(int i, String s, String s2)
     {
@@ -30,6 +31,7 @@ public abstract class GauntletMode {
         this.useAction = EnumAction.none;
         this.useActionDuration = 0;
         this.hasItemUse = false;
+        this.hasErroredName = true;
     }
     
     /**

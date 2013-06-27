@@ -2,7 +2,6 @@ package jcm2606.mods.sorcerycraft.item.main;
 
 import java.util.Random;
 
-import jcm2606.mods.sorcerycraft.config.Settings;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
@@ -31,7 +30,7 @@ public class ItemHyperboreanStone extends ItemVordicDevice {
 					if (item != null && item == stack
 							&& item.getItemDamage() < item.getMaxDamage()) {
 						if (player.isBurning()) {
-							if (player.getHealth() <= Settings.HYPERBOREAN_STONE_HEALTH_LIMIT) {
+							if (player.getHealth() <= 2) {
 								player.setEntityHealth(player.getHealth() + 1);
 								stack.damageItem(1, (EntityLiving) entity);
 							}

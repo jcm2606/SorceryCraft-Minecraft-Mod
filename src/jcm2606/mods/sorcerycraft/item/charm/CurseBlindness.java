@@ -1,6 +1,5 @@
 package jcm2606.mods.sorcerycraft.item.charm;
 
-import jcm2606.mods.sorcerycraft.SCObjects;
 
 public class CurseBlindness implements ICharmCurse {
 
@@ -18,10 +17,4 @@ public class CurseBlindness implements ICharmCurse {
 	public boolean isCursePositive() {
 		return false;
 	}
-
-	@Override
-	public Integer[] getValidIdList() {
-		return new Integer[] {SCObjects.charmhealth.itemID};
-	}
-
 }

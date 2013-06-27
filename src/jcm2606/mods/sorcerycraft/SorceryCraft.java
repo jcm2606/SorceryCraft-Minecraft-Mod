@@ -1,7 +1,12 @@
 package jcm2606.mods.sorcerycraft;
 
 import jcm2606.mods.jccore.compat.ModCompatibility;
+import jcm2606.mods.jccore.compat.container.CompatibilityContainer;
+import jcm2606.mods.jccore.util.IconIndexer;
 import jcm2606.mods.jccore.util.LoggerBase;
+import jcm2606.mods.sorcerycraft.command.CommandSC;
+import jcm2606.mods.sorcerycraft.compat.CompatContainerSC;
+import jcm2606.mods.sorcerycraft.compat.TestContainer;
 import jcm2606.mods.sorcerycraft.config.Config;
 import jcm2606.mods.sorcerycraft.config.Settings;
 import jcm2606.mods.sorcerycraft.creative.CreativeTabSC;
@@ -11,7 +16,6 @@ import jcm2606.mods.sorcerycraft.handler.GuiHandler;
 import jcm2606.mods.sorcerycraft.handler.ToolHandler;
 import jcm2606.mods.sorcerycraft.helper.ForgeHookHelper;
 import jcm2606.mods.sorcerycraft.lib.Packets;
-import jcm2606.mods.sorcerycraft.network.PacketHandler;
 import jcm2606.mods.sorcerycraft.proxy.CommonProxy;
 import jcm2606.mods.sorcerycraft.tick.ClientTickHandler;
 import jcm2606.mods.sorcerycraft.world.gen.GenCore;
@@ -21,7 +25,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.DamageSource;
 import net.minecraftforge.common.ChestGenHooks;
-import apex.util.ApexIconIndexer;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.Init;
 import cpw.mods.fml.common.Mod.Instance;
@@ -38,7 +41,6 @@ import cpw.mods.fml.common.event.FMLServerStartingEvent;
 import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
-import cpw.mods.fml.common.registry.TickRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -51,7 +53,7 @@ import cpw.mods.fml.relauncher.SideOnly;
         clientSideRequired = true,
         serverSideRequired = false,
         channels = { Packets.CHANNEL_CORE, Packets.CHANNEL_MISC },
-        packetHandler = PacketHandler.class,
+//        packetHandler = PacketHandler.class,
         versionBounds = SorceryCraft.version
         )
 public class SorceryCraft {
@@ -70,10 +72,8 @@ public class SorceryCraft {
 
 	public static CreativeTabs tab;
 	
-	public static SCParticle particleManager = new SCParticle();
-	
 	public static LoggerBase logger = new LoggerBase("Sorcerycraft");
-	public static ApexIconIndexer index;
+	public static IconIndexer index;
 	
 	public static DamageSource entityDetectorDamageSource = new DamageSourceEntityDetector("entityDetector");
 	
@@ -85,6 +85,8 @@ public class SorceryCraft {
 	    
 		logger.info("SorceryCraft v" + version + " by jcm2606 installed.");
 		logger.info("Mod loading has commenced, be patient!");
+		
+		CompatibilityContainer.registerContainer(new CompatContainerSC());
 
 		GameRegistry.registerPlayerTracker(new SCPlayerTracker());
 		
@@ -98,8 +100,7 @@ public class SorceryCraft {
 		}
 		
 		proxy.registerHandlers();
-		
-		TickRegistry.registerTickHandler(new ClientTickHandler(), Side.CLIENT);
+		CompatContainerSC.registerSubContainer(TestContainer.class);
 	}
 
 	@Init
@@ -109,7 +110,7 @@ public class SorceryCraft {
 		proxy.loadCustomRarities();
 		proxy.loadTileEntities();
 		
-		ModCompatibility.startObjectLoadingInClass(SCObjects.class);
+		ModCompatibility.get().startObjectLoadingInClass(SCObjects.class);
 		
 		applyLocalisations();
 		
@@ -172,9 +173,7 @@ public class SorceryCraft {
 	
 	@ServerStarting
 	public void serverStarting(FMLServerStartingEvent event){
-/*		event.registerServerCommand(SCCommands.commandVersion);
-		event.registerServerCommand(SCCommands.commandCharmCurseApply);
-		event.registerServerCommand(SCCommands.commandCharmCurseList);*/
+	    event.registerServerCommand(new CommandSC());
 	}
 	
 	public static void applyLocalisations()

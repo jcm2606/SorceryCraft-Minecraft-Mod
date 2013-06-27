@@ -1,14 +1,20 @@
 package jcm2606.mods.sorcerycraft.block;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import jcm2606.mods.sorcerycraft.SCObjects;
+import jcm2606.mods.sorcerycraft.helper.SCHelper;
 import jcm2606.mods.sorcerycraft.lib.Rarities;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.Minecraft;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeDirection;
+
+import org.lwjgl.input.Keyboard;
 
 public class BlockEmberstone extends SCBlock {
     public BlockEmberstone(int par1) {
@@ -96,5 +102,29 @@ public class BlockEmberstone extends SCBlock {
         }
         
         return ret;
+    }
+    
+    @Override
+    /**
+     * allows items to add custom lines of information to the mouseover description
+     */
+    public void addInformation(ItemStack stack, EntityPlayer player, List list,
+            boolean par4) {
+        if(SCHelper.playerHasPerceptionMedallion(player))
+        {
+            if(Keyboard.isKeyDown(Minecraft.getMinecraft().gameSettings.keyBindSneak.keyCode))
+            {
+                list.add("A unique and special type of");
+                list.add("stone which can only be naturally");
+                list.add("found in the Nether. This stone");
+                list.add("still smolders in the ashes of it's");
+                list.add("neighbouring blocks. The Nether has");
+                list.add("compressed the ashes enoughto form");
+                list.add("veins of Gunpowder and occasionally");
+                list.add("Sear Powder all throughout this stone.");
+            } else {
+                list.add("<Hold SHIFT>");
+            }
+        }
     }
 }

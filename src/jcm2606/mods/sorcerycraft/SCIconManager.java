@@ -3,10 +3,10 @@ package jcm2606.mods.sorcerycraft;
 import java.util.HashMap;
 
 import jcm2606.mods.jccore.compat.ModCompatibility;
+import jcm2606.mods.jccore.util.IconIndexer;
 import net.minecraft.util.Icon;
 import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.event.ForgeSubscribe;
-import apex.util.ApexIconIndexer;
 
 public class SCIconManager {
     public static HashMap<String, Icon> iconMap = new HashMap<String, Icon>();
@@ -14,9 +14,9 @@ public class SCIconManager {
     @ForgeSubscribe
     public void loadIcons(TextureStitchEvent.Pre event)
     {
-        SorceryCraft.index = new ApexIconIndexer("sorcerycraft", event);
+        SorceryCraft.index = new IconIndexer("sorcerycraft", event);
         
-        ModCompatibility.startTextureLoadingInClass(SCObjects.class, SorceryCraft.index, iconMap);
+        ModCompatibility.get().startTextureLoadingInClass(SCObjects.class, SorceryCraft.index, iconMap);
     }
     
     public static void registerIcon(String name, boolean isBlock)

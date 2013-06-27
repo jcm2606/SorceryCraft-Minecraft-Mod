@@ -15,6 +15,6 @@ public class ItemTomeKnowledge extends SCItem {
     @Override
     public EnumRarity getRarity(ItemStack stack)
     {
-        return RarityHelper.getCustomRarityType(Rarities.MAGICAL);
+        return RarityHelper.getCustomRarityType(Rarities.ADVANCED);
     }
 }

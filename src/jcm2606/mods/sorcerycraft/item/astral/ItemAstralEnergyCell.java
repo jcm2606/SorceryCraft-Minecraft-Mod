@@ -14,6 +14,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -80,10 +81,26 @@ public class ItemAstralEnergyCell extends SCItem {
             {
                 if(this.getEnergy(stack) < 1000)
                 {
-                    for(int i = 0; i < (1000 - this.getEnergy(stack)) / 10; i++)
+                    for(int i = 0; i < (1000 - this.getEnergy(stack)) / 5; i++)
                     {
-                        EntityAstralEnergyFX fx = new EntityAstralEnergyFX(world, player.posX, player.posY, player.posZ, player.posX + (Minecraft.getMinecraft().theWorld.rand.nextFloat() - Minecraft.getMinecraft().theWorld.rand.nextFloat()) * 2F, player.posY - 2D, player.posZ + (Minecraft.getMinecraft().theWorld.rand.nextFloat() - Minecraft.getMinecraft().theWorld.rand.nextFloat()) * 2F, 500, 30);
-                        fx.noClip = false;
+                        float r1 = player.worldObj.rand.nextFloat() * 360.0F;
+                        float mx = -MathHelper.sin(r1 / 180.0F * 3.141593F) / 5.0F;
+                        float mz = MathHelper.cos(r1 / 180.0F * 3.141593F) / 5.0F;
+                        
+                        double adjAngle = 35.0D;
+                        double dist = 0.4D;
+                    
+                        EntityPlayer center = player;
+                    
+                        double posX = center.posX - Math.cos((-center.rotationYaw + adjAngle) * 0.01745329D) * dist;
+                        double posY = center.posY - Math.sin(center.rotationPitch / 540.0F * Math.PI) * dist;
+                        double posZ = center.posZ + Math.sin((-center.rotationYaw + adjAngle) * 0.01745329D) * dist;
+                        
+//                        SCParticle.spawnAstralEnergyFX(player.posX, player.posY, player.posZ, player.posX + (Minecraft.getMinecraft().theWorld.rand.nextFloat() - Minecraft.getMinecraft().theWorld.rand.nextFloat()) * 2F, player.posY - 2D, player.posZ + (Minecraft.getMinecraft().theWorld.rand.nextFloat() - Minecraft.getMinecraft().theWorld.rand.nextFloat()) * 2F, 500, 30, false, true, false);
+                    
+                        EntityAstralEnergyFX fx = new EntityAstralEnergyFX(world, posX, posY, posZ, posX, posY, posZ, 300, 50);
+                        fx.motionX = mx;
+                        fx.motionZ = mz;
                         fx.fade = true;
                         
                         Minecraft.getMinecraft().effectRenderer.addEffect(fx);
@@ -100,6 +117,6 @@ public class ItemAstralEnergyCell extends SCItem {
     @Override
     public EnumRarity getRarity(ItemStack stack)
     {
-        return RarityHelper.getCustomRarityType(Rarities.MAGICAL);
+        return RarityHelper.getCustomRarityType(Rarities.ADVANCED);
     }
 }

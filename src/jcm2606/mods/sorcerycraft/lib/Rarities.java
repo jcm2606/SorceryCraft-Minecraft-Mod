@@ -3,8 +3,8 @@ package jcm2606.mods.sorcerycraft.lib;
 import jcm2606.mods.jccore.lib.Colours;
 
 public class Rarities {
-	public static final String MAGICAL = "Magical";
-	public static final int COLOUR_MAGICAL = Colours.CYAN_LIGHT;
+	public static final String ADVANCED = "Advanaced";
+	public static final int COLOUR_ADVANCED = Colours.CYAN_LIGHT;
 
 	public static final String BASIC = "Basic";
 	public static final int COLOUR_BASIC = Colours.YELLOW;

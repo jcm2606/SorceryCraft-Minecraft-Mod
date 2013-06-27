@@ -4,9 +4,8 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import jcm2606.mods.sorcerycraft.block.ITransmutable;
-import jcm2606.mods.sorcerycraft.config.Settings;
-import jcm2606.mods.sorcerycraft.item.wand.ItemWandCasting;
-
+import jcm2606.mods.sorcerycraft.compat.CompatContainerSC;
+import jcm2606.mods.sorcerycraft.compat.HandlerMethodID;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -42,7 +41,7 @@ public class AlchemyHandler {
 	 * @param y The Y coord the transmutation is being performed at
 	 * @param z The Z coord the transmutation is being performed at
 	 */
-	public static boolean performInWorldTransmutation(ItemStack stack, ItemStack stone, EntityPlayer player, World world, int x, int y, int z) {
+	public static boolean performInWorldTransmutation(ItemStack stack, EntityPlayer player, World world, int x, int y, int z) {
 		ITransmutable i = null;
 		Block block = null;
 		
@@ -66,43 +65,40 @@ public class AlchemyHandler {
 			}
 		}
 		
-		if(block instanceof ITransmutable)
+		if(block != null)
 		{
-			i = (ITransmutable) block;
-			
-			if (stone != null) {
-				if(i.getRequiredBlock(stone).blockID == world.getBlockId(x, y, z))
-				{
-					if(stone.getItemDamage() == stone.getMaxDamage())
-					{
-						player.inventory.consumeInventoryItem(stone.itemID);
-					}
-					
-					world.setBlock(x, y, z, block.blockID, 0, 0x02);
-					i.onTransmute(stone, block, player, world, x, y, z);
-					
-					if(!(stack.getItem() instanceof ItemWandCasting))
-					{
-						world.playSoundAtEntity(player, "sorcerycraft.transmutation", 0.3f + (world.rand.nextFloat() / 4), 1.0f + (world.rand.nextFloat() / 8));
-					}
-					
-					stone.damageItem(i.getTransmuteCost(stone, block), player);
-					
-					Random rand = new Random();
-					
-					world.spawnParticle("largeexplode", x + 0.5,
-							y + 0.5,
-							z + 0.5, 0, 0, 0);
-					
-					return true;
-				}
-			}
+		    if(block instanceof ITransmutable)
+	        {
+	            i = (ITransmutable) block;
+	            
+	            if(i.getRequiredBlock(stack).blockID == world.getBlockId(x, y, z))
+	            {
+	                if(stack.getItemDamage() == stack.getMaxDamage())
+	                {
+	                    player.inventory.consumeInventoryItem(stack.itemID);
+	                }
+	                
+	                world.setBlock(x, y, z, block.blockID, 0, 0x02);
+	                i.onTransmute(stack, block, player, world, x, y, z);
+	                CompatContainerSC.postUpdateToSubContainers(HandlerMethodID.ALCH_STONE_TRANSMUTE, null);
+	                
+	                world.playSoundAtEntity(player, "sorcerycraft.transmutation", 0.3f + (world.rand.nextFloat() / 4), 1.0f + (world.rand.nextFloat() / 8));
+	                
+	                stack.damageItem(i.getTransmuteCost(stack, block), player);
+	                
+	                Random rand = new Random();
+	                
+	                world.spawnParticle("largeexplode", x + 0.5,
+	                        y + 0.5,
+	                        z + 0.5, 0, 0, 0);
+	                
+	                return true;
+	            }
+	        }
 		}
 		
-		if(!(stack.getItem() instanceof ItemWandCasting))
-		{
-			world.playSoundAtEntity(player, "sorcerycraft.magic_fail", 0.2f, 1.0f);
-		}
+		world.playSoundAtEntity(player, "sorcerycraft.magic_fail", 0.2f, 1.0f);
+		CompatContainerSC.postUpdateToSubContainers(HandlerMethodID.ALCH_STONE_TRANSMUTE_FAIL, null);
 		
 		return false;
 	}

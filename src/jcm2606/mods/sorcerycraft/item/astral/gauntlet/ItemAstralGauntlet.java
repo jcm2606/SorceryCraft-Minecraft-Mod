@@ -4,6 +4,9 @@ import java.util.List;
 
 import jcm2606.mods.jccore.helper.NBTHelper;
 import jcm2606.mods.jccore.helper.RarityHelper;
+import jcm2606.mods.sorcerycraft.compat.CompatContainerSC;
+import jcm2606.mods.sorcerycraft.compat.HandlerMethodID;
+import jcm2606.mods.sorcerycraft.helper.SCHelper;
 import jcm2606.mods.sorcerycraft.item.SCItemShine;
 import jcm2606.mods.sorcerycraft.item.astral.gauntlet.mode.GauntletMode;
 import jcm2606.mods.sorcerycraft.lib.Rarities;
@@ -32,7 +35,7 @@ public class ItemAstralGauntlet extends SCItemShine {
     @Override
     public EnumRarity getRarity(ItemStack stack)
     {
-        return RarityHelper.getCustomRarityType(Rarities.MAGICAL);
+        return RarityHelper.getCustomRarityType(Rarities.ADVANCED);
     }
     
     public void setMode(ItemStack stack, int mode)
@@ -96,6 +99,8 @@ public class ItemAstralGauntlet extends SCItemShine {
             } else {
                 setMode(stack, getMode(stack) + 1);
             }
+            
+            CompatContainerSC.postUpdateToSubContainers(HandlerMethodID.ASTRAL_GAUNTLET_MODE_SWITCH, null);
         } else {
             if(AstralGauntletManager.getMode(this.getMode(stack)).hasItemUse)
             {
@@ -120,7 +125,20 @@ public class ItemAstralGauntlet extends SCItemShine {
         {
             list.add("\2478\247o" + mode.name);
             
-            mode.addInfoToItemMouseover(player, stack, Keyboard.isKeyDown(Minecraft.getMinecraft().gameSettings.keyBindSneak.keyCode), list);
+            if(stack.getItemDamage() > 0)
+            {
+                list.add("\2478\247oDamaged (" + stack.getItemDamage() + ")");
+            }
+            
+            if(SCHelper.playerHasPerceptionMedallion(player))
+            {
+                if(Keyboard.isKeyDown(Minecraft.getMinecraft().gameSettings.keyBindSneak.keyCode))
+                {
+                    mode.addInfoToItemMouseover(player, stack, Keyboard.isKeyDown(Minecraft.getMinecraft().gameSettings.keyBindSneak.keyCode), list);
+                } else {
+                    list.add("<Hold SHIFT>");
+                }
+            }
         }
     }
     

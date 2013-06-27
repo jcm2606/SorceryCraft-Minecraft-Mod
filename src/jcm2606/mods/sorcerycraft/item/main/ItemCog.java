@@ -1,13 +1,20 @@
 package jcm2606.mods.sorcerycraft.item.main;
 
+import java.util.List;
+
 import jcm2606.mods.jccore.helper.RarityHelper;
 import jcm2606.mods.jccore.item.ItemMeta;
 import jcm2606.mods.sorcerycraft.SCIconManager;
 import jcm2606.mods.sorcerycraft.SorceryCraft;
+import jcm2606.mods.sorcerycraft.helper.SCHelper;
 import jcm2606.mods.sorcerycraft.lib.Rarities;
+import net.minecraft.client.Minecraft;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Icon;
+
+import org.lwjgl.input.Keyboard;
 
 public class ItemCog extends ItemMeta {
     public static String[] names = {
@@ -56,5 +63,40 @@ public class ItemCog extends ItemMeta {
         }
         
         return false;
+    }
+    
+    @Override
+    /**
+     * allows items to add custom lines of information to the mouseover description
+     */
+    public void addInformation(ItemStack stack, EntityPlayer player, List list,
+            boolean par4) {
+        if(SCHelper.playerHasPerceptionMedallion(player))
+        {
+            if(Keyboard.isKeyDown(Minecraft.getMinecraft().gameSettings.keyBindSneak.keyCode))
+            {
+                if(stack.getItemDamage() == 0)
+                {
+                    list.add("A basic mechanical gear made of Stone.");
+                }
+                
+                if(stack.getItemDamage() == 1)
+                {
+                    list.add("A basic mechanical gear made of Metal.");
+                }
+                
+                if(stack.getItemDamage() == 2)
+                {
+                    list.add("An advanced mechanical gear made of Astral Crystal.");
+                }
+                
+                if(stack.getItemDamage() == 3)
+                {
+                    list.add("An advanced mechanical gear made of Arcane Steel.");
+                }
+            } else {
+                list.add("<Hold SHIFT>");
+            }
+        }
     }
 }

@@ -1,12 +1,12 @@
 package jcm2606.mods.sorcerycraft.handler;
 
 import jcm2606.mods.sorcerycraft.gui.GuiAlchBook;
-import jcm2606.mods.sorcerycraft.gui.GuiAlchLectern;
+import jcm2606.mods.sorcerycraft.gui.GuiArcaneWorkbench;
 import jcm2606.mods.sorcerycraft.gui.GuiInfuseTablet;
 import jcm2606.mods.sorcerycraft.gui.GuiPortableCrafting;
 import jcm2606.mods.sorcerycraft.gui.note.GuiNoteCharm;
 import jcm2606.mods.sorcerycraft.inventory.ContainerAlchBook;
-import jcm2606.mods.sorcerycraft.inventory.ContainerAlchLectern;
+import jcm2606.mods.sorcerycraft.inventory.ContainerArcaneWorkbench;
 import jcm2606.mods.sorcerycraft.inventory.ContainerChestSorcerer;
 import jcm2606.mods.sorcerycraft.inventory.ContainerInfuseTablet;
 import jcm2606.mods.sorcerycraft.inventory.ContainerNoteCharms;
@@ -28,8 +28,8 @@ public class GuiHandler implements IGuiHandler {
 			return new ContainerInfuseTablet(player.inventory, world, x, y, z);
 		}
 
-		if (ID == GuiIDs.ALCH_LECTERN) {
-			return new ContainerAlchLectern(player.inventory, world, x, y, z);
+		if (ID == GuiIDs.ARCANE_WORKBENCH) {
+			return new ContainerArcaneWorkbench(player.inventory, world, x, y, z);
 		}
 		
 		if (ID == GuiIDs.ALCH_BOOK) {
@@ -63,8 +63,8 @@ public class GuiHandler implements IGuiHandler {
 			return new GuiInfuseTablet(player.inventory, world, x, y, z);
 		}
 
-		if (ID == GuiIDs.ALCH_LECTERN) {
-			return new GuiAlchLectern(player.inventory, world, x, y, z);
+		if (ID == GuiIDs.ARCANE_WORKBENCH) {
+			return new GuiArcaneWorkbench(player.inventory, world, x, y, z);
 		}
 		
 		if (ID == GuiIDs.ALCH_BOOK) {

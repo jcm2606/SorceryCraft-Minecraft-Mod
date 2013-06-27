@@ -1,6 +1,5 @@
 package jcm2606.mods.sorcerycraft.item.charm;
 
-import jcm2606.mods.sorcerycraft.SCObjects;
 
 public class CurseBurn implements ICharmCurse {
 	@Override
@@ -16,10 +15,5 @@ public class CurseBurn implements ICharmCurse {
 	@Override
 	public boolean isCursePositive() {
 		return false;
-	}
-
-	@Override
-	public Integer[] getValidIdList() {
-		return new Integer[] {SCObjects.charmhealth.itemID};
 	}
 }

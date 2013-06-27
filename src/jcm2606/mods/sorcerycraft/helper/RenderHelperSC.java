@@ -73,12 +73,14 @@ public class RenderHelperSC {
             GL11.glMatrixMode(GL11.GL_TEXTURE);
             GL11.glPushMatrix();
             GL11.glLoadIdentity();
-            GL11.glTranslatef(0, Minecraft.getSystemTime() % 700000L / 300000.0F, 0);
+            GL11.glTranslatef(0, Minecraft.getSystemTime() % 700000L / 700000.0F, 0);
             GL11.glScalef(var16, var16, var16);
             GL11.glTranslatef(0.5F, 0.5F, 0.0F);
             GL11.glRotatef((var14 * var14 / 2 + var14 * 9), 0.0F, 0.0F, 0.0F);
             GL11.glTranslatef(-0.5F, -0.5F, 0.0F);
-            GL11.glTranslatef(-var9, -var11, -var10);
+            int l = 2;
+            
+            GL11.glTranslatef(-var9 / l, -var11 / l, -var10);
             var19 = ActiveRenderInfo.objectY;
             Tessellator var24 = Tessellator.instance;
             var24.startDrawingQuads();

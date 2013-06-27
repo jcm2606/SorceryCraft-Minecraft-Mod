@@ -35,7 +35,7 @@ public class Config {
 		try {
 			config.load();
 			
-			ModCompatibility.startObjectIdLoadingInClass(SCObjects.class);
+			ModCompatibility.get().startObjectIdLoadingInClass(SCObjects.class);
 			Settings.loadSettings();
 			SCAchievements.loadAchievementIDs();
 		} catch (Exception e) {

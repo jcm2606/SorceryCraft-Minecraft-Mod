@@ -3,6 +3,8 @@ package jcm2606.mods.sorcerycraft.handler;
 import java.util.ArrayList;
 
 import jcm2606.mods.sorcerycraft.block.IWorkable;
+import jcm2606.mods.sorcerycraft.compat.CompatContainerSC;
+import jcm2606.mods.sorcerycraft.compat.HandlerMethodID;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -60,17 +62,21 @@ public static ArrayList blocksList = new ArrayList();
 		{
 			i = (IWorkable) block;
 			
-			if (stack != null) {
+			if (stack != null)
+			{
 				if(i.getBlockForWorking(stack).blockID == world.getBlockId(x, y, z))
 				{
-						if(stack.getItemDamage() <= stack.getMaxDamage() - 16) {
-							world.setBlock(x, y, z, block.blockID, 0, 0x02);
-							i.onWorking(stack, block, player, world, x, y, z);
+					if(stack.getItemDamage() <= stack.getMaxDamage() - 16)
+					{
+						world.setBlock(x, y, z, block.blockID, 0, 0x02);
+						i.onWorking(stack, block, player, world, x, y, z);
+					
+						CompatContainerSC.postUpdateToSubContainers(HandlerMethodID.VORDIC_WORKING_TOOL_USE, null);
 						
-//							world.playSoundAtEntity(player, "sorcerycraft.transmutation", 1.0f, 1.0f);
-							
-							stack.damageItem(i.getWorkCost(stack, block), player);
-							return;
+//					    world.playSoundAtEntity(player, "sorcerycraft.transmutation", 1.0f, 1.0f);
+						
+						stack.damageItem(i.getWorkCost(stack, block), player);
+						return;
 					}
 				}
 			}

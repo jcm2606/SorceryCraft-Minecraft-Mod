@@ -3,11 +3,14 @@ package jcm2606.mods.sorcerycraft.block;
 import java.util.Random;
 
 import jcm2606.mods.sorcerycraft.SCObjects;
+import jcm2606.mods.sorcerycraft.SCParticle;
 import jcm2606.mods.sorcerycraft.tile.astral.TileEntityAstralOre;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockOreAstral extends SCBlockContainer {
 	public BlockOreAstral(int par1) {
@@ -111,4 +114,19 @@ public class BlockOreAstral extends SCBlockContainer {
 	public TileEntity createNewTileEntity(World world) {
 		return new TileEntityAstralOre();
 	}
+	
+	@Override
+    @SideOnly(Side.CLIENT)
+
+    /**
+     * A randomly called display update to be able to add particles or other items for display
+     */
+    public void randomDisplayTick(World par1World, int par2, int par3, int par4, Random rand)
+    {
+	    if(rand.nextDouble() < 0.2)
+	    {
+	        SCParticle.spawnAstralEnergyFX(par2 + 0.5 + (rand.nextGaussian()), par3 + 0.5 + (rand.nextGaussian()), par4 + 0.5 + (rand.nextGaussian()), par2 + 0.5, par3 + 0.5, par4 + 0.5, 30, true, false, true, true);
+	        SCParticle.spawnAstralEnergyFX(par2 + 0.5 - (rand.nextGaussian()), par3 + 0.5 - (rand.nextGaussian()), par4 + 0.5 - (rand.nextGaussian()), par2 + 0.5, par3 + 0.5, par4 + 0.5, 30, true, false, true, true);
+	    }
+    }
 }

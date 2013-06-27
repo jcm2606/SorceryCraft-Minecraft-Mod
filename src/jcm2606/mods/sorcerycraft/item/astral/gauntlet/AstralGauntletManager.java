@@ -1,8 +1,11 @@
 package jcm2606.mods.sorcerycraft.item.astral.gauntlet;
 
 import jcm2606.mods.sorcerycraft.SCObjects;
+import jcm2606.mods.sorcerycraft.compat.CompatContainerSC;
+import jcm2606.mods.sorcerycraft.compat.HandlerMethodID;
 import jcm2606.mods.sorcerycraft.item.astral.ItemAstralEnergyCell;
 import jcm2606.mods.sorcerycraft.item.astral.gauntlet.mode.GauntletMode;
+import jcm2606.mods.sorcerycraft.item.astral.gauntlet.mode.ModeAttackUpdraft;
 import jcm2606.mods.sorcerycraft.item.astral.gauntlet.mode.ModeBlockBreak;
 import jcm2606.mods.sorcerycraft.item.astral.gauntlet.mode.ModeBlockTravel;
 import jcm2606.mods.sorcerycraft.item.astral.gauntlet.mode.ModeCooling;
@@ -26,6 +29,7 @@ public class AstralGauntletManager {
         registerMode(new ModeBlockBreak());
         registerMode(new ModeStrength());
         registerMode(new ModeCooling());
+        registerMode(new ModeAttackUpdraft());
     }
     
     public static void registerMode(GauntletMode mode)
@@ -49,6 +53,12 @@ public class AstralGauntletManager {
     {
         GauntletMode mode = getMode(id);
         
+        if(mode.energyRequired(useType, player) == 0)
+        {
+            CompatContainerSC.postUpdateToSubContainers(HandlerMethodID.ASTRAL_GAUNTLET_MODE_USE, null);
+            return mode.onUse(useType, stack, world, player, living, x, y, z, side);
+        }
+        
         for(int i = 0; i < player.inventory.mainInventory.length; i++)
         {
             ItemStack stack2 = player.inventory.mainInventory[i];
@@ -68,6 +78,9 @@ public class AstralGauntletManager {
                                 ItemAstralGauntlet gauntlet = (ItemAstralGauntlet) SCObjects.astralgauntlet;
                                 
                                 cell.setEnergy(stack2, cell.getEnergy(stack2) + mode.energyRequired(useType, player));
+                                stack.setItemDamage(stack.getItemDamage() + 1);
+                                
+                                CompatContainerSC.postUpdateToSubContainers(HandlerMethodID.ASTRAL_GAUNTLET_MODE_USE, null);
                                 
                                 return true;
                             }

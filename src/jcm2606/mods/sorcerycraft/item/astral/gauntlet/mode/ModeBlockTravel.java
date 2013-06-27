@@ -51,6 +51,8 @@ public class ModeBlockTravel extends GauntletMode {
                 int portalParticleMultiplier = 1;
                 String particle = "astralEnergy";
                 
+                int age = 50;
+                
                 switch(side)
                 {
                     case 5 : {
@@ -69,7 +71,7 @@ public class ModeBlockTravel extends GauntletMode {
                                     float var11 = z - storedZ;
                                     int distance = (int)MathHelper.sqrt_double(var7 * var7 + var9 * var9 + var11 * var11);
                                     
-                                    SCParticle.spawnAstralEnergyFX(storedX + 0.5, storedY + 0.5, storedZ + 0.5, x + 1, y, z, distance, false);
+                                    SCParticle.spawnAstralEnergyBeamFX(storedX + 0.5, storedY + 0.5, storedZ + 0.5, x + 1 + 0.5, y + 0.5, z + 0.5, age, true, false, false);
                                 }
                             }
                             
@@ -95,7 +97,7 @@ public class ModeBlockTravel extends GauntletMode {
                                     float var11 = z - 1 - storedZ;
                                     int distance = (int)MathHelper.sqrt_double(var7 * var7 + var9 * var9 + var11 * var11);
                                     
-                                    SCParticle.spawnAstralEnergyFX(storedX + 0.5, storedY + 0.5, storedZ + 0.5, x + 0.5, y + 0.5, z - 1 + 0.5, distance, false);
+                                    SCParticle.spawnAstralEnergyBeamFX(storedX + 0.5, storedY + 0.5, storedZ + 0.5, x + 0.5, y + 0.5, z - 1 + 0.5, age, true, false, false);
                                 }
                             }
                             
@@ -121,7 +123,7 @@ public class ModeBlockTravel extends GauntletMode {
                                     float var11 = z - storedZ;
                                     int distance = (int)MathHelper.sqrt_double(var7 * var7 + var9 * var9 + var11 * var11);
                                     
-                                    SCParticle.spawnAstralEnergyFX(storedX + 0.5, storedY + 0.5, storedZ + 0.5, x - 1 + 0.5, y + 0.5, z + 0.5, distance, false);
+                                    SCParticle.spawnAstralEnergyBeamFX(storedX + 0.5, storedY + 0.5, storedZ + 0.5, x - 1 + 0.5, y + 0.5, z + 0.5, age, true, false, false);
                                 }
                             }
                             
@@ -147,7 +149,7 @@ public class ModeBlockTravel extends GauntletMode {
                                     float var11 = z + 1 - storedZ;
                                     int distance = (int)MathHelper.sqrt_double(var7 * var7 + var9 * var9 + var11 * var11);
                                     
-                                    SCParticle.spawnAstralEnergyFX(storedX + 0.5, storedY + 0.5, storedZ + 0.5, x + 0.5, y + 0.5, z + 1 + 0.5, distance, false);
+                                    SCParticle.spawnAstralEnergyBeamFX(storedX + 0.5, storedY + 0.5, storedZ + 0.5, x + 0.5, y + 0.5, z + 1 + 0.5, age, true, false, false);
                                 }
                             }
                             
@@ -173,7 +175,7 @@ public class ModeBlockTravel extends GauntletMode {
                                     float var11 = z - storedZ;
                                     int distance = (int)MathHelper.sqrt_double(var7 * var7 + var9 * var9 + var11 * var11);
                                     
-                                    SCParticle.spawnAstralEnergyFX(storedX + 0.5, storedY + 0.5, storedZ + 0.5, x + 0.5, y + 1 + 0.5, z + 0.5, distance, false);
+                                    SCParticle.spawnAstralEnergyBeamFX(storedX + 0.5, storedY + 0.5, storedZ + 0.5, x + 0.5, y + 1 + 0.5, z + 0.5, age, true, false, false);
                                 }
                             }
                             
@@ -199,7 +201,7 @@ public class ModeBlockTravel extends GauntletMode {
                                     float var11 = z - storedZ;
                                     int distance = (int)MathHelper.sqrt_double(var7 * var7 + var9 * var9 + var11 * var11);
                                     
-                                    SCParticle.spawnAstralEnergyFX(storedX + 0.5, storedY - 0.5, storedZ + 0.5, x + 0.5, y - 1 + 0.5, z + 0.5, distance, false);
+                                    SCParticle.spawnAstralEnergyBeamFX(storedX + 0.5, storedY - 0.5, storedZ + 0.5, x + 0.5, y - 1 + 0.5, z + 0.5, age, true, false, false);
                                 }
                             }
                             
@@ -272,14 +274,7 @@ public class ModeBlockTravel extends GauntletMode {
     {
         list.add("Stored coordinates: ");
         
-        if(isSneaking)
-        {
-            list.add(" X: " + this.getStoredXCoord(stack));
-            list.add(" Y: " + this.getStoredYCoord(stack));
-            list.add(" Z: " + this.getStoredZCoord(stack));
-        } else {
-            list.add(" <Hold SHIFT>");
-        }
+        list.add(" " + this.getStoredXCoord(stack) + ", " + this.getStoredYCoord(stack) + ", " + this.getStoredZCoord(stack));
         
         list.add("Coordinates valid: ");
         

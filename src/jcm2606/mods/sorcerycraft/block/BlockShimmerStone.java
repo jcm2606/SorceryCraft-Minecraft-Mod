@@ -1,8 +1,16 @@
 package jcm2606.mods.sorcerycraft.block;
 
+import java.util.List;
+
+import jcm2606.mods.sorcerycraft.helper.SCHelper;
 import jcm2606.mods.sorcerycraft.lib.Rarities;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.Minecraft;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+
+import org.lwjgl.input.Keyboard;
 
 public class BlockShimmerStone extends SCBlock {
 	public BlockShimmerStone(int par1, String par2) {
@@ -41,5 +49,25 @@ public class BlockShimmerStone extends SCBlock {
 	public boolean isBeaconBase(World worldObj, int x, int y, int z, int beaconX, int beaconY, int beaconZ)
     {
         return true;
+    }
+	
+	@Override
+    /**
+     * allows items to add custom lines of information to the mouseover description
+     */
+    public void addInformation(ItemStack stack, EntityPlayer player, List list,
+            boolean par4) {
+        if(SCHelper.playerHasPerceptionMedallion(player))
+        {
+            if(Keyboard.isKeyDown(Minecraft.getMinecraft().gameSettings.keyBindSneak.keyCode))
+            {
+                list.add("An extremely unqiue type of stone");
+                list.add("which has been worked. This stone");
+                list.add("seems to shimmer and one type of");
+                list.add("Shimmerstone is even luminescent!");
+            } else {
+                list.add("<Hold SHIFT>");
+            }
+        }
     }
 }

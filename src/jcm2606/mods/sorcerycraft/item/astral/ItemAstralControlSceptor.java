@@ -12,6 +12,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
 import org.lwjgl.input.Keyboard;
@@ -124,6 +125,8 @@ public class ItemAstralControlSceptor extends SCItemShine {
                 int portalParticleMultiplier = 1;
                 String particle = "astralEnergy";
                 
+                int speed = 50;
+                
                 switch(par7)
                 {
                     case 5 : {
@@ -137,18 +140,16 @@ public class ItemAstralControlSceptor extends SCItemShine {
                             {
                                 for(int i = 0; i < portalParticleMultiplier; i++)
                                 {
-                                    double px = x + 1 + 0.5;
-                                    double py = y + 1 - 0.5;
-                                    double pz = z + 0.5;
-                                    double vx = storedX + 0.5 - px;
-                                    double vy = storedY - 0.5 - py;
-                                    double vz = storedZ + 0.5 - pz;
-                                    SCParticle.spawnAstralEnergyFX(px, py, pz, vx, vy, vz, 40, false);
+                                    float var7 = x + 1 - storedX;
+                                    float var9 = y - storedY;
+                                    float var11 = z - storedZ;
+                                    int distance = (int)MathHelper.sqrt_double(var7 * var7 + var9 * var9 + var11 * var11);
+                                    
+                                    SCParticle.spawnAstralEnergyBeamFX(storedX + 0.5, storedY + 0.5, storedZ + 0.5, x + 1, y, z, distance, true, false, false);
                                 }
                             }
                             
                             world.playSoundEffect(x + 1, y, z, "mob.endermen.portal", 0.5f, 1.0f);
-                            stack.damageItem(1, player);
                         } else {
                             player.sendChatToPlayer("\247oThere is no block at the origin.");
                         }
@@ -165,18 +166,16 @@ public class ItemAstralControlSceptor extends SCItemShine {
                             {
                                 for(int i = 0; i < portalParticleMultiplier; i++)
                                 {
-                                    double px = x + 0.5;
-                                    double py = y + 1 - 0.5;
-                                    double pz = z - 1 + 0.5;
-                                    double vx = storedX + 0.5 - px;
-                                    double vy = storedY - 0.5 - py;
-                                    double vz = storedZ + 0.5 - pz;
-                                    SCParticle.spawnAstralEnergyFX(px, py, pz, vx, vy, vz, 40, false);
+                                    float var7 = x - storedX;
+                                    float var9 = y - storedY;
+                                    float var11 = z - 1 - storedZ;
+                                    int distance = (int)MathHelper.sqrt_double(var7 * var7 + var9 * var9 + var11 * var11);
+                                    
+                                    SCParticle.spawnAstralEnergyBeamFX(storedX + 0.5, storedY + 0.5, storedZ + 0.5, x + 0.5, y + 0.5, z - 1 + 0.5, distance, true, false, false);
                                 }
                             }
                             
                             world.playSoundEffect(x, y, z - 1, "mob.endermen.portal", 0.5f, 1.0f);
-                            stack.damageItem(1, player);
                         } else {
                             player.sendChatToPlayer("\247oThere is no block at the origin.");
                         }
@@ -193,18 +192,16 @@ public class ItemAstralControlSceptor extends SCItemShine {
                             {
                                 for(int i = 0; i < portalParticleMultiplier; i++)
                                 {
-                                    double px = x - 1 + 0.5;
-                                    double py = y + 1 - 0.5;
-                                    double pz = z + 0.5;
-                                    double vx = storedX + 0.5 - px;
-                                    double vy = storedY - 0.5 - py;
-                                    double vz = storedZ + 0.5 - pz;
-                                    SCParticle.spawnAstralEnergyFX(px, py, pz, vx, vy, vz, 40, false);
+                                    float var7 = x - 1 - storedX;
+                                    float var9 = y - storedY;
+                                    float var11 = z - storedZ;
+                                    int distance = (int)MathHelper.sqrt_double(var7 * var7 + var9 * var9 + var11 * var11);
+                                    
+                                    SCParticle.spawnAstralEnergyBeamFX(storedX + 0.5, storedY + 0.5, storedZ + 0.5, x - 1 + 0.5, y + 0.5, z + 0.5, distance, true, false, false);
                                 }
                             }
                             
                             world.playSoundEffect(x - 1, y, z, "mob.endermen.portal", 0.5f, 1.0f);
-                            stack.damageItem(1, player);
                         } else {
                             player.sendChatToPlayer("\247oThere is no block at the origin.");
                         }
@@ -221,18 +218,16 @@ public class ItemAstralControlSceptor extends SCItemShine {
                             {
                                 for(int i = 0; i < portalParticleMultiplier; i++)
                                 {
-                                    double px = x + 0.5;
-                                    double py = y + 1 - 0.5;
-                                    double pz = z + 1 + 0.5;
-                                    double vx = storedX + 0.5 - px;
-                                    double vy = storedY - 0.5 - py;
-                                    double vz = storedZ + 0.5 - pz;
-                                    SCParticle.spawnAstralEnergyFX(px, py, pz, vx, vy, vz, 40, false);
+                                    float var7 = x - storedX;
+                                    float var9 = y - storedY;
+                                    float var11 = z + 1 - storedZ;
+                                    int distance = (int)MathHelper.sqrt_double(var7 * var7 + var9 * var9 + var11 * var11);
+                                    
+                                    SCParticle.spawnAstralEnergyBeamFX(storedX + 0.5, storedY + 0.5, storedZ + 0.5, x + 0.5, y + 0.5, z + 1 + 0.5, distance, true, false, false);
                                 }
                             }
                             
                             world.playSoundEffect(x, y, z + 1, "mob.endermen.portal", 0.5f, 1.0f);
-                            stack.damageItem(1, player);
                         } else {
                             player.sendChatToPlayer("\247oThere is no block at the origin.");
                         }
@@ -249,18 +244,16 @@ public class ItemAstralControlSceptor extends SCItemShine {
                             {
                                 for(int i = 0; i < portalParticleMultiplier; i++)
                                 {
-                                    double px = x + 0.5;
-                                    double py = y + 1 + 1 - 0.5;
-                                    double pz = z + 0.5;
-                                    double vx = storedX + 0.5 - px;
-                                    double vy = storedY - 0.5 - py;
-                                    double vz = storedZ + 0.5 - pz;
-                                    SCParticle.spawnAstralEnergyFX(px, py, pz, vx, vy, vz, 40, false);
+                                    float var7 = x - storedX;
+                                    float var9 = y + 1 - storedY;
+                                    float var11 = z - storedZ;
+                                    int distance = (int)MathHelper.sqrt_double(var7 * var7 + var9 * var9 + var11 * var11);
+                                    
+                                    SCParticle.spawnAstralEnergyBeamFX(storedX + 0.5, storedY + 0.5, storedZ + 0.5, x + 0.5, y + 1 + 0.5, z + 0.5, distance, true, false, false);
                                 }
                             }
                             
                             world.playSoundEffect(x, y + 1, z, "mob.endermen.portal", 0.5f, 1.0f);
-                            stack.damageItem(1, player);
                         } else {
                             player.sendChatToPlayer("\247oThere is no block at the origin.");
                         }
@@ -277,18 +270,16 @@ public class ItemAstralControlSceptor extends SCItemShine {
                             {
                                 for(int i = 0; i < portalParticleMultiplier; i++)
                                 {
-                                    double px = x + 0.5;
-                                    double py = y - 1 + 1 - 0.5;
-                                    double pz = z + 0.5;
-                                    double vx = storedX + 0.5 - px;
-                                    double vy = storedY - 0.5 - py;
-                                    double vz = storedZ + 0.5 - pz;
-                                    SCParticle.spawnAstralEnergyFX(px, py, pz, vx, vy, vz, 40, false);
+                                    float var7 = x - storedX;
+                                    float var9 = y - 1 - storedY;
+                                    float var11 = z - storedZ;
+                                    int distance = (int)MathHelper.sqrt_double(var7 * var7 + var9 * var9 + var11 * var11);
+                                    
+                                    SCParticle.spawnAstralEnergyBeamFX(storedX + 0.5, storedY - 0.5, storedZ + 0.5, x + 0.5, y - 1 + 0.5, z + 0.5, distance, true, false, false);
                                 }
                             }
                             
                             world.playSoundEffect(x, y - 1, z, "mob.endermen.portal", 0.5f, 1.0f);
-                            stack.damageItem(1, player);
                         } else {
                             player.sendChatToPlayer("\247oThere is no block at the origin.");
                         }

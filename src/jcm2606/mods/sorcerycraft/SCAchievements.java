@@ -11,15 +11,19 @@ public class SCAchievements {
 	public static Achievement modUseFirst;
 	public static Achievement vordicDustGet;
 	public static Achievement refVordicDustGet;
-	public static Achievement wandGet;
+	public static Achievement vimDustGet;
+	public static Achievement alchStoneGet;
+	public static Achievement arcaneWorkbenchGet;
 	
 	public static int START_ID;
 	
 	public static void loadAchievements() {
 	    modUseFirst = new Achievement(START_ID, "modUseFirst", 0, 0, SCObjects.alchbook, null).registerAchievement();
-	    vordicDustGet = new Achievement(START_ID + 1, "vordicDustGet", 0, 2, SCObjects.dustvordic, modUseFirst).registerAchievement();
-	    refVordicDustGet = new Achievement(START_ID + 2, "refVordicDustGet", 1, 3, SCObjects.dustvordicrefined, vordicDustGet).registerAchievement();
-	    wandGet = new Achievement(START_ID + 3, "wandGet", 4, 3, SCObjects.wandcasting, refVordicDustGet).registerAchievement();
+	    vordicDustGet = new Achievement(START_ID + 1, "vordicDustGet", 2, 2, SCObjects.dustvordic, modUseFirst).registerAchievement();
+	    refVordicDustGet = new Achievement(START_ID + 2, "refVordicDustGet", 2, -1, SCObjects.dustvordicrefined, vordicDustGet).registerAchievement();
+	    vimDustGet = new Achievement(START_ID + 3, "vimDustGet", 4, 1, SCObjects.dustenergy, refVordicDustGet).registerAchievement();
+	    alchStoneGet = new Achievement(START_ID + 4, "alchStoneGet", 4, -2, SCObjects.alchstone, vimDustGet).registerAchievement();
+	    arcaneWorkbenchGet = new Achievement(START_ID + 5, "arcaneWorkbenchGet", -1, -2, SCObjects.arcaneworkbench, alchStoneGet).registerAchievement();
 	    
 	    /*
 	     * Ach' Information Setting
@@ -27,14 +31,16 @@ public class SCAchievements {
 	    addAchInfo("modUseFirst", "Into darkness", "Install and play SorceryCraft for the first time.");
 	    addAchInfo("vordicDustGet", "New resources", "Aquire some Vordic Dust.");
 	    addAchInfo("refVordicDustGet", "Newly refined resources", "Refine some Vordic Dust in a smelting device.");
-	    addAchInfo("wandGet", "Sorcerer's pickaxe", "Aquire a Wand of Mundane Casting.");
+	    addAchInfo("vimDustGet", "Combining just got a whole new meaning", "Combine some Vordic Dust, Stabilised Vordic Dust and some Redstone to create Vim Powder.");
+	    addAchInfo("alchStoneGet", "An alchemists base construct", "Construct an Arcane Stone.");
+	    addAchInfo("arcaneWorkbenchGet", "Not just a workbench...", "Create yourself an Arcane Workbench.");
 	    
 		/*
 		 * Ach' Page
 		 */
 	    
 	    Achievement[] achList = new Achievement[] {
-	            modUseFirst, vordicDustGet, refVordicDustGet, wandGet
+	            modUseFirst, vordicDustGet, refVordicDustGet, vimDustGet, alchStoneGet, arcaneWorkbenchGet
 	    };
 	    
 		scAchPage = new AchievementPage("SorceryCraft", achList);

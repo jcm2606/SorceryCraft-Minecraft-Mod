@@ -30,6 +30,6 @@ public class ItemTabletCreation extends SCItem {
 	@SideOnly(Side.CLIENT)
 	public EnumRarity getRarity(ItemStack stack)
 	{
-		return RarityHelper.getCustomRarityType(Rarities.MAGICAL);
+		return RarityHelper.getCustomRarityType(Rarities.ADVANCED);
 	}
 }
