@@ -2,23 +2,13 @@ package jcm2606.mods.sorcerycraft.block;
 
 import java.util.Random;
 
-import jcm2606.mods.sorcerycraft.SCIconManager;
-import jcm2606.mods.sorcerycraft.SorceryCraft;
-import net.minecraft.block.BlockOre;
-import net.minecraft.client.renderer.texture.IconRegister;
-import net.minecraft.util.Icon;
+import net.minecraft.block.material.Material;
 import net.minecraft.world.World;
 
-public class SCOre extends BlockOre {
-	protected Icon[] iconBuffer;
-	public String name;
-	
+public class SCOre extends SCBlock {
 	public SCOre(int par1, String par2) {
-		super(par1);
-		this.setCreativeTab(SorceryCraft.tab);
-		this.setUnlocalizedName("sc" + par2);
+		super(par1, Material.rock, par2);
 		this.setResistance(2.0f);
-		this.name = par2;
 	}
 
 	/**
@@ -72,10 +62,4 @@ public class SCOre extends BlockOre {
 			this.dropXpOnBlockBreak(par1World, par2, par3, par4, var8);
 		}
 	}
-	
-	@Override
-    public void registerIcons(IconRegister par1IconRegister)
-    {
-	    this.blockIcon = SCIconManager.getIcon(this.name);
-    }
 }

@@ -5,11 +5,12 @@ import java.util.List;
 
 import jcm2606.mods.jccore.helper.NBTHelper;
 import jcm2606.mods.jccore.helper.RarityHelper;
+import jcm2606.mods.sorcerycraft.core.lib.Rarities;
 import jcm2606.mods.sorcerycraft.item.SCItem;
-import jcm2606.mods.sorcerycraft.lib.Rarities;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
@@ -52,7 +53,7 @@ public class ItemCharm extends SCItem {
     public void onUpdate(ItemStack par1ItemStack, World par2World, Entity par3Entity, int par4, boolean par5) {
     	if(this.applyCursesOnTick)
     	{
-    		EntityLiving living = (EntityLiving) par3Entity;
+    		EntityLivingBase living = (EntityLiving) par3Entity;
     		EntityPlayer player = (EntityPlayer) living;
     		this.onCursedUse(par1ItemStack, player, par2World, this.getCurseName(par1ItemStack));
     	}

@@ -1,7 +1,7 @@
 package jcm2606.mods.sorcerycraft.world.gen.structure;
 import java.util.Random;
 
-import jcm2606.mods.sorcerycraft.SCObjects;
+import jcm2606.mods.sorcerycraft.core.SCObjects;
 import net.minecraft.block.Block;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;

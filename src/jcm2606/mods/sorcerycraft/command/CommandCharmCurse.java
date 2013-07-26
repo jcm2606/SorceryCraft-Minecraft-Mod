@@ -2,9 +2,10 @@ package jcm2606.mods.sorcerycraft.command;
 
 import java.util.Set;
 
+import jcm2606.mods.jccore.util.ChatUtil;
 import jcm2606.mods.jccore.util.ServerUtil;
+import jcm2606.mods.sorcerycraft.core.lib.Commands;
 import jcm2606.mods.sorcerycraft.item.charm.ItemCharm;
-import jcm2606.mods.sorcerycraft.lib.Commands;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.command.WrongUsageException;
 import net.minecraft.item.ItemStack;
@@ -32,7 +33,7 @@ public class CommandCharmCurse {
     {
         if(commandSender.getCommandSenderName().equals("Server"))
         {
-            commandSender.sendChatToPlayer("ERROR: This command cannot be performed via server console.");
+            ChatUtil.sendTextToCommandSender(commandSender, "ERROR: This command cannot be performed via server console.");
             return;
         }
         
@@ -48,11 +49,11 @@ public class CommandCharmCurse {
                     
                     if(charm.getCurseName(currentItem).equals(args[2]))
                     {
-                        commandSender.sendChatToPlayer("That charm already has the curse '" + args[2] + "'.");
+                        ChatUtil.sendTextToCommandSender(commandSender, "That charm already has the curse '" + args[2] + "'.");
                     } else {
                         charm.setCurseName(currentItem, args[2]);
                         charm.setCurseOwner(currentItem, commandSender.getCommandSenderName());
-                        commandSender.sendChatToPlayer("Charm has successfully been cursed with '" + args[2] + "'.");
+                        ChatUtil.sendTextToCommandSender(commandSender, "Charm has successfully been cursed with '" + args[2] + "'.");
                         System.out.println("CHARM @ SLOT " + ServerUtil.getPlayer(commandSender.getCommandSenderName()).inventory.currentItem + " ON PLAYER '" + commandSender.getCommandSenderName().toUpperCase() + "' HAD CURSE '" + args[2].toUpperCase() + "' APPLIED.");
                     }
                 } else {
@@ -70,7 +71,7 @@ public class CommandCharmCurse {
     {
         if(commandSender.getCommandSenderName().equals("Server"))
         {
-            commandSender.sendChatToPlayer("ERROR: This command cannot be performed via server console.");
+            ChatUtil.sendTextToCommandSender(commandSender, "ERROR: This command cannot be performed via server console.");
             return;
         }
         
@@ -86,7 +87,7 @@ public class CommandCharmCurse {
                 {
                     charm.setCurseName(currentItem, "");
                     charm.setCurseOwner(currentItem, "");
-                    commandSender.sendChatToPlayer("Charm has successfully been cleansed of all curses.");
+                    ChatUtil.sendTextToCommandSender(commandSender, "Charm has successfully been cleansed of all curses.");
                     System.out.println("CHARM @ SLOT " + ServerUtil.getPlayer(commandSender.getCommandSenderName()).inventory.currentItem + " ON PLAYER '" + commandSender.getCommandSenderName().toUpperCase() + "' WAS CLEANSED.");
                 } else {
                     throw new WrongUsageException("Charm must be cursed to remove the curse.");
@@ -107,6 +108,6 @@ public class CommandCharmCurse {
         
         message = curseNameList.toString().replace("[", "").replace("]", "");
         
-        commandSender.sendChatToPlayer("Curses currently available: " + message);
+        ChatUtil.sendTextToCommandSender(commandSender, "Curses currently available: " + message);
     }
 }

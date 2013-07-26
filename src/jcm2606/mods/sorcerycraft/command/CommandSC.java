@@ -2,7 +2,7 @@ package jcm2606.mods.sorcerycraft.command;
 
 import java.util.List;
 
-import jcm2606.mods.sorcerycraft.lib.Commands;
+import jcm2606.mods.sorcerycraft.core.lib.Commands;
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.command.WrongUsageException;
@@ -61,5 +61,11 @@ public class CommandSC extends CommandBase {
                 return null;
             }
         }
+    }
+
+    @Override
+    public String getCommandUsage(ICommandSender icommandsender)
+    {
+        return null;
     }
 }

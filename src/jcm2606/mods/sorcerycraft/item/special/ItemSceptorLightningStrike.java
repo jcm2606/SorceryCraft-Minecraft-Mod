@@ -2,10 +2,10 @@ package jcm2606.mods.sorcerycraft.item.special;
 
 import jcm2606.mods.jccore.helper.RarityHelper;
 import jcm2606.mods.jccore.util.GeneralUtil;
-import jcm2606.mods.sorcerycraft.compat.CompatContainerSC;
-import jcm2606.mods.sorcerycraft.compat.HandlerMethodID;
+import jcm2606.mods.sorcerycraft.api.compat.CompatContainerSC;
+import jcm2606.mods.sorcerycraft.api.compat.HandlerMethodID;
+import jcm2606.mods.sorcerycraft.core.lib.Rarities;
 import jcm2606.mods.sorcerycraft.item.SCItemShine;
-import jcm2606.mods.sorcerycraft.lib.Rarities;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.effect.EntityLightningBolt;
 import net.minecraft.entity.player.EntityPlayer;

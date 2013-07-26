@@ -27,18 +27,18 @@ public class ItemCharmMortality extends ItemCharm {
     	{
     		if(!Keyboard.isKeyDown(Keyboard.KEY_LCONTROL) && !par3EntityPlayer.isSneaking())
     		{
-    			if(getStoredHealth(par1ItemStack) < 20 && par3EntityPlayer.getHealth() > 1 && getBoundPlayer(par1ItemStack).equals(par3EntityPlayer.username))
+    			if(getStoredHealth(par1ItemStack) < 20 && par3EntityPlayer.prevHealth > 1 && getBoundPlayer(par1ItemStack).equals(par3EntityPlayer.username))
         		{
         			setStoredHealth(par1ItemStack, getStoredHealth(par1ItemStack) + 1);
         			par1ItemStack.damageItem(1, par3EntityPlayer);
-        			par3EntityPlayer.setEntityHealth(par3EntityPlayer.getHealth() - 1);
+        			par3EntityPlayer.setEntityHealth(par3EntityPlayer.prevHealth - 1);
         		}
     		} else {
-    			if(getStoredHealth(par1ItemStack) != 0 && par3EntityPlayer.getHealth() < 20 && getBoundPlayer(par1ItemStack).equals(par3EntityPlayer.username))
+    			if(getStoredHealth(par1ItemStack) != 0 && par3EntityPlayer.prevHealth < 20 && getBoundPlayer(par1ItemStack).equals(par3EntityPlayer.username))
         		{
         			setStoredHealth(par1ItemStack, getStoredHealth(par1ItemStack) - 1);
         			par1ItemStack.damageItem(1, par3EntityPlayer);
-        			par3EntityPlayer.setEntityHealth(par3EntityPlayer.getHealth() + 1);
+        			par3EntityPlayer.setEntityHealth(par3EntityPlayer.prevHealth + 1);
         		}
     		}
     		

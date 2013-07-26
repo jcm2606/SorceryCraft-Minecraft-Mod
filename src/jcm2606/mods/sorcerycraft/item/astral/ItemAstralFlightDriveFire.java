@@ -4,11 +4,12 @@ import java.util.List;
 
 import jcm2606.mods.jccore.helper.RarityHelper;
 import jcm2606.mods.jccore.util.GeneralUtil;
-import jcm2606.mods.sorcerycraft.SCObjects;
+import jcm2606.mods.sorcerycraft.core.SCObjects;
+import jcm2606.mods.sorcerycraft.core.lib.Rarities;
 import jcm2606.mods.sorcerycraft.item.SCItemShine;
-import jcm2606.mods.sorcerycraft.lib.Rarities;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
@@ -35,8 +36,8 @@ public class ItemAstralFlightDriveFire extends SCItemShine {
 	@Override
     public void onUpdate(ItemStack stack, World world, Entity entity, int par4,
             boolean par5) {
-        if (entity instanceof EntityLiving) {
-            EntityLiving living = (EntityLiving) entity;
+        if (entity instanceof EntityLivingBase) {
+            EntityLivingBase living = (EntityLiving) entity;
 
             if (living instanceof EntityPlayer) {
                 EntityPlayer player = (EntityPlayer) living;

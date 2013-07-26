@@ -1,65 +1,16 @@
 package jcm2606.mods.sorcerycraft.event;
 
-import jcm2606.mods.sorcerycraft.SCObjects;
-import jcm2606.mods.sorcerycraft.enchant.Enchantments;
+import jcm2606.mods.sorcerycraft.core.SCObjects;
 import jcm2606.mods.sorcerycraft.item.charm.ItemCharmMortality;
-import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.entity.EntityLiving;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
-import net.minecraft.potion.Potion;
-import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraftforge.event.ForgeSubscribe;
 import net.minecraftforge.event.entity.item.ItemTossEvent;
-import net.minecraftforge.event.entity.player.AttackEntityEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 
 public class PlayerHandler {
 	@ForgeSubscribe
 	public void onPlayerInteract(PlayerInteractEvent event) {}
-	
-	@ForgeSubscribe
-	public void onPlayerAttackEntity(AttackEntityEvent event) {
-		EntityPlayer player = event.entityPlayer;
-		
-		if(event.target instanceof EntityLiving)
-		{
-			enchantmentHandling(player, (EntityLiving) event.target);
-		}
-	}
-	
-	public void enchantmentHandling(EntityPlayer player, EntityLiving target)
-	{
-	    // Frozen Core
-	    
-	    if(EnchantmentHelper.getEnchantmentLevel(Enchantments.frozencore.effectId, player.getCurrentEquippedItem()) == 1)
-        {
-	        target.addPotionEffect(new PotionEffect(Potion.moveSlowdown.getId(), 400, 1));
-        }
-        
-        if(EnchantmentHelper.getEnchantmentLevel(Enchantments.frozencore.effectId, player.getCurrentEquippedItem()) >= 2)
-        {
-            target.addPotionEffect(new PotionEffect(Potion.moveSlowdown.getId(), 800, 2));
-        }
-        
-        // Venom Aspect
-        
-        if(EnchantmentHelper.getEnchantmentLevel(Enchantments.venom.effectId, player.getCurrentEquippedItem()) == 1)
-        {
-            target.addPotionEffect(new PotionEffect(Potion.poison.getId(), 100, 1));
-        }
-        
-        if(EnchantmentHelper.getEnchantmentLevel(Enchantments.venom.effectId, player.getCurrentEquippedItem()) == 2)
-        {
-            target.addPotionEffect(new PotionEffect(Potion.poison.getId(), 200, 1));
-        }
-        
-        if(EnchantmentHelper.getEnchantmentLevel(Enchantments.venom.effectId, player.getCurrentEquippedItem()) >= 3)
-        {
-            target.addPotionEffect(new PotionEffect(Potion.poison.getId(), 400, 2));
-        }
-	}
 	
 	@ForgeSubscribe
 	public void onItemThrow(ItemTossEvent event)

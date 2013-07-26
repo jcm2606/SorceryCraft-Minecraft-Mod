@@ -3,8 +3,8 @@ package jcm2606.mods.sorcerycraft.item.main;
 import java.util.List;
 
 import jcm2606.mods.jccore.helper.RarityHelper;
+import jcm2606.mods.sorcerycraft.core.lib.Rarities;
 import jcm2606.mods.sorcerycraft.item.SCItem;
-import jcm2606.mods.sorcerycraft.lib.Rarities;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;

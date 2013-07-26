@@ -1,6 +1,6 @@
 package jcm2606.mods.sorcerycraft.item.main;
 
-import jcm2606.mods.sorcerycraft.SCObjects;
+import jcm2606.mods.sorcerycraft.core.SCObjects;
 import jcm2606.mods.sorcerycraft.item.SCItem;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;

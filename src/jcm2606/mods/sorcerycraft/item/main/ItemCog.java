@@ -4,15 +4,13 @@ import java.util.List;
 
 import jcm2606.mods.jccore.helper.RarityHelper;
 import jcm2606.mods.jccore.item.ItemMeta;
-import jcm2606.mods.sorcerycraft.SCIconManager;
-import jcm2606.mods.sorcerycraft.SorceryCraft;
-import jcm2606.mods.sorcerycraft.helper.SCHelper;
-import jcm2606.mods.sorcerycraft.lib.Rarities;
+import jcm2606.mods.sorcerycraft.core.SorceryCraft;
+import jcm2606.mods.sorcerycraft.core.helper.SCHelper;
+import jcm2606.mods.sorcerycraft.core.lib.Rarities;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.Icon;
 
 import org.lwjgl.input.Keyboard;
 
@@ -31,11 +29,11 @@ public class ItemCog extends ItemMeta {
         "Arcane"
     };
     
-    public static Icon[] textures = {
-        SCIconManager.getIcon("cogStone"),
-        SCIconManager.getIcon("cogMetal"),
-        SCIconManager.getIcon("cogAstral"),
-        SCIconManager.getIcon("cogArcane")
+    public static String[] textures = {
+        "SorceryCraft:cogStone",
+        "SorceryCraft:cogMetal",
+        "SorceryCraft:cogAstral",
+        "SorceryCraft:cogArcane"
     };
     
     public ItemCog(int id) {

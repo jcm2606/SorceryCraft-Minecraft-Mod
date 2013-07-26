@@ -1,7 +1,7 @@
 package jcm2606.mods.sorcerycraft.item.main;
 
-import jcm2606.mods.sorcerycraft.block.IWorkable;
-import jcm2606.mods.sorcerycraft.handler.ToolHandler;
+import jcm2606.mods.sorcerycraft.api.IWorkable;
+import jcm2606.mods.sorcerycraft.core.handler.ToolHandler;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;

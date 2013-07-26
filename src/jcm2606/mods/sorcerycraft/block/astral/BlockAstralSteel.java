@@ -3,8 +3,8 @@ package jcm2606.mods.sorcerycraft.block.astral;
 import java.util.List;
 
 import jcm2606.mods.sorcerycraft.block.SCBlock;
-import jcm2606.mods.sorcerycraft.helper.SCHelper;
-import jcm2606.mods.sorcerycraft.lib.Rarities;
+import jcm2606.mods.sorcerycraft.core.helper.SCHelper;
+import jcm2606.mods.sorcerycraft.core.lib.Rarities;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;

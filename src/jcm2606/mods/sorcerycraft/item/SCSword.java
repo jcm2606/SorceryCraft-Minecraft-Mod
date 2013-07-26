@@ -1,15 +1,11 @@
 package jcm2606.mods.sorcerycraft.item;
 
-import jcm2606.mods.sorcerycraft.SCIconManager;
-import jcm2606.mods.sorcerycraft.SCObjects;
-import jcm2606.mods.sorcerycraft.SorceryCraft;
-import jcm2606.mods.sorcerycraft.enchant.Enchantments;
+import jcm2606.mods.sorcerycraft.core.SorceryCraft;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
-import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.boss.EntityDragon;
 import net.minecraft.entity.monster.EntityBlaze;
 import net.minecraft.entity.monster.EntityEnderman;
@@ -25,7 +21,6 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 public class SCSword extends ItemSword {
-	private final int weaponDamage;
 	private final EnumToolMaterial toolMaterial;
 	public String name;
 
@@ -34,14 +29,13 @@ public class SCSword extends ItemSword {
 		this.toolMaterial = par2EnumToolMaterial;
 		this.maxStackSize = 1;
 		this.setMaxDamage(par2EnumToolMaterial.getMaxUses());
-		this.weaponDamage = par2EnumToolMaterial.getDamageVsEntity();
 		this.setCreativeTab(SorceryCraft.tab);
 		this.setUnlocalizedName(par3);
 		this.name = par3;
 	}
 
 	@Override
-	public int func_82803_g() {
+	public float func_82803_g() {
 		return this.toolMaterial.getDamageVsEntity();
 	}
 
@@ -67,9 +61,9 @@ public class SCSword extends ItemSword {
 	 * entry argument beside ev. They just raise the damage on the stack.
 	 */
 	@Override
-	public boolean hitEntity(ItemStack stack, EntityLiving living, EntityLiving living2) {
+	public boolean hitEntity(ItemStack stack, EntityLivingBase living, EntityLivingBase living2) {
 		stack.damageItem(1, living2);
-		
+		/*
 		if(living2 instanceof EntityPlayer)
 		{
 			EntityPlayer player = (EntityPlayer) living2;
@@ -116,7 +110,7 @@ public class SCSword extends ItemSword {
 				}
 			}
 		}
-		
+		*/
 		if(living instanceof EntityEnderman || living instanceof EntityGhast || living instanceof EntityBlaze || living instanceof EntityMagmaCube || living instanceof EntityDragon)
 		{
 			for(int i = 0; i < 8; i++)
@@ -132,31 +126,13 @@ public class SCSword extends ItemSword {
 	@Override
 	public boolean onBlockDestroyed(ItemStack par1ItemStack, World par2World,
 			int par3, int par4, int par5, int par6,
-			EntityLiving par7EntityLiving) {
+			EntityLivingBase par7EntityLiving) {
 		if (Block.blocksList[par3].getBlockHardness(par2World, par4,
 				par5, par6) != 0.0D) {
 			par1ItemStack.damageItem(2, par7EntityLiving);
 		}
 
 		return true;
-	}
-
-	/**
-	 * Returns the damage against a given entity.
-	 */
-	@Override
-	public int getDamageVsEntity(Entity par1Entity) {
-		if(this.toolMaterial == SCObjects.SWORD_END)
-		{
-			if(par1Entity instanceof EntityEnderman || par1Entity instanceof EntityGhast || par1Entity instanceof EntityBlaze || par1Entity instanceof EntityMagmaCube || par1Entity instanceof EntityDragon)
-			{
-				return this.weaponDamage + 10;
-			} else {
-				return this.weaponDamage;
-			}
-		} else {
-			return this.weaponDamage;
-		}
 	}
 
 	@Override
@@ -235,9 +211,11 @@ public class SCSword extends ItemSword {
      */
     @Override
 	public void onUpdate(ItemStack stack, World world, Entity entity, int par4, boolean par5) {
-    	if(entity instanceof EntityLiving)
+        /*
+        
+    	if(entity instanceof EntityLivingBase)
     	{
-    		EntityLiving living = (EntityLiving) entity;
+    		EntityLivingBase living = (EntityLiving) entity;
     		
     		if(living instanceof EntityPlayer)
         	{
@@ -270,12 +248,14 @@ public class SCSword extends ItemSword {
     			}
         	}
     	}
+    	
+    	*/
     }
     
     @Override
     @SideOnly(Side.CLIENT)
     public void registerIcons(IconRegister par1IconRegister)
     {
-        this.itemIcon = SCIconManager.getIcon(this.name);
+        this.itemIcon = par1IconRegister.registerIcon("SorceryCraft:" + name);
     }
 }

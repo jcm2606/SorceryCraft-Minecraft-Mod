@@ -1,7 +1,6 @@
 package jcm2606.mods.sorcerycraft.item;
 
-import jcm2606.mods.sorcerycraft.SCIconManager;
-import jcm2606.mods.sorcerycraft.SorceryCraft;
+import jcm2606.mods.sorcerycraft.core.SorceryCraft;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.player.EntityPlayer;
@@ -104,6 +103,6 @@ public class SCHoe extends ItemHoe
     @SideOnly(Side.CLIENT)
     public void registerIcons(IconRegister par1IconRegister)
     {
-        this.itemIcon = SCIconManager.getIcon(this.name);
+        this.itemIcon = par1IconRegister.registerIcon("SorceryCraft:" + name);
     }
 }

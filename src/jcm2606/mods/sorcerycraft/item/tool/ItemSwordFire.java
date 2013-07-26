@@ -1,13 +1,12 @@
 package jcm2606.mods.sorcerycraft.item.tool;
 
 import jcm2606.mods.jccore.helper.RarityHelper;
-import jcm2606.mods.sorcerycraft.SCObjects;
-import jcm2606.mods.sorcerycraft.enchant.Enchantments;
+import jcm2606.mods.sorcerycraft.core.SCObjects;
+import jcm2606.mods.sorcerycraft.core.lib.Rarities;
 import jcm2606.mods.sorcerycraft.item.SCSword;
-import jcm2606.mods.sorcerycraft.lib.Rarities;
-import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntitySmallFireball;
 import net.minecraft.item.EnumRarity;
@@ -34,8 +33,8 @@ public class ItemSwordFire extends SCSword {
      * entry argument beside ev. They just raise the damage on the stack.
      */
     @Override
-    public boolean hitEntity(ItemStack stack, EntityLiving living,
-            EntityLiving living2)
+    public boolean hitEntity(ItemStack stack, EntityLivingBase living,
+            EntityLivingBase living2)
     {
         super.hitEntity(stack, living, living2);
         if (living2 instanceof EntityPlayer) {
@@ -78,14 +77,10 @@ public class ItemSwordFire extends SCSword {
 
         if (world.getBiomeGenForCoords((int) player.posX, (int) player.posZ) == BiomeGenBase.desert
                 || world.getBiomeGenForCoords((int) player.posX,
-                        (int) player.posZ) == BiomeGenBase.desertHills
-                || EnchantmentHelper.getEnchantmentLevel(
-                        Enchantments.internalheat.effectId, stack) == 1) {
+                        (int) player.posZ) == BiomeGenBase.desertHills) {
             stack.damageItem(5, player);
         } else
-            if (world.provider.dimensionId == -1
-                    || EnchantmentHelper.getEnchantmentLevel(
-                            Enchantments.internalheat.effectId, stack) >= 2) {} else {
+            if (world.provider.dimensionId == -1) {} else {
                 stack.damageItem(10, player);
             }
 

@@ -3,8 +3,8 @@ package jcm2606.mods.sorcerycraft.block;
 import java.util.Random;
 
 import jcm2606.mods.jccore.block.BlockJC;
-import jcm2606.mods.sorcerycraft.SCIconManager;
-import jcm2606.mods.sorcerycraft.SorceryCraft;
+import jcm2606.mods.sorcerycraft.core.SorceryCraft;
+import jcm2606.mods.sorcerycraft.core.proxy.ClientProxy;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.util.Icon;
@@ -44,7 +44,7 @@ public class SCBlock extends BlockJC {
     {
 		if(useIconIndex)
 		{
-		    this.blockIcon = SCIconManager.getIcon(this.name);
+		    this.blockIcon = par1IconRegister.registerIcon("SorceryCraft:" + name);
 		}
     }
 	
@@ -66,4 +66,12 @@ public class SCBlock extends BlockJC {
 	@Override
     @SideOnly(Side.CLIENT)
     public void randomDisplayTick(World par1World, int par2, int par3, int par4, Random par5Random) {}
+	
+	@Override
+    public boolean canRenderInPass(int pass)
+	{
+        ClientProxy.currentRenderPass = pass;
+        
+        return true;
+	}
 }

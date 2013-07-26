@@ -1,17 +1,17 @@
 package jcm2606.mods.sorcerycraft.item.special;
 
 import jcm2606.mods.jccore.helper.RarityHelper;
-import jcm2606.mods.sorcerycraft.SCParticle;
-import jcm2606.mods.sorcerycraft.compat.CompatContainerSC;
-import jcm2606.mods.sorcerycraft.compat.HandlerMethodID;
-import jcm2606.mods.sorcerycraft.config.Settings;
+import jcm2606.mods.sorcerycraft.api.compat.CompatContainerSC;
+import jcm2606.mods.sorcerycraft.api.compat.HandlerMethodID;
+import jcm2606.mods.sorcerycraft.core.SCParticle;
+import jcm2606.mods.sorcerycraft.core.config.Settings;
+import jcm2606.mods.sorcerycraft.core.lib.Rarities;
 import jcm2606.mods.sorcerycraft.item.SCItem;
-import jcm2606.mods.sorcerycraft.lib.Rarities;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemBlock;
@@ -39,9 +39,9 @@ public class ItemRingMagma extends SCItem {
     @Override
     public void onUpdate(ItemStack stack, World world, Entity entity, int slot, boolean currentItem)
     {
-        if (entity instanceof EntityLiving) {
-            if ((EntityLiving) entity instanceof EntityPlayer) {
-                EntityPlayer player = (EntityPlayer) (EntityLiving) entity;
+        if (entity instanceof EntityLivingBase) {
+            if ((EntityLivingBase) entity instanceof EntityPlayer) {
+                EntityPlayer player = (EntityPlayer) (EntityLivingBase) entity;
 
                 if (player.isInsideOfMaterial(Material.lava)) {
                     if (world.rand.nextInt(100) <= 5) {

@@ -1,10 +1,11 @@
 package jcm2606.mods.sorcerycraft.command;
 
-import jcm2606.mods.sorcerycraft.SorceryCraft;
+import jcm2606.mods.jccore.util.ChatUtil;
+import jcm2606.mods.sorcerycraft.core.SorceryCraft;
 import net.minecraft.command.ICommandSender;
 
 public class CommandVersion {
     public static void processCommand(ICommandSender commandSender, String[] args) {
-        commandSender.sendChatToPlayer("SorceryCraft v" + SorceryCraft.version);
+        ChatUtil.sendTextToCommandSender(commandSender, "SorceryCraft v" + SorceryCraft.version);
     }
 }

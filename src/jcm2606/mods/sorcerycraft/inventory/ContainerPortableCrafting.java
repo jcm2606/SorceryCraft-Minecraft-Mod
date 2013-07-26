@@ -17,7 +17,7 @@ public class ContainerPortableCrafting extends ContainerWorkbench {
     }
     
     @Override
-    public void onCraftGuiClosed(EntityPlayer player) {
-    	super.onCraftGuiClosed(player);
+    public void onContainerClosed(EntityPlayer player) {
+    	super.onContainerClosed(player);
     }
 }

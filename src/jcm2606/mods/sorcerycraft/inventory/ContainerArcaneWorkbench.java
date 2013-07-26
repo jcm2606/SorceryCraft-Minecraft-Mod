@@ -1,6 +1,6 @@
 package jcm2606.mods.sorcerycraft.inventory;
 
-import jcm2606.mods.sorcerycraft.SCObjects;
+import jcm2606.mods.sorcerycraft.core.SCObjects;
 import jcm2606.mods.sorcerycraft.manager.CraftingManagerAlchLectern;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -73,8 +73,8 @@ public class ContainerArcaneWorkbench extends Container {
 	 * Callback for when the crafting gui is closed.
 	 */
 	@Override
-	public void onCraftGuiClosed(EntityPlayer par1EntityPlayer) {
-		super.onCraftGuiClosed(par1EntityPlayer);
+	public void onContainerClosed(EntityPlayer par1EntityPlayer) {
+		super.onContainerClosed(par1EntityPlayer);
 
 		if (!worldObj.isRemote) {
 			for (int var2 = 0; var2 < 9; ++var2) {

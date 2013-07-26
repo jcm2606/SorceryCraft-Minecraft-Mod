@@ -7,13 +7,13 @@ import net.minecraft.world.World;
 
 public abstract class SCBlockContainer extends SCBlock implements ITileEntityProvider
 {
-    protected SCBlockContainer(int par1, Material par2Material, String name)
+    public SCBlockContainer(int par1, Material par2Material, String name)
     {
         super(par1, par2Material, name);
         this.isBlockContainer = true;
     }
     
-    protected SCBlockContainer(int par1, Material par2Material, String name, String par4)
+    public SCBlockContainer(int par1, Material par2Material, String name, String par4)
     {
         super(par1, par2Material, name, par4);
         this.isBlockContainer = true;

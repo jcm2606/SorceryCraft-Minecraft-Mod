@@ -4,9 +4,10 @@ import java.util.List;
 
 import jcm2606.mods.jccore.helper.NBTHelper;
 import jcm2606.mods.jccore.helper.RarityHelper;
-import jcm2606.mods.sorcerycraft.SCParticle;
+import jcm2606.mods.jccore.util.Coord;
+import jcm2606.mods.sorcerycraft.core.SCParticle;
+import jcm2606.mods.sorcerycraft.core.lib.Rarities;
 import jcm2606.mods.sorcerycraft.item.SCItemShine;
-import jcm2606.mods.sorcerycraft.lib.Rarities;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
@@ -106,7 +107,7 @@ public class ItemAstralControlSceptor extends SCItemShine {
                 {
                     if(world.isRemote)
                     {
-                        player.sendChatToPlayer("\247oThis block has extra energy bound to it. You cannot move this block.");
+                        player.addChatMessage("\247oThis block has extra energy bound to it. You cannot move this block.");
                     }
                     return false;
                 }
@@ -125,7 +126,7 @@ public class ItemAstralControlSceptor extends SCItemShine {
                 int portalParticleMultiplier = 1;
                 String particle = "astralEnergy";
                 
-                int speed = 50;
+                int age = 50;
                 
                 switch(par7)
                 {
@@ -145,13 +146,15 @@ public class ItemAstralControlSceptor extends SCItemShine {
                                     float var11 = z - storedZ;
                                     int distance = (int)MathHelper.sqrt_double(var7 * var7 + var9 * var9 + var11 * var11);
                                     
-                                    SCParticle.spawnAstralEnergyBeamFX(storedX + 0.5, storedY + 0.5, storedZ + 0.5, x + 1, y, z, distance, true, false, false);
+                                    SCParticle.spawnAstralEnergyBeamFX(new Coord(storedX + 0.5, storedY + 0.5, storedZ + 0.5), new Coord(x + 1 + 0.5, y + 0.5, z + 0.5), age, true, false, false);
                                 }
+                                
+                                SCParticle.spawnAstralEnergyFX(storedX + 0.5, storedY + 0.5, storedZ + 0.5, storedX + 0.5, storedY + 0.5, storedZ + 0.5, age, true, false, false, false);
                             }
                             
                             world.playSoundEffect(x + 1, y, z, "mob.endermen.portal", 0.5f, 1.0f);
                         } else {
-                            player.sendChatToPlayer("\247oThere is no block at the origin.");
+                            player.addChatMessage("\247oThere is no block at the origin.");
                         }
                     } break;
                     
@@ -171,13 +174,15 @@ public class ItemAstralControlSceptor extends SCItemShine {
                                     float var11 = z - 1 - storedZ;
                                     int distance = (int)MathHelper.sqrt_double(var7 * var7 + var9 * var9 + var11 * var11);
                                     
-                                    SCParticle.spawnAstralEnergyBeamFX(storedX + 0.5, storedY + 0.5, storedZ + 0.5, x + 0.5, y + 0.5, z - 1 + 0.5, distance, true, false, false);
+                                    SCParticle.spawnAstralEnergyBeamFX(new Coord(storedX + 0.5, storedY + 0.5, storedZ + 0.5), new Coord(x + 0.5, y + 0.5, z - 1 + 0.5), age, true, false, false);
                                 }
+                                
+                                SCParticle.spawnAstralEnergyFX(storedX + 0.5, storedY + 0.5, storedZ + 0.5, storedX + 0.5, storedY + 0.5, storedZ + 0.5, age, true, false, false, false);
                             }
                             
                             world.playSoundEffect(x, y, z - 1, "mob.endermen.portal", 0.5f, 1.0f);
                         } else {
-                            player.sendChatToPlayer("\247oThere is no block at the origin.");
+                            player.addChatMessage("\247oThere is no block at the origin.");
                         }
                     } break;
                     
@@ -197,13 +202,15 @@ public class ItemAstralControlSceptor extends SCItemShine {
                                     float var11 = z - storedZ;
                                     int distance = (int)MathHelper.sqrt_double(var7 * var7 + var9 * var9 + var11 * var11);
                                     
-                                    SCParticle.spawnAstralEnergyBeamFX(storedX + 0.5, storedY + 0.5, storedZ + 0.5, x - 1 + 0.5, y + 0.5, z + 0.5, distance, true, false, false);
+                                    SCParticle.spawnAstralEnergyBeamFX(new Coord(storedX + 0.5, storedY + 0.5, storedZ + 0.5), new Coord(x - 1 + 0.5, y + 0.5, z + 0.5), age, true, false, false);
                                 }
+                                
+                                SCParticle.spawnAstralEnergyFX(storedX + 0.5, storedY + 0.5, storedZ + 0.5, storedX + 0.5, storedY + 0.5, storedZ + 0.5, age, true, false, false, false);
                             }
                             
                             world.playSoundEffect(x - 1, y, z, "mob.endermen.portal", 0.5f, 1.0f);
                         } else {
-                            player.sendChatToPlayer("\247oThere is no block at the origin.");
+                            player.addChatMessage("\247oThere is no block at the origin.");
                         }
                     } break;
                     
@@ -223,13 +230,15 @@ public class ItemAstralControlSceptor extends SCItemShine {
                                     float var11 = z + 1 - storedZ;
                                     int distance = (int)MathHelper.sqrt_double(var7 * var7 + var9 * var9 + var11 * var11);
                                     
-                                    SCParticle.spawnAstralEnergyBeamFX(storedX + 0.5, storedY + 0.5, storedZ + 0.5, x + 0.5, y + 0.5, z + 1 + 0.5, distance, true, false, false);
+                                    SCParticle.spawnAstralEnergyBeamFX(new Coord(storedX + 0.5, storedY + 0.5, storedZ + 0.5), new Coord(x + 0.5, y + 0.5, z + 1 + 0.5), age, true, false, false);
                                 }
+                                
+                                SCParticle.spawnAstralEnergyFX(storedX + 0.5, storedY + 0.5, storedZ + 0.5, storedX + 0.5, storedY + 0.5, storedZ + 0.5, age, true, false, false, false);
                             }
                             
                             world.playSoundEffect(x, y, z + 1, "mob.endermen.portal", 0.5f, 1.0f);
                         } else {
-                            player.sendChatToPlayer("\247oThere is no block at the origin.");
+                            player.addChatMessage("\247oThere is no block at the origin.");
                         }
                     } break;
                     
@@ -249,13 +258,15 @@ public class ItemAstralControlSceptor extends SCItemShine {
                                     float var11 = z - storedZ;
                                     int distance = (int)MathHelper.sqrt_double(var7 * var7 + var9 * var9 + var11 * var11);
                                     
-                                    SCParticle.spawnAstralEnergyBeamFX(storedX + 0.5, storedY + 0.5, storedZ + 0.5, x + 0.5, y + 1 + 0.5, z + 0.5, distance, true, false, false);
+                                    SCParticle.spawnAstralEnergyBeamFX(new Coord(storedX + 0.5, storedY + 0.5, storedZ + 0.5), new Coord(x + 0.5, y + 1 + 0.5, z + 0.5), age, true, false, false);
                                 }
+                                
+                                SCParticle.spawnAstralEnergyFX(storedX + 0.5, storedY + 0.5, storedZ + 0.5, storedX + 0.5, storedY + 0.5, storedZ + 0.5, age, true, false, false, false);
                             }
                             
                             world.playSoundEffect(x, y + 1, z, "mob.endermen.portal", 0.5f, 1.0f);
                         } else {
-                            player.sendChatToPlayer("\247oThere is no block at the origin.");
+                            player.addChatMessage("\247oThere is no block at the origin.");
                         }
                     } break;
                     
@@ -275,13 +286,15 @@ public class ItemAstralControlSceptor extends SCItemShine {
                                     float var11 = z - storedZ;
                                     int distance = (int)MathHelper.sqrt_double(var7 * var7 + var9 * var9 + var11 * var11);
                                     
-                                    SCParticle.spawnAstralEnergyBeamFX(storedX + 0.5, storedY - 0.5, storedZ + 0.5, x + 0.5, y - 1 + 0.5, z + 0.5, distance, true, false, false);
+                                    SCParticle.spawnAstralEnergyBeamFX(new Coord(storedX + 0.5, storedY + 0.5, storedZ + 0.5), new Coord(x + 0.5, y - 1 + 0.5, z + 0.5), age, true, false, false);
                                 }
+                                
+                                SCParticle.spawnAstralEnergyFX(storedX + 0.5, storedY + 0.5, storedZ + 0.5, storedX + 0.5, storedY + 0.5, storedZ + 0.5, age, true, false, false, false);
                             }
                             
                             world.playSoundEffect(x, y - 1, z, "mob.endermen.portal", 0.5f, 1.0f);
                         } else {
-                            player.sendChatToPlayer("\247oThere is no block at the origin.");
+                            player.addChatMessage("\247oThere is no block at the origin.");
                         }
                     } break;
                 }

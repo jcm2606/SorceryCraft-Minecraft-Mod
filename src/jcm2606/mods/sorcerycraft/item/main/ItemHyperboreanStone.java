@@ -5,6 +5,7 @@ import java.util.Random;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
@@ -18,8 +19,8 @@ public class ItemHyperboreanStone extends ItemVordicDevice {
 	@Override
 	public void onUpdate(ItemStack stack, World world, Entity entity, int par4,
 			boolean par5) {
-		if (entity instanceof EntityLiving) {
-			EntityLiving living = (EntityLiving) entity;
+		if (entity instanceof EntityLivingBase) {
+			EntityLivingBase living = (EntityLiving) entity;
 
 			if (living instanceof EntityPlayer) {
 				EntityPlayer player = (EntityPlayer) living;
@@ -30,11 +31,6 @@ public class ItemHyperboreanStone extends ItemVordicDevice {
 					if (item != null && item == stack
 							&& item.getItemDamage() < item.getMaxDamage()) {
 						if (player.isBurning()) {
-							if (player.getHealth() <= 2) {
-								player.setEntityHealth(player.getHealth() + 1);
-								stack.damageItem(1, (EntityLiving) entity);
-							}
-
 							player.extinguish();
 						}
 					}

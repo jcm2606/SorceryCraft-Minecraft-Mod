@@ -4,11 +4,10 @@ import java.util.List;
 
 import jcm2606.mods.jccore.helper.NBTHelper;
 import jcm2606.mods.jccore.helper.RarityHelper;
-import jcm2606.mods.sorcerycraft.SCObjects;
-import jcm2606.mods.sorcerycraft.fx.EntityAstralEnergyFX;
+import jcm2606.mods.sorcerycraft.core.SCObjects;
+import jcm2606.mods.sorcerycraft.core.SCParticle;
+import jcm2606.mods.sorcerycraft.core.lib.Rarities;
 import jcm2606.mods.sorcerycraft.item.SCItem;
-import jcm2606.mods.sorcerycraft.lib.Rarities;
-import net.minecraft.client.Minecraft;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -96,14 +95,7 @@ public class ItemAstralEnergyCell extends SCItem {
                         double posY = center.posY - Math.sin(center.rotationPitch / 540.0F * Math.PI) * dist;
                         double posZ = center.posZ + Math.sin((-center.rotationYaw + adjAngle) * 0.01745329D) * dist;
                         
-//                        SCParticle.spawnAstralEnergyFX(player.posX, player.posY, player.posZ, player.posX + (Minecraft.getMinecraft().theWorld.rand.nextFloat() - Minecraft.getMinecraft().theWorld.rand.nextFloat()) * 2F, player.posY - 2D, player.posZ + (Minecraft.getMinecraft().theWorld.rand.nextFloat() - Minecraft.getMinecraft().theWorld.rand.nextFloat()) * 2F, 500, 30, false, true, false);
-                    
-                        EntityAstralEnergyFX fx = new EntityAstralEnergyFX(world, posX, posY, posZ, posX, posY, posZ, 300, 50);
-                        fx.motionX = mx;
-                        fx.motionZ = mz;
-                        fx.fade = true;
-                        
-                        Minecraft.getMinecraft().effectRenderer.addEffect(fx);
+                        SCParticle.spawnAstralEnergyFX(posX, posY, posZ, mx, 0, mz, 500, true, true, false);
                     }
                 }
             }

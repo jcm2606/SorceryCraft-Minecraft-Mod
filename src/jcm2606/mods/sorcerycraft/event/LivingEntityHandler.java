@@ -1,8 +1,9 @@
 package jcm2606.mods.sorcerycraft.event;
 
-import jcm2606.mods.sorcerycraft.SCObjects;
+import jcm2606.mods.sorcerycraft.core.SCObjects;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.monster.EntityZombie;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.event.ForgeSubscribe;
@@ -47,6 +48,6 @@ public class LivingEntityHandler {
 	@ForgeSubscribe
 	public void onLivingEntityDeath(LivingDeathEvent event)
 	{
-		EntityLiving living = event.entityLiving;
+		EntityLivingBase living = event.entityLiving;
 	}
 }

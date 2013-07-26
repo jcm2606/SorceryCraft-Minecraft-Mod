@@ -1,5 +1,6 @@
 package jcm2606.mods.sorcerycraft.gui;
 
+import jcm2606.mods.jccore.util.RenderUtil;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiButton;
@@ -40,7 +41,7 @@ public class Button extends GuiButton {
 	private int colour1;
 	private int colour2;
 
-	private boolean customColours;
+	private final boolean customColours;
 
 	public Button(int par1, int par2, int par3, int par4, int par5,
 			String par6Str) {
@@ -140,8 +141,7 @@ public class Button extends GuiButton {
 		if (drawButton) {
 			FontRenderer var4 = par1Minecraft.fontRenderer;
 			if (!customColours) {
-				GL11.glBindTexture(GL11.GL_TEXTURE_2D,
-						par1Minecraft.renderEngine.getTexture("/gui/gui.png"));
+			    RenderUtil.instance().bindTexture("minecraft", "gui/gui.png");
 			}
 			GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 			field_82253_i = par2 >= xPosition && par3 >= yPosition

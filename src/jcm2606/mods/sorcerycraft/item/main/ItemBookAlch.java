@@ -1,10 +1,10 @@
 package jcm2606.mods.sorcerycraft.item.main;
 
 import jcm2606.mods.jccore.helper.RarityHelper;
-import jcm2606.mods.sorcerycraft.SorceryCraft;
+import jcm2606.mods.sorcerycraft.core.SorceryCraft;
+import jcm2606.mods.sorcerycraft.core.lib.GuiIDs;
+import jcm2606.mods.sorcerycraft.core.lib.Rarities;
 import jcm2606.mods.sorcerycraft.item.SCItem;
-import jcm2606.mods.sorcerycraft.lib.GuiIDs;
-import jcm2606.mods.sorcerycraft.lib.Rarities;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
@@ -14,7 +14,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemBookAlch extends SCItem {
 	public ItemBookAlch(int par1) {
-		super(par1, "bookAlch");
+		super(par1, "alchBook");
 		setMaxStackSize(1);
 	}
 

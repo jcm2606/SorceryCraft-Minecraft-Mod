@@ -1,8 +1,8 @@
 package jcm2606.mods.sorcerycraft.fx;
 
-import jcm2606.mods.jccore.fx.EntityFXJC;
-import jcm2606.mods.sorcerycraft.lib.Reference;
-import net.minecraft.client.Minecraft;
+import jcm2606.mods.jccore.util.RenderUtil;
+import jcm2606.mods.sorcerycraft.core.helper.RenderHelperSC;
+import jcm2606.mods.sorcerycraft.core.lib.Reference;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
@@ -13,7 +13,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
-public class FXAstralEnergyBeam extends EntityFXJC
+public class FXAstralEnergyBeam extends FXSC
 {
     private float rotYaw = 0.0F;
     private float rotPitch = 0.0F;
@@ -35,7 +35,7 @@ public class FXAstralEnergyBeam extends EntityFXJC
     public FXAstralEnergyBeam(World par1World, double f, double f2, double f4, double par8, double par10, double par12, int par14, int par15)
     {
         super(par1World, f, f2, f4, 0.0, 0.0, 0.0);
-        this.blendMode = 771;
+        this.blendMode = 1;
         
         this.prevPosX = this.posX;
         this.prevPosY = this.posY;
@@ -43,7 +43,7 @@ public class FXAstralEnergyBeam extends EntityFXJC
         
         this.particleScale = 2.5f;
         this.particleRed = this.particleGreen = this.particleBlue = 0.25F;
-        this.particleMaxAge = par14;
+        this.particleMaxAge = par15;
         
         this.targetX = par8;
         this.targetY = par10;
@@ -83,7 +83,7 @@ public class FXAstralEnergyBeam extends EntityFXJC
         
         float op = 0.5F;
         
-        Minecraft.getMinecraft().renderEngine.bindTexture(Reference.PATH_TEXTURES + "astralEnergyBeam.png");
+        RenderHelperSC.bindTexture(Reference.PATH_TEXTURES + "astralEnergyBeam.png");
 
         GL11.glTexParameterf(3553, 10242, 10497.0F);
         GL11.glTexParameterf(3553, 10243, 10497.0F);
@@ -94,7 +94,7 @@ public class FXAstralEnergyBeam extends EntityFXJC
         float var12 = -var11 * 0.2F - MathHelper.floor_float(-var11 * 0.1F);
 
         GL11.glEnable(3042);
-        GL11.glBlendFunc(770, 1);
+        GL11.glBlendFunc(770, blendMode);
         GL11.glDepthMask(false);
 
         float xx = (float) (this.prevPosX + (this.posX - this.prevPosX) * f - interpPosX);
@@ -142,7 +142,7 @@ public class FXAstralEnergyBeam extends EntityFXJC
 
         tessellator.startDrawingQuads();
 
-        Minecraft.getMinecraft().renderEngine.bindTexture("/particles.png");
+        RenderUtil.instance().bindTexture("minecraft", "particles.png");
     }
 
     @Override

@@ -3,13 +3,13 @@ package jcm2606.mods.sorcerycraft.item.astral;
 import java.util.List;
 
 import jcm2606.mods.jccore.helper.RarityHelper;
-import jcm2606.mods.sorcerycraft.astral.AstralManager;
-import jcm2606.mods.sorcerycraft.helper.SCHelper;
+import jcm2606.mods.sorcerycraft.api.AstralManager;
+import jcm2606.mods.sorcerycraft.core.helper.SCHelper;
+import jcm2606.mods.sorcerycraft.core.lib.Rarities;
 import jcm2606.mods.sorcerycraft.item.SCItemShine;
-import jcm2606.mods.sorcerycraft.lib.Rarities;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
@@ -33,15 +33,15 @@ public class ItemAstralEnergyPearl extends SCItemShine {
     public void onUpdate(ItemStack stack, World world, Entity entity, int slot, boolean isCurrentItem) {
         if(slot <= 8)
         {
-            if(entity instanceof EntityLiving)
+            if(entity instanceof EntityLivingBase)
             {
-                EntityLiving living = (EntityLiving) entity;
+                EntityLivingBase living = (EntityLivingBase) entity;
                 
                 if(living instanceof EntityPlayer)
                 {
                     EntityPlayer player = (EntityPlayer) living;
                     
-                    AstralManager.chargeCellsInInv(stack, player, world, 11, 8, 11);
+                    AstralManager.chargeCellsInInvFromBlocks(stack, player, world, 11, 8, 11);
                 }
             }
         }

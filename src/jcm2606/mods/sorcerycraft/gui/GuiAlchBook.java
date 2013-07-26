@@ -1,6 +1,7 @@
 package jcm2606.mods.sorcerycraft.gui;
 
-import jcm2606.mods.sorcerycraft.lib.Reference;
+import jcm2606.mods.sorcerycraft.core.helper.RenderHelperSC;
+import jcm2606.mods.sorcerycraft.core.lib.Reference;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.inventory.GuiContainer;
@@ -108,7 +109,7 @@ public class GuiAlchBook extends GuiContainer {
 
 	public void drawLeftPage() {
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-		mc.renderEngine.bindTexture(Reference.PATH_TEXTURES_GUI + "/book_alch/book_page_left.png");
+		RenderHelperSC.bindTexture(Reference.PATH_TEXTURES_GUI + "/book_alch/book_page_left.png");
 		int i1 = width / 2 - 182;
 		int i2 = height / 2 - 96;
 		drawTexturedModalRect(i1 - 10, i2, 0, 0, 192, 192);
@@ -141,7 +142,7 @@ public class GuiAlchBook extends GuiContainer {
 
 	public void drawRightPage() {
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-		mc.renderEngine.bindTexture(Reference.PATH_TEXTURES_GUI + "/book_alch/book_page_right.png");
+		RenderHelperSC.bindTexture(Reference.PATH_TEXTURES_GUI + "/book_alch/book_page_right.png");
 		int i1 = width / 2;
 		int i2 = height / 2 - 96;
 		drawTexturedModalRect(i1, i2, 0, 0, 192, 192);

@@ -4,11 +4,11 @@ import java.util.List;
 
 import jcm2606.mods.jccore.helper.NBTHelper;
 import jcm2606.mods.jccore.helper.RarityHelper;
-import jcm2606.mods.sorcerycraft.SCObjects;
+import jcm2606.mods.sorcerycraft.api.AstralManager;
+import jcm2606.mods.sorcerycraft.api.astral.gauntlet.GauntletMode;
+import jcm2606.mods.sorcerycraft.core.SCObjects;
+import jcm2606.mods.sorcerycraft.core.lib.Rarities;
 import jcm2606.mods.sorcerycraft.item.SCItemShine;
-import jcm2606.mods.sorcerycraft.item.astral.gauntlet.AstralGauntletManager;
-import jcm2606.mods.sorcerycraft.item.astral.gauntlet.mode.GauntletMode;
-import jcm2606.mods.sorcerycraft.lib.Rarities;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumRarity;
@@ -47,7 +47,7 @@ public class ItemAstralTablet extends SCItemShine {
      */
     public void addInformation(ItemStack stack, EntityPlayer player, List list,
             boolean par4) {
-        GauntletMode mode = AstralGauntletManager.getMode(getMode(stack));
+        GauntletMode mode = AstralManager.getMode(getMode(stack));
         
         if(mode != null)
         {
@@ -58,9 +58,9 @@ public class ItemAstralTablet extends SCItemShine {
     @SideOnly(Side.CLIENT)
     @Override
     public void getSubItems(int itemID, CreativeTabs tab, List list) {
-        for(int i = 0; i < AstralGauntletManager.modeList.length; i++)
+        for(int i = 0; i < AstralManager.modeList.length; i++)
         {
-            if(AstralGauntletManager.modeList[i] != null)
+            if(AstralManager.modeList[i] != null)
             {
                 ItemStack stack = new ItemStack(SCObjects.astraltablet, 1);
                 setMode(stack, i);
