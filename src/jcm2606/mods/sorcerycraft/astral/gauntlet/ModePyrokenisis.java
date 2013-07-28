@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Random;
 
 import jcm2606.mods.sorcerycraft.api.AstralManager;
+import jcm2606.mods.sorcerycraft.api.SCApi;
 import jcm2606.mods.sorcerycraft.api.astral.gauntlet.EnumUseType;
 import jcm2606.mods.sorcerycraft.api.astral.gauntlet.GauntletMode;
 import jcm2606.mods.sorcerycraft.core.SCObjects;
@@ -54,7 +55,7 @@ public class ModePyrokenisis extends GauntletMode {
     @Override
     public void onGauntletItemUpdateTick(ItemStack stack, EntityPlayer player, World world, int slot, boolean isCurrentItem)
     {
-        if(isCurrentItem && world.isRemote)
+        if(isCurrentItem && world.isRemote && SCApi.astralManager.getTotalEnergyForPlayer(player) > 0)
         {
             double adjAngle = 25.0D;
             double dist = 0.4D;

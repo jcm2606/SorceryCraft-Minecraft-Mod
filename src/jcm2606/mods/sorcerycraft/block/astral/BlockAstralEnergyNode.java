@@ -1,17 +1,17 @@
 package jcm2606.mods.sorcerycraft.block.astral;
 
-import jcm2606.mods.sorcerycraft.block.SCBlockContainer;
 import jcm2606.mods.sorcerycraft.block.tile.astral.TileEntityAstralEnergyNode;
-import jcm2606.mods.sorcerycraft.energy.IEnergyBridge;
+import jcm2606.mods.sorcerycraft.block.tile.energy.TileEntityWirelessLink;
+import jcm2606.mods.sorcerycraft.core.lib.Rarities;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import cpw.mods.fml.common.FMLCommonHandler;
 
-public class BlockAstralEnergyNode extends SCBlockContainer {
+public class BlockAstralEnergyNode extends BlockAstral {
     public BlockAstralEnergyNode(int par1) {
-        super(par1, Material.iron, "astralEnergyNode");
+        super(par1, Material.iron, "astralEnergyNode", Rarities.BASIC, "astral_energy_node");
         this.isOpaqueCube = false;
         this.renderAsNormalBlock = false;
         this.renderID = -1;
@@ -29,9 +29,12 @@ public class BlockAstralEnergyNode extends SCBlockContainer {
     {
         if(world.blockHasTileEntity(x, y, z))
         {
-            if(world.getBlockTileEntity(x, y, z) instanceof IEnergyBridge)
+            if(world.getBlockTileEntity(x, y, z) instanceof TileEntityWirelessLink)
             {
-                player.addChatMessage("" + ((TileEntityAstralEnergyNode) world.getBlockTileEntity(x, y, z)).isTransportingEnergy + ", " + ((TileEntityAstralEnergyNode) world.getBlockTileEntity(x, y, z)).connectedX + ", " + ((TileEntityAstralEnergyNode) world.getBlockTileEntity(x, y, z)).connectedY + ", " + ((TileEntityAstralEnergyNode) world.getBlockTileEntity(x, y, z)).connectedZ + ", " + FMLCommonHandler.instance().getEffectiveSide());
+                if(((TileEntityWirelessLink) world.getBlockTileEntity(x, y, z)).connectedCoordSet != null)
+                {
+                    player.addChatMessage("" + ((TileEntityWirelessLink) world.getBlockTileEntity(x, y, z)).hasPower + ", " + ((TileEntityWirelessLink) world.getBlockTileEntity(x, y, z)).connectedCoordSet.x + ", " + ((TileEntityWirelessLink) world.getBlockTileEntity(x, y, z)).connectedCoordSet.y + ", " + ((TileEntityWirelessLink) world.getBlockTileEntity(x, y, z)).connectedCoordSet.z + ", " + FMLCommonHandler.instance().getEffectiveSide());
+                }
             }
         }
         

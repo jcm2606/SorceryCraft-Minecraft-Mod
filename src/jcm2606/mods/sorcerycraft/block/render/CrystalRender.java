@@ -1,7 +1,7 @@
 package jcm2606.mods.sorcerycraft.block.render;
 
 import jcm2606.mods.sorcerycraft.block.tile.TileEntityCrystal;
-import jcm2606.mods.sorcerycraft.core.helper.RenderHelperSC;
+import jcm2606.mods.sorcerycraft.core.helper.RenderHandlerSC;
 import jcm2606.mods.sorcerycraft.core.lib.Reference;
 import jcm2606.mods.sorcerycraft.model.ModelCrystal;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
@@ -43,7 +43,7 @@ public class CrystalRender extends TileEntitySpecialRenderer {
 		GL11.glPushMatrix();
 		GL11.glEnable(GL11.GL_BLEND);
 		GL11.glDisable(GL11.GL_LIGHTING);
-		RenderHelperSC.bindTexture(Reference.PATH_TEXTURES_BLOCKS + "crystal.png"); // texture
+		RenderHandlerSC.bindTexture(Reference.PATH_TEXTURES_BLOCKS + "crystal.png"); // texture
 		GL11.glTranslatef((float) d + 0.5F, (float) d1 + 1.4F, (float) d2 + 0.5F); // size
 		GL11.glColor4d(1.0, 1.0, 1.0, 0.75);
 		GL11.glRotatef(j, 0.0F, 1.0F, 0.0F);

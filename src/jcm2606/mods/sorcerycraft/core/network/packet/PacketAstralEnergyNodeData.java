@@ -5,7 +5,7 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 
 import jcm2606.mods.jccore.util.Coord;
-import jcm2606.mods.sorcerycraft.block.tile.astral.TileEntityAstralEnergyNode;
+import jcm2606.mods.sorcerycraft.block.tile.energy.TileEntityWirelessLink;
 import jcm2606.mods.sorcerycraft.core.network.PacketBase;
 import jcm2606.mods.sorcerycraft.core.network.PacketType;
 import net.minecraft.entity.player.EntityPlayer;
@@ -16,20 +16,18 @@ import cpw.mods.fml.common.network.Player;
 public class PacketAstralEnergyNodeData extends PacketBase {
     public Coord coord;
     public Coord connectedCoord;
-    public String connectionType;
-    public boolean isTransferringEnergy;
+    public boolean hasEnergy;
     
     public PacketAstralEnergyNodeData() {
         super(PacketType.ASTRAL_ENERGY_NODE_DATA, true);
     }
     
-    public PacketAstralEnergyNodeData(Coord coord, Coord connectedCoord, String connectionType, boolean isTransferring)
+    public PacketAstralEnergyNodeData(Coord coord, Coord connectedCoord, boolean hasEnergy)
     {
         super(PacketType.ASTRAL_ENERGY_NODE_DATA, true);
         this.coord = coord;
         this.connectedCoord = connectedCoord;
-        this.connectionType = connectionType;
-        this.isTransferringEnergy = isTransferring;
+        this.hasEnergy = hasEnergy;
     }
 
     @Override
@@ -41,15 +39,16 @@ public class PacketAstralEnergyNodeData extends PacketBase {
         
         this.coord = new Coord(currentX, currentY, currentZ);
         
-        int connectedX = data.readInt();
-        int connectedY = data.readInt();
-        int connectedZ = data.readInt();
+        if(this.connectedCoord != null)
+        {
+            int connectedX = data.readInt();
+            int connectedY = data.readInt();
+            int connectedZ = data.readInt();
+            
+            this.connectedCoord = new Coord(connectedX, connectedY, connectedZ);
+        }
         
-        this.connectedCoord = new Coord(connectedX, connectedY, connectedZ);
-        
-        this.connectionType = data.readUTF();
-        
-        this.isTransferringEnergy = data.readBoolean();
+        this.hasEnergy = data.readBoolean();
     }
 
     @Override
@@ -58,11 +57,13 @@ public class PacketAstralEnergyNodeData extends PacketBase {
         dos.writeInt((int) this.coord.x);
         dos.writeInt((int) this.coord.y);
         dos.writeInt((int) this.coord.z);
-        dos.writeInt((int) this.connectedCoord.x);
-        dos.writeInt((int) this.connectedCoord.y);
-        dos.writeInt((int) this.connectedCoord.z);
-        dos.writeUTF(this.connectionType);
-        dos.writeBoolean(this.isTransferringEnergy);
+        if(this.connectedCoord != null)
+        {
+            dos.writeInt((int) this.connectedCoord.x);
+            dos.writeInt((int) this.connectedCoord.y);
+            dos.writeInt((int) this.connectedCoord.z);
+        }
+        dos.writeBoolean(this.hasEnergy);
     }
 
     @Override
@@ -74,13 +75,12 @@ public class PacketAstralEnergyNodeData extends PacketBase {
         
         if(te != null)
         {
-            if(te instanceof TileEntityAstralEnergyNode)
+            if(te instanceof TileEntityWirelessLink)
             {
-                TileEntityAstralEnergyNode node = (TileEntityAstralEnergyNode) te;
+                TileEntityWirelessLink link = (TileEntityWirelessLink) te;
                 
-                node.setConnectedCoords(this.coord);
-                node.connectedBlockType = this.connectionType;
-                node.isTransportingEnergy = this.isTransferringEnergy;
+                link.connectedCoordSet = this.connectedCoord;
+                link.hasPower = hasEnergy;
             }
         }
     }

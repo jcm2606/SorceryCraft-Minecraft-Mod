@@ -39,6 +39,7 @@ public class BlockGlowBrick extends SCBlock {
         this.renderAsNormalBlock = false;
         this.renderID = RenderID.renderIDGlowBrick;
         this.texture = texture;
+        this.setLightOpacity(255);
     }
     
     @Override

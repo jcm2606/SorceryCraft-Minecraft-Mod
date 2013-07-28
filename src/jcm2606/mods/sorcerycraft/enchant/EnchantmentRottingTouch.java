@@ -7,7 +7,6 @@ import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.DamageSource;
 import net.minecraft.util.EntityDamageSource;
 import net.minecraft.util.StatCollector;
 import net.minecraftforge.event.ForgeSubscribe;
@@ -33,7 +32,7 @@ public class EnchantmentRottingTouch extends Enchantment
     @ForgeSubscribe
     public void handle(LivingDropsEvent event)
     {
-        if(event.source == DamageSource.generic)
+        if(event.source instanceof EntityDamageSource)
         {
             EntityDamageSource entitySource = (EntityDamageSource) event.source;
             

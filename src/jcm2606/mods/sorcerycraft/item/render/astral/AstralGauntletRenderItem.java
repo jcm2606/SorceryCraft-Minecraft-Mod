@@ -1,7 +1,7 @@
 package jcm2606.mods.sorcerycraft.item.render.astral;
 
 import jcm2606.mods.jccore.render.ItemRendererBase;
-import jcm2606.mods.sorcerycraft.core.helper.RenderHelperSC;
+import jcm2606.mods.sorcerycraft.core.helper.RenderHandlerSC;
 import jcm2606.mods.sorcerycraft.core.lib.Reference;
 import jcm2606.mods.sorcerycraft.model.ModelAstralGauntlet;
 import net.minecraft.client.Minecraft;
@@ -24,7 +24,7 @@ public class AstralGauntletRenderItem extends ItemRendererBase {
     {
         GL11.glPushMatrix();
         
-        RenderHelperSC.bindTexture(Reference.PATH_TEXTURES_MODELS + "astralGauntlet.png");
+        RenderHandlerSC.bindTexture(Reference.PATH_TEXTURES_MODELS + "astralGauntlet.png");
         
         GL11.glScalef(0.2f, 0.2f, 0.25f);
         
@@ -56,7 +56,7 @@ public class AstralGauntletRenderItem extends ItemRendererBase {
     {
         GL11.glPushMatrix();
         
-        RenderHelperSC.bindTexture(Reference.PATH_TEXTURES_MODELS + "astralGauntlet.png");
+        RenderHandlerSC.bindTexture(Reference.PATH_TEXTURES_MODELS + "astralGauntlet.png");
         
         GL11.glPushAttrib(GL11.GL_ENABLE_BIT);
         GL11.glDisable(GL11.GL_CULL_FACE);

@@ -4,7 +4,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.WeightedRandomChestContent;
 import net.minecraftforge.common.ChestGenHooks;
 
-public class ForgeHookHelper {
+public class ForgeHookHandler {
 	
 	public static void addCustomChestGenContent(String category, ItemStack stack, int minStackSize, int maxStackSize, int rarity)
 	{

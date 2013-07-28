@@ -4,7 +4,7 @@ import jcm2606.mods.sorcerycraft.manager.CraftingManagerAlchLectern;
 import jcm2606.mods.sorcerycraft.manager.CraftingManagerInfuseTablet;
 import net.minecraft.item.ItemStack;
 
-public class RecipeHelper {
+public class RecipeHandler {
 	public static class InfusionTabletHelper {
 		public static void addRecipe(ItemStack stack, Object... input) {
 			CraftingManagerInfuseTablet.addRecipe(stack, input);

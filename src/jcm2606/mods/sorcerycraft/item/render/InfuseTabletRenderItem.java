@@ -1,7 +1,7 @@
 package jcm2606.mods.sorcerycraft.item.render;
 
 import jcm2606.mods.jccore.render.ItemRendererBase;
-import jcm2606.mods.sorcerycraft.core.helper.RenderHelperSC;
+import jcm2606.mods.sorcerycraft.core.helper.RenderHandlerSC;
 import jcm2606.mods.sorcerycraft.core.lib.Reference;
 import jcm2606.mods.sorcerycraft.model.ModelInfuseTablet;
 import net.minecraft.client.renderer.Tessellator;
@@ -29,7 +29,7 @@ public class InfuseTabletRenderItem extends ItemRendererBase {
     public void renderEquipped(float posX, float posY, float posZ, ItemStack stack)
     {
         Tessellator tesselator = Tessellator.instance;
-        RenderHelperSC.bindTexture(Reference.PATH_TEXTURES_BLOCKS + "infusion_tablet.png");
+        RenderHandlerSC.bindTexture(Reference.PATH_TEXTURES_BLOCKS + "infusion_tablet.png");
         GL11.glPushMatrix(); // start
         GL11.glTranslatef(posX, posY, posZ); // size
         GL11.glScalef(1.0F, -1F, -1F);
@@ -41,7 +41,7 @@ public class InfuseTabletRenderItem extends ItemRendererBase {
     public void renderEquippedFirstPerson(float posX, float posY, float posZ, ItemStack stack)
     {
         Tessellator tesselator = Tessellator.instance;
-        RenderHelperSC.bindTexture(Reference.PATH_TEXTURES_BLOCKS + "infusion_tablet.png");
+        RenderHandlerSC.bindTexture(Reference.PATH_TEXTURES_BLOCKS + "infusion_tablet.png");
         GL11.glPushMatrix(); // start
         GL11.glTranslatef(posX, posY, posZ); // size
         GL11.glScalef(1.0F, -1F, -1F);
@@ -53,7 +53,7 @@ public class InfuseTabletRenderItem extends ItemRendererBase {
     public void renderEntity(float posX, float posY, float posZ, ItemStack stack)
     {
         Tessellator tesselator = Tessellator.instance;
-        RenderHelperSC.bindTexture(Reference.PATH_TEXTURES_BLOCKS + "infusion_tablet.png");
+        RenderHandlerSC.bindTexture(Reference.PATH_TEXTURES_BLOCKS + "infusion_tablet.png");
         GL11.glPushMatrix(); // start
         GL11.glTranslatef(posX, posY, posZ); // size
         GL11.glScalef(1.0F, -1F, -1F);
@@ -65,7 +65,7 @@ public class InfuseTabletRenderItem extends ItemRendererBase {
     public void renderInventory(float posX, float posY, float posZ, ItemStack stack)
     {
         Tessellator tesselator = Tessellator.instance;
-        RenderHelperSC.bindTexture(Reference.PATH_TEXTURES_BLOCKS + "infusion_tablet.png");
+        RenderHandlerSC.bindTexture(Reference.PATH_TEXTURES_BLOCKS + "infusion_tablet.png");
         GL11.glPushMatrix(); // start
         GL11.glTranslatef(posX, posY, posZ); // size
         GL11.glScalef(1.0F, -1F, -1F);

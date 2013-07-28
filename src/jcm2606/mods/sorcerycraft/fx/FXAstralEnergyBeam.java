@@ -1,7 +1,7 @@
 package jcm2606.mods.sorcerycraft.fx;
 
 import jcm2606.mods.jccore.util.RenderUtil;
-import jcm2606.mods.sorcerycraft.core.helper.RenderHelperSC;
+import jcm2606.mods.sorcerycraft.core.helper.RenderHandlerSC;
 import jcm2606.mods.sorcerycraft.core.lib.Reference;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.util.MathHelper;
@@ -81,9 +81,9 @@ public class FXAstralEnergyBeam extends FXSC
 
         float size = 1.0F;
         
-        float op = 0.5F;
+        float op = 0.125F;
         
-        RenderHelperSC.bindTexture(Reference.PATH_TEXTURES + "astralEnergyBeam.png");
+        RenderHandlerSC.bindTexture(Reference.PATH_TEXTURES + "astralEnergyBeam.png");
 
         GL11.glTexParameterf(3553, 10242, 10497.0F);
         GL11.glTexParameterf(3553, 10243, 10497.0F);
@@ -134,7 +134,6 @@ public class FXAstralEnergyBeam extends FXSC
         }
 
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-        GL11.glDepthMask(true);
         GL11.glDisable(3042);
         GL11.glEnable(2884);
 

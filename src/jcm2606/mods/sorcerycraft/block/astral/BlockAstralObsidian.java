@@ -2,7 +2,6 @@ package jcm2606.mods.sorcerycraft.block.astral;
 
 import java.util.Random;
 
-import jcm2606.mods.sorcerycraft.block.SCBlockContainer;
 import jcm2606.mods.sorcerycraft.block.tile.astral.TileEntityAstralObsidian;
 import jcm2606.mods.sorcerycraft.core.lib.Rarities;
 import net.minecraft.block.material.Material;
@@ -11,9 +10,9 @@ import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class BlockAstralObsidian extends SCBlockContainer {
+public class BlockAstralObsidian extends BlockAstral {
 	public BlockAstralObsidian(int par1) {
-		super(par1, Material.rock, "astralObsidian", Rarities.BASIC);
+		super(par1, Material.rock, "astralObsidian", Rarities.BASIC, "astral_obsidian_anim");
 		this.useIconIndex = false;
         this.renderAsNormalBlock = false;
         this.isOpaqueCube = false;

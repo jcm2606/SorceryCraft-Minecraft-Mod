@@ -1,7 +1,7 @@
 package jcm2606.mods.sorcerycraft.item.render.astral;
 
 import jcm2606.mods.jccore.render.ItemRendererBase;
-import jcm2606.mods.sorcerycraft.core.helper.RenderHelperSC;
+import jcm2606.mods.sorcerycraft.core.helper.RenderHandlerSC;
 import jcm2606.mods.sorcerycraft.core.lib.Reference;
 import jcm2606.mods.sorcerycraft.model.ModelAstralEnergyNode;
 import net.minecraft.client.renderer.Tessellator;
@@ -38,7 +38,7 @@ public class AstralEnergyNodeRenderItem extends ItemRendererBase {
     {
         Tessellator tesselator = Tessellator.instance;
         GL11.glPushMatrix();
-        RenderHelperSC.bindTexture(Reference.PATH_TEXTURES_MODELS + "astral_energy_node.png"); // texture
+        RenderHandlerSC.bindTexture(Reference.PATH_TEXTURES_MODELS + "astral_energy_node.png"); // texture
         GL11.glTranslatef(posX, posY, posZ); // size
         GL11.glRotatef(90, 0.0F, 1.0F, 0.0F); // rotate based on metadata
         GL11.glScalef(1.0F, -1F, -1F); // if you read this comment out this line
@@ -52,7 +52,7 @@ public class AstralEnergyNodeRenderItem extends ItemRendererBase {
     {
         Tessellator tesselator = Tessellator.instance;
         GL11.glPushMatrix();
-        RenderHelperSC.bindTexture(Reference.PATH_TEXTURES_MODELS + "astral_energy_node.png"); // texture
+        RenderHandlerSC.bindTexture(Reference.PATH_TEXTURES_MODELS + "astral_energy_node.png"); // texture
         GL11.glTranslatef(posX, posY, posZ); // size
         GL11.glRotatef(90, 0.0F, 1.0F, 0.0F); // rotate based on metadata
         GL11.glScalef(1.0F, -1F, -1F); // if you read this comment out this line
@@ -66,7 +66,7 @@ public class AstralEnergyNodeRenderItem extends ItemRendererBase {
     {
         Tessellator tesselator = Tessellator.instance;
         GL11.glPushMatrix();
-        RenderHelperSC.bindTexture(Reference.PATH_TEXTURES_MODELS + "astral_energy_node.png"); // texture
+        RenderHandlerSC.bindTexture(Reference.PATH_TEXTURES_MODELS + "astral_energy_node.png"); // texture
         GL11.glTranslatef(posX, posY, posZ); // size
         GL11.glRotatef(90, 0.0F, 1.0F, 0.0F); // rotate based on metadata
         GL11.glScalef(1.0F, -1F, -1F); // if you read this comment out this line
@@ -80,7 +80,7 @@ public class AstralEnergyNodeRenderItem extends ItemRendererBase {
     {
         Tessellator tesselator = Tessellator.instance;
         GL11.glPushMatrix();
-        RenderHelperSC.bindTexture(Reference.PATH_TEXTURES_MODELS + "astral_energy_node.png"); // texture
+        RenderHandlerSC.bindTexture(Reference.PATH_TEXTURES_MODELS + "astral_energy_node.png"); // texture
         GL11.glTranslatef(posX, posY, posZ); // size
         GL11.glRotatef(90, 0.0F, 1.0F, 0.0F); // rotate based on metadata
         GL11.glScalef(1.0F, -1F, -1F); // if you read this comment out this line

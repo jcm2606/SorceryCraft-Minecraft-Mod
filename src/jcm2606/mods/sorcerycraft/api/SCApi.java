@@ -21,11 +21,11 @@ public final class SCApi {
         return instance;
     }
     
-    private SCApi()
+    public SCApi()
     {
         try {
-            this.scClass = getClass().getClassLoader().loadClass("jcm2606.mods.sorcerycraft.SorceryCraft");
-            this.scObjects = getClass().getClassLoader().loadClass("jcm2606.mods.sorcerycraft.SCObjects");
+            this.scClass = getClass().getClassLoader().loadClass("jcm2606.mods.sorcerycraft.core.SorceryCraft");
+            this.scObjects = getClass().getClassLoader().loadClass("jcm2606.mods.sorcerycraft.core.SCObjects");
             
             this.astralManager = new AstralManager();
         }

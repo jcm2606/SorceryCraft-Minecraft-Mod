@@ -37,13 +37,12 @@ import jcm2606.mods.sorcerycraft.block.main.BlockShimmerStone;
 import jcm2606.mods.sorcerycraft.block.main.BlockStoneResistant;
 import jcm2606.mods.sorcerycraft.block.main.BlockVordicTorch;
 import jcm2606.mods.sorcerycraft.core.config.Config;
-import jcm2606.mods.sorcerycraft.core.helper.RecipeHelper;
+import jcm2606.mods.sorcerycraft.core.helper.RecipeHandler;
 import jcm2606.mods.sorcerycraft.core.lib.Reference;
 import jcm2606.mods.sorcerycraft.enchant.EnchantmentRottingTouch;
 import jcm2606.mods.sorcerycraft.enchant.Enchantments;
 import jcm2606.mods.sorcerycraft.fluid.FluidVordic;
 import jcm2606.mods.sorcerycraft.item.SCItem;
-import jcm2606.mods.sorcerycraft.item.astral.ItemAstralControlSceptor;
 import jcm2606.mods.sorcerycraft.item.astral.ItemAstralCrystal;
 import jcm2606.mods.sorcerycraft.item.astral.ItemAstralCrystalPlate;
 import jcm2606.mods.sorcerycraft.item.astral.ItemAstralCrystalShard;
@@ -146,7 +145,6 @@ public class SCObjects implements IObjectCore
     public static Item ingotastralsteel;
     public static Item astralcrystalshard;
     public static Item astraldust;
-    public static Item astralcontrolsceptor;
     public static Item elementsceptorlightning;
     public static Item sceptorascension;
     public static Item astralgauntlet;
@@ -235,7 +233,6 @@ public class SCObjects implements IObjectCore
     public static int ID_INGOT_ASTRAL_STEEL;
     public static int ID_ASTRAL_CRYSTAL_SHARD;
     public static int ID_ASTRAL_DUST;
-    public static int ID_ASTRAL_CONTROL_SCEPTOR;
     public static int ID_ELEMENT_SCEPTOR_LIGHTNING;
     public static int ID_SCEPTOR_ASCENSION;
     public static int ID_ASTRAL_GAUNTLET;
@@ -338,7 +335,6 @@ public class SCObjects implements IObjectCore
         ingotastralsteel = new ItemIngotAstralSteel(ID_INGOT_ASTRAL_STEEL);
         astralcrystalshard = new ItemAstralCrystalShard(ID_ASTRAL_CRYSTAL_SHARD);
         astraldust = new ItemAstralDust(ID_ASTRAL_DUST);
-        astralcontrolsceptor = new ItemAstralControlSceptor(ID_ASTRAL_CONTROL_SCEPTOR);
         elementsceptorlightning = new ItemSceptorLightningStrike(ID_ELEMENT_SCEPTOR_LIGHTNING);
         sceptorascension = new ItemSceptorAscension(ID_SCEPTOR_ASCENSION);
         astralgauntlet = new ItemAstralGauntlet(ID_ASTRAL_GAUNTLET);
@@ -404,7 +400,6 @@ public class SCObjects implements IObjectCore
         ModeHailkenisis.loadCoolingEntries();
 
         registerBlocks();
-        registerFluids();
         loadEnchantments();
         addBlockHarvestLevels();
         addRecipes();
@@ -482,7 +477,6 @@ public class SCObjects implements IObjectCore
         ID_INGOT_ASTRAL_STEEL = Config.getItemId("astralSteelIngot", Reference.ITEM_ID_START_VALUE).getInt();
         ID_ASTRAL_CRYSTAL_SHARD = Config.getItemId("astralCrystalShard", Reference.ITEM_ID_START_VALUE).getInt();
         ID_ASTRAL_DUST = Config.getItemId("astralDust", Reference.ITEM_ID_START_VALUE).getInt();
-        ID_ASTRAL_CONTROL_SCEPTOR = Config.getItemId("astralControlSceptor", Reference.ITEM_ID_START_VALUE).getInt();
         ID_ELEMENT_SCEPTOR_LIGHTNING = Config.getItemId("elementSceptorLightning", Reference.ITEM_ID_START_VALUE).getInt();
         ID_SCEPTOR_ASCENSION = Config.getItemId("sceptorAscension", Reference.ITEM_ID_START_VALUE).getInt();
         ID_ASTRAL_GAUNTLET = Config.getItemId("astralGantlet", Reference.ITEM_ID_START_VALUE).getInt();
@@ -553,11 +547,6 @@ public class SCObjects implements IObjectCore
     }
 
     @Override
-    public void registerFluids()
-    {
-    }
-
-    @Override
     public void addBlockHarvestLevels()
     {
         MinecraftForge.setBlockHarvestLevel(vordicgemblock, "pickaxe", 1);
@@ -611,7 +600,6 @@ public class SCObjects implements IObjectCore
         LanguageRegistry.addName(ingotastralsteel, "Astral Steel");
         LanguageRegistry.addName(astralcrystalshard, "Astral Crystal Shard");
         LanguageRegistry.addName(astraldust, "Astral Dust");
-        LanguageRegistry.addName(astralcontrolsceptor, "Astral Control Sceptor");
         LanguageRegistry.addName(elementsceptorlightning, "Sceptor of Lightning Striking");
         LanguageRegistry.addName(sceptorascension, "Sceptor of Ascension");
         LanguageRegistry.addName(astralgauntlet, "Astral Gauntlet");
@@ -688,13 +676,13 @@ public class SCObjects implements IObjectCore
         GameRegistry.addRecipe(new ItemStack(shimmerstone, 4), new Object[]
         { "BBB", "BAB", "BBB", 'A', Block.stoneBrick, 'B', vordicgemblock });
 
-        RecipeHelper.ArcaneWorkbenchHelper.addRecipe(new ItemStack(shimmerstoneluminous, 1), new Object[]
+        RecipeHandler.ArcaneWorkbenchHelper.addRecipe(new ItemStack(shimmerstoneluminous, 1), new Object[]
         { "BBB", "BAB", "BBB", 'A', shimmerstone, 'B', Item.glowstone });
 
         GameRegistry.addRecipe(new ItemStack(stoneresistant, 2), new Object[]
         { "ABA", "BCB", "ABA", 'A', Block.stone, 'B', obsidianingot, 'C', new ItemStack(Block.stoneBrick, 1, 0) });
 
-        RecipeHelper.ArcaneWorkbenchHelper.addRecipe(new ItemStack(vordictool, 1), new Object[]
+        RecipeHandler.ArcaneWorkbenchHelper.addRecipe(new ItemStack(vordictool, 1), new Object[]
         { "A A", "ABA", " C ", 'A', Item.ingotIron, 'B', vordicgemblock, 'C', alchmetalingot });
 
         GameRegistry.addRecipe(new ItemStack(alchmetalpick, 1), new Object[]
@@ -721,7 +709,7 @@ public class SCObjects implements IObjectCore
         GameRegistry.addShapelessRecipe(new ItemStack(Item.redstone, 1), new Object[]
         { Item.gunpowder, new ItemStack(ringmagma, 1, -1) });
 
-        RecipeHelper.ArcaneWorkbenchHelper.addRecipe(new ItemStack(inviscloak, 1), new Object[]
+        RecipeHandler.ArcaneWorkbenchHelper.addRecipe(new ItemStack(inviscloak, 1), new Object[]
         { "ACA", "ABA", "AAA", 'A', fabricillusion, 'B', Item.enderPearl, 'C', Item.silk });
 
         GameRegistry.addRecipe(new ItemStack(wovensilk, 2), new Object[]
@@ -730,25 +718,25 @@ public class SCObjects implements IObjectCore
         GameRegistry.addRecipe(new ItemStack(wovensilk, 2), new Object[]
         { " A", "A ", 'A', Item.silk });
 
-        RecipeHelper.ArcaneWorkbenchHelper.addRecipe(new ItemStack(fabricillusion, 1), new Object[]
+        RecipeHandler.ArcaneWorkbenchHelper.addRecipe(new ItemStack(fabricillusion, 1), new Object[]
         { "AAA", "ABA", "AAA", 'A', wovensilk, 'B', endessence });
 
-        RecipeHelper.ArcaneWorkbenchHelper.addRecipe(new ItemStack(inviscloak, 1), new Object[]
+        RecipeHandler.ArcaneWorkbenchHelper.addRecipe(new ItemStack(inviscloak, 1), new Object[]
         { "ACA", "ABA", "AAA", 'A', fabricillusion, 'B', Item.enderPearl, 'C', Item.silk });
 
         GameRegistry.addShapelessRecipe(new ItemStack(firepowder, 1), new Object[]
         { Item.redstone, new ItemStack(ringmagma, 1, -1) });
 
-        RecipeHelper.InfusionTabletHelper.addRecipe(new ItemStack(Item.blazeRod, 1), new Object[]
+        RecipeHandler.InfusionTabletHelper.addRecipe(new ItemStack(Item.blazeRod, 1), new Object[]
         { "CAC", "ABA", "CAC", 'A', firepowder, 'B', Item.stick, 'C', dustvordicrefined });
 
         GameRegistry.addRecipe(new ItemStack(Block.torchWood, 1), new Object[]
         { "A", "B", 'A', firepowder, 'B', Item.stick });
 
-        RecipeHelper.InfusionTabletHelper.addShapelessRecipe(new ItemStack(Item.blazePowder, 2), new Object[]
+        RecipeHandler.InfusionTabletHelper.addShapelessRecipe(new ItemStack(Item.blazePowder, 2), new Object[]
         { firepowder, dustvordic });
 
-        RecipeHelper.ArcaneWorkbenchHelper.addRecipe(new ItemStack(swordfire, 1), new Object[]
+        RecipeHandler.ArcaneWorkbenchHelper.addRecipe(new ItemStack(swordfire, 1), new Object[]
         { "CD ", "CD ", "BAB", 'A', Item.ingotIron, 'B', Item.leather, 'C', firepowder, 'D', obsidianingot });
 
         GameRegistry.addRecipe(new ItemStack(glassflask, 1), new Object[]
@@ -757,13 +745,13 @@ public class SCObjects implements IObjectCore
         GameRegistry.addRecipe(new ItemStack(Block.obsidian), new Object[]
         { "AAA", "AAA", "AAA", 'A', obsidianingot });
 
-        RecipeHelper.ArcaneWorkbenchHelper.addRecipe(new ItemStack(obsidianfalse, 1), new Object[]
+        RecipeHandler.ArcaneWorkbenchHelper.addRecipe(new ItemStack(obsidianfalse, 1), new Object[]
         { " A ", "ABA", " A ", 'A', obsidianingot, 'B', Block.stone });
 
-        RecipeHelper.ArcaneWorkbenchHelper.addRecipe(new ItemStack(obsidianfalse, 1), new Object[]
+        RecipeHandler.ArcaneWorkbenchHelper.addRecipe(new ItemStack(obsidianfalse, 1), new Object[]
         { " A ", "ABA", " A ", 'A', obsidianingot, 'B', Block.cobblestone });
 
-        RecipeHelper.ArcaneWorkbenchHelper.addRecipe(new ItemStack(obsidianfalse, 1), new Object[]
+        RecipeHandler.ArcaneWorkbenchHelper.addRecipe(new ItemStack(obsidianfalse, 1), new Object[]
         { " A ", "ABA", " A ", 'A', obsidianingot, 'B', Block.stoneBrick });
 
         GameRegistry.addRecipe(new ItemStack(astralcrystalblock, 1), new Object[]
@@ -808,7 +796,7 @@ public class SCObjects implements IObjectCore
         GameRegistry.addRecipe(new ItemStack(astralsteelblock, 1), new Object[]
         { "AAA", "AAA", "AAA", 'A', ingotastralsteel });
 
-        RecipeHelper.ArcaneWorkbenchHelper.addRecipe(new ItemStack(astralmechanismdrive, 1), new Object[]
+        RecipeHandler.ArcaneWorkbenchHelper.addRecipe(new ItemStack(astralmechanismdrive, 1), new Object[]
         { "CBC", "BAB", "CBC", 'A', ingotastralsteel, 'B', new ItemStack(cog, 1, 2), 'C', astralorecrystal });
 
         GameRegistry.addRecipe(new ItemStack(darkquartzblock, 1), new Object[]

@@ -1,7 +1,7 @@
 package jcm2606.mods.sorcerycraft.block.render;
 
 import jcm2606.mods.sorcerycraft.block.tile.TileEntityInfuseTablet;
-import jcm2606.mods.sorcerycraft.core.helper.RenderHelperSC;
+import jcm2606.mods.sorcerycraft.core.helper.RenderHandlerSC;
 import jcm2606.mods.sorcerycraft.core.lib.Reference;
 import jcm2606.mods.sorcerycraft.model.ModelInfuseTablet;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
@@ -40,7 +40,7 @@ public class InfuseTabletRender extends TileEntitySpecialRenderer {
 			j = 270;
 		}
 
-		RenderHelperSC.bindTexture(Reference.PATH_TEXTURES_BLOCKS + "infusion_tablet.png"); // texture
+		RenderHandlerSC.bindTexture(Reference.PATH_TEXTURES_BLOCKS + "infusion_tablet.png"); // texture
 		GL11.glPushMatrix(); // start
 		GL11.glTranslatef((float) d + 0.5F, (float) d1 + 1.5F,
 				(float) d2 + 0.5F); // size

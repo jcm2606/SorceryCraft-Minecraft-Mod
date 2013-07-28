@@ -1,7 +1,7 @@
 package jcm2606.mods.sorcerycraft.block.render.astral;
 
 import jcm2606.mods.sorcerycraft.block.tile.astral.TileEntityAstralEnergyNode;
-import jcm2606.mods.sorcerycraft.core.helper.RenderHelperSC;
+import jcm2606.mods.sorcerycraft.core.helper.RenderHandlerSC;
 import jcm2606.mods.sorcerycraft.core.lib.Reference;
 import jcm2606.mods.sorcerycraft.model.ModelAstralEnergyNode;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
@@ -22,7 +22,7 @@ public class AstralEnergyNodeRender extends TileEntitySpecialRenderer {
             double d1, double d2, float f) {
         GL11.glPushMatrix();
         GL11.glEnable(GL11.GL_BLEND);
-        RenderHelperSC.bindTexture(Reference.PATH_TEXTURES_BLOCKS + "astral_energy_node.png"); // texture
+        RenderHandlerSC.bindTexture(Reference.PATH_TEXTURES_BLOCKS + "astral_energy_node.png"); // texture
         GL11.glTranslatef((float) d + 0.5F, (float) d1 + 1.5F,
                 (float) d2 + 0.5F); // size
         GL11.glRotatef(90, 0.0F, 1.0F, 0.0F); // rotate based on metadata

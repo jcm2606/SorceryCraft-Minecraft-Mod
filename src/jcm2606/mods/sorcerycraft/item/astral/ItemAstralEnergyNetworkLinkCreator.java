@@ -2,8 +2,7 @@ package jcm2606.mods.sorcerycraft.item.astral;
 
 import jcm2606.mods.jccore.helper.NBTHelper;
 import jcm2606.mods.jccore.util.Coord;
-import jcm2606.mods.sorcerycraft.block.tile.astral.TileEntityAstralEnergyNode;
-import jcm2606.mods.sorcerycraft.energy.IEnergyBridge;
+import jcm2606.mods.sorcerycraft.block.tile.energy.TileEntityWirelessLink;
 import jcm2606.mods.sorcerycraft.item.SCItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -29,14 +28,13 @@ public class ItemAstralEnergyNetworkLinkCreator extends SCItem {
             this.setHasCoords(stack, true);
             player.addChatMessage("\247oCoordinates saved.");
         } else {
-            if(world.getBlockTileEntity(x, y, z) instanceof IEnergyBridge)
+            if(world.getBlockTileEntity(x, y, z) instanceof TileEntityWirelessLink)
             {
-                TileEntityAstralEnergyNode bridge = (TileEntityAstralEnergyNode) world.getBlockTileEntity(x, y, z);
+                TileEntityWirelessLink link = (TileEntityWirelessLink) world.getBlockTileEntity(x, y, z);
                 
                 if(this.getHasCoords(stack))
                 {
-                    bridge.setConnectedCoords(this.getCoords(stack));
-                    bridge.setConnectedBlockType(this.getCoords(stack));
+                    link.connectedCoordSet = this.getCoords(stack);
                     player.addChatMessage("\247oBlock connection made.");
                     this.setHasCoords(stack, false);
                 } else {

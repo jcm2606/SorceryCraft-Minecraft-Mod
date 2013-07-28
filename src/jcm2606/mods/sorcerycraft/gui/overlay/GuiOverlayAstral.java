@@ -10,7 +10,7 @@ import jcm2606.mods.sorcerycraft.api.astral.gauntlet.GauntletMode;
 import jcm2606.mods.sorcerycraft.core.SCObjects;
 import jcm2606.mods.sorcerycraft.core.SorceryCraft;
 import jcm2606.mods.sorcerycraft.core.config.Settings;
-import jcm2606.mods.sorcerycraft.core.helper.RenderHelperSC;
+import jcm2606.mods.sorcerycraft.core.helper.RenderHandlerSC;
 import jcm2606.mods.sorcerycraft.core.lib.Reference;
 import jcm2606.mods.sorcerycraft.item.astral.ItemAstralEnergyCell;
 import jcm2606.mods.sorcerycraft.item.astral.ItemAstralGauntlet;
@@ -104,7 +104,7 @@ public class GuiOverlayAstral extends Gui {
             ItemAstralEnergyCell cell = (ItemAstralEnergyCell) stack.getItem();
             int currentCellEnergy = 1000 - cell.getEnergy(stack);
             
-            RenderHelperSC.bindTexture(Reference.PATH_TEXTURES_GUI_HUD + "astral_energy_cell_hud.png");
+            RenderHandlerSC.bindTexture(Reference.PATH_TEXTURES_GUI_HUD + "astral_energy_cell_hud.png");
             
             if(SorceryCraft.instance.specialPlayers.containsKey(player.username))
             {
@@ -119,7 +119,7 @@ public class GuiOverlayAstral extends Gui {
                 
                 int scale = currentCellEnergy / 4;
                 
-                RenderHelperSC.bindTexture(Reference.PATH_TEXTURES_GUI_HUD + "astral_energy_cell_hud.png");
+                RenderHandlerSC.bindTexture(Reference.PATH_TEXTURES_GUI_HUD + "astral_energy_cell_hud.png");
                 RenderUtil.instance().drawTextureRect(1, 1 + offsetX, 0, 0, scale, 256, 0.05f, 0.05f, 0.05f, 1.0, 1.0, 1.0);
             }
             

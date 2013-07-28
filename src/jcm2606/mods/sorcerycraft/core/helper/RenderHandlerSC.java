@@ -16,8 +16,8 @@ import net.minecraft.util.Icon;
 import org.lwjgl.BufferUtils;
 import org.lwjgl.opengl.GL11;
 
-public class RenderHelperSC {
-    public static void drawAstralParticleField(TileEntity te, double par2, double par4, double par6, float f, String textureSheet)
+public class RenderHandlerSC {
+    public static void drawAstralParticleField(TileEntity te, double par2, double par4, double par6, float f, String textureNorth, String textureSouth, String textureEast, String textureWest, String textureTop, String textureBottom)
     {
         float var9 = (float)Minecraft.getMinecraft().thePlayer.posX;
         float var10 = (float)Minecraft.getMinecraft().thePlayer.posY;
@@ -154,18 +154,14 @@ public class RenderHelperSC {
         
         GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
         
-        RenderHelperSC.bindTexture(textureSheet);
         Tessellator t = Tessellator.instance;
-        t.startDrawingQuads();
-        t.setColorRGBA(255, 255, 255, 255);
-        renderUnitBoxWithUV((float)par2, (float)par4, (float)par6, t, 0, 0, 1, 1);
-        t.draw();
+        renderUnitBoxWithUV((float)par2, (float)par4, (float)par6, t, 0, 0, 1, 1, textureNorth, textureSouth, textureEast, textureWest, textureTop, textureBottom);
         
         GL11.glEnable(GL11.GL_LIGHTING);
         GL11.glDisable(GL11.GL_BLEND);
     }
     
-    public static void drawAstralParticleFieldStationary(double par2, double par4, double par6, float f, String textureSheet)
+    public static void drawAstralParticleFieldStationary(double par2, double par4, double par6, float f, String textureNorth, String textureSouth, String textureEast, String textureWest, String textureTop, String textureBottom)
     {
         float var9 = (float)Minecraft.getMinecraft().thePlayer.posX;
         float var10 = (float)Minecraft.getMinecraft().thePlayer.posY;
@@ -301,47 +297,88 @@ public class RenderHelperSC {
         
         GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
         
-        RenderHelperSC.bindTexture(textureSheet);
+        
         Tessellator t = Tessellator.instance;
-        t.startDrawingQuads();
-        t.setColorRGBA(255, 255, 255, 255);
-        renderUnitBoxWithUV((float)par2, (float)par4, (float)par6, t, 0, 0, 1, 1);
-        t.draw();
+        renderUnitBoxWithUV((float)par2, (float)par4, (float)par6, t, 0, 0, 1, 1, textureNorth, textureSouth, textureEast, textureWest, textureTop, textureBottom);
         
         GL11.glEnable(GL11.GL_LIGHTING);
         GL11.glDisable(GL11.GL_BLEND);
     }
     
-    private static void renderUnitBoxWithUV(float paramFloat1, float paramFloat2, float paramFloat3, Tessellator paramTessellator, float paramFloat4, float paramFloat5, float paramFloat6, float paramFloat7) {
+    public static void drawAstralParticleField(TileEntity te, double par2, double par4, double par6, float f, String textureSheet)
+    {
+        drawAstralParticleField(te, par2, par4, par6, f, textureSheet, textureSheet, textureSheet, textureSheet, textureSheet, textureSheet);
+    }
+    
+    public static void drawAstralParticleFieldStationary(double par2, double par4, double par6, float f, String textureSheet)
+    {
+        drawAstralParticleFieldStationary(par2, par4, par6, f, textureSheet, textureSheet, textureSheet, textureSheet, textureSheet, textureSheet);
+    }
+    
+    private static void renderUnitBoxWithUV(float paramFloat1, float paramFloat2, float paramFloat3, Tessellator paramTessellator, float paramFloat4, float paramFloat5, float paramFloat6, float paramFloat7, String texture) {
+        renderUnitBoxWithUV(paramFloat1, paramFloat2, paramFloat3, paramTessellator, paramFloat4, paramFloat5, paramFloat6, paramFloat7, texture, texture, texture, texture, texture, texture);
+    }
+    
+    private static void renderUnitBoxWithUV(float paramFloat1, float paramFloat2, float paramFloat3, Tessellator paramTessellator, float paramFloat4, float paramFloat5, float paramFloat6, float paramFloat7, String textureNorth, String textureSouth, String textureEast, String textureWest, String textureTop, String textureBottom) {
+        // North
+        paramTessellator.startDrawingQuads();
+        paramTessellator.setColorRGBA(255, 255, 255, 255);
+        RenderHandlerSC.bindTexture(textureNorth);
         paramTessellator.addVertexWithUV(paramFloat1, paramFloat2, paramFloat3, paramFloat4, paramFloat5);
         paramTessellator.addVertexWithUV(paramFloat1, paramFloat2 + 1.0F, paramFloat3, paramFloat4, paramFloat7);
         paramTessellator.addVertexWithUV(paramFloat1 + 1.0F, paramFloat2 + 1.0F, paramFloat3, paramFloat6, paramFloat7);
         paramTessellator.addVertexWithUV(paramFloat1 + 1.0F, paramFloat2, paramFloat3, paramFloat6, paramFloat5);
+        paramTessellator.draw();
 
+        // South
+        paramTessellator.startDrawingQuads();
+        paramTessellator.setColorRGBA(255, 255, 255, 255);
+        RenderHandlerSC.bindTexture(textureSouth);
         paramTessellator.addVertexWithUV(paramFloat1, paramFloat2, paramFloat3 + 1.0F, paramFloat4, paramFloat5);
         paramTessellator.addVertexWithUV(paramFloat1 + 1.0F, paramFloat2, paramFloat3 + 1.0F, paramFloat4, paramFloat7);
         paramTessellator.addVertexWithUV(paramFloat1 + 1.0F, paramFloat2 + 1.0F, paramFloat3 + 1.0F, paramFloat6, paramFloat7);
         paramTessellator.addVertexWithUV(paramFloat1, paramFloat2 + 1.0F, paramFloat3 + 1.0F, paramFloat6, paramFloat5);
+        paramTessellator.draw();
 
+        // East
+        paramTessellator.startDrawingQuads();
+        paramTessellator.setColorRGBA(255, 255, 255, 255);
+        RenderHandlerSC.bindTexture(textureEast);
         paramTessellator.addVertexWithUV(paramFloat1 + 1.0F, paramFloat2, paramFloat3, paramFloat4, paramFloat5);
         paramTessellator.addVertexWithUV(paramFloat1 + 1.0F, paramFloat2 + 1.0F, paramFloat3, paramFloat4, paramFloat7);
         paramTessellator.addVertexWithUV(paramFloat1 + 1.0F, paramFloat2 + 1.0F, paramFloat3 + 1.0F, paramFloat6, paramFloat7);
         paramTessellator.addVertexWithUV(paramFloat1 + 1.0F, paramFloat2, paramFloat3 + 1.0F, paramFloat6, paramFloat5);
+        paramTessellator.draw();
 
+        // West
+        paramTessellator.startDrawingQuads();
+        paramTessellator.setColorRGBA(255, 255, 255, 255);
+        RenderHandlerSC.bindTexture(textureWest);
         paramTessellator.addVertexWithUV(paramFloat1, paramFloat2, paramFloat3, paramFloat4, paramFloat5);
         paramTessellator.addVertexWithUV(paramFloat1, paramFloat2, paramFloat3 + 1.0F, paramFloat4, paramFloat7);
         paramTessellator.addVertexWithUV(paramFloat1, paramFloat2 + 1.0F, paramFloat3 + 1.0F, paramFloat6, paramFloat7);
         paramTessellator.addVertexWithUV(paramFloat1, paramFloat2 + 1.0F, paramFloat3, paramFloat6, paramFloat5);
+        paramTessellator.draw();
 
+        // Bottom
+        paramTessellator.startDrawingQuads();
+        paramTessellator.setColorRGBA(255, 255, 255, 255);
+        RenderHandlerSC.bindTexture(textureBottom);
         paramTessellator.addVertexWithUV(paramFloat1 + 1.0F, paramFloat2, paramFloat3, paramFloat4, paramFloat5);
         paramTessellator.addVertexWithUV(paramFloat1 + 1.0F, paramFloat2, paramFloat3 + 1.0F, paramFloat4, paramFloat7);
         paramTessellator.addVertexWithUV(paramFloat1, paramFloat2, paramFloat3 + 1.0F, paramFloat6, paramFloat7);
         paramTessellator.addVertexWithUV(paramFloat1, paramFloat2, paramFloat3, paramFloat6, paramFloat5);
+        paramTessellator.draw();
 
+        // Top
+        paramTessellator.startDrawingQuads();
+        paramTessellator.setColorRGBA(255, 255, 255, 255);
+        RenderHandlerSC.bindTexture(textureTop);
         paramTessellator.addVertexWithUV(paramFloat1, paramFloat2 + 1.0F, paramFloat3 + 1.0F, paramFloat4, paramFloat5);
         paramTessellator.addVertexWithUV(paramFloat1 + 1.0F, paramFloat2 + 1.0F, paramFloat3 + 1.0F, paramFloat4, paramFloat7);
         paramTessellator.addVertexWithUV(paramFloat1 + 1.0F, paramFloat2 + 1.0F, paramFloat3, paramFloat6, paramFloat7);
         paramTessellator.addVertexWithUV(paramFloat1, paramFloat2 + 1.0F, paramFloat3, paramFloat6, paramFloat5);
+        paramTessellator.draw();
       }
     
     private static FloatBuffer func_76907_a(float par1, float par2, float par3, float par4)
