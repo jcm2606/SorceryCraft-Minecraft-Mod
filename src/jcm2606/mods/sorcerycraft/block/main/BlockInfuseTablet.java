@@ -19,7 +19,7 @@ public class BlockInfuseTablet extends SCBlockContainer {
 		super(par1, par2Material, "imbusionTablet", Rarities.BASIC);
 		this.setHardness(2.4f);
 		this.setBlockBounds(0f, 0f, 0f, 1f, 0.5f, 1f);
-		this.setCreativeTab(SorceryCraft.tab);
+		this.setCreativeTab(SorceryCraft.tabBlocks);
 		this.useIconIndex = false;
 	}
 

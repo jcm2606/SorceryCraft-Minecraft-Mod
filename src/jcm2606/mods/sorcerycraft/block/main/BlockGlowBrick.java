@@ -3,6 +3,7 @@ package jcm2606.mods.sorcerycraft.block.main;
 import java.util.List;
 
 import jcm2606.mods.sorcerycraft.block.SCBlock;
+import jcm2606.mods.sorcerycraft.core.SorceryCraft;
 import jcm2606.mods.sorcerycraft.core.lib.RenderID;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
@@ -40,6 +41,7 @@ public class BlockGlowBrick extends SCBlock {
         this.renderID = RenderID.renderIDGlowBrick;
         this.texture = texture;
         this.setLightOpacity(255);
+        this.setCreativeTab(SorceryCraft.tabBlocksDeco);
     }
     
     @Override

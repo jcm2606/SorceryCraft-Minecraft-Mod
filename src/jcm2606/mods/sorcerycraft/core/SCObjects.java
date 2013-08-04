@@ -5,6 +5,7 @@ import jcm2606.mods.jccore.util.BiomeUtil;
 import jcm2606.mods.jccore.util.GeneralUtil;
 import jcm2606.mods.sorcerycraft.api.SCApi;
 import jcm2606.mods.sorcerycraft.astral.gauntlet.ModeHailkenisis;
+import jcm2606.mods.sorcerycraft.block.astral.BlockAstralCraftingNode;
 import jcm2606.mods.sorcerycraft.block.astral.BlockAstralCrystal;
 import jcm2606.mods.sorcerycraft.block.astral.BlockAstralEnergyGate;
 import jcm2606.mods.sorcerycraft.block.astral.BlockAstralEnergyNode;
@@ -21,6 +22,7 @@ import jcm2606.mods.sorcerycraft.block.main.BlockArcaneWorkbench;
 import jcm2606.mods.sorcerycraft.block.main.BlockCrystal;
 import jcm2606.mods.sorcerycraft.block.main.BlockDarkQuartz;
 import jcm2606.mods.sorcerycraft.block.main.BlockDarkQuartzBrick;
+import jcm2606.mods.sorcerycraft.block.main.BlockDarkQuartzBrickItem;
 import jcm2606.mods.sorcerycraft.block.main.BlockEmberstone;
 import jcm2606.mods.sorcerycraft.block.main.BlockEntityTracker;
 import jcm2606.mods.sorcerycraft.block.main.BlockFlowerGlow;
@@ -191,6 +193,7 @@ public class SCObjects implements IObjectCore
     public static Block glowbrick2;
     public static Block flowerglowpetal;
     public static Block fluidvordic;
+    public static Block astralcraftingnode;
 
     public static Item swordfire;
     public static Item swordendowment;
@@ -277,6 +280,7 @@ public class SCObjects implements IObjectCore
     public static int ID_GLOW_BRICK_2;
     public static int ID_FLOWER_GLOW_PETAL;
     public static int ID_FLUID_VORDIC;
+    public static int ID_ASTRAL_CRAFTING_NODE;
 
     public static int ID_SWORD_FIRE;
     public static int ID_SWORD_ENDOWMENT;
@@ -380,10 +384,11 @@ public class SCObjects implements IObjectCore
         glowbrick2 = new BlockGlowBrick(ID_GLOW_BRICK_2, "glowBrick2", "glowBrick2");
         flowerglowpetal = new BlockFlowerGlow(ID_FLOWER_GLOW_PETAL);
         fluidvordic = new BlockFluidVordic(ID_FLUID_VORDIC);
-
+        astralcraftingnode = new BlockAstralCraftingNode(this.getBlockId("astralCraftingNode"));
+        
         // Tools
-        swordfire = new ItemSwordFire(ID_SWORD_FIRE);
-        swordendowment = new ItemSwordEndowment(ID_SWORD_ENDOWMENT);
+        swordfire = new ItemSwordFire(this.getToolId("swordFire"));
+        swordendowment = new ItemSwordEndowment(this.getToolId("swordFire"));
         omnipick = new ItemOmniPickaxe(ID_OMNI_PICK);
         alchmetalpick = new ItemPickAlchMetal(ID_ALCH_METAL_PICK);
         alchmetalshovel = new ItemShovelAlchMetal(ID_ALCH_METAL_SHOVEL);
@@ -434,15 +439,31 @@ public class SCObjects implements IObjectCore
         GeneralUtil.registerBlock(astralsteelblock);
         GeneralUtil.registerBlock(arcaneworkbench);
         GeneralUtil.registerBlock(darkquartzblock);
-        GeneralUtil.registerBlock(darkquartzbrick);
+        GeneralUtil.registerBlock(darkquartzbrick, BlockDarkQuartzBrickItem.class);
         GeneralUtil.registerBlock(astralenergygate);
-        GeneralUtil.registerBlock(astralenergynode);
-        GeneralUtil.registerBlock(astralstaticcharger);
+//        GeneralUtil.registerBlock(astralenergynode);
+//        GeneralUtil.registerBlock(astralstaticcharger);
         GeneralUtil.registerBlock(oredarkquartz);
         GeneralUtil.registerBlock(glowbrick1, BlockGlowBrickItem.class);
         GeneralUtil.registerBlock(glowbrick2, BlockGlowBrickItem.class);
         GeneralUtil.registerBlock(flowerglowpetal);
         GeneralUtil.registerBlock(fluidvordic);
+        GeneralUtil.registerBlock(astralcraftingnode);
+    }
+    
+    public int getItemId(String name)
+    {
+        return Config.getItemId(name, Reference.ITEM_ID_START_VALUE).getInt();
+    }
+    
+    public int getBlockId(String name)
+    {
+        return Config.getBlockId(name, Reference.BLOCK_ID_START_VALUE).getInt();
+    }
+    
+    public int getToolId(String name)
+    {
+        return Config.getToolId(name, Reference.ITEM_TOOL_ID_START_VALUE).getInt();
     }
 
     @Override
@@ -522,7 +543,8 @@ public class SCObjects implements IObjectCore
         ID_GLOW_BRICK_2 = Config.getBlockId("glowBrickDesign2", Reference.BLOCK_ID_START_VALUE).getInt();
         ID_FLOWER_GLOW_PETAL = Config.getBlockId("glowPetal", Reference.BLOCK_ID_START_VALUE).getInt();
         ID_FLUID_VORDIC = Config.getBlockId("fluidVordic", Reference.BLOCK_ID_START_VALUE).getInt();
-
+        ID_ASTRAL_CRAFTING_NODE = Config.getBlockId("astralCraftingNode", Reference.BLOCK_ID_START_VALUE).getInt();
+        
         // Tools
         ID_SWORD_FIRE = Config.getToolId("swordFire", Reference.ITEM_TOOL_ID_START_VALUE).getInt();
         ID_SWORD_ENDOWMENT = Config.getToolId("swordEndowment", Reference.ITEM_TOOL_ID_START_VALUE).getInt();
@@ -643,7 +665,8 @@ public class SCObjects implements IObjectCore
         LanguageRegistry.addName(glowbrick1, "Glowing Brick");
         LanguageRegistry.addName(glowbrick2, "Carved Glowing Brick");
         LanguageRegistry.addName(flowerglowpetal, "Glowpetal");
-
+        LanguageRegistry.addName(astralcraftingnode, "Astral Crafting Node");
+        
         LanguageRegistry.addName(swordfire, "Sword of the Phoenix");
         LanguageRegistry.addName(swordendowment, "Sword of Endowment");
         LanguageRegistry.addName(omnipick, "Pickaxe of the Omniverse");

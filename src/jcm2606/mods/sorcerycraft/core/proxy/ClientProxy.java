@@ -7,9 +7,11 @@ import jcm2606.mods.sorcerycraft.block.render.GlowpetalRender;
 import jcm2606.mods.sorcerycraft.block.render.InfuseTabletRender;
 import jcm2606.mods.sorcerycraft.block.render.VordicOreRender;
 import jcm2606.mods.sorcerycraft.block.render.astral.AstralBlockRender;
+import jcm2606.mods.sorcerycraft.block.render.astral.AstralCraftingNodeRender;
 import jcm2606.mods.sorcerycraft.block.render.astral.AstralEnergyNodeRender;
 import jcm2606.mods.sorcerycraft.block.tile.TileEntityCrystal;
 import jcm2606.mods.sorcerycraft.block.tile.TileEntityInfuseTablet;
+import jcm2606.mods.sorcerycraft.block.tile.astral.TileEntityAstralCraftingNode;
 import jcm2606.mods.sorcerycraft.block.tile.astral.TileEntityAstralCrystalBlock;
 import jcm2606.mods.sorcerycraft.block.tile.astral.TileEntityAstralEnergyGate;
 import jcm2606.mods.sorcerycraft.block.tile.astral.TileEntityAstralEnergyNode;
@@ -28,6 +30,7 @@ import jcm2606.mods.sorcerycraft.gui.overlay.GuiOverlayAstral;
 import jcm2606.mods.sorcerycraft.gui.overlay.GuiOverlayInvisCloak;
 import jcm2606.mods.sorcerycraft.item.render.InfuseTabletRenderItem;
 import jcm2606.mods.sorcerycraft.item.render.astral.AstralBlockRenderItem;
+import jcm2606.mods.sorcerycraft.item.render.astral.AstralCraftingNodeRenderItem;
 import jcm2606.mods.sorcerycraft.item.render.astral.AstralEnergyNodeRenderItem;
 import jcm2606.mods.sorcerycraft.item.render.astral.AstralGauntletRenderItem;
 import jcm2606.mods.sorcerycraft.keybind.ClientKeyBindingHandler;
@@ -55,7 +58,7 @@ public class ClientProxy extends CommonProxy implements IClientProxy {
 	
     @Override
     public void loadRendering() {
-        MinecraftForgeClient.registerItemRenderer(SCObjects.ID_INFUSE_TABLET, new InfuseTabletRenderItem());
+        MinecraftForgeClient.registerItemRenderer(SCObjects.infusetablet.blockID, new InfuseTabletRenderItem());
         MinecraftForgeClient.registerItemRenderer(SCObjects.oreastral.blockID, new AstralBlockRenderItem("/textures/blocks/ore_astral_anim.png"));
         MinecraftForgeClient.registerItemRenderer(SCObjects.astralviewer.blockID, new AstralBlockRenderItem("/textures/blocks/astral_viewer_anim.png"));
         MinecraftForgeClient.registerItemRenderer(SCObjects.astralobsidian.blockID, new AstralBlockRenderItem("/textures/blocks/astral_obsidian_anim.png"));
@@ -65,6 +68,7 @@ public class ClientProxy extends CommonProxy implements IClientProxy {
         MinecraftForgeClient.registerItemRenderer(SCObjects.astralenergygate.blockID, new AstralBlockRenderItem("/textures/blocks/astralEnergyGate.png"));
         MinecraftForgeClient.registerItemRenderer(SCObjects.astralenergynode.blockID, new AstralEnergyNodeRenderItem());
         MinecraftForgeClient.registerItemRenderer(SCObjects.astralgauntlet.itemID, new AstralGauntletRenderItem());
+        MinecraftForgeClient.registerItemRenderer(SCObjects.astralcraftingnode.blockID, new AstralCraftingNodeRenderItem());
         
         RenderingRegistry.registerBlockHandler(new VordicOreRender());
         RenderingRegistry.registerBlockHandler(new GlowBrickRender());
@@ -93,6 +97,7 @@ public class ClientProxy extends CommonProxy implements IClientProxy {
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityAstralTotem1.class, new AstralBlockRender("/textures/blocks/astral_totem_1_anim.png"));
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityAstralEnergyGate.class, new AstralBlockRender("/textures/blocks/astralEnergyGate.png"));
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityAstralEnergyNode.class, new AstralEnergyNodeRender());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityAstralCraftingNode.class, new AstralCraftingNodeRender());
     }
 
     @Override

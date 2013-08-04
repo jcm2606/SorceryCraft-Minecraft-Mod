@@ -14,7 +14,7 @@ public class BlockFluidVordic extends BlockFluidClassic {
     public BlockFluidVordic(int id) {
         super(id, SCObjects.vordicfluid, Material.water);
         SCObjects.vordicfluid.setBlockID(id);
-        this.setCreativeTab(SorceryCraft.tab);
+        this.setCreativeTab(SorceryCraft.tabBlocks);
     }
     
     @Override

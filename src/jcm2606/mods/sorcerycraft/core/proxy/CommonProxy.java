@@ -6,6 +6,7 @@ import jcm2606.mods.sorcerycraft.block.tile.TileEntityArcaneWorkbench;
 import jcm2606.mods.sorcerycraft.block.tile.TileEntityCrystal;
 import jcm2606.mods.sorcerycraft.block.tile.TileEntityInfuseTablet;
 import jcm2606.mods.sorcerycraft.block.tile.TileEntityTeleporter;
+import jcm2606.mods.sorcerycraft.block.tile.astral.TileEntityAstralCraftingNode;
 import jcm2606.mods.sorcerycraft.block.tile.astral.TileEntityAstralCrystalBlock;
 import jcm2606.mods.sorcerycraft.block.tile.astral.TileEntityAstralEnergyGate;
 import jcm2606.mods.sorcerycraft.block.tile.astral.TileEntityAstralEnergyNode;
@@ -42,6 +43,7 @@ public class CommonProxy implements ICommonProxy {
         GameRegistry.registerTileEntity(TileEntityAstralEnergyGate.class, "tileSCAstralEnergyGate");
         GameRegistry.registerTileEntity(TileEntityAstralEnergyNode.class, "tileSCAstralEnergyNode");
         GameRegistry.registerTileEntity(TileEntityAstralStaticCharger.class, "tileSCAstralStaticCharger");
+        GameRegistry.registerTileEntity(TileEntityAstralCraftingNode.class, "tileSCAstralCraftingNode");
     }
 
     @Override

@@ -13,9 +13,11 @@ public class Reference {
 	public static final String SPRITE_SHEET_PARTICLES = PATH_TEXTURES + "particles.png";
 	
 	public static int BLOCK_ID_START_VALUE = 600;
+	public static int BLOCK_ID_SHIFT_VALUE = 0;
 	public static int ITEM_ID_START_VALUE = 10000;
-	public static int ITEM_WAND_ID_START_VALUE = 10500;
+	public static int ITEM_ID_SHIFT_VALUE = 0;
 	public static int ITEM_TOOL_ID_START_VALUE = 10750;
+	public static int ITEM_TOOL_ID_SHIFT_VALUE = 0;
 	public static int BIOME_ID_START_VALUE = 23;
 	
 	public static final String KEY_BIND_INHAND_ITEM_DESC = "SC Inhand Item Key";

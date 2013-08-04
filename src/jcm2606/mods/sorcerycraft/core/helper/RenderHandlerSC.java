@@ -84,6 +84,7 @@ public class RenderHandlerSC {
             var19 = ActiveRenderInfo.objectY;
             Tessellator var24 = Tessellator.instance;
             var24.startDrawingQuads();
+            var24.setBrightness(220);
             var21 = var12.nextFloat() * 0.5F + 0.1F;
             float var22 = var12.nextFloat() * 0.5F + 0.4F;
             float var23 = var12.nextFloat() * 0.5F + 0.5F;
@@ -155,7 +156,7 @@ public class RenderHandlerSC {
         GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
         
         Tessellator t = Tessellator.instance;
-        renderUnitBoxWithUV((float)par2, (float)par4, (float)par6, t, 0, 0, 1, 1, textureNorth, textureSouth, textureEast, textureWest, textureTop, textureBottom);
+        renderUnitBoxWithUV(te, (float)par2, (float)par4, (float)par6, t, 0, 0, 1, 1, textureNorth, textureSouth, textureEast, textureWest, textureTop, textureBottom);
         
         GL11.glEnable(GL11.GL_LIGHTING);
         GL11.glDisable(GL11.GL_BLEND);
@@ -225,8 +226,8 @@ public class RenderHandlerSC {
 //            GL11.glTranslatef(-var9, -var11, -var10);
             var19 = ActiveRenderInfo.objectY;
             Tessellator var24 = Tessellator.instance;
-            var24.setBrightness(180);
             var24.startDrawingQuads();
+            var24.setBrightness(220);
             var21 = var12.nextFloat() * 0.5F + 0.1F;
             float var22 = var12.nextFloat() * 0.5F + 0.4F;
             float var23 = var12.nextFloat() * 0.5F + 0.5F;
@@ -297,9 +298,8 @@ public class RenderHandlerSC {
         
         GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
         
-        
         Tessellator t = Tessellator.instance;
-        renderUnitBoxWithUV((float)par2, (float)par4, (float)par6, t, 0, 0, 1, 1, textureNorth, textureSouth, textureEast, textureWest, textureTop, textureBottom);
+        renderUnitBoxWithUV(null, (float)par2, (float)par4, (float)par6, t, 0, 0, 1, 1, textureNorth, textureSouth, textureEast, textureWest, textureTop, textureBottom);
         
         GL11.glEnable(GL11.GL_LIGHTING);
         GL11.glDisable(GL11.GL_BLEND);
@@ -315,14 +315,22 @@ public class RenderHandlerSC {
         drawAstralParticleFieldStationary(par2, par4, par6, f, textureSheet, textureSheet, textureSheet, textureSheet, textureSheet, textureSheet);
     }
     
-    private static void renderUnitBoxWithUV(float paramFloat1, float paramFloat2, float paramFloat3, Tessellator paramTessellator, float paramFloat4, float paramFloat5, float paramFloat6, float paramFloat7, String texture) {
-        renderUnitBoxWithUV(paramFloat1, paramFloat2, paramFloat3, paramTessellator, paramFloat4, paramFloat5, paramFloat6, paramFloat7, texture, texture, texture, texture, texture, texture);
+    private static void renderUnitBoxWithUV(TileEntity te, float paramFloat1, float paramFloat2, float paramFloat3, Tessellator paramTessellator, float paramFloat4, float paramFloat5, float paramFloat6, float paramFloat7, String texture) {
+        renderUnitBoxWithUV(te, paramFloat1, paramFloat2, paramFloat3, paramTessellator, paramFloat4, paramFloat5, paramFloat6, paramFloat7, texture, texture, texture, texture, texture, texture);
     }
     
-    private static void renderUnitBoxWithUV(float paramFloat1, float paramFloat2, float paramFloat3, Tessellator paramTessellator, float paramFloat4, float paramFloat5, float paramFloat6, float paramFloat7, String textureNorth, String textureSouth, String textureEast, String textureWest, String textureTop, String textureBottom) {
+    private static void renderUnitBoxWithUV(TileEntity te, float paramFloat1, float paramFloat2, float paramFloat3, Tessellator paramTessellator, float paramFloat4, float paramFloat5, float paramFloat6, float paramFloat7, String textureNorth, String textureSouth, String textureEast, String textureWest, String textureTop, String textureBottom) {
         // North
         paramTessellator.startDrawingQuads();
-        paramTessellator.setColorRGBA(255, 255, 255, 255);
+        
+        if(te != null)
+        {
+            RenderUtil.instance().setBrightness(te.worldObj, te.xCoord, te.yCoord, te.zCoord, te.blockType, paramTessellator);
+        } else {
+            paramTessellator.setBrightness(255);
+            paramTessellator.setColorRGBA(255, 255, 255, 255);
+        }
+        
         RenderHandlerSC.bindTexture(textureNorth);
         paramTessellator.addVertexWithUV(paramFloat1, paramFloat2, paramFloat3, paramFloat4, paramFloat5);
         paramTessellator.addVertexWithUV(paramFloat1, paramFloat2 + 1.0F, paramFloat3, paramFloat4, paramFloat7);
@@ -332,7 +340,15 @@ public class RenderHandlerSC {
 
         // South
         paramTessellator.startDrawingQuads();
-        paramTessellator.setColorRGBA(255, 255, 255, 255);
+
+        if(te != null)
+        {
+            RenderUtil.instance().setBrightness(te.worldObj, te.xCoord, te.yCoord, te.zCoord, te.blockType, paramTessellator);
+        } else {
+            paramTessellator.setBrightness(255);
+            paramTessellator.setColorRGBA(255, 255, 255, 255);
+        }
+        
         RenderHandlerSC.bindTexture(textureSouth);
         paramTessellator.addVertexWithUV(paramFloat1, paramFloat2, paramFloat3 + 1.0F, paramFloat4, paramFloat5);
         paramTessellator.addVertexWithUV(paramFloat1 + 1.0F, paramFloat2, paramFloat3 + 1.0F, paramFloat4, paramFloat7);
@@ -342,7 +358,15 @@ public class RenderHandlerSC {
 
         // East
         paramTessellator.startDrawingQuads();
-        paramTessellator.setColorRGBA(255, 255, 255, 255);
+
+        if(te != null)
+        {
+            RenderUtil.instance().setBrightness(te.worldObj, te.xCoord, te.yCoord, te.zCoord, te.blockType, paramTessellator);
+        } else {
+            paramTessellator.setBrightness(255);
+            paramTessellator.setColorRGBA(255, 255, 255, 255);
+        }
+        
         RenderHandlerSC.bindTexture(textureEast);
         paramTessellator.addVertexWithUV(paramFloat1 + 1.0F, paramFloat2, paramFloat3, paramFloat4, paramFloat5);
         paramTessellator.addVertexWithUV(paramFloat1 + 1.0F, paramFloat2 + 1.0F, paramFloat3, paramFloat4, paramFloat7);
@@ -352,7 +376,15 @@ public class RenderHandlerSC {
 
         // West
         paramTessellator.startDrawingQuads();
-        paramTessellator.setColorRGBA(255, 255, 255, 255);
+        
+        if(te != null)
+        {
+            RenderUtil.instance().setBrightness(te.worldObj, te.xCoord, te.yCoord, te.zCoord, te.blockType, paramTessellator);
+        } else {
+            paramTessellator.setBrightness(255);
+            paramTessellator.setColorRGBA(255, 255, 255, 255);
+        }
+        
         RenderHandlerSC.bindTexture(textureWest);
         paramTessellator.addVertexWithUV(paramFloat1, paramFloat2, paramFloat3, paramFloat4, paramFloat5);
         paramTessellator.addVertexWithUV(paramFloat1, paramFloat2, paramFloat3 + 1.0F, paramFloat4, paramFloat7);
@@ -362,7 +394,15 @@ public class RenderHandlerSC {
 
         // Bottom
         paramTessellator.startDrawingQuads();
-        paramTessellator.setColorRGBA(255, 255, 255, 255);
+        
+        if(te != null)
+        {
+            RenderUtil.instance().setBrightness(te.worldObj, te.xCoord, te.yCoord, te.zCoord, te.blockType, paramTessellator);
+        } else {
+            paramTessellator.setBrightness(255);
+            paramTessellator.setColorRGBA(255, 255, 255, 255);
+        }
+        
         RenderHandlerSC.bindTexture(textureBottom);
         paramTessellator.addVertexWithUV(paramFloat1 + 1.0F, paramFloat2, paramFloat3, paramFloat4, paramFloat5);
         paramTessellator.addVertexWithUV(paramFloat1 + 1.0F, paramFloat2, paramFloat3 + 1.0F, paramFloat4, paramFloat7);
@@ -372,7 +412,15 @@ public class RenderHandlerSC {
 
         // Top
         paramTessellator.startDrawingQuads();
-        paramTessellator.setColorRGBA(255, 255, 255, 255);
+        
+        if(te != null)
+        {
+            RenderUtil.instance().setBrightness(te.worldObj, te.xCoord, te.yCoord, te.zCoord, te.blockType, paramTessellator);
+        } else {
+            paramTessellator.setBrightness(255);
+            paramTessellator.setColorRGBA(255, 255, 255, 255);
+        }
+        
         RenderHandlerSC.bindTexture(textureTop);
         paramTessellator.addVertexWithUV(paramFloat1, paramFloat2 + 1.0F, paramFloat3 + 1.0F, paramFloat4, paramFloat5);
         paramTessellator.addVertexWithUV(paramFloat1 + 1.0F, paramFloat2 + 1.0F, paramFloat3 + 1.0F, paramFloat4, paramFloat7);

@@ -10,7 +10,6 @@ import jcm2606.mods.sorcerycraft.api.compat.CompatContainerSC;
 import jcm2606.mods.sorcerycraft.command.CommandSC;
 import jcm2606.mods.sorcerycraft.compat.TestContainer;
 import jcm2606.mods.sorcerycraft.core.config.Config;
-import jcm2606.mods.sorcerycraft.core.config.Settings;
 import jcm2606.mods.sorcerycraft.core.handler.AlchemyHandler;
 import jcm2606.mods.sorcerycraft.core.handler.GuiHandler;
 import jcm2606.mods.sorcerycraft.core.handler.ToolHandler;
@@ -53,7 +52,9 @@ public class SorceryCraft {
     @SidedProxy(clientSide = "jcm2606.mods.sorcerycraft.core.proxy.ClientProxy", serverSide = "jcm2606.mods.sorcerycraft.core.proxy.CommonProxy")
     public static CommonProxy proxy;
 
-    public static CreativeTabs tab;
+    public static CreativeTabs tabBlocks;
+    public static CreativeTabs tabBlocksDeco;
+    public static CreativeTabs tabItems;
 
     public static LoggerBase logger = new LoggerBase("Sorcerycraft");
 
@@ -78,11 +79,9 @@ public class SorceryCraft {
         logger.info("Loading configuration.");
         Config.init(event.getSuggestedConfigurationFile());
 
-        if (Settings.DOES_CREATIVE_TAB_GET_NEXT_FREE_ID) {
-            tab = new SCCreativeTab(CreativeTabs.getNextID(), SorceryCraft.class.getAnnotation(Mod.class).modid());
-        } else {
-            tab = new SCCreativeTab(Settings.CREATIVE_TAB_ID, SorceryCraft.class.getAnnotation(Mod.class).modid());
-        }
+        tabBlocks = new SCCreativeTab.TabBlocks(CreativeTabs.getNextID(), "SorceryCraft");
+        tabBlocksDeco = new SCCreativeTab.TabBlocksDeco(CreativeTabs.getNextID(), "SorceryCraft");
+        tabItems = new SCCreativeTab.TabItems(CreativeTabs.getNextID(), "SorceryCraft");
 
         proxy.loadKeyBindings();
         proxy.loadRenderIds();

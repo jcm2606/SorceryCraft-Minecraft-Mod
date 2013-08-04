@@ -26,7 +26,7 @@ public class SCHoe extends ItemHoe
         this.theToolMaterial = par2EnumToolMaterial;
         this.maxStackSize = 1;
         this.setMaxDamage(par2EnumToolMaterial.getMaxUses());
-        this.setCreativeTab(SorceryCraft.tab);
+        this.setCreativeTab(SorceryCraft.tabItems);
         this.setUnlocalizedName(par3);
         this.name = par3;
     }

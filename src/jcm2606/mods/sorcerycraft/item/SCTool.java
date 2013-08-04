@@ -25,7 +25,7 @@ public class SCTool extends ItemTool {
 		this.setMaxDamage(par3EnumToolMaterial.getMaxUses());
 		this.efficiencyOnProperMaterial = par3EnumToolMaterial.getEfficiencyOnProperMaterial();
 		this.damageVsEntity = par2 + par3EnumToolMaterial.getDamageVsEntity();
-		this.setCreativeTab(SorceryCraft.tab);
+		this.setCreativeTab(SorceryCraft.tabItems);
 		this.setUnlocalizedName(par5);
 		this.name = par5;
 	}

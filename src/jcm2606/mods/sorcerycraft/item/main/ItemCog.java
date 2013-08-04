@@ -38,7 +38,7 @@ public class ItemCog extends ItemMeta {
     
     public ItemCog(int id) {
         super(id, names, textures);
-        this.setCreativeTab(SorceryCraft.tab);
+        this.setCreativeTab(SorceryCraft.tabItems);
     }
     
     @Override

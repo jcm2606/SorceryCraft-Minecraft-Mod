@@ -22,7 +22,7 @@ public class SCFlower extends BlockFlower {
         this.setUnlocalizedName("sc" + name);
         this.setStepSound(soundGrassFootstep);
         this.useIconIndex = true;
-        this.setCreativeTab(SorceryCraft.tab);
+        this.setCreativeTab(SorceryCraft.tabBlocks);
         this.isOpaqueCube = false;
     }
     

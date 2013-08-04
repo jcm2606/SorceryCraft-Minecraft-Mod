@@ -11,7 +11,7 @@ public class SCItem extends Item {
 	
 	public SCItem(int par1, String par2) {
 		super(par1);
-		setCreativeTab(SorceryCraft.tab);
+		setCreativeTab(SorceryCraft.tabItems);
 		this.setUnlocalizedName("sc" + par2);
 		this.name = par2;
 	}

@@ -50,35 +50,29 @@ public class Config {
 	
 	public static Property getToolId(String key, int value)
 	{
-	    Reference.ITEM_TOOL_ID_START_VALUE = value + 1;
+	    int id = value + Reference.ITEM_TOOL_ID_SHIFT_VALUE;
+        
+        Reference.ITEM_TOOL_ID_SHIFT_VALUE++;
 	    
-		return config.get(CATEGORY_TOOL_ID, key+".id", value);
+		return config.get(CATEGORY_TOOL_ID, key+".id", id);
 	}
 	
 	public static Property getItemId(String key, int value)
 	{
-	    Reference.ITEM_ID_START_VALUE = value + 1;
+	    int id = value + Reference.ITEM_ID_SHIFT_VALUE;
 	    
-		return config.get(CATEGORY_ITEM_ID, key+".id", value);
-	}
-	
-	public static Property getItemWandId(String key, int value)
-    {
-        Reference.ITEM_WAND_ID_START_VALUE = value + 1;
-        
-        return config.get(CATEGORY_ITEM_ID, key+".id", value);
-    }
-	
-	public static Property getItemHerbloreId(String key, int value)
-	{
-		return config.get(CATEGORY_ITEM_HERBLORE_ID, key+".id", value);
+	    Reference.ITEM_ID_SHIFT_VALUE++;
+	    
+		return config.get(CATEGORY_ITEM_ID, key+".id", id);
 	}
 	
 	public static Property getBlockId(String key, int value)
 	{
-        Reference.BLOCK_ID_START_VALUE = Reference.BLOCK_ID_START_VALUE + 1;
+	    int id = value + Reference.BLOCK_ID_SHIFT_VALUE;
         
-		return config.get(CATEGORY_BLOCK_ID, key+".id", value);
+        Reference.BLOCK_ID_SHIFT_VALUE++;
+        
+		return config.get(CATEGORY_BLOCK_ID, key+".id", id);
 	}
 	
 	public static Property getAchievementId(String key, int value)

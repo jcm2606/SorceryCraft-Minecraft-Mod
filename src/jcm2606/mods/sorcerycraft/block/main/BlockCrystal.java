@@ -21,7 +21,7 @@ public class BlockCrystal extends SCBlockContainer {
 		this.setHardness(1.0f);
 		this.setStepSound(this.soundGlassFootstep);
 		this.setBlockBounds(0.2f, 0f, 0.2f, 0.8f, 1.3f, 0.8f);
-		this.setCreativeTab(SorceryCraft.tab);
+		this.setCreativeTab(SorceryCraft.tabBlocks);
 		this.useIconIndex = false;
 	}
 	

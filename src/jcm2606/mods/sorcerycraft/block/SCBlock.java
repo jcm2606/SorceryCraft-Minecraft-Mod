@@ -22,7 +22,7 @@ public class SCBlock extends BlockJC {
 	
 	public SCBlock(int par1, Material par3Material, String par4, String par5) {
 		super(par1, par3Material, par5);
-		setCreativeTab(SorceryCraft.tab);
+		setCreativeTab(SorceryCraft.tabBlocks);
 		this.setUnlocalizedName("sc" + par4);
 		this.name = par4;
 		this.useIconIndex = true;
@@ -31,7 +31,7 @@ public class SCBlock extends BlockJC {
 	
 	public SCBlock(int par1, Material par3Material, String par4) {
         super(par1, par3Material);
-        setCreativeTab(SorceryCraft.tab);
+        setCreativeTab(SorceryCraft.tabBlocks);
         this.setUnlocalizedName("sc" + par4);
         this.name = par4;
         this.useIconIndex = true;
