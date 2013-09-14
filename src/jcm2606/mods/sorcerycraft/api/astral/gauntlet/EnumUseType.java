@@ -1,6 +1,7 @@
 package jcm2606.mods.sorcerycraft.api.astral.gauntlet;
 
-public enum EnumUseType {
+public enum EnumUseType
+{
     /**
      * Block right click.
      * 

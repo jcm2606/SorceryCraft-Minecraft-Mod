@@ -12,32 +12,36 @@ import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class ItemBookAlch extends SCItem {
-	public ItemBookAlch(int par1) {
-		super(par1, "alchBook");
-		setMaxStackSize(1);
-	}
-
-	@Override
-	@SideOnly(Side.CLIENT)
-	/**
-	 * Return an item rarity from EnumRarity
-	 */
-	public EnumRarity getRarity(ItemStack par1ItemStack) {
-		return RarityHelper.getCustomRarityType(Rarities.BASIC);
-	}
-
-	/**
-	 * Called whenever this item is equipped and the right mouse button is
-	 * pressed. Args: itemStack, world, entityPlayer
-	 */
-	@Override
-	public ItemStack onItemRightClick(ItemStack stack, World world,
-			EntityPlayer player) {
-		if (!player.isSneaking()) {
-			player.openGui(SorceryCraft.instance, GuiIDs.ALCH_BOOK, world, (int) player.posX, (int) player.posY, (int) player.posZ);
-		}
-
-		return stack;
-	}
+public class ItemBookAlch extends SCItem
+{
+    public ItemBookAlch(int par1)
+    {
+        super(par1, "alchBook");
+        setMaxStackSize(1);
+    }
+    
+    @Override
+    @SideOnly(Side.CLIENT)
+    /**
+     * Return an item rarity from EnumRarity
+     */
+    public EnumRarity getRarity(ItemStack par1ItemStack)
+    {
+        return RarityHelper.getCustomRarityType(Rarities.BASIC);
+    }
+    
+    /**
+     * Called whenever this item is equipped and the right mouse button is
+     * pressed. Args: itemStack, world, entityPlayer
+     */
+    @Override
+    public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player)
+    {
+        if (!player.isSneaking())
+        {
+            player.openGui(SorceryCraft.instance, GuiIDs.ALCH_BOOK, world, (int) player.posX, (int) player.posY, (int) player.posZ);
+        }
+        
+        return stack;
+    }
 }

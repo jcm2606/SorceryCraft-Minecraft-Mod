@@ -28,10 +28,12 @@ import org.lwjgl.input.Keyboard;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class ItemAstralGauntlet extends SCItem implements IKeyBound {
+public class ItemAstralGauntlet extends SCItem implements IKeyBound
+{
     public final String NBT_TAG_MODE = "mode";
     
-    public ItemAstralGauntlet(int par1) {
+    public ItemAstralGauntlet(int par1)
+    {
         super(par1, "astralGauntlet");
         this.setMaxDamage(200);
         this.setMaxStackSize(1);
@@ -40,7 +42,8 @@ public class ItemAstralGauntlet extends SCItem implements IKeyBound {
     
     @Override
     @SideOnly(Side.CLIENT)
-    public boolean hasEffect(ItemStack par1ItemStack) {
+    public boolean hasEffect(ItemStack par1ItemStack)
+    {
         return false;
     }
     
@@ -67,15 +70,17 @@ public class ItemAstralGauntlet extends SCItem implements IKeyBound {
     }
     
     /**
-     * Called whenever this item is equipped and the right mouse button is pressed. Args: itemStack, world, entityPlayer
+     * Called whenever this item is equipped and the right mouse button is
+     * pressed. Args: itemStack, world, entityPlayer
      */
     @Override
     public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player)
     {
-        if(AstralManager.getMode(this.getMode(stack)).hasItemUse)
+        if (AstralManager.getMode(this.getMode(stack)).hasItemUse)
         {
             player.setItemInUse(stack, AstralManager.getMode(this.getMode(stack)).useActionDuration);
-        } else {
+        } else
+        {
             AstralManager.useGauntlet(EnumUseType.ITEM_RIGHT_CLICK, getMode(stack), stack, player, null, world, 0, 0, 0, -1);
         }
         
@@ -86,25 +91,26 @@ public class ItemAstralGauntlet extends SCItem implements IKeyBound {
     /**
      * allows items to add custom lines of information to the mouseover description
      */
-    public void addInformation(ItemStack stack, EntityPlayer player, List list,
-            boolean par4) {
+    public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean par4)
+    {
         GauntletMode mode = AstralManager.getMode(getMode(stack));
         
-        if(mode != null)
+        if (mode != null)
         {
-            list.add("\2478\247o" + mode.name);
+            list.add("\247o" + mode.name);
             
-            if(stack.getItemDamage() > 0)
+            if (stack.getItemDamage() > 0)
             {
-                list.add("\2478\247oDamaged (" + stack.getItemDamage() + ")");
+                list.add("\247oDamaged (" + stack.getItemDamage() + ")");
             }
             
-            if(SCHelper.playerHasPerceptionMedallion(player))
+            if (SCHelper.playerHasPerceptionMedallion(player))
             {
-                if(Keyboard.isKeyDown(Minecraft.getMinecraft().gameSettings.keyBindSneak.keyCode))
+                if (Keyboard.isKeyDown(Minecraft.getMinecraft().gameSettings.keyBindSneak.keyCode))
                 {
                     mode.addInfoToItemMouseover(player, stack, Keyboard.isKeyDown(Minecraft.getMinecraft().gameSettings.keyBindSneak.keyCode), list);
-                } else {
+                } else
+                {
                     list.add("<Hold SHIFT>");
                 }
             }
@@ -116,23 +122,30 @@ public class ItemAstralGauntlet extends SCItem implements IKeyBound {
      * is being used
      */
     @Override
-    public EnumAction getItemUseAction(ItemStack stack) {
+    public EnumAction getItemUseAction(ItemStack stack)
+    {
         return AstralManager.getMode(getMode(stack)).useAction;
     }
-
+    
     /**
      * How long it takes to use or consume an item
      */
     @Override
-    public int getMaxItemUseDuration(ItemStack stack) {
+    public int getMaxItemUseDuration(ItemStack stack)
+    {
         return AstralManager.getMode(getMode(stack)).useActionDuration;
     }
     
     /**
      * Called each tick while using an item.
-     * @param stack The Item being used
-     * @param player The Player using the item
-     * @param count The amount of time in tick the item has been used for continuously
+     * 
+     * @param stack
+     *            The Item being used
+     * @param player
+     *            The Player using the item
+     * @param count
+     *            The amount of time in tick the item has been used for
+     *            continuously
      */
     @Override
     public void onUsingItemTick(ItemStack stack, EntityPlayer player, int count)
@@ -141,11 +154,12 @@ public class ItemAstralGauntlet extends SCItem implements IKeyBound {
     }
     
     /**
-     * Called each tick as long the item is on a player inventory. Uses by maps to check if is on a player hand and
-     * update it's contents.
+     * Called each tick as long the item is on a player inventory. Uses by maps
+     * to check if is on a player hand and update it's contents.
      */
     @Override
-    public void onUpdate(ItemStack stack, World world, Entity player, int slot, boolean isCurrentItem) {
+    public void onUpdate(ItemStack stack, World world, Entity player, int slot, boolean isCurrentItem)
+    {
         AstralManager.onGauntletUpdateTick(getMode(stack), stack, player, world, slot, isCurrentItem);
     }
     
@@ -154,23 +168,25 @@ public class ItemAstralGauntlet extends SCItem implements IKeyBound {
      * entry argument beside ev. They just raise the damage on the stack.
      */
     @Override
-    public boolean hitEntity(ItemStack stack, EntityLivingBase living, EntityLivingBase living2) {
+    public boolean hitEntity(ItemStack stack, EntityLivingBase living, EntityLivingBase living2)
+    {
         return AstralManager.useGauntlet(EnumUseType.ENTITY_HIT, getMode(stack), stack, (EntityPlayer) living2, living, living.worldObj, 0, 0, 0, -1);
     }
-
+    
     @Override
     public void doKeyBindingAction(EntityPlayer player, ItemStack stack, String keyBinding)
     {
-        if(keyBinding.equals(Reference.KEY_BIND_INHAND_ITEM_DESC))
+        if (keyBinding.equals(Reference.KEY_BIND_INHAND_ITEM_DESC))
         {
-            if(AstralManager.modeList[getMode(stack) + 1] == null)
+            if (AstralManager.modeList[getMode(stack) + 1] == null)
             {
                 setMode(stack, 0);
-            } else {
+            } else
+            {
                 setMode(stack, getMode(stack) + 1);
             }
             
-            CompatContainerSC.postUpdateToSubContainers(HandlerMethodID.ASTRAL_GAUNTLET_MODE_SWITCH, null);
+            CompatContainerSC.postUpdate(HandlerMethodID.ASTRAL_GAUNTLET_MODE_SWITCH, null);
         }
     }
     

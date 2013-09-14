@@ -6,17 +6,19 @@ import net.minecraft.item.Item;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class SCItem extends Item {
-	String name;
-	
-	public SCItem(int par1, String par2) {
-		super(par1);
-		setCreativeTab(SorceryCraft.tabItems);
-		this.setUnlocalizedName("sc" + par2);
-		this.name = par2;
-	}
-	
-	@Override
+public class SCItem extends Item
+{
+    String name;
+    
+    public SCItem(int par1, String par2)
+    {
+        super(par1);
+        setCreativeTab(SorceryCraft.tabItems);
+        this.setUnlocalizedName("sc" + par2);
+        this.name = par2;
+    }
+    
+    @Override
     @SideOnly(Side.CLIENT)
     public void registerIcons(IconRegister par1IconRegister)
     {

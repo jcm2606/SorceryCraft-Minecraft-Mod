@@ -4,7 +4,8 @@ import jcm2606.mods.jccore.compat.ModCompatibility;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 
-public final class SCApi {
+public final class SCApi
+{
     private static SCApi instance;
     
     public static Class<?> scClass;
@@ -12,7 +13,8 @@ public final class SCApi {
     
     public static AstralManager astralManager;
     
-    static {
+    static
+    {
         instance = new SCApi();
     }
     
@@ -23,13 +25,15 @@ public final class SCApi {
     
     public SCApi()
     {
-        try {
+        try
+        {
             this.scClass = getClass().getClassLoader().loadClass("jcm2606.mods.sorcerycraft.core.SorceryCraft");
             this.scObjects = getClass().getClassLoader().loadClass("jcm2606.mods.sorcerycraft.core.SCObjects");
             
             this.astralManager = new AstralManager();
         }
-        catch (Exception e) {
+        catch (Exception e)
+        {
             e.printStackTrace();
         }
     }

@@ -4,11 +4,9 @@ import jcm2606.mods.sorcerycraft.api.astral.gauntlet.EnumUseType;
 import jcm2606.mods.sorcerycraft.api.astral.gauntlet.GauntletMode;
 import jcm2606.mods.sorcerycraft.api.compat.CompatContainerSC;
 import jcm2606.mods.sorcerycraft.api.compat.HandlerMethodID;
-import jcm2606.mods.sorcerycraft.astral.gauntlet.ModeBlockBreak;
 import jcm2606.mods.sorcerycraft.astral.gauntlet.ModeBlockTeleport;
 import jcm2606.mods.sorcerycraft.astral.gauntlet.ModeEnergyGather;
-import jcm2606.mods.sorcerycraft.astral.gauntlet.ModeHailkenisis;
-import jcm2606.mods.sorcerycraft.astral.gauntlet.ModeHealing;
+import jcm2606.mods.sorcerycraft.astral.gauntlet.ModeManualEmpowerment;
 import jcm2606.mods.sorcerycraft.astral.gauntlet.ModePyrokenisis;
 import jcm2606.mods.sorcerycraft.astral.gauntlet.ModeTeleport;
 import jcm2606.mods.sorcerycraft.core.SCObjects;
@@ -24,7 +22,8 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import cpw.mods.fml.common.network.PacketDispatcher;
 
-public class AstralManager {
+public class AstralManager
+{
     public static final int ENERGY_MAX = 4000;
     public static GauntletMode[] modeList = new GauntletMode[256];
     
@@ -33,56 +32,59 @@ public class AstralManager {
         chargeCellsInInvFromBlocks(stack, player, world, 9, 5, 9);
     }
     
-    public static void chargeCellsInInvFromBlocks(ItemStack stack, EntityPlayer player, World world, int xScanDistance, int yScanDistance, int zScanDistance)
+    public static void chargeCellsInInvFromBlocks(ItemStack stack, EntityPlayer player, World world, int xScanDistance, int yScanDistance,
+            int zScanDistance)
     {
-        for(int xC = 0; xC < xScanDistance; xC++)
+        for (int xC = 0; xC < xScanDistance; xC++)
         {
-            for(int yC = 0; yC < yScanDistance; yC++)
+            for (int yC = 0; yC < yScanDistance; yC++)
             {
-                for(int zC = 0; zC < zScanDistance; zC++)
+                for (int zC = 0; zC < zScanDistance; zC++)
                 {
                     int xCoord = (int) (player.posX - (xScanDistance / 2) + xC);
                     int yCoord = (int) (player.posY - (yScanDistance / 2) + yC);
                     int zCoord = (int) (player.posZ - (zScanDistance / 2) + zC);
                     
-                    if(world.getBlockId(xCoord, yCoord, zCoord) == SCObjects.oreastral.blockID || world.getBlockId(xCoord, yCoord, zCoord) == SCObjects.astralenergygate.blockID)
+                    if (world.getBlockId(xCoord, yCoord, zCoord) == SCObjects.oreastral.blockID || world.getBlockId(xCoord, yCoord, zCoord) == SCObjects.astralenergygate.blockID)
                     {
-                        if(player.inventory.hasItem(SCObjects.astralenergycell.itemID))
+                        if (player.inventory.hasItem(SCObjects.astralenergycell.itemID))
                         {
-                            for(int i = 0; i < player.inventory.mainInventory.length; i++)
+                            for (int i = 0; i < player.inventory.mainInventory.length; i++)
                             {
                                 ItemStack stack2 = player.inventory.mainInventory[i];
                                 
-                                if(stack2 != null)
+                                if (stack2 != null)
                                 {
-                                    if(stack2.getItem() == SCObjects.astralenergycell)
+                                    if (stack2.getItem() == SCObjects.astralenergycell)
                                     {
                                         ItemAstralEnergyCell cell = (ItemAstralEnergyCell) stack2.getItem();
                                         
-                                        if(cell.getEnergy(stack2) > 0)
+                                        if (cell.getEnergy(stack2) > 0)
                                         {
-                                            if(getTotalEnergyForPlayer(player) < ENERGY_MAX)
+                                            if (getTotalEnergyForPlayer(player) < ENERGY_MAX)
                                             {
                                                 cell.setEnergy(stack2, cell.getEnergy(stack2) - 1);
-                                                CompatContainerSC.postUpdateToSubContainers(HandlerMethodID.ASTRAL_ENERGY_GATHER_BLOCK, null);
+                                                CompatContainerSC.postUpdate(HandlerMethodID.ASTRAL_ENERGY_GATHER_BLOCK, null);
                                                 
                                                 float var7 = (float) (player.posX - xCoord);
                                                 float var9 = (float) (player.posY + 2.0 - yCoord);
                                                 float var11 = (float) (player.posZ - zCoord);
-                                                int distance = (int)MathHelper.sqrt_double(var7 * var7 + var9 * var9 + var11 * var11);
+                                                int distance = (int) MathHelper.sqrt_double(var7 * var7 + var9 * var9 + var11 * var11);
                                                 
                                                 double adjAngle = 5.0D;
                                                 double dist = 0.2D;
-                                            
+                                                
                                                 EntityPlayer center = player;
-                                            
+                                                
                                                 double posX = center.posX - Math.cos((-center.rotationYaw + adjAngle) * 0.01745329D) * dist;
                                                 double posY = center.posY - Math.sin(center.rotationPitch / 540.0F * Math.PI) * dist;
                                                 double posZ = center.posZ + Math.sin((-center.rotationYaw + adjAngle) * 0.01745329D) * dist;
                                                 
-                                                if(world.isRemote)
+                                                if (world.isRemote)
                                                 {
-                                                    PacketDispatcher.sendPacketToAllPlayers(PacketType.populatePacket(new PacketDrawAstralEnergyBeam(xCoord + 0.5, yCoord + 0.5, zCoord + 0.5, posX, posY, posZ, 2), PacketHandler.CHANNEL_SC));
+                                                    PacketDispatcher.sendPacketToAllPlayers(PacketType.populatePacket(new PacketDrawAstralEnergyBeam(
+                                                            xCoord + 0.5, yCoord + 0.5, zCoord + 0.5, posX, posY, posZ, 2, true),
+                                                            PacketHandler.CHANNEL_SC));
                                                 }
                                                 
                                                 break;
@@ -100,21 +102,21 @@ public class AstralManager {
     
     public static void setChargeForCellsInInv(EntityPlayer player, int charge)
     {
-        if(player.inventory.hasItem(SCObjects.astralenergycell.itemID))
+        if (player.inventory.hasItem(SCObjects.astralenergycell.itemID))
         {
-            for(int i = 0; i < player.inventory.mainInventory.length; i++)
+            for (int i = 0; i < player.inventory.mainInventory.length; i++)
             {
                 ItemStack stack2 = player.inventory.mainInventory[i];
                 
-                if(stack2 != null)
+                if (stack2 != null)
                 {
-                    if(stack2.getItem() == SCObjects.astralenergycell)
+                    if (stack2.getItem() == SCObjects.astralenergycell)
                     {
                         ItemAstralEnergyCell cell = (ItemAstralEnergyCell) stack2.getItem();
                         
-                        if(cell.getEnergy(stack2) > 0)
+                        if (cell.getEnergy(stack2) > 0)
                         {
-                            if(getTotalEnergyForPlayer(player) < ENERGY_MAX)
+                            if (getTotalEnergyForPlayer(player) < ENERGY_MAX)
                             {
                                 cell.setEnergy(stack2, charge);
                                 
@@ -131,13 +133,13 @@ public class AstralManager {
     {
         int currentEnergy = 0;
         
-        for(int i = 0; i < player.inventory.mainInventory.length; i++)
+        for (int i = 0; i < player.inventory.mainInventory.length; i++)
         {
             ItemStack stack = player.inventory.mainInventory[i];
             
-            if(stack != null)
+            if (stack != null)
             {
-                if(stack.getItem() == SCObjects.astralenergycell)
+                if (stack.getItem() == SCObjects.astralenergycell)
                 {
                     ItemAstralEnergyCell cell = (ItemAstralEnergyCell) stack.getItem();
                     
@@ -153,13 +155,13 @@ public class AstralManager {
     {
         int currentEnergy = 0;
         
-        for(int i = 0; i < player.inventory.mainInventory.length; i++)
+        for (int i = 0; i < player.inventory.mainInventory.length; i++)
         {
             ItemStack stack = player.inventory.mainInventory[i];
             
-            if(stack != null)
+            if (stack != null)
             {
-                if(stack.getItem() == SCObjects.astralenergycell)
+                if (stack.getItem() == SCObjects.astralenergycell)
                 {
                     ItemAstralEnergyCell cell = (ItemAstralEnergyCell) stack.getItem();
                     
@@ -175,17 +177,17 @@ public class AstralManager {
     {
         int fullCellsInInv = 0;
         
-        for(int i = 0; i < player.inventory.mainInventory.length; i++)
+        for (int i = 0; i < player.inventory.mainInventory.length; i++)
         {
             ItemStack stack = player.inventory.mainInventory[i];
             
-            if(stack != null)
+            if (stack != null)
             {
-                if(stack.getItem() == SCObjects.astralenergycell)
+                if (stack.getItem() == SCObjects.astralenergycell)
                 {
                     ItemAstralEnergyCell cell = (ItemAstralEnergyCell) stack.getItem();
                     
-                    if(cell.getEnergy(stack) < 1000)
+                    if (cell.getEnergy(stack) < 1000)
                     {
                         fullCellsInInv++;
                     }
@@ -200,13 +202,13 @@ public class AstralManager {
     {
         int cellsInInv = 0;
         
-        for(int i = 0; i < player.inventory.mainInventory.length; i++)
+        for (int i = 0; i < player.inventory.mainInventory.length; i++)
         {
             ItemStack stack = player.inventory.mainInventory[i];
             
-            if(stack != null)
+            if (stack != null)
             {
-                if(stack.getItem() == SCObjects.astralenergycell)
+                if (stack.getItem() == SCObjects.astralenergycell)
                 {
                     ItemAstralEnergyCell cell = (ItemAstralEnergyCell) stack.getItem();
                     
@@ -223,20 +225,22 @@ public class AstralManager {
         registerMode(new ModeBlockTeleport());
         registerMode(new ModeEnergyGather());
         registerMode(new ModePyrokenisis());
-        registerMode(new ModeBlockBreak());
-        registerMode(new ModeHailkenisis());
+        // registerMode(new ModeBlockBreak());
+        // registerMode(new ModeHailkenisis());
         registerMode(new ModeTeleport());
-        registerMode(new ModeHealing());
+        // registerMode(new ModeHealing());
+        registerMode(new ModeManualEmpowerment());
     }
     
     public static void registerMode(GauntletMode mode)
     {
         int id = mode.id;
         
-        if(modeList[id] == null)
+        if (modeList[id] == null)
         {
             modeList[id] = mode;
-        } else {
+        } else
+        {
             throw new RuntimeException("Slot " + id + " is already occupied by mode " + modeList[id].name + " when adding mode " + mode.name + ".");
         }
     }
@@ -246,23 +250,24 @@ public class AstralManager {
         return modeList[id];
     }
     
-    public static boolean useGauntlet(EnumUseType useType, int id, ItemStack stack, EntityPlayer player, EntityLivingBase living, World world, int x, int y, int z, int side)
+    public static boolean useGauntlet(EnumUseType useType, int id, ItemStack stack, EntityPlayer player, EntityLivingBase living, World world, int x,
+            int y, int z, int side)
     {
         GauntletMode mode = getMode(id);
         
-        if(mode.energyRequired(useType, player) == 0)
+        if (mode.energyRequired(useType, player) == 0)
         {
-            CompatContainerSC.postUpdateToSubContainers(HandlerMethodID.ASTRAL_GAUNTLET_MODE_USE, null);
+            CompatContainerSC.postUpdate(HandlerMethodID.ASTRAL_GAUNTLET_MODE_USE, null);
             return mode.onUse(useType, stack, world, player, living, x, y, z, side);
         }
         
-        if(mode != null)
+        if (mode != null)
         {
-            if(getTotalEnergyForPlayer(player) >= mode.energyRequired(useType, player))
+            if (getTotalEnergyForPlayer(player) >= mode.energyRequired(useType, player))
             {
-                if(mode.onUse(useType, stack, world, player, living, x, y, z, side))
+                if (mode.onUse(useType, stack, world, player, living, x, y, z, side))
                 {
-                    CompatContainerSC.postUpdateToSubContainers(HandlerMethodID.ASTRAL_GAUNTLET_MODE_USE, null);
+                    CompatContainerSC.postUpdate(HandlerMethodID.ASTRAL_GAUNTLET_MODE_USE, null);
                     
                     return true;
                 }
@@ -276,7 +281,7 @@ public class AstralManager {
     {
         GauntletMode mode = getMode(id);
         
-        if(mode != null)
+        if (mode != null)
         {
             mode.onGauntletItemUpdateTick(stack, (EntityPlayer) (EntityLivingBase) entity, world, slot, isCurrentItem);
         }
@@ -284,14 +289,14 @@ public class AstralManager {
     
     public static int getNextAvailableId()
     {
-        if(modeList[255] != null)
+        if (modeList[255] != null)
         {
             throw new RuntimeException("No more available mode ids.");
         }
         
-        for(int i = 0; i < 256; i++)
+        for (int i = 0; i < 256; i++)
         {
-            if(modeList[i] == null)
+            if (modeList[i] == null)
             {
                 return i;
             }

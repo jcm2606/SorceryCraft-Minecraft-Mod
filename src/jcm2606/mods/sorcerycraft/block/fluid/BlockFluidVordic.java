@@ -10,8 +10,10 @@ import net.minecraftforge.fluids.BlockFluidClassic;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class BlockFluidVordic extends BlockFluidClassic {
-    public BlockFluidVordic(int id) {
+public class BlockFluidVordic extends BlockFluidClassic
+{
+    public BlockFluidVordic(int id)
+    {
         super(id, SCObjects.vordicfluid, Material.water);
         SCObjects.vordicfluid.setBlockID(id);
         this.setCreativeTab(SorceryCraft.tabBlocks);
@@ -19,13 +21,14 @@ public class BlockFluidVordic extends BlockFluidClassic {
     
     @Override
     @SideOnly(Side.CLIENT)
-    public Icon getIcon(int side, int meta) {
-            return Block.waterMoving.getIcon(side, meta);
+    public Icon getIcon(int side, int meta)
+    {
+        return Block.waterMoving.getIcon(side, meta);
     }
-
+    
     @Override
     public int colorMultiplier(IBlockAccess iblockaccess, int x, int y, int z)
     {
-            return 0x151B54;
+        return 0x151B54;
     }
 }

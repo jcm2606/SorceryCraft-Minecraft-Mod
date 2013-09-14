@@ -14,26 +14,28 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
-public class ModeBlockTeleport extends GauntletMode {
+public class ModeBlockTeleport extends GauntletMode
+{
     public final String NBT_TAG_STORED_X_COORD = "storedXCoord";
     public final String NBT_TAG_STORED_Y_COORD = "storedYCoord";
     public final String NBT_TAG_STORED_Z_COORD = "storedZCoord";
     public final String NBT_TAG_HAS_STORED_COORDS = "hasStoredCoords";
     
-    public ModeBlockTeleport() {
+    public ModeBlockTeleport()
+    {
         super(AstralManager.getNextAvailableId(), "Block Teleportation", "");
     }
-
+    
     @Override
     public boolean onUse(EnumUseType type, ItemStack stack, World world, EntityPlayer player, EntityLivingBase living, int x, int y, int z, int side)
     {
-        if(type.equals(EnumUseType.BLOCK_RIGHT_CLICK))
+        if (type.equals(EnumUseType.BLOCK_RIGHT_CLICK))
         {
-            if(!getHasStoredCoords(stack))
+            if (!getHasStoredCoords(stack))
             {
-                if(world.blockHasTileEntity(x, y, z))
+                if (world.blockHasTileEntity(x, y, z))
                 {
-                    if(world.isRemote)
+                    if (world.isRemote)
                     {
                         player.addChatMessage("\247oThis block has extra energy bound to it. You cannot move this block.");
                     }
@@ -47,7 +49,8 @@ public class ModeBlockTeleport extends GauntletMode {
                 world.playSoundEffect(x, y, z, "random.orb", 0.5f, 1.0f);
                 
                 return true;
-            } else {
+            } else
+            {
                 int storedX = getStoredXCoord(stack);
                 int storedY = getStoredYCoord(stack);
                 int storedZ = getStoredZCoord(stack);
@@ -56,175 +59,205 @@ public class ModeBlockTeleport extends GauntletMode {
                 
                 int age = 50;
                 
-                switch(side)
+                switch (side)
                 {
-                    case 5 : {
-                        if(world.blockExists(storedX, storedY, storedZ))
+                    case 5:
+                    {
+                        if (world.blockExists(storedX, storedY, storedZ))
                         {
                             int id = world.getBlockId(storedX, storedY, storedZ);
                             world.setBlock(x + 1, y, z, id, world.getBlockMetadata(storedX, storedY, storedZ), 0x02);
                             world.setBlock(storedX, storedY, storedZ, 0);
                             
-                            if(!world.isRemote)
+                            if (!world.isRemote)
                             {
-                                for(int i = 0; i < portalParticleMultiplier; i++)
+                                for (int i = 0; i < portalParticleMultiplier; i++)
                                 {
                                     float var7 = x + 1 - storedX;
                                     float var9 = y - storedY;
                                     float var11 = z - storedZ;
-                                    int distance = (int)MathHelper.sqrt_double(var7 * var7 + var9 * var9 + var11 * var11);
+                                    int distance = (int) MathHelper.sqrt_double(var7 * var7 + var9 * var9 + var11 * var11);
                                     
-                                    SCParticle.spawnAstralEnergyBeamFX(new Coord(storedX + 0.5, storedY + 0.5, storedZ + 0.5), new Coord(x + 1 + 0.5, y + 0.5, z + 0.5), age, true, false, false);
+                                    SCParticle.spawnAstralEnergyBeamFX(new Coord(storedX + 0.5, storedY + 0.5, storedZ + 0.5), new Coord(x + 1 + 0.5,
+                                            y + 0.5, z + 0.5), age, true, false, false);
                                 }
                                 
-                                SCParticle.spawnAstralEnergyFX(storedX + 0.5, storedY + 0.5, storedZ + 0.5, storedX + 0.5, storedY + 0.5, storedZ + 0.5, age, true, false, false, false);
+                                SCParticle.spawnAstralEnergyFX(storedX + 0.5, storedY + 0.5, storedZ + 0.5, storedX + 0.5, storedY + 0.5,
+                                        storedZ + 0.5, age, true, false, false, false);
                             }
                             
                             world.playSoundEffect(x + 1, y, z, "mob.endermen.portal", 0.5f, 1.0f);
-                        } else {
+                        } else
+                        {
                             player.addChatMessage("\247oThere is no block at the origin.");
                         }
-                    } break;
+                    }
+                        break;
                     
-                    case 2 : {
-                        if(world.blockExists(storedX, storedY, storedZ))
+                    case 2:
+                    {
+                        if (world.blockExists(storedX, storedY, storedZ))
                         {
                             int id = world.getBlockId(storedX, storedY, storedZ);
                             world.setBlock(x, y, z - 1, id, world.getBlockMetadata(storedX, storedY, storedZ), 0x02);
                             world.setBlock(storedX, storedY, storedZ, 0);
                             
-                            if(!world.isRemote)
+                            if (!world.isRemote)
                             {
-                                for(int i = 0; i < portalParticleMultiplier; i++)
+                                for (int i = 0; i < portalParticleMultiplier; i++)
                                 {
                                     float var7 = x - storedX;
                                     float var9 = y - storedY;
                                     float var11 = z - 1 - storedZ;
-                                    int distance = (int)MathHelper.sqrt_double(var7 * var7 + var9 * var9 + var11 * var11);
+                                    int distance = (int) MathHelper.sqrt_double(var7 * var7 + var9 * var9 + var11 * var11);
                                     
-                                    SCParticle.spawnAstralEnergyBeamFX(new Coord(storedX + 0.5, storedY + 0.5, storedZ + 0.5), new Coord(x + 0.5, y + 0.5, z - 1 + 0.5), age, true, false, false);
+                                    SCParticle.spawnAstralEnergyBeamFX(new Coord(storedX + 0.5, storedY + 0.5, storedZ + 0.5), new Coord(x + 0.5,
+                                            y + 0.5, z - 1 + 0.5), age, true, false, false);
                                 }
                                 
-                                SCParticle.spawnAstralEnergyFX(storedX + 0.5, storedY + 0.5, storedZ + 0.5, storedX + 0.5, storedY + 0.5, storedZ + 0.5, age, true, false, false, false);
+                                SCParticle.spawnAstralEnergyFX(storedX + 0.5, storedY + 0.5, storedZ + 0.5, storedX + 0.5, storedY + 0.5,
+                                        storedZ + 0.5, age, true, false, false, false);
                             }
                             
                             world.playSoundEffect(x, y, z - 1, "mob.endermen.portal", 0.5f, 1.0f);
-                        } else {
+                        } else
+                        {
                             player.addChatMessage("\247oThere is no block at the origin.");
                         }
-                    } break;
+                    }
+                        break;
                     
-                    case 4 : {
-                        if(world.blockExists(storedX, storedY, storedZ))
+                    case 4:
+                    {
+                        if (world.blockExists(storedX, storedY, storedZ))
                         {
                             int id = world.getBlockId(storedX, storedY, storedZ);
                             world.setBlock(x - 1, y, z, id, world.getBlockMetadata(storedX, storedY, storedZ), 0x02);
                             world.setBlock(storedX, storedY, storedZ, 0);
                             
-                            if(!world.isRemote)
+                            if (!world.isRemote)
                             {
-                                for(int i = 0; i < portalParticleMultiplier; i++)
+                                for (int i = 0; i < portalParticleMultiplier; i++)
                                 {
                                     float var7 = x - 1 - storedX;
                                     float var9 = y - storedY;
                                     float var11 = z - storedZ;
-                                    int distance = (int)MathHelper.sqrt_double(var7 * var7 + var9 * var9 + var11 * var11);
+                                    int distance = (int) MathHelper.sqrt_double(var7 * var7 + var9 * var9 + var11 * var11);
                                     
-                                    SCParticle.spawnAstralEnergyBeamFX(new Coord(storedX + 0.5, storedY + 0.5, storedZ + 0.5), new Coord(x - 1 + 0.5, y + 0.5, z + 0.5), age, true, false, false);
+                                    SCParticle.spawnAstralEnergyBeamFX(new Coord(storedX + 0.5, storedY + 0.5, storedZ + 0.5), new Coord(x - 1 + 0.5,
+                                            y + 0.5, z + 0.5), age, true, false, false);
                                 }
                                 
-                                SCParticle.spawnAstralEnergyFX(storedX + 0.5, storedY + 0.5, storedZ + 0.5, storedX + 0.5, storedY + 0.5, storedZ + 0.5, age, true, false, false, false);
+                                SCParticle.spawnAstralEnergyFX(storedX + 0.5, storedY + 0.5, storedZ + 0.5, storedX + 0.5, storedY + 0.5,
+                                        storedZ + 0.5, age, true, false, false, false);
                             }
                             
                             world.playSoundEffect(x - 1, y, z, "mob.endermen.portal", 0.5f, 1.0f);
-                        } else {
+                        } else
+                        {
                             player.addChatMessage("\247oThere is no block at the origin.");
                         }
-                    } break;
+                    }
+                        break;
                     
-                    case 3 : {
-                        if(world.blockExists(storedX, storedY, storedZ))
+                    case 3:
+                    {
+                        if (world.blockExists(storedX, storedY, storedZ))
                         {
                             int id = world.getBlockId(storedX, storedY, storedZ);
                             world.setBlock(x, y, z + 1, id, world.getBlockMetadata(storedX, storedY, storedZ), 0x02);
                             world.setBlock(storedX, storedY, storedZ, 0);
                             
-                            if(!world.isRemote)
+                            if (!world.isRemote)
                             {
-                                for(int i = 0; i < portalParticleMultiplier; i++)
+                                for (int i = 0; i < portalParticleMultiplier; i++)
                                 {
                                     float var7 = x - storedX;
                                     float var9 = y - storedY;
                                     float var11 = z + 1 - storedZ;
-                                    int distance = (int)MathHelper.sqrt_double(var7 * var7 + var9 * var9 + var11 * var11);
+                                    int distance = (int) MathHelper.sqrt_double(var7 * var7 + var9 * var9 + var11 * var11);
                                     
-                                    SCParticle.spawnAstralEnergyBeamFX(new Coord(storedX + 0.5, storedY + 0.5, storedZ + 0.5), new Coord(x + 0.5, y + 0.5, z + 1 + 0.5), age, true, false, false);
+                                    SCParticle.spawnAstralEnergyBeamFX(new Coord(storedX + 0.5, storedY + 0.5, storedZ + 0.5), new Coord(x + 0.5,
+                                            y + 0.5, z + 1 + 0.5), age, true, false, false);
                                 }
                                 
-                                SCParticle.spawnAstralEnergyFX(storedX + 0.5, storedY + 0.5, storedZ + 0.5, storedX + 0.5, storedY + 0.5, storedZ + 0.5, age, true, false, false, false);
+                                SCParticle.spawnAstralEnergyFX(storedX + 0.5, storedY + 0.5, storedZ + 0.5, storedX + 0.5, storedY + 0.5,
+                                        storedZ + 0.5, age, true, false, false, false);
                             }
                             
                             world.playSoundEffect(x, y, z + 1, "mob.endermen.portal", 0.5f, 1.0f);
-                        } else {
+                        } else
+                        {
                             player.addChatMessage("\247oThere is no block at the origin.");
                         }
-                    } break;
+                    }
+                        break;
                     
-                    case 1 : {
-                        if(world.blockExists(storedX, storedY, storedZ))
+                    case 1:
+                    {
+                        if (world.blockExists(storedX, storedY, storedZ))
                         {
                             int id = world.getBlockId(storedX, storedY, storedZ);
                             world.setBlock(x, y + 1, z, id, world.getBlockMetadata(storedX, storedY, storedZ), 0x02);
                             world.setBlock(storedX, storedY, storedZ, 0);
                             
-                            if(!world.isRemote)
+                            if (!world.isRemote)
                             {
-                                for(int i = 0; i < portalParticleMultiplier; i++)
+                                for (int i = 0; i < portalParticleMultiplier; i++)
                                 {
                                     float var7 = x - storedX;
                                     float var9 = y + 1 - storedY;
                                     float var11 = z - storedZ;
-                                    int distance = (int)MathHelper.sqrt_double(var7 * var7 + var9 * var9 + var11 * var11);
+                                    int distance = (int) MathHelper.sqrt_double(var7 * var7 + var9 * var9 + var11 * var11);
                                     
-                                    SCParticle.spawnAstralEnergyBeamFX(new Coord(storedX + 0.5, storedY + 0.5, storedZ + 0.5), new Coord(x + 0.5, y + 1 + 0.5, z + 0.5), age, true, false, false);
+                                    SCParticle.spawnAstralEnergyBeamFX(new Coord(storedX + 0.5, storedY + 0.5, storedZ + 0.5), new Coord(x + 0.5,
+                                            y + 1 + 0.5, z + 0.5), age, true, false, false);
                                 }
                                 
-                                SCParticle.spawnAstralEnergyFX(storedX + 0.5, storedY + 0.5, storedZ + 0.5, storedX + 0.5, storedY + 0.5, storedZ + 0.5, age, true, false, false, false);
+                                SCParticle.spawnAstralEnergyFX(storedX + 0.5, storedY + 0.5, storedZ + 0.5, storedX + 0.5, storedY + 0.5,
+                                        storedZ + 0.5, age, true, false, false, false);
                             }
                             
                             world.playSoundEffect(x, y + 1, z, "mob.endermen.portal", 0.5f, 1.0f);
-                        } else {
+                        } else
+                        {
                             player.addChatMessage("\247oThere is no block at the origin.");
                         }
-                    } break;
+                    }
+                        break;
                     
-                    case 0 : {
-                        if(world.blockExists(storedX, storedY, storedZ))
+                    case 0:
+                    {
+                        if (world.blockExists(storedX, storedY, storedZ))
                         {
                             int id = world.getBlockId(storedX, storedY, storedZ);
                             world.setBlock(x, y - 1, z, id, world.getBlockMetadata(storedX, storedY, storedZ), 0x02);
                             world.setBlock(storedX, storedY, storedZ, 0);
                             
-                            if(!world.isRemote)
+                            if (!world.isRemote)
                             {
-                                for(int i = 0; i < portalParticleMultiplier; i++)
+                                for (int i = 0; i < portalParticleMultiplier; i++)
                                 {
                                     float var7 = x - storedX;
                                     float var9 = y - 1 - storedY;
                                     float var11 = z - storedZ;
-                                    int distance = (int)MathHelper.sqrt_double(var7 * var7 + var9 * var9 + var11 * var11);
+                                    int distance = (int) MathHelper.sqrt_double(var7 * var7 + var9 * var9 + var11 * var11);
                                     
-                                    SCParticle.spawnAstralEnergyBeamFX(new Coord(storedX + 0.5, storedY + 0.5, storedZ + 0.5), new Coord(x + 0.5, y - 1 + 0.5, z + 0.5), age, true, false, false);
+                                    SCParticle.spawnAstralEnergyBeamFX(new Coord(storedX + 0.5, storedY + 0.5, storedZ + 0.5), new Coord(x + 0.5,
+                                            y - 1 + 0.5, z + 0.5), age, true, false, false);
                                 }
                                 
-                                SCParticle.spawnAstralEnergyFX(storedX + 0.5, storedY + 0.5, storedZ + 0.5, storedX + 0.5, storedY + 0.5, storedZ + 0.5, age, true, false, false, false);
+                                SCParticle.spawnAstralEnergyFX(storedX + 0.5, storedY + 0.5, storedZ + 0.5, storedX + 0.5, storedY + 0.5,
+                                        storedZ + 0.5, age, true, false, false, false);
                             }
                             
                             world.playSoundEffect(x, y - 1, z, "mob.endermen.portal", 0.5f, 1.0f);
-                        } else {
+                        } else
+                        {
                             player.addChatMessage("\247oThere is no block at the origin.");
                         }
-                    } break;
+                    }
+                        break;
                 }
                 
                 setHasStoredCoords(stack, false);
@@ -252,7 +285,7 @@ public class ModeBlockTeleport extends GauntletMode {
     {
         NBTHelper.setInt(NBTHelper.getNBTCompoundForItemStack(stack), NBT_TAG_STORED_X_COORD, x);
     }
-
+    
     public void setStoredYCoord(ItemStack stack, int y)
     {
         NBTHelper.setInt(NBTHelper.getNBTCompoundForItemStack(stack), NBT_TAG_STORED_Y_COORD, y);
@@ -267,7 +300,7 @@ public class ModeBlockTeleport extends GauntletMode {
     {
         return NBTHelper.getInt(NBTHelper.getNBTCompoundForItemStack(stack), NBT_TAG_STORED_X_COORD);
     }
-
+    
     public int getStoredYCoord(ItemStack stack)
     {
         return NBTHelper.getInt(NBTHelper.getNBTCompoundForItemStack(stack), NBT_TAG_STORED_Y_COORD);
@@ -277,22 +310,23 @@ public class ModeBlockTeleport extends GauntletMode {
     {
         return NBTHelper.getInt(NBTHelper.getNBTCompoundForItemStack(stack), NBT_TAG_STORED_Z_COORD);
     }
-
+    
     @Override
     public void onGauntletItemUpdateTick(ItemStack stack, EntityPlayer player, World world, int slot, boolean isCurrentItem)
-    {}
-
+    {
+    }
+    
     @Override
     public int energyRequired(EnumUseType type, EntityPlayer player)
     {
-        if(type.equals(EnumUseType.BLOCK_RIGHT_CLICK))
+        if (type.equals(EnumUseType.BLOCK_RIGHT_CLICK))
         {
             return 10;
         }
         
         return 0;
     }
-
+    
     @Override
     public void addInfoToItemMouseover(EntityPlayer player, ItemStack stack, boolean isSneaking, List list)
     {
@@ -302,10 +336,11 @@ public class ModeBlockTeleport extends GauntletMode {
         
         list.add("Coordinates valid: ");
         
-        if(player.worldObj.blockExists(this.getStoredXCoord(stack), this.getStoredYCoord(stack), this.getStoredZCoord(stack)))
+        if (player.worldObj.blockExists(this.getStoredXCoord(stack), this.getStoredYCoord(stack), this.getStoredZCoord(stack)))
         {
             list.add(" True");
-        } else {
+        } else
+        {
             list.add(" False");
         }
     }

@@ -11,28 +11,31 @@ import net.minecraft.item.EnumAction;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
-public class ModeHealing extends GauntletMode {
-    public ModeHealing() {
+public class ModeHealing extends GauntletMode
+{
+    public ModeHealing()
+    {
         super(AstralManager.getNextAvailableId(), "Wounded Healing", "");
         this.hasItemUse = true;
         this.useAction = EnumAction.eat;
         this.useActionDuration = 72000;
     }
-
+    
     @Override
     public boolean onUse(EnumUseType type, ItemStack stack, World world, EntityPlayer player, EntityLivingBase living, int x, int y, int z, int side)
     {
-        if(type.equals(EnumUseType.ITEM_USE))
+        if (type.equals(EnumUseType.ITEM_USE))
         {
-            if(!(player.prevHealth >= 20))
+            if (!(player.prevHealth >= 20))
             {
                 player.setEntityHealth(player.prevHealth + 1);
                 
-                if(world.isRemote)
+                if (world.isRemote)
                 {
                     for (int i = 0; i < 8; ++i)
                     {
-                        world.spawnParticle("portal", player.posX, player.posY - 1 + world.rand.nextDouble() * 2.0D, player.posZ, world.rand.nextGaussian(), 0.0D, world.rand.nextGaussian());
+                        world.spawnParticle("portal", player.posX, player.posY - 1 + world.rand.nextDouble() * 2.0D, player.posZ, world.rand
+                                .nextGaussian(), 0.0D, world.rand.nextGaussian());
                     }
                 }
                 
@@ -44,23 +47,25 @@ public class ModeHealing extends GauntletMode {
         
         return false;
     }
-
+    
     @Override
     public void onGauntletItemUpdateTick(ItemStack stack, EntityPlayer player, World world, int slot, boolean isCurrentItem)
-    {}
-
+    {
+    }
+    
     @Override
     public int energyRequired(EnumUseType type, EntityPlayer player)
     {
-        if(type.equals(EnumUseType.ITEM_USE))
+        if (type.equals(EnumUseType.ITEM_USE))
         {
             return 10;
         }
         
         return 0;
     }
-
+    
     @Override
     public void addInfoToItemMouseover(EntityPlayer player, ItemStack stack, boolean isSneaking, List list)
-    {}
+    {
+    }
 }

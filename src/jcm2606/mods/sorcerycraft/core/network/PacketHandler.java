@@ -8,7 +8,8 @@ import net.minecraft.network.packet.Packet250CustomPayload;
 import cpw.mods.fml.common.network.IPacketHandler;
 import cpw.mods.fml.common.network.Player;
 
-public class PacketHandler implements IPacketHandler {
+public class PacketHandler implements IPacketHandler
+{
     public static final String CHANNEL_SC = "Mod_SC";
     
     @Override
@@ -17,7 +18,7 @@ public class PacketHandler implements IPacketHandler {
         PacketBase packetBase = PacketType.buildPacket(packet.data);
         
         PacketRecieveEvent packetRecievedEvent = new PacketRecieveEvent(packet.channel, packet.data, packetBase);
-        CompatContainerSC.postUpdateToSubContainers(HandlerMethodID.PACKET_RECIEVE, packetRecievedEvent);
+        CompatContainerSC.postUpdate(HandlerMethodID.PACKET_RECIEVE, packetRecievedEvent);
         
         packetBase.execute(manager, player);
     }

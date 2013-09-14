@@ -11,7 +11,8 @@ import net.minecraft.item.EnumAction;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
-public abstract class GauntletMode {
+public abstract class GauntletMode
+{
     public String name = "ERR";
     public int id = -1;
     public String icon = Reference.PATH_TEXTURES_GUI_HUD + "astral/mode_blank";
@@ -38,13 +39,19 @@ public abstract class GauntletMode {
      * @param stack
      * @param world
      * @param player
-     * @param living (Only for entity attacking uses)
-     * @param x (Only for coord-based uses)
-     * @param y (Only for coord-based uses)
-     * @param z (Only for coord-based uses)
-     * @param side (Only for coord-based uses)
+     * @param living
+     *            (Only for entity attacking uses)
+     * @param x
+     *            (Only for coord-based uses)
+     * @param y
+     *            (Only for coord-based uses)
+     * @param z
+     *            (Only for coord-based uses)
+     * @param side
+     *            (Only for coord-based uses)
      */
-    public abstract boolean onUse(EnumUseType type, ItemStack stack, World world, EntityPlayer player, EntityLivingBase living, int x, int y, int z, int side);
+    public abstract boolean onUse(EnumUseType type, ItemStack stack, World world, EntityPlayer player, EntityLivingBase living, int x, int y, int z,
+            int side);
     
     /**
      * Hook for the update ticks of the Astral Gauntlet item.
@@ -56,17 +63,19 @@ public abstract class GauntletMode {
      * @param isCurrentItem
      */
     public abstract void onGauntletItemUpdateTick(ItemStack stack, EntityPlayer player, World world, int slot, boolean isCurrentItem);
-
+    
     /**
      * Returns the amount of energy required for this mode.
      * 
-     * @param type The mode type.
+     * @param type
+     *            The mode type.
      * @param player
      */
     public abstract int energyRequired(EnumUseType type, EntityPlayer player);
     
     /**
-     * Used to add custom lines of information to the Astral Gauntlet's mouseover popup.
+     * Used to add custom lines of information to the Astral Gauntlet's
+     * mouseover popup.
      * 
      * @param player
      * @param stack
@@ -77,17 +86,17 @@ public abstract class GauntletMode {
     
     public void useEnergy(EntityPlayer player, EnumUseType type)
     {
-        for(int i = 0; i < player.inventory.mainInventory.length; i++)
+        for (int i = 0; i < player.inventory.mainInventory.length; i++)
         {
             ItemStack stack = player.inventory.mainInventory[i];
             
-            if(stack != null)
+            if (stack != null)
             {
-                if(stack.getItem() == SCObjects.astralenergycell)
+                if (stack.getItem() == SCObjects.astralenergycell)
                 {
                     ItemAstralEnergyCell cell = (ItemAstralEnergyCell) stack.getItem();
                     
-                    if((1000 - cell.getEnergy(stack)) >= this.energyRequired(type, player))
+                    if ((1000 - cell.getEnergy(stack)) >= this.energyRequired(type, player))
                     {
                         cell.setEnergy(stack, cell.getEnergy(stack) + this.energyRequired(type, player));
                         break;
@@ -95,6 +104,6 @@ public abstract class GauntletMode {
                 }
             }
         }
-                    
+        
     }
 }

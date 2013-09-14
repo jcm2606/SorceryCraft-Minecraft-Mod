@@ -7,22 +7,24 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
-public class CraftingHandlerMain extends CraftingHandlerBase {
+public class CraftingHandlerMain extends CraftingHandlerBase
+{
     @Override
     public void onCraft(ItemStack stack, Object result, EntityPlayer player)
-    {}
-
+    {
+    }
+    
     @Override
     public void onCraftingMatrixChange(EntityPlayer player, ItemStack stack, Item item, ItemStack resultStack, int slot, IInventory iinv)
     {
-        if(item == SCObjects.creationtablet)
+        if (item == SCObjects.creationtablet)
         {
             keepItemInMatrix(SCObjects.creationtablet, slot, iinv);
         }
         
-        if(item == SCObjects.vordictool)
+        if (item == SCObjects.vordictool)
         {
-            if(stack.getItemDamage() >= stack.getMaxDamage())
+            if (stack.getItemDamage() >= stack.getMaxDamage())
             {
                 return;
             }
@@ -30,21 +32,22 @@ public class CraftingHandlerMain extends CraftingHandlerBase {
             keepItemInMatrixAndDamage(stack, slot, iinv);
         }
         
-        if(item == SCObjects.ringmagma)
+        if (item == SCObjects.ringmagma)
         {
-            if(stack.getItemDamage() >= stack.getMaxDamage())
+            if (stack.getItemDamage() >= stack.getMaxDamage())
             {
                 return;
             }
             
-            if(stack.itemID == Item.gunpowder.itemID || stack.itemID == Item.redstone.itemID || stack.itemID == SCObjects.firepowder.itemID)
+            if (stack.itemID == Item.gunpowder.itemID || stack.itemID == Item.redstone.itemID || stack.itemID == SCObjects.firepowder.itemID)
             {
                 keepItemInMatrixAndDamage(stack, slot, iinv);
             }
         }
     }
-
+    
     @Override
     public void onSmelt(Object result, EntityPlayer player)
-    {}
+    {
+    }
 }

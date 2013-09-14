@@ -8,15 +8,18 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
 
-public class ItemAxeAlchMetal extends SCAxe {
-    public ItemAxeAlchMetal(int par1) {
+public class ItemAxeAlchMetal extends SCAxe
+{
+    public ItemAxeAlchMetal(int par1)
+    {
         super(par1, SCObjects.ALCH_METAL, "toolAxeAlchMetal");
     }
-
+    
     @Override
     public EnumRarity getRarity(ItemStack stack)
     {
-        if (Minecraft.getMinecraft().thePlayer.username.equals("Asyncronous")) {
+        if (Minecraft.getMinecraft().thePlayer.username.equals("Asyncronous"))
+        {
             return RarityHelper.getCustomRarityType(Rarities.EXOTIC);
         }
         return RarityHelper.getCustomRarityType(Rarities.BASIC);

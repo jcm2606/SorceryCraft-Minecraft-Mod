@@ -6,8 +6,10 @@ import jcm2606.mods.sorcerycraft.item.SCItem;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
 
-public class ItemAstralCrystalPlate extends SCItem {
-    public ItemAstralCrystalPlate(int par1) {
+public class ItemAstralCrystalPlate extends SCItem
+{
+    public ItemAstralCrystalPlate(int par1)
+    {
         super(par1, "astralCrystalPlate");
     }
     

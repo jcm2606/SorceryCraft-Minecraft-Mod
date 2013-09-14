@@ -11,10 +11,12 @@ import net.minecraftforge.common.ForgeDirection;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class BlockFlowerGlow extends SCFlower {
+public class BlockFlowerGlow extends SCFlower
+{
     public Icon textureGlow;
     
-    public BlockFlowerGlow(int par1) {
+    public BlockFlowerGlow(int par1)
+    {
         super(par1, "flowerGlowPetal");
         this.renderAsNormalBlock = false;
         this.renderID = RenderID.renderIDGlowpetal;
@@ -35,7 +37,8 @@ public class BlockFlowerGlow extends SCFlower {
     }
     
     /**
-     * Can this block stay at this position.  Similar to canPlaceBlockAt except gets checked often with plants.
+     * Can this block stay at this position. Similar to canPlaceBlockAt except
+     * gets checked often with plants.
      */
     @Override
     public boolean canBlockStay(World par1World, int par2, int par3, int par4)

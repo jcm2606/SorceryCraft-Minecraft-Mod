@@ -20,7 +20,8 @@ public class EnchantmentRottingTouch extends Enchantment
     }
     
     /**
-     * Returns the correct traslated name of the enchantment and the level in roman numbers.
+     * Returns the correct traslated name of the enchantment and the level in
+     * roman numbers.
      */
     @Override
     public String getTranslatedName(int par1)
@@ -32,19 +33,21 @@ public class EnchantmentRottingTouch extends Enchantment
     @ForgeSubscribe
     public void handle(LivingDropsEvent event)
     {
-        if(event.source instanceof EntityDamageSource)
+        if (event.source instanceof EntityDamageSource)
         {
             EntityDamageSource entitySource = (EntityDamageSource) event.source;
             
-            if(entitySource.getSourceOfDamage() instanceof EntityPlayer)
+            if (entitySource.getSourceOfDamage() instanceof EntityPlayer)
             {
                 EntityPlayer player = (EntityPlayer) entitySource.getSourceOfDamage();
                 
-                if(player.getCurrentEquippedItem() != null)
+                if (player.getCurrentEquippedItem() != null)
                 {
-                    if(EnchantmentHelper.getEnchantmentLevel(Enchantments.rottingTouch.effectId, player.getCurrentEquippedItem()) > 0)
+                    if (EnchantmentHelper.getEnchantmentLevel(Enchantments.rottingTouch.effectId, player.getCurrentEquippedItem()) > 0)
                     {
-                        event.drops.add(new EntityItem(event.entityLiving.worldObj, event.entityLiving.posX, event.entityLiving.posY, event.entityLiving.posZ, new ItemStack(Item.rottenFlesh, 1 + event.entityLiving.worldObj.rand.nextInt(event.lootingLevel))));
+                        event.drops.add(new EntityItem(event.entityLiving.worldObj, event.entityLiving.posX, event.entityLiving.posY,
+                                event.entityLiving.posZ, new ItemStack(Item.rottenFlesh, 1 + event.entityLiving.worldObj.rand
+                                        .nextInt(event.lootingLevel))));
                     }
                 }
             }

@@ -1,6 +1,7 @@
 package jcm2606.mods.sorcerycraft.api.compat;
 
-public class HandlerMethodID {
+public class HandlerMethodID
+{
     public static final int ALCH_STONE_TRANSMUTE = 0;
     public static final int ALCH_STONE_TRANSMUTE_FAIL = 1;
     public static final int ASTRAL_GAUNTLET_MODE_SWITCH = 2;

@@ -8,7 +8,8 @@ import net.minecraft.util.Icon;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class SCFlower extends BlockFlower {
+public class SCFlower extends BlockFlower
+{
     protected Icon[] iconBuffer;
     public String name;
     public boolean useIconIndex;
@@ -16,7 +17,8 @@ public class SCFlower extends BlockFlower {
     public boolean renderAsNormalBlock = true;
     public boolean isOpaqueCube = true;
     
-    public SCFlower(int par1, String name) {
+    public SCFlower(int par1, String name)
+    {
         super(par1, Material.plants);
         this.name = name;
         this.setUnlocalizedName("sc" + name);
@@ -30,24 +32,27 @@ public class SCFlower extends BlockFlower {
     @SideOnly(Side.CLIENT)
     public void registerIcons(IconRegister par1IconRegister)
     {
-        if(useIconIndex)
+        if (useIconIndex)
         {
             this.blockIcon = par1IconRegister.registerIcon("SorceryCraft:" + name);
         }
     }
     
     @Override
-    public int getRenderType() {
+    public int getRenderType()
+    {
         return renderID;
     }
     
     @Override
-    public boolean isOpaqueCube() {
+    public boolean isOpaqueCube()
+    {
         return isOpaqueCube;
     }
-
+    
     @Override
-    public boolean renderAsNormalBlock() {
+    public boolean renderAsNormalBlock()
+    {
         return renderAsNormalBlock;
     }
 }

@@ -4,7 +4,8 @@ import jcm2606.mods.jccore.compat.container.ContainerEventBase;
 import jcm2606.mods.sorcerycraft.api.compat.HandlerMethodID;
 import jcm2606.mods.sorcerycraft.core.network.PacketBase;
 
-public class PacketRecieveEvent extends ContainerEventBase {
+public class PacketRecieveEvent extends ContainerEventBase
+{
     public String packetChannel;
     public byte[] packetData;
     public PacketBase packet;

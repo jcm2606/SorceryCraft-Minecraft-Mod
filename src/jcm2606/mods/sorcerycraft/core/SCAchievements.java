@@ -5,18 +5,19 @@ import net.minecraft.stats.Achievement;
 import net.minecraftforge.common.AchievementPage;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 
-public class SCAchievements {
+public class SCAchievements
+{
     public static AchievementPage scAchPage;
-
+    
     public static Achievement modUseFirst;
     public static Achievement vordicDustGet;
     public static Achievement refVordicDustGet;
     public static Achievement vimDustGet;
     public static Achievement alchStoneGet;
     public static Achievement arcaneWorkbenchGet;
-
+    
     public static int START_ID;
-
+    
     public static void loadAchievements()
     {
         modUseFirst = new Achievement(START_ID, "modUseFirst", 0, 0, SCObjects.alchbook, null).registerAchievement();
@@ -26,7 +27,7 @@ public class SCAchievements {
         alchStoneGet = new Achievement(START_ID + 4, "alchStoneGet", 4, -2, SCObjects.alchstone, vimDustGet).registerAchievement();
         arcaneWorkbenchGet = new Achievement(START_ID + 5, "arcaneWorkbenchGet", -1, -2, SCObjects.arcaneworkbench, alchStoneGet)
                 .registerAchievement();
-
+        
         /*
          * Ach' Information Setting
          */
@@ -37,28 +38,29 @@ public class SCAchievements {
                 "Combine some Vordic Dust, Stabilised Vordic Dust and some Redstone to create Vim Powder.");
         addAchInfo("alchStoneGet", "An alchemist's base construct", "Construct an Arcane Stone.");
         addAchInfo("arcaneWorkbenchGet", "Not just a workbench...", "Create yourself an Arcane Workbench.");
-
+        
         /*
          * Ach' Page
          */
-
-        Achievement[] achList = new Achievement[] { modUseFirst, vordicDustGet, refVordicDustGet, vimDustGet, alchStoneGet, arcaneWorkbenchGet };
-
+        
+        Achievement[] achList = new Achievement[]
+        { modUseFirst, vordicDustGet, refVordicDustGet, vimDustGet, alchStoneGet, arcaneWorkbenchGet };
+        
         scAchPage = new AchievementPage("SorceryCraft", achList);
         AchievementPage.registerAchievementPage(scAchPage);
     }
-
+    
     public static void loadAchievementIDs()
     {
         START_ID = Config.getAchievementId("achievementIDStartValue", 1000).getInt();
     }
-
+    
     private static void addAchInfo(String ach, String name, String desc)
     {
         addAchievementName(ach, name);
         addAchievementDesc(ach, desc);
     }
-
+    
     /**
      * Add's a localization for the name of the given achievement.
      * 
@@ -69,7 +71,7 @@ public class SCAchievements {
     {
         LanguageRegistry.instance().addStringLocalization("achievement." + ach, "en_US", name);
     }
-
+    
     /**
      * Add's a localization for the description of the given achievement.
      * 

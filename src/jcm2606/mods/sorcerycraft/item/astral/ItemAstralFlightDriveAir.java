@@ -16,10 +16,12 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
-public class ItemAstralFlightDriveAir extends SCItemShine {
+public class ItemAstralFlightDriveAir extends SCItemShine
+{
     public int ticksUsedFor = 0;
     
-    public ItemAstralFlightDriveAir(int par1) {
+    public ItemAstralFlightDriveAir(int par1)
+    {
         super(par1, "astralFlightDriveAir");
         this.setMaxStackSize(1);
     }
@@ -31,20 +33,24 @@ public class ItemAstralFlightDriveAir extends SCItemShine {
     }
     
     @Override
-    public void onUpdate(ItemStack stack, World world, Entity entity, int par4,
-            boolean par5) {
-        if (entity instanceof EntityLivingBase) {
+    public void onUpdate(ItemStack stack, World world, Entity entity, int par4, boolean par5)
+    {
+        if (entity instanceof EntityLivingBase)
+        {
             EntityLivingBase living = (EntityLiving) entity;
-
-            if (living instanceof EntityPlayer) {
+            
+            if (living instanceof EntityPlayer)
+            {
                 EntityPlayer player = (EntityPlayer) living;
-
-                for (int i = 0; i <= 8; i++) {
+                
+                for (int i = 0; i <= 8; i++)
+                {
                     ItemStack item = player.inventory.getStackInSlot(i);
-
-                    if (item != null && item == stack) {
+                    
+                    if (item != null && item == stack)
+                    {
                         
-                        if(!(AstralManager.getTotalEnergyForPlayer(player) > 0) && !player.capabilities.isCreativeMode)
+                        if (!(AstralManager.getTotalEnergyForPlayer(player) > 0) && !player.capabilities.isCreativeMode)
                         {
                             return;
                         }
@@ -52,9 +58,9 @@ public class ItemAstralFlightDriveAir extends SCItemShine {
                         player.capabilities.allowFlying = true;
                         player.fallDistance = 0.0f;
                         
-                        if(player.capabilities.isFlying)
+                        if (player.capabilities.isFlying)
                         {
-                            for(int j = 0; j < 4; j++)
+                            for (int j = 0; j < 4; j++)
                             {
                                 int divider = 2;
                                 
@@ -66,19 +72,19 @@ public class ItemAstralFlightDriveAir extends SCItemShine {
                                 world.spawnParticle("cloud", player.posX, player.posY - 1.8, player.posZ, mx, 0, mz);
                             }
                             
-                            if(player.inventory.hasItem(SCObjects.astralenergycell.itemID))
+                            if (player.inventory.hasItem(SCObjects.astralenergycell.itemID))
                             {
-                                for(int j = 0; j < player.inventory.mainInventory.length; j++)
+                                for (int j = 0; j < player.inventory.mainInventory.length; j++)
                                 {
                                     ItemStack stack2 = player.inventory.mainInventory[j];
                                     
-                                    if(stack2 != null)
+                                    if (stack2 != null)
                                     {
-                                        if(stack2.getItem() == SCObjects.astralenergycell)
+                                        if (stack2.getItem() == SCObjects.astralenergycell)
                                         {
                                             ItemAstralEnergyCell cell = (ItemAstralEnergyCell) stack2.getItem();
                                             
-                                            if(cell.getEnergy(stack2) <= 999)
+                                            if (cell.getEnergy(stack2) <= 999)
                                             {
                                                 cell.setEnergy(stack2, cell.getEnergy(stack2) + 1);
                                             }
@@ -94,10 +100,12 @@ public class ItemAstralFlightDriveAir extends SCItemShine {
     }
     
     /**
-     * allows items to add custom lines of information to the mouseover description
+     * allows items to add custom lines of information to the mouseover
+     * description
      */
     @Override
-    public void addInformation(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, List par3List, boolean par4) {
+    public void addInformation(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, List par3List, boolean par4)
+    {
         par3List.add("Air (Free Flight)");
     }
 }

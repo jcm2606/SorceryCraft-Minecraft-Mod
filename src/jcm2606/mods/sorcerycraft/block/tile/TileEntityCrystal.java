@@ -1,5 +1,7 @@
 package jcm2606.mods.sorcerycraft.block.tile;
 
-import net.minecraft.tileentity.TileEntity;
+import jcm2606.mods.jccore.tile.TileEntityJC;
 
-public class TileEntityCrystal extends TileEntity {}
+public class TileEntityCrystal extends TileEntityJC
+{
+}

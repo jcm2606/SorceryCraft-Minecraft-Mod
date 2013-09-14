@@ -1,27 +1,29 @@
 package jcm2606.mods.sorcerycraft.core.helper;
 
-import jcm2606.mods.sorcerycraft.manager.CraftingManagerAlchLectern;
-import jcm2606.mods.sorcerycraft.manager.CraftingManagerInfuseTablet;
+import jcm2606.mods.sorcerycraft.manager.CraftingManagerArcaneWorkbench;
+import jcm2606.mods.sorcerycraft.manager.CraftingManagerAstralInfuser;
 import net.minecraft.item.ItemStack;
 
-public class RecipeHandler {
-	public static class InfusionTabletHelper {
-		public static void addRecipe(ItemStack stack, Object... input) {
-			CraftingManagerInfuseTablet.addRecipe(stack, input);
-		}
-
-		public static void addShapelessRecipe(ItemStack stack, Object... input) {
-			CraftingManagerInfuseTablet.addShapelessRecipe(stack, input);
-		}
-	}
-
-	public static class ArcaneWorkbenchHelper {
-		public static void addRecipe(ItemStack stack, Object... input) {
-			CraftingManagerAlchLectern.addRecipe(stack, input);
-		}
-
-		public static void addShapelessRecipe(ItemStack stack, Object... input) {
-			CraftingManagerAlchLectern.addShapelessRecipe(stack, input);
-		}
-	}
+public class RecipeHandler
+{
+    public static class ArcaneWorkbenchHelper
+    {
+        public static void addRecipe(ItemStack stack, Object... input)
+        {
+            CraftingManagerArcaneWorkbench.addRecipe(stack, input);
+        }
+        
+        public static void addShapelessRecipe(ItemStack stack, Object... input)
+        {
+            CraftingManagerArcaneWorkbench.addShapelessRecipe(stack, input);
+        }
+    }
+    
+    public static class AstralInfuserHelper
+    {
+        public static void addInfusion(ItemStack result, ItemStack[] input)
+        {
+            CraftingManagerAstralInfuser.getInstance().addInfusion(result, input);
+        }
+    }
 }

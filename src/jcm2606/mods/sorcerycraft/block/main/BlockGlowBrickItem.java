@@ -9,11 +9,14 @@ import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 
-public class BlockGlowBrickItem extends ItemBlock {
-    public final String[] colours = new String[] { "Black", "Red", "Green", "Brown", "Blue", "Dark Purple", "Cyan", "Grey", "Dark Grey", "Pink",
-            "Lime", "Yellow", "Light Blue", "Light Purple", "Orange", "White" };
-
-    public BlockGlowBrickItem(int par1) {
+public class BlockGlowBrickItem extends ItemBlock
+{
+    public final String[] colours = new String[]
+    { "Black", "Red", "Green", "Brown", "Blue", "Dark Purple", "Cyan", "Grey", "Dark Grey", "Pink", "Lime", "Yellow", "Light Blue", "Light Purple",
+            "Orange", "White" };
+    
+    public BlockGlowBrickItem(int par1)
+    {
         super(par1);
         setMaxDamage(0);
         setHasSubtypes(true);
@@ -24,13 +27,13 @@ public class BlockGlowBrickItem extends ItemBlock {
     {
         return RarityHelper.getCustomRarityType(Rarities.BASIC);
     }
-
+    
     @Override
     public int getMetadata(int par1)
     {
         return par1;
     }
-
+    
     @Override
     public void addInformation(ItemStack stack, EntityPlayer par2EntityPlayer, List list, boolean par4)
     {

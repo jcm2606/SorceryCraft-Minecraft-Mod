@@ -5,19 +5,23 @@ import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.ContainerWorkbench;
 import net.minecraft.world.World;
 
-public class ContainerPortableCrafting extends ContainerWorkbench {
-
-    public ContainerPortableCrafting(InventoryPlayer inventoryPlayer, World world, int x, int y, int z) {
+public class ContainerPortableCrafting extends ContainerWorkbench
+{
+    
+    public ContainerPortableCrafting(InventoryPlayer inventoryPlayer, World world, int x, int y, int z)
+    {
         super(inventoryPlayer, world, x, y, z);
     }
-
+    
     @Override
-    public boolean canInteractWith(EntityPlayer var1) {
+    public boolean canInteractWith(EntityPlayer var1)
+    {
         return true;
     }
     
     @Override
-    public void onContainerClosed(EntityPlayer player) {
-    	super.onContainerClosed(player);
+    public void onContainerClosed(EntityPlayer player)
+    {
+        super.onContainerClosed(player);
     }
 }

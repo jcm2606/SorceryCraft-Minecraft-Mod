@@ -1,6 +1,6 @@
 package jcm2606.mods.sorcerycraft.block.astral;
 
-import jcm2606.mods.sorcerycraft.block.tile.astral.TileEntityAstralCraftingNode;
+import jcm2606.mods.sorcerycraft.block.tile.astral.TileAstralCraftingNode;
 import jcm2606.mods.sorcerycraft.core.lib.Rarities;
 import net.minecraft.block.material.Material;
 import net.minecraft.tileentity.TileEntity;
@@ -12,10 +12,10 @@ public class BlockAstralCraftingNode extends BlockAstral
     {
         super(par1, Material.rock, "astralCraftingNode", Rarities.ADVANCED, "astral_crafting_node");
     }
-
+    
     @Override
     public TileEntity createNewTileEntity(World world)
     {
-        return new TileEntityAstralCraftingNode();
+        return new TileAstralCraftingNode();
     }
 }

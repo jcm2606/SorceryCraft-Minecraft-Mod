@@ -4,7 +4,8 @@ import jcm2606.mods.jccore.compat.container.CompatibilityContainer;
 import jcm2606.mods.sorcerycraft.api.AstralManager;
 import jcm2606.mods.sorcerycraft.core.SorceryCraft;
 
-public class CompatContainerSC extends CompatibilityContainer {
+public class CompatContainerSC extends CompatibilityContainer
+{
     private static final AstralManager astralManager = new AstralManager();
     
     @Override
@@ -17,7 +18,7 @@ public class CompatContainerSC extends CompatibilityContainer {
     {
         return astralManager;
     }
-
+    
     @Override
     public String getContainerName()
     {

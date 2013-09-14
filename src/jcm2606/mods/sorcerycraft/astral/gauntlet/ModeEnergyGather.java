@@ -11,8 +11,10 @@ import net.minecraft.item.EnumAction;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
-public class ModeEnergyGather extends GauntletMode {
-    public ModeEnergyGather() {
+public class ModeEnergyGather extends GauntletMode
+{
+    public ModeEnergyGather()
+    {
         super(AstralManager.getNextAvailableId(), "Energy Gathering", "");
         this.useAction = EnumAction.bow;
         this.useActionDuration = 72000;
@@ -22,25 +24,27 @@ public class ModeEnergyGather extends GauntletMode {
     @Override
     public boolean onUse(EnumUseType type, ItemStack stack, World world, EntityPlayer player, EntityLivingBase living, int x, int y, int z, int side)
     {
-        if(type.equals(EnumUseType.ITEM_USE))
+        if (type.equals(EnumUseType.ITEM_USE))
         {
             AstralManager.chargeCellsInInvFromBlocks(stack, player, world);
         }
         
         return false;
     }
-
+    
     @Override
     public void onGauntletItemUpdateTick(ItemStack stack, EntityPlayer player, World world, int slot, boolean isCurrentItem)
-    {}
-
+    {
+    }
+    
     @Override
     public int energyRequired(EnumUseType type, EntityPlayer player)
     {
         return 0;
     }
-
+    
     @Override
     public void addInfoToItemMouseover(EntityPlayer player, ItemStack stack, boolean isSneaking, List list)
-    {}
+    {
+    }
 }

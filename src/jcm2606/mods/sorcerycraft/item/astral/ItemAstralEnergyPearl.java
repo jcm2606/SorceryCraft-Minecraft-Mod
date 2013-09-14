@@ -7,7 +7,6 @@ import jcm2606.mods.sorcerycraft.api.AstralManager;
 import jcm2606.mods.sorcerycraft.core.helper.SCHelper;
 import jcm2606.mods.sorcerycraft.core.lib.Rarities;
 import jcm2606.mods.sorcerycraft.item.SCItemShine;
-import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -15,10 +14,10 @@ import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
-import org.lwjgl.input.Keyboard;
-
-public class ItemAstralEnergyPearl extends SCItemShine {
-    public ItemAstralEnergyPearl(int par1) {
+public class ItemAstralEnergyPearl extends SCItemShine
+{
+    public ItemAstralEnergyPearl(int par1)
+    {
         super(par1, "astralEnergyPearl");
         this.setMaxStackSize(1);
     }
@@ -30,14 +29,15 @@ public class ItemAstralEnergyPearl extends SCItemShine {
     }
     
     @Override
-    public void onUpdate(ItemStack stack, World world, Entity entity, int slot, boolean isCurrentItem) {
-        if(slot <= 8)
+    public void onUpdate(ItemStack stack, World world, Entity entity, int slot, boolean isCurrentItem)
+    {
+        if (slot <= 8)
         {
-            if(entity instanceof EntityLivingBase)
+            if (entity instanceof EntityLivingBase)
             {
                 EntityLivingBase living = (EntityLivingBase) entity;
                 
-                if(living instanceof EntityPlayer)
+                if (living instanceof EntityPlayer)
                 {
                     EntityPlayer player = (EntityPlayer) living;
                     
@@ -51,19 +51,11 @@ public class ItemAstralEnergyPearl extends SCItemShine {
     /**
      * allows items to add custom lines of information to the mouseover description
      */
-    public void addInformation(ItemStack stack, EntityPlayer player, List list,
-            boolean par4) {
-        if(SCHelper.playerHasPerceptionMedallion(player))
+    public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean par4)
+    {
+        if (SCHelper.playerHasPerceptionMedallion(player))
         {
-            if(Keyboard.isKeyDown(Minecraft.getMinecraft().gameSettings.keyBindSneak.keyCode))
-            {
-                list.add("Somehow draws in and gathers");
-                list.add("Astral Energy from surrounding");
-                list.add("sources in an 11x8x11 radius");
-                list.add("around the player.");
-            } else {
-                list.add("<Hold SHIFT>");
-            }
+            list.add("\2478\247oScans 11x8x11 area");
         }
     }
 }
