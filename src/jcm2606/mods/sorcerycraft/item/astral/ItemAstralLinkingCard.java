@@ -2,10 +2,10 @@ package jcm2606.mods.sorcerycraft.item.astral;
 
 import java.util.List;
 
-import jcm2606.mods.jccore.helper.NBTHelper;
-import jcm2606.mods.jccore.helper.RarityHelper;
-import jcm2606.mods.jccore.util.ConvertUtil;
-import jcm2606.mods.jccore.util.Coord;
+import jcm2606.mods.jccore.core.helper.NBTHelper;
+import jcm2606.mods.jccore.core.helper.RarityHelper;
+import jcm2606.mods.jccore.core.util.ConvertUtil;
+import jcm2606.mods.jccore.core.util.Coord;
 import jcm2606.mods.sorcerycraft.api.ILinkable;
 import jcm2606.mods.sorcerycraft.core.lib.Rarities;
 import jcm2606.mods.sorcerycraft.item.SCItem;

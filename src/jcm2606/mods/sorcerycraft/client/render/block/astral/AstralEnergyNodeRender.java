@@ -1,6 +1,6 @@
 package jcm2606.mods.sorcerycraft.client.render.block.astral;
 
-import jcm2606.mods.jccore.util.GeneralUtil;
+import jcm2606.mods.jccore.core.util.GeneralUtil;
 import jcm2606.mods.sorcerycraft.api.energy.IEnergyConsumer;
 import jcm2606.mods.sorcerycraft.block.tile.astral.TileAstralEnergyNode;
 import jcm2606.mods.sorcerycraft.client.model.ModelAstralEnergyNode;

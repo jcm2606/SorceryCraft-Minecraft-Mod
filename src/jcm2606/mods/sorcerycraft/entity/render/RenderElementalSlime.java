@@ -1,6 +1,6 @@
 package jcm2606.mods.sorcerycraft.entity.render;
 
-import jcm2606.mods.jccore.util.ConvertUtil;
+import jcm2606.mods.jccore.core.util.ConvertUtil;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.entity.Entity;

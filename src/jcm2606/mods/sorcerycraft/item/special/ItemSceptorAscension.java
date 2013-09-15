@@ -3,7 +3,7 @@ package jcm2606.mods.sorcerycraft.item.special;
 import java.util.ArrayList;
 import java.util.List;
 
-import jcm2606.mods.jccore.helper.RarityHelper;
+import jcm2606.mods.jccore.core.helper.RarityHelper;
 import jcm2606.mods.sorcerycraft.api.compat.CompatContainerSC;
 import jcm2606.mods.sorcerycraft.api.compat.HandlerMethodID;
 import jcm2606.mods.sorcerycraft.core.helper.SCHelper;

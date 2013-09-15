@@ -1,5 +1,8 @@
 package jcm2606.mods.sorcerycraft.core;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import jcm2606.mods.jccore.core.IProxyCommon;
 import jcm2606.mods.sorcerycraft.astral.gauntlet.ModePyrokenisis;
 import jcm2606.mods.sorcerycraft.block.tile.TileEntityArcaneWorkbench;
@@ -19,12 +22,13 @@ import jcm2606.mods.sorcerycraft.block.tile.astral.TileAstralTotem1;
 import jcm2606.mods.sorcerycraft.block.tile.astral.TileAstralViewer;
 import jcm2606.mods.sorcerycraft.core.handler.CraftingHandlerAchievement;
 import jcm2606.mods.sorcerycraft.core.handler.CraftingHandlerMain;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.common.MinecraftForge;
 import cpw.mods.fml.common.registry.GameRegistry;
 
 public class SCCommonProxy implements IProxyCommon
 {
-    // public static final Map<String, NBTTagCompound>
+    public static final Map<String, NBTTagCompound> entityPropertiesMap = new HashMap<String, NBTTagCompound>();
     
     @Override
     public void loadRendering()
@@ -78,5 +82,15 @@ public class SCCommonProxy implements IProxyCommon
     @Override
     public void loadMobs()
     {
+    }
+    
+    public void savePlayerData(String name, NBTTagCompound tag)
+    {
+        this.entityPropertiesMap.put(name, tag);
+    }
+    
+    public NBTTagCompound getPlayerData(String name)
+    {
+        return this.entityPropertiesMap.remove(name);
     }
 }

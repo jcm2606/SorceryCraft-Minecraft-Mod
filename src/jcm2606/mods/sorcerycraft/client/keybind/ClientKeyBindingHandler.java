@@ -3,7 +3,7 @@ package jcm2606.mods.sorcerycraft.client.keybind;
 import java.util.ArrayList;
 import java.util.EnumSet;
 
-import jcm2606.mods.jccore.keybind.KeyBind;
+import jcm2606.mods.jccore.client.keybind.KeyBind;
 import jcm2606.mods.sorcerycraft.api.IKeyBound;
 import jcm2606.mods.sorcerycraft.core.SorceryCraft;
 import jcm2606.mods.sorcerycraft.core.lib.Reference;

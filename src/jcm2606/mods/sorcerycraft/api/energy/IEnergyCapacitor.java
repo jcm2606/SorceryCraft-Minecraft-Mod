@@ -7,16 +7,6 @@ package jcm2606.mods.sorcerycraft.api.energy;
 public interface IEnergyCapacitor
 {
     /**
-     * @return Total energy storage limit
-     */
-    public int getEnergyLimit();
-    
-    /**
-     * @return Total stored energy
-     */
-    public int getEnergyStored();
-    
-    /**
      * Called when this capacitor requests energy
      * 
      * @param amount
@@ -31,6 +21,16 @@ public interface IEnergyCapacitor
      *            Amount of energy provided
      */
     public int capacitorProvideEnergy(int amount);
+    
+    /**
+     * @return Total energy storage limit
+     */
+    public int getEnergyLimit();
+    
+    /**
+     * @return Total stored energy
+     */
+    public int getEnergyStored();
     
     /**
      * @return Does this capacitor have any energy stored within itself

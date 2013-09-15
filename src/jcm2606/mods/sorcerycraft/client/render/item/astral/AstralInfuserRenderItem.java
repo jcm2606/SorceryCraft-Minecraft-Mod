@@ -1,6 +1,6 @@
 package jcm2606.mods.sorcerycraft.client.render.item.astral;
 
-import jcm2606.mods.jccore.render.ItemRendererBase;
+import jcm2606.mods.jccore.client.render.ItemRendererBase;
 import jcm2606.mods.sorcerycraft.client.model.ModelAstralInfuser;
 import jcm2606.mods.sorcerycraft.core.helper.RenderHandlerSC;
 import jcm2606.mods.sorcerycraft.core.lib.Reference;

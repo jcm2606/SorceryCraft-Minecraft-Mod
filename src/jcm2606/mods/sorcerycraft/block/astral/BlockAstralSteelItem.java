@@ -1,6 +1,6 @@
 package jcm2606.mods.sorcerycraft.block.astral;
 
-import jcm2606.mods.jccore.helper.RarityHelper;
+import jcm2606.mods.jccore.core.helper.RarityHelper;
 import jcm2606.mods.sorcerycraft.core.lib.Rarities;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemBlock;

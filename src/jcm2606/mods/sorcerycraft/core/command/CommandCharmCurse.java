@@ -2,8 +2,8 @@ package jcm2606.mods.sorcerycraft.core.command;
 
 import java.util.Set;
 
-import jcm2606.mods.jccore.util.ChatUtil;
-import jcm2606.mods.jccore.util.ServerUtil;
+import jcm2606.mods.jccore.core.util.ChatUtil;
+import jcm2606.mods.jccore.core.util.ServerUtil;
 import jcm2606.mods.sorcerycraft.core.lib.Commands;
 import jcm2606.mods.sorcerycraft.item.charm.ItemCharm;
 import net.minecraft.command.ICommandSender;

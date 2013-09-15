@@ -1,6 +1,6 @@
 package jcm2606.mods.sorcerycraft.item.special;
 
-import jcm2606.mods.jccore.helper.RarityHelper;
+import jcm2606.mods.jccore.core.helper.RarityHelper;
 import jcm2606.mods.sorcerycraft.core.SorceryCraft;
 import jcm2606.mods.sorcerycraft.core.lib.GuiIDs;
 import jcm2606.mods.sorcerycraft.core.lib.Rarities;

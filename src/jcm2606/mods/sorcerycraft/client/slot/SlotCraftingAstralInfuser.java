@@ -1,6 +1,6 @@
 package jcm2606.mods.sorcerycraft.client.slot;
 
-import jcm2606.mods.jccore.slot.SlotLocked;
+import jcm2606.mods.jccore.client.slot.SlotLocked;
 import net.minecraft.inventory.IInventory;
 
 public class SlotCraftingAstralInfuser extends SlotLocked

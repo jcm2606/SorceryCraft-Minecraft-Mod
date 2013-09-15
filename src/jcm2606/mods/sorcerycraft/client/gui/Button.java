@@ -1,6 +1,6 @@
 package jcm2606.mods.sorcerycraft.client.gui;
 
-import jcm2606.mods.jccore.util.RenderUtil;
+import jcm2606.mods.jccore.core.util.RenderUtil;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiButton;

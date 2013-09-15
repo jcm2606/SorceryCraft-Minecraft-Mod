@@ -1,6 +1,6 @@
 package jcm2606.mods.sorcerycraft.client.render.block;
 
-import jcm2606.mods.jccore.util.RenderUtil;
+import jcm2606.mods.jccore.core.util.RenderUtil;
 import jcm2606.mods.sorcerycraft.block.main.BlockOreVord;
 import jcm2606.mods.sorcerycraft.core.SCObjects;
 import jcm2606.mods.sorcerycraft.core.lib.RenderID;

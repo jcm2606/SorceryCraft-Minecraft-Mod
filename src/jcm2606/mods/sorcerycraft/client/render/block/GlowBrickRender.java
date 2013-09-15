@@ -2,7 +2,7 @@ package jcm2606.mods.sorcerycraft.client.render.block;
 
 import java.awt.Color;
 
-import jcm2606.mods.jccore.util.RenderUtil;
+import jcm2606.mods.jccore.core.util.RenderUtil;
 import jcm2606.mods.sorcerycraft.block.main.BlockGlowBrick;
 import jcm2606.mods.sorcerycraft.core.lib.RenderID;
 import net.minecraft.block.Block;

@@ -3,7 +3,7 @@ package jcm2606.mods.sorcerycraft.core.helper;
 import java.nio.FloatBuffer;
 import java.util.Random;
 
-import jcm2606.mods.jccore.util.RenderUtil;
+import jcm2606.mods.jccore.core.util.RenderUtil;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.ActiveRenderInfo;

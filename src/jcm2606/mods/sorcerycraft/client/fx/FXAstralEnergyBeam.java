@@ -1,6 +1,6 @@
 package jcm2606.mods.sorcerycraft.client.fx;
 
-import jcm2606.mods.jccore.util.RenderUtil;
+import jcm2606.mods.jccore.core.util.RenderUtil;
 import jcm2606.mods.sorcerycraft.core.helper.RenderHandlerSC;
 import jcm2606.mods.sorcerycraft.core.lib.Reference;
 import net.minecraft.client.renderer.Tessellator;

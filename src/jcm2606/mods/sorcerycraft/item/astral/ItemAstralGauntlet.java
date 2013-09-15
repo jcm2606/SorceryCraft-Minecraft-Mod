@@ -2,8 +2,8 @@ package jcm2606.mods.sorcerycraft.item.astral;
 
 import java.util.List;
 
-import jcm2606.mods.jccore.helper.NBTHelper;
-import jcm2606.mods.jccore.helper.RarityHelper;
+import jcm2606.mods.jccore.core.helper.NBTHelper;
+import jcm2606.mods.jccore.core.helper.RarityHelper;
 import jcm2606.mods.sorcerycraft.api.AstralManager;
 import jcm2606.mods.sorcerycraft.api.IKeyBound;
 import jcm2606.mods.sorcerycraft.api.astral.gauntlet.EnumUseType;

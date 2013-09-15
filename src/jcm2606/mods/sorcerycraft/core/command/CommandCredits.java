@@ -1,6 +1,6 @@
 package jcm2606.mods.sorcerycraft.core.command;
 
-import jcm2606.mods.jccore.util.ChatUtil;
+import jcm2606.mods.jccore.core.util.ChatUtil;
 import net.minecraft.command.ICommandSender;
 
 public class CommandCredits

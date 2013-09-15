@@ -1,15 +1,16 @@
 package jcm2606.mods.sorcerycraft.core;
 
 import jcm2606.mods.sorcerycraft.item.charm.ItemCharmMortality;
+import jcm2606.mods.sorcerycraft.research.ResearchData;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
-import net.minecraft.entity.monster.EntityZombie;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
 import net.minecraftforge.event.ForgeSubscribe;
+import net.minecraftforge.event.entity.EntityEvent.EntityConstructing;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.item.ItemTossEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
@@ -56,20 +57,38 @@ public class SCEventHandler
     }
     
     @ForgeSubscribe
+    public void onEntityConstructing(EntityConstructing event)
+    {
+        if (event.entity instanceof EntityPlayer && event.entity.getExtendedProperties(ResearchData.NAME) == null)
+        {
+            event.entity.registerExtendedProperties(ResearchData.NAME, new ResearchData((EntityPlayer) event.entity));
+        }
+    }
+    
+    @ForgeSubscribe
     public void onLivingEntityJoinWorld(EntityJoinWorldEvent event)
     {
         Entity entity = event.entity;
         
-        if (entity instanceof EntityLiving)
+        if (entity instanceof EntityLivingBase)
         {
-            EntityLiving living = (EntityLiving) entity;
+            EntityLivingBase living = (EntityLivingBase) entity;
             
-            if (living instanceof EntityZombie)
+            if (living instanceof EntityPlayer)
             {
-                EntityZombie zombie = (EntityZombie) living;
+                EntityPlayer player = (EntityPlayer) living;
                 
-                int randInt = living.worldObj.rand.nextInt(100);
+                NBTTagCompound playerData = SorceryCraft.proxy.getPlayerData(player.username);
                 
+                if (playerData != null)
+                {
+                    ((ResearchData) player.getExtendedProperties(ResearchData.NAME)).loadNBTData(playerData);
+                }
+                
+                if(!player.worldObj.isRemote)
+                {
+                    ((ResearchData) player.getExtendedProperties(ResearchData.NAME)).syncExtendedProperties();
+                }
             }
         }
     }
@@ -78,6 +97,15 @@ public class SCEventHandler
     public void onLivingEntityDeath(LivingDeathEvent event)
     {
         EntityLivingBase living = event.entityLiving;
+        
+        if (!event.entity.worldObj.isRemote && event.entity instanceof EntityPlayer)
+        {
+            NBTTagCompound playerData = new NBTTagCompound();
+            
+            ((ResearchData) event.entity.getExtendedProperties(ResearchData.NAME)).saveNBTData(playerData);
+            
+            SorceryCraft.proxy.savePlayerData(((EntityPlayer) event.entity).username, playerData);
+        }
     }
     
     @ForgeSubscribe

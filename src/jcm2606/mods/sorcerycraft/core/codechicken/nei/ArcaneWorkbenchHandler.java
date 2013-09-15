@@ -2,7 +2,7 @@ package jcm2606.mods.sorcerycraft.core.codechicken.nei;
 
 import java.util.List;
 
-import jcm2606.mods.jccore.util.GeneralUtil;
+import jcm2606.mods.jccore.core.util.GeneralUtil;
 import jcm2606.mods.sorcerycraft.client.gui.GuiArcaneWorkbench;
 import jcm2606.mods.sorcerycraft.core.lib.Reference;
 import jcm2606.mods.sorcerycraft.manager.CraftingManagerArcaneWorkbench;

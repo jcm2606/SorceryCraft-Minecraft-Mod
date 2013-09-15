@@ -2,7 +2,7 @@ package jcm2606.mods.sorcerycraft.astral.gauntlet;
 
 import java.util.List;
 
-import jcm2606.mods.jccore.util.GeneralUtil;
+import jcm2606.mods.jccore.core.util.GeneralUtil;
 import jcm2606.mods.sorcerycraft.api.AstralManager;
 import jcm2606.mods.sorcerycraft.api.astral.gauntlet.EnumUseType;
 import jcm2606.mods.sorcerycraft.api.astral.gauntlet.GauntletMode;

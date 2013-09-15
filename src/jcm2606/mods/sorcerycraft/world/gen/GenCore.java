@@ -2,7 +2,7 @@ package jcm2606.mods.sorcerycraft.world.gen;
 
 import java.util.Random;
 
-import jcm2606.mods.jccore.util.GeneratorBase;
+import jcm2606.mods.jccore.core.util.GeneratorBase;
 import jcm2606.mods.sorcerycraft.core.SCObjects;
 import jcm2606.mods.sorcerycraft.world.gen.structure.StructureAstralGate;
 import jcm2606.mods.sorcerycraft.world.gen.structure.StructureAstralPlatform;

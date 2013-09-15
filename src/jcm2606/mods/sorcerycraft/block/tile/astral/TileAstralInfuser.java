@@ -2,8 +2,8 @@ package jcm2606.mods.sorcerycraft.block.tile.astral;
 
 import java.util.ArrayList;
 
-import jcm2606.mods.jccore.tile.TileEntityJC;
-import jcm2606.mods.jccore.util.GeneralUtil;
+import jcm2606.mods.jccore.block.tile.TileEntityJC;
+import jcm2606.mods.jccore.core.util.GeneralUtil;
 import jcm2606.mods.sorcerycraft.api.energy.IEnergyCapacitor;
 import jcm2606.mods.sorcerycraft.api.energy.IEnergyConsumer;
 import jcm2606.mods.sorcerycraft.client.fx.FXFissure;
@@ -104,9 +104,9 @@ public class TileAstralInfuser extends TileEntityJC implements IInventory, IEner
             {
                 IEnergyCapacitor capacitor = ((IEnergyCapacitor) GeneralUtil.getBlockTileFromNeighbour(xCoord, yCoord, zCoord, side, worldObj));
                 
-                if (capacitor.hasEnergy() && capacitor.getEnergyStored() >= use())
+                if (capacitor.hasEnergy() && capacitor.getEnergyStored() >= this.getEnergyUse())
                 {
-                    capacitor.capacitorProvideEnergy(this.use());
+                    capacitor.capacitorProvideEnergy(this.getEnergyUse());
                     
                     if (GeneralUtil.isClient())
                     {
@@ -242,7 +242,7 @@ public class TileAstralInfuser extends TileEntityJC implements IInventory, IEner
             {
                 IEnergyCapacitor capacitor = ((IEnergyCapacitor) GeneralUtil.getBlockTileFromNeighbour(xCoord, yCoord, zCoord, side, worldObj));
                 
-                if (capacitor.hasEnergy() && capacitor.getEnergyStored() >= use())
+                if (capacitor.hasEnergy() && capacitor.getEnergyStored() >= this.getEnergyUse())
                 {
                     foundSource = true;
                 }
@@ -253,7 +253,7 @@ public class TileAstralInfuser extends TileEntityJC implements IInventory, IEner
     }
     
     @Override
-    public int use()
+    public int getEnergyUse()
     {
         return 1;
     }

@@ -1,6 +1,6 @@
 package jcm2606.mods.sorcerycraft.client.gui.overlay;
 
-import jcm2606.mods.jccore.util.RenderUtil;
+import jcm2606.mods.jccore.core.util.RenderUtil;
 import jcm2606.mods.sorcerycraft.core.SCObjects;
 import jcm2606.mods.sorcerycraft.item.special.ItemInvisCloak;
 import net.minecraft.client.Minecraft;

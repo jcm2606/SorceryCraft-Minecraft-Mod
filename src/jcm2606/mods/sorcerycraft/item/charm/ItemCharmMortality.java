@@ -2,7 +2,7 @@ package jcm2606.mods.sorcerycraft.item.charm;
 
 import java.util.List;
 
-import jcm2606.mods.jccore.helper.NBTHelper;
+import jcm2606.mods.jccore.core.helper.NBTHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumAction;
 import net.minecraft.item.ItemStack;

@@ -1,6 +1,6 @@
 package jcm2606.mods.sorcerycraft.core.lib;
 
-import jcm2606.mods.jccore.lib.Colours;
+import jcm2606.mods.jccore.core.util.Colours;
 
 public class Rarities
 {

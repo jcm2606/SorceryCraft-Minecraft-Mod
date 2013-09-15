@@ -1,6 +1,6 @@
 package jcm2606.mods.sorcerycraft.core;
 
-import jcm2606.mods.jccore.util.Coord;
+import jcm2606.mods.jccore.core.util.Coord;
 import jcm2606.mods.sorcerycraft.client.fx.FXAstralEnergy;
 import jcm2606.mods.sorcerycraft.client.fx.FXAstralEnergyBeam;
 import jcm2606.mods.sorcerycraft.client.fx.FXSearFlame;

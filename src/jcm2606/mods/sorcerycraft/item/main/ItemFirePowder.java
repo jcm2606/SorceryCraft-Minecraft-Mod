@@ -2,7 +2,7 @@ package jcm2606.mods.sorcerycraft.item.main;
 
 import java.util.List;
 
-import jcm2606.mods.jccore.helper.RarityHelper;
+import jcm2606.mods.jccore.core.helper.RarityHelper;
 import jcm2606.mods.sorcerycraft.core.lib.Rarities;
 import jcm2606.mods.sorcerycraft.item.SCItemShine;
 import net.minecraft.entity.player.EntityPlayer;

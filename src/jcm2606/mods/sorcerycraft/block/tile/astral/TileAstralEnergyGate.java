@@ -1,7 +1,7 @@
 package jcm2606.mods.sorcerycraft.block.tile.astral;
 
-import jcm2606.mods.jccore.tile.TileEntityJC;
-import jcm2606.mods.jccore.util.GeneralUtil;
+import jcm2606.mods.jccore.block.tile.TileEntityJC;
+import jcm2606.mods.jccore.core.util.GeneralUtil;
 import jcm2606.mods.sorcerycraft.api.energy.IEnergyCapacitor;
 import jcm2606.mods.sorcerycraft.api.energy.IEnergyProvider;
 import jcm2606.mods.sorcerycraft.core.network.PacketHandler;

@@ -1,8 +1,8 @@
 package jcm2606.mods.sorcerycraft.core;
 
 import jcm2606.mods.jccore.core.IObjectCore;
-import jcm2606.mods.jccore.util.BiomeUtil;
-import jcm2606.mods.jccore.util.GeneralUtil;
+import jcm2606.mods.jccore.core.util.BiomeUtil;
+import jcm2606.mods.jccore.core.util.GeneralUtil;
 import jcm2606.mods.sorcerycraft.api.ElementManager;
 import jcm2606.mods.sorcerycraft.api.SCApi;
 import jcm2606.mods.sorcerycraft.astral.gauntlet.ModeHailkenisis;

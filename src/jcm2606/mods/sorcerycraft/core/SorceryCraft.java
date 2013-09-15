@@ -5,7 +5,7 @@ import java.util.HashMap;
 
 import jcm2606.mods.jccore.compat.ModCompatibility;
 import jcm2606.mods.jccore.compat.container.CompatibilityContainer;
-import jcm2606.mods.jccore.util.LoggerBase;
+import jcm2606.mods.jccore.core.util.LoggerBase;
 import jcm2606.mods.sorcerycraft.api.ElementManager;
 import jcm2606.mods.sorcerycraft.api.SCApi;
 import jcm2606.mods.sorcerycraft.api.compat.CompatContainerSC;

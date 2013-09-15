@@ -3,7 +3,7 @@ package jcm2606.mods.sorcerycraft.client.gui.overlay;
 import java.util.Collection;
 import java.util.HashMap;
 
-import jcm2606.mods.jccore.util.RenderUtil;
+import jcm2606.mods.jccore.core.util.RenderUtil;
 import jcm2606.mods.sorcerycraft.api.AstralManager;
 import jcm2606.mods.sorcerycraft.api.astral.gauntlet.EnumUseType;
 import jcm2606.mods.sorcerycraft.api.astral.gauntlet.GauntletMode;

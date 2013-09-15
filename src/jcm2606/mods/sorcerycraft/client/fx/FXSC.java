@@ -1,6 +1,6 @@
 package jcm2606.mods.sorcerycraft.client.fx;
 
-import jcm2606.mods.jccore.fx.EntityFXJC;
+import jcm2606.mods.jccore.client.fx.EntityFXJC;
 import net.minecraft.world.World;
 
 public class FXSC extends EntityFXJC

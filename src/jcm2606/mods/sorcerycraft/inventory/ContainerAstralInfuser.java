@@ -1,6 +1,6 @@
 package jcm2606.mods.sorcerycraft.inventory;
 
-import jcm2606.mods.jccore.slot.SlotLocked;
+import jcm2606.mods.jccore.client.slot.SlotLocked;
 import jcm2606.mods.sorcerycraft.block.tile.astral.TileAstralInfuser;
 import jcm2606.mods.sorcerycraft.core.SCObjects;
 import net.minecraft.entity.player.EntityPlayer;
