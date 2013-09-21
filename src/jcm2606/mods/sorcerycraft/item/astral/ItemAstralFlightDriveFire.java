@@ -54,7 +54,7 @@ public class ItemAstralFlightDriveFire extends SCItemShine
                     {
                         if (GeneralUtil.isClient())
                         {
-                            if (player.inventory.hasItem(SCObjects.astralenergycell.itemID))
+                            if (player.inventory.hasItem(SCObjects.astralCellEnergy.itemID))
                             {
                                 if (!player.capabilities.isFlying)
                                 {
@@ -68,7 +68,7 @@ public class ItemAstralFlightDriveFire extends SCItemShine
                                         if (Keyboard.isKeyDown(FMLClientHandler.instance().getClient().gameSettings.keyBindJump.keyCode) && !Keyboard
                                                 .isKeyDown(FMLClientHandler.instance().getClient().gameSettings.keyBindSneak.keyCode))
                                         {
-                                            if (player.inventory.hasItem(SCObjects.astralenergycell.itemID))
+                                            if (player.inventory.hasItem(SCObjects.astralCellEnergy.itemID))
                                             {
                                                 for (int j = 0; j < player.inventory.mainInventory.length; j++)
                                                 {
@@ -76,7 +76,7 @@ public class ItemAstralFlightDriveFire extends SCItemShine
                                                     
                                                     if (stack2 != null)
                                                     {
-                                                        if (stack2.getItem() == SCObjects.astralenergycell)
+                                                        if (stack2.getItem() == SCObjects.astralCellEnergy)
                                                         {
                                                             ItemAstralEnergyCell cell = (ItemAstralEnergyCell) stack2.getItem();
                                                             
@@ -113,7 +113,7 @@ public class ItemAstralFlightDriveFire extends SCItemShine
                                         if (!Keyboard.isKeyDown(FMLClientHandler.instance().getClient().gameSettings.keyBindJump.keyCode) && Keyboard
                                                 .isKeyDown(FMLClientHandler.instance().getClient().gameSettings.keyBindSneak.keyCode) && player.fallDistance != 0.0f)
                                         {
-                                            if (player.inventory.hasItem(SCObjects.astralenergycell.itemID))
+                                            if (player.inventory.hasItem(SCObjects.astralCellEnergy.itemID))
                                             {
                                                 for (int j = 0; j < player.inventory.mainInventory.length; j++)
                                                 {
@@ -121,7 +121,7 @@ public class ItemAstralFlightDriveFire extends SCItemShine
                                                     
                                                     if (stack2 != null)
                                                     {
-                                                        if (stack2.getItem() == SCObjects.astralenergycell)
+                                                        if (stack2.getItem() == SCObjects.astralCellEnergy)
                                                         {
                                                             ItemAstralEnergyCell cell = (ItemAstralEnergyCell) stack2.getItem();
                                                             
@@ -159,7 +159,7 @@ public class ItemAstralFlightDriveFire extends SCItemShine
                                         if (Keyboard.isKeyDown(FMLClientHandler.instance().getClient().gameSettings.keyBindJump.keyCode) && Keyboard
                                                 .isKeyDown(FMLClientHandler.instance().getClient().gameSettings.keyBindSneak.keyCode))
                                         {
-                                            if (player.inventory.hasItem(SCObjects.astralenergycell.itemID))
+                                            if (player.inventory.hasItem(SCObjects.astralCellEnergy.itemID))
                                             {
                                                 for (int j = 0; j < player.inventory.mainInventory.length; j++)
                                                 {
@@ -167,7 +167,7 @@ public class ItemAstralFlightDriveFire extends SCItemShine
                                                     
                                                     if (stack2 != null)
                                                     {
-                                                        if (stack2.getItem() == SCObjects.astralenergycell)
+                                                        if (stack2.getItem() == SCObjects.astralCellEnergy)
                                                         {
                                                             ItemAstralEnergyCell cell = (ItemAstralEnergyCell) stack2.getItem();
                                                             

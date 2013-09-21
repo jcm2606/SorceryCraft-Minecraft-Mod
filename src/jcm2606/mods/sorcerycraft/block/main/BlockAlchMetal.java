@@ -41,7 +41,7 @@ public class BlockAlchMetal extends SCBlock implements ITransmutable
     public Item[] getRequiredDevices()
     {
         return new Item[]
-        { SCObjects.alchstone, SCObjects.astralstone };
+        { SCObjects.stoneArcane, SCObjects.stoneAstral };
     }
     
     @Override

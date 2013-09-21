@@ -22,6 +22,6 @@ public class BlockOreDarkQuartz extends SCOre
     @Override
     public int idDropped(int par1, Random par2Random, int par3)
     {
-        return SCObjects.darkquartz.itemID;
+        return SCObjects.quartzDark.itemID;
     }
 }

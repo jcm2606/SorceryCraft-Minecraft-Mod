@@ -6,6 +6,7 @@ import jcm2606.mods.jccore.core.helper.NBTHelper;
 import jcm2606.mods.jccore.core.helper.RarityHelper;
 import jcm2606.mods.jccore.core.util.ConvertUtil;
 import jcm2606.mods.jccore.core.util.Coord;
+import jcm2606.mods.sorcerycraft.api.ILinkCardCoord;
 import jcm2606.mods.sorcerycraft.api.ILinkable;
 import jcm2606.mods.sorcerycraft.core.lib.Rarities;
 import jcm2606.mods.sorcerycraft.item.SCItem;
@@ -103,9 +104,23 @@ public class ItemAstralLinkingCard extends SCItem
     {
         this.setCoords(stack, new Coord(x, y, z));
         
+        if (player.worldObj.getBlockTileEntity(x, y, z) != null)
+        {
+            if (player.worldObj.getBlockTileEntity(x, y, z) instanceof ILinkCardCoord)
+            {
+                if (((ILinkCardCoord) player.worldObj.getBlockTileEntity(x, y, z)).getCoords(this, stack, player, player.worldObj, x, y, z) != null)
+                {
+                    this.setCoords(stack, ((ILinkCardCoord) player.worldObj.getBlockTileEntity(x, y, z)).getCoords(this, stack, player,
+                            player.worldObj, x, y, z));
+                }
+            }
+        }
+        
         if (!player.worldObj.isRemote)
         {
-            player.sendChatToPlayer(ConvertUtil.getChatMessageComponent("Stored coordinates set to " + x + ", " + y + ", " + z + "."));
+            player.sendChatToPlayer(ConvertUtil
+                    .getChatMessageComponent("Stored coordinates set to " + (int) this.getCoordFromStack(stack).x + ", " + (int) this
+                            .getCoordFromStack(stack).y + ", " + (int) this.getCoordFromStack(stack).z + "."));
         }
         
         return true;

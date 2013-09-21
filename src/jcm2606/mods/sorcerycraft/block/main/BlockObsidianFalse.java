@@ -37,7 +37,7 @@ public class BlockObsidianFalse extends SCBlock implements IWorkable
     {
         if (!world.isRemote)
         {
-            EntityItem i = new EntityItem(world, x, y, z, new ItemStack(SCObjects.obsidianingot, 1 + world.rand.nextInt(3)));
+            EntityItem i = new EntityItem(world, x, y, z, new ItemStack(SCObjects.ingotObsidian, 1 + world.rand.nextInt(3)));
             
             i.motionX = 0.0;
             i.motionZ = 0.0;

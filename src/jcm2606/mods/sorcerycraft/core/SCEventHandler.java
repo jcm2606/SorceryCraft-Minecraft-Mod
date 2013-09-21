@@ -9,6 +9,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
+import net.minecraftforge.client.event.DrawBlockHighlightEvent;
 import net.minecraftforge.event.ForgeSubscribe;
 import net.minecraftforge.event.entity.EntityEvent.EntityConstructing;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
@@ -23,6 +24,11 @@ import net.minecraftforge.event.world.WorldEvent;
 public class SCEventHandler
 {
     public static NBTTagCompound worldNBT;
+    
+    @ForgeSubscribe
+    public void onBlockHighlightRender(DrawBlockHighlightEvent event)
+    {
+    }
     
     @ForgeSubscribe
     public void onEntityInteract(EntityInteractEvent event)
@@ -45,7 +51,7 @@ public class SCEventHandler
         EntityItem item = event.item;
         int id = item.getEntityItem().itemID;
         
-        if (id == SCObjects.dustvordic.itemID)
+        if (id == SCObjects.dustVordic.itemID)
         {
             event.entityPlayer.addStat(SCAchievements.vordicDustGet, 1);
         }
@@ -85,7 +91,7 @@ public class SCEventHandler
                     ((ResearchData) player.getExtendedProperties(ResearchData.NAME)).loadNBTData(playerData);
                 }
                 
-                if(!player.worldObj.isRemote)
+                if (!player.worldObj.isRemote)
                 {
                     ((ResearchData) player.getExtendedProperties(ResearchData.NAME)).syncExtendedProperties();
                 }
@@ -118,7 +124,7 @@ public class SCEventHandler
     {
         if (event.entityItem.getEntityItem() != null)
         {
-            if (event.entityItem.getEntityItem().getItem() == SCObjects.charmhealth)
+            if (event.entityItem.getEntityItem().getItem() == SCObjects.charmHealing)
             {
                 Item item = event.entityItem.getEntityItem().getItem();
                 ItemCharmMortality charm = (ItemCharmMortality) item;

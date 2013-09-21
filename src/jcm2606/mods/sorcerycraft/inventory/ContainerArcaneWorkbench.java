@@ -98,7 +98,7 @@ public class ContainerArcaneWorkbench extends Container
     @Override
     public boolean canInteractWith(EntityPlayer par1EntityPlayer)
     {
-        return worldObj.getBlockId(posX, posY, posZ) != SCObjects.arcaneworkbench.blockID ? false : par1EntityPlayer.getDistanceSq(posX + 0.5D,
+        return worldObj.getBlockId(posX, posY, posZ) != SCObjects.workbenchArcane.blockID ? false : par1EntityPlayer.getDistanceSq(posX + 0.5D,
                 posY + 0.5D, posZ + 0.5D) <= 64.0D;
     }
     

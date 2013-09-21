@@ -72,7 +72,7 @@ public class ItemAstralFlightDriveAir extends SCItemShine
                                 world.spawnParticle("cloud", player.posX, player.posY - 1.8, player.posZ, mx, 0, mz);
                             }
                             
-                            if (player.inventory.hasItem(SCObjects.astralenergycell.itemID))
+                            if (player.inventory.hasItem(SCObjects.astralCellEnergy.itemID))
                             {
                                 for (int j = 0; j < player.inventory.mainInventory.length; j++)
                                 {
@@ -80,7 +80,7 @@ public class ItemAstralFlightDriveAir extends SCItemShine
                                     
                                     if (stack2 != null)
                                     {
-                                        if (stack2.getItem() == SCObjects.astralenergycell)
+                                        if (stack2.getItem() == SCObjects.astralCellEnergy)
                                         {
                                             ItemAstralEnergyCell cell = (ItemAstralEnergyCell) stack2.getItem();
                                             

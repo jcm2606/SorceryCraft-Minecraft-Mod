@@ -106,7 +106,7 @@ public class SorceryCraft
         
         GameRegistry.registerWorldGenerator(new GenCore());
         
-        MinecraftForge.addGrassPlant(SCObjects.flowerglowpetal, 0, 5);
+        MinecraftForge.addGrassPlant(SCObjects.flowerGlowpetal, 0, 5);
         
         SCAchievements.loadAchievements();
     }
@@ -137,20 +137,20 @@ public class SorceryCraft
     
     public void loadChestGenHooks()
     {
-        ForgeHookHandler.addCustomChestGenContent(ChestGenHooks.VILLAGE_BLACKSMITH, new ItemStack(SCObjects.alchmetalingot), 1, 7, 030);
-        ForgeHookHandler.addCustomChestGenContent(ChestGenHooks.VILLAGE_BLACKSMITH, new ItemStack(SCObjects.alchmetalblock), 1, 2, 010);
-        ForgeHookHandler.addCustomChestGenContent(ChestGenHooks.VILLAGE_BLACKSMITH, new ItemStack(SCObjects.vordictool), 1, 1, 001);
+        ForgeHookHandler.addCustomChestGenContent(ChestGenHooks.VILLAGE_BLACKSMITH, new ItemStack(SCObjects.ingotArcaneSteel), 1, 7, 030);
+        ForgeHookHandler.addCustomChestGenContent(ChestGenHooks.VILLAGE_BLACKSMITH, new ItemStack(SCObjects.blockArcaneSteel), 1, 2, 010);
+        ForgeHookHandler.addCustomChestGenContent(ChestGenHooks.VILLAGE_BLACKSMITH, new ItemStack(SCObjects.toolVordic), 1, 1, 001);
         
-        ForgeHookHandler.addCustomChestGenContent(ChestGenHooks.MINESHAFT_CORRIDOR, new ItemStack(SCObjects.dustvordic), 1, 5, 040);
-        ForgeHookHandler.addCustomChestGenContent(ChestGenHooks.MINESHAFT_CORRIDOR, new ItemStack(SCObjects.vordicgemblock), 1, 3, 010);
+        ForgeHookHandler.addCustomChestGenContent(ChestGenHooks.MINESHAFT_CORRIDOR, new ItemStack(SCObjects.dustVordic), 1, 5, 040);
+        ForgeHookHandler.addCustomChestGenContent(ChestGenHooks.MINESHAFT_CORRIDOR, new ItemStack(SCObjects.blockVordicGem), 1, 3, 010);
         
-        ForgeHookHandler.addCustomChestGenContent(ChestGenHooks.STRONGHOLD_CORRIDOR, new ItemStack(SCObjects.alchmatter), 7, 27, 030);
+        ForgeHookHandler.addCustomChestGenContent(ChestGenHooks.STRONGHOLD_CORRIDOR, new ItemStack(SCObjects.arcaneMatter), 7, 27, 030);
         
-        ForgeHookHandler.addCustomChestGenContent(ChestGenHooks.DUNGEON_CHEST, new ItemStack(SCObjects.alchbook), 1, 1, 001);
-        ForgeHookHandler.addCustomChestGenContent(ChestGenHooks.DUNGEON_CHEST, new ItemStack(SCObjects.dustvordic), 1, 3, 060);
-        ForgeHookHandler.addCustomChestGenContent(ChestGenHooks.DUNGEON_CHEST, new ItemStack(SCObjects.dustvordicrefined), 1, 2, 030);
-        ForgeHookHandler.addCustomChestGenContent(ChestGenHooks.DUNGEON_CHEST, new ItemStack(SCObjects.alchstone), 1, 1, 005);
-        ForgeHookHandler.addCustomChestGenContent(ChestGenHooks.DUNGEON_CHEST, new ItemStack(SCObjects.alchmatter), 1, 7, 010);
+        ForgeHookHandler.addCustomChestGenContent(ChestGenHooks.DUNGEON_CHEST, new ItemStack(SCObjects.arcaneCompendium), 1, 1, 001);
+        ForgeHookHandler.addCustomChestGenContent(ChestGenHooks.DUNGEON_CHEST, new ItemStack(SCObjects.dustVordic), 1, 3, 060);
+        ForgeHookHandler.addCustomChestGenContent(ChestGenHooks.DUNGEON_CHEST, new ItemStack(SCObjects.dustVordicStabilised), 1, 2, 030);
+        ForgeHookHandler.addCustomChestGenContent(ChestGenHooks.DUNGEON_CHEST, new ItemStack(SCObjects.stoneArcane), 1, 1, 005);
+        ForgeHookHandler.addCustomChestGenContent(ChestGenHooks.DUNGEON_CHEST, new ItemStack(SCObjects.arcaneMatter), 1, 7, 010);
     }
     
     @EventHandler

@@ -1,12 +1,13 @@
 package jcm2606.mods.sorcerycraft.block.astral;
 
+import jcm2606.mods.sorcerycraft.api.IEnergyInfused;
 import jcm2606.mods.sorcerycraft.block.tile.astral.TileAstralCrystalBlock;
 import jcm2606.mods.sorcerycraft.core.lib.Rarities;
 import net.minecraft.block.material.Material;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
-public class BlockAstralCrystal extends BlockAstral
+public class BlockAstralCrystal extends BlockAstral implements IEnergyInfused
 {
     public BlockAstralCrystal(int par1)
     {
@@ -23,5 +24,23 @@ public class BlockAstralCrystal extends BlockAstral
     public TileEntity createNewTileEntity(World world)
     {
         return new TileAstralCrystalBlock();
+    }
+    
+    @Override
+    public boolean destroyBlockWhenExtracted()
+    {
+        return true;
+    }
+    
+    @Override
+    public int getCharge()
+    {
+        return 10;
+    }
+    
+    @Override
+    public int getDestroyChance()
+    {
+        return 20;
     }
 }

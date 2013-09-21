@@ -33,7 +33,7 @@ public class GuiOverlayInvisCloak extends Gui
         {
             ItemStack stack = mc.thePlayer.inventory.getStackInSlot(i);
             
-            if (mc.thePlayer.inventory.hasItem(SCObjects.inviscloak.itemID))
+            if (mc.thePlayer.inventory.hasItem(SCObjects.cloakInvis.itemID))
             {
                 if (ItemInvisCloak.getState(stack))
                 {

@@ -227,7 +227,7 @@ public class ModePyrokenisis extends GauntletMode
                     
                     if (stack != null)
                     {
-                        if (stack.getItem() == SCObjects.astralgauntlet)
+                        if (stack.getItem() == SCObjects.gauntletAstral)
                         {
                             ItemAstralGauntlet gauntlet = (ItemAstralGauntlet) stack.getItem();
                             

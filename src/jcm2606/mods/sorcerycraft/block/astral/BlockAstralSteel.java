@@ -2,6 +2,7 @@ package jcm2606.mods.sorcerycraft.block.astral;
 
 import java.util.List;
 
+import jcm2606.mods.sorcerycraft.api.IEnergyInfused;
 import jcm2606.mods.sorcerycraft.api.ITransmutable;
 import jcm2606.mods.sorcerycraft.block.SCBlock;
 import jcm2606.mods.sorcerycraft.core.SCObjects;
@@ -18,7 +19,7 @@ import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class BlockAstralSteel extends SCBlock implements ITransmutable
+public class BlockAstralSteel extends SCBlock implements ITransmutable, IEnergyInfused
 {
     public BlockAstralSteel(int par1)
     {
@@ -62,7 +63,7 @@ public class BlockAstralSteel extends SCBlock implements ITransmutable
     @Override
     public Block getRequiredBlock(ItemStack stack)
     {
-        if (stack.getItem() == SCObjects.astralstone)
+        if (stack.getItem() == SCObjects.stoneAstral)
         {
             return Block.blockIron;
         }
@@ -73,14 +74,14 @@ public class BlockAstralSteel extends SCBlock implements ITransmutable
     @Override
     public int getRequiredBlockMetadata(ItemStack stack)
     {
-        return stack.getItem() == SCObjects.alchstone ? 1 : 0;
+        return stack.getItem() == SCObjects.stoneArcane ? 1 : 0;
     }
     
     @Override
     public Item[] getRequiredDevices()
     {
         return new Item[]
-        { SCObjects.alchstone, SCObjects.astralstone };
+        { SCObjects.stoneArcane, SCObjects.stoneAstral };
     }
     
     @Override
@@ -103,5 +104,23 @@ public class BlockAstralSteel extends SCBlock implements ITransmutable
     public int getMetadataToChangeTo()
     {
         return 0;
+    }
+    
+    @Override
+    public boolean destroyBlockWhenExtracted()
+    {
+        return true;
+    }
+    
+    @Override
+    public int getCharge()
+    {
+        return 20;
+    }
+    
+    @Override
+    public int getDestroyChance()
+    {
+        return 50;
     }
 }

@@ -45,9 +45,9 @@ public class AstralManager
                     int yCoord = (int) (player.posY - (yScanDistance / 2) + yC);
                     int zCoord = (int) (player.posZ - (zScanDistance / 2) + zC);
                     
-                    if (world.getBlockId(xCoord, yCoord, zCoord) == SCObjects.oreastral.blockID || world.getBlockId(xCoord, yCoord, zCoord) == SCObjects.astralenergygate.blockID)
+                    if (world.getBlockId(xCoord, yCoord, zCoord) == SCObjects.oreAstral.blockID || world.getBlockId(xCoord, yCoord, zCoord) == SCObjects.astralEnergyGate.blockID)
                     {
-                        if (player.inventory.hasItem(SCObjects.astralenergycell.itemID))
+                        if (player.inventory.hasItem(SCObjects.astralCellEnergy.itemID))
                         {
                             for (int i = 0; i < player.inventory.mainInventory.length; i++)
                             {
@@ -55,7 +55,7 @@ public class AstralManager
                                 
                                 if (stack2 != null)
                                 {
-                                    if (stack2.getItem() == SCObjects.astralenergycell)
+                                    if (stack2.getItem() == SCObjects.astralCellEnergy)
                                     {
                                         ItemAstralEnergyCell cell = (ItemAstralEnergyCell) stack2.getItem();
                                         
@@ -102,7 +102,7 @@ public class AstralManager
     
     public static void setChargeForCellsInInv(EntityPlayer player, int charge)
     {
-        if (player.inventory.hasItem(SCObjects.astralenergycell.itemID))
+        if (player.inventory.hasItem(SCObjects.astralCellEnergy.itemID))
         {
             for (int i = 0; i < player.inventory.mainInventory.length; i++)
             {
@@ -110,7 +110,7 @@ public class AstralManager
                 
                 if (stack2 != null)
                 {
-                    if (stack2.getItem() == SCObjects.astralenergycell)
+                    if (stack2.getItem() == SCObjects.astralCellEnergy)
                     {
                         ItemAstralEnergyCell cell = (ItemAstralEnergyCell) stack2.getItem();
                         
@@ -139,7 +139,7 @@ public class AstralManager
             
             if (stack != null)
             {
-                if (stack.getItem() == SCObjects.astralenergycell)
+                if (stack.getItem() == SCObjects.astralCellEnergy)
                 {
                     ItemAstralEnergyCell cell = (ItemAstralEnergyCell) stack.getItem();
                     
@@ -161,7 +161,7 @@ public class AstralManager
             
             if (stack != null)
             {
-                if (stack.getItem() == SCObjects.astralenergycell)
+                if (stack.getItem() == SCObjects.astralCellEnergy)
                 {
                     ItemAstralEnergyCell cell = (ItemAstralEnergyCell) stack.getItem();
                     
@@ -183,7 +183,7 @@ public class AstralManager
             
             if (stack != null)
             {
-                if (stack.getItem() == SCObjects.astralenergycell)
+                if (stack.getItem() == SCObjects.astralCellEnergy)
                 {
                     ItemAstralEnergyCell cell = (ItemAstralEnergyCell) stack.getItem();
                     
@@ -208,7 +208,7 @@ public class AstralManager
             
             if (stack != null)
             {
-                if (stack.getItem() == SCObjects.astralenergycell)
+                if (stack.getItem() == SCObjects.astralCellEnergy)
                 {
                     ItemAstralEnergyCell cell = (ItemAstralEnergyCell) stack.getItem();
                     

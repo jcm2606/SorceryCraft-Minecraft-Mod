@@ -26,19 +26,19 @@ public class PacketSyncResearchData extends PacketBase
         
         this.points = points;
     }
-
+    
     @Override
     public void readData(DataInputStream data) throws IOException
     {
         this.points = data.readInt();
     }
-
+    
     @Override
     public void writeData(DataOutputStream dos) throws IOException
     {
         dos.writeInt(this.points);
     }
-
+    
     @Override
     public void execute(INetworkManager network, Player player)
     {

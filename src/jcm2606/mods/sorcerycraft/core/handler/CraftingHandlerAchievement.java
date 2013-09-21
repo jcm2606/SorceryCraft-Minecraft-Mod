@@ -22,7 +22,7 @@ public class CraftingHandlerAchievement extends CraftingHandlerBase
     @Override
     public void onSmelt(Object result, EntityPlayer player)
     {
-        if (result == SCObjects.dustvordicrefined)
+        if (result == SCObjects.dustVordicStabilised)
         {
             // player.addStat(SCAchievements.refVordicDustGet, 1);
         }

@@ -3,14 +3,17 @@ package jcm2606.mods.sorcerycraft.client.gui.overlay;
 import java.util.Collection;
 import java.util.HashMap;
 
+import jcm2606.mods.jccore.core.util.GeneralUtil;
 import jcm2606.mods.jccore.core.util.RenderUtil;
 import jcm2606.mods.sorcerycraft.api.AstralManager;
+import jcm2606.mods.sorcerycraft.api.IMedallionPerceptionOverlayHandler;
 import jcm2606.mods.sorcerycraft.api.astral.gauntlet.EnumUseType;
 import jcm2606.mods.sorcerycraft.api.astral.gauntlet.GauntletMode;
 import jcm2606.mods.sorcerycraft.core.SCObjects;
 import jcm2606.mods.sorcerycraft.core.SorceryCraft;
 import jcm2606.mods.sorcerycraft.core.config.Settings;
 import jcm2606.mods.sorcerycraft.core.helper.RenderHandlerSC;
+import jcm2606.mods.sorcerycraft.core.helper.SCHelper;
 import jcm2606.mods.sorcerycraft.core.lib.Reference;
 import jcm2606.mods.sorcerycraft.item.astral.ItemAstralEnergyCell;
 import jcm2606.mods.sorcerycraft.item.astral.ItemAstralGauntlet;
@@ -18,6 +21,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.MovingObjectPosition;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent.ElementType;
 import net.minecraftforge.event.EventPriority;
@@ -44,17 +48,17 @@ public class GuiOverlayAstral extends Gui
         
         if (mc.thePlayer.getCurrentEquippedItem() != null)
         {
-            if (mc.thePlayer.getCurrentEquippedItem().getItem() == SCObjects.astralgauntlet)
+            if (mc.thePlayer.getCurrentEquippedItem().getItem() == SCObjects.gauntletAstral)
             {
                 renderAstralGauntletOverlay(mc, mc.thePlayer, mc.thePlayer.getCurrentEquippedItem());
             }
         }
         
-        if (mc.thePlayer.inventory.hasItem(SCObjects.astralenergycell.itemID))
+        if (mc.thePlayer.inventory.hasItem(SCObjects.astralCellEnergy.itemID))
         {
             if (mc.thePlayer.getCurrentEquippedItem() != null)
             {
-                if (mc.thePlayer.getCurrentEquippedItem().getItem() == SCObjects.astralgauntlet)
+                if (mc.thePlayer.getCurrentEquippedItem().getItem() == SCObjects.gauntletAstral)
                 {
                     return;
                 }
@@ -62,6 +66,8 @@ public class GuiOverlayAstral extends Gui
             
             this.renderAstralEnergyOverlay(mc, mc.thePlayer);
         }
+        
+        this.renderInWorldEnergy(mc, mc.thePlayer);
     }
     
     private void renderAstralEnergyOverlay(Minecraft minecraft, EntityPlayer player)
@@ -82,7 +88,7 @@ public class GuiOverlayAstral extends Gui
             
             if (stack2 != null)
             {
-                if (stack2.getItem() == SCObjects.astralenergycell)
+                if (stack2.getItem() == SCObjects.astralCellEnergy)
                 {
                     ItemAstralEnergyCell cell = (ItemAstralEnergyCell) stack2.getItem();
                     
@@ -144,7 +150,7 @@ public class GuiOverlayAstral extends Gui
             
             if (stack2 != null)
             {
-                if (stack2.getItem() == SCObjects.astralenergycell)
+                if (stack2.getItem() == SCObjects.astralCellEnergy)
                 {
                     ItemAstralEnergyCell cell = (ItemAstralEnergyCell) stack2.getItem();
                     
@@ -155,7 +161,7 @@ public class GuiOverlayAstral extends Gui
         
         ItemAstralGauntlet gauntlet = (ItemAstralGauntlet) stack.getItem();
         
-        if (player.inventory.hasItem(SCObjects.astralenergycell.itemID))
+        if (player.inventory.hasItem(SCObjects.astralCellEnergy.itemID))
         {
             minecraft.fontRenderer.drawStringWithShadow("\2477" + AstralManager.getMode(gauntlet.getMode(stack)).name,
                     RenderUtil.width - minecraft.fontRenderer.getStringWidth(AstralManager.getMode(gauntlet.getMode(stack)).name) - 2, 2, 0xffffff);
@@ -208,5 +214,32 @@ public class GuiOverlayAstral extends Gui
         }
         
         this.renderAstralEnergyOverlay(minecraft, player);
+    }
+    
+    private void renderInWorldEnergy(Minecraft minecraft, EntityPlayer player)
+    {
+        MovingObjectPosition mop = GeneralUtil.getTargetBlock(player.worldObj, player, false, 5.0f);
+        
+        if (mop == null)
+        {
+            return;
+        }
+        
+        int x = mop.blockX;
+        int y = mop.blockY;
+        int z = mop.blockZ;
+        
+        if(SCHelper.playerHasPerceptionMedallion(player) || player.capabilities.isCreativeMode)
+        {
+            if(player.worldObj.getBlockTileEntity(x, y, z) != null)
+            {
+                if(player.worldObj.getBlockTileEntity(x, y, z) instanceof IMedallionPerceptionOverlayHandler)
+                {
+                    IMedallionPerceptionOverlayHandler handler = (IMedallionPerceptionOverlayHandler) player.worldObj.getBlockTileEntity(x, y, z);
+                
+                    handler.renderMedallionOverlay(minecraft, player);
+                }
+            }
+        }
     }
 }

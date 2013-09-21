@@ -28,7 +28,7 @@ public class VordicOreRender implements ISimpleBlockRenderingHandler
         float g = 1;
         float b = 1;
         GL11.glColor3f(r, g, b);
-        RenderUtil.instance().drawFaces(renderer, block, ((BlockOreVord) SCObjects.orevordic).textureGlow, true);
+        RenderUtil.instance().drawFaces(renderer, block, ((BlockOreVord) SCObjects.oreVordic).textureGlow, true);
         GL11.glColor3f(1f, 1f, 1f);
         
         renderer.clearOverrideBlockTexture();
@@ -49,7 +49,7 @@ public class VordicOreRender implements ISimpleBlockRenderingHandler
         Tessellator t = Tessellator.instance;
         t.setColorOpaque_I(0xffffff);
         t.setBrightness(255);
-        RenderUtil.instance().renderAllSides(world, x, y, z, block, renderer, ((BlockOreVord) SCObjects.orevordic).textureGlow, true);
+        RenderUtil.instance().renderAllSides(world, x, y, z, block, renderer, ((BlockOreVord) SCObjects.oreVordic).textureGlow, true);
         
         renderer.clearOverrideBlockTexture();
         block.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);

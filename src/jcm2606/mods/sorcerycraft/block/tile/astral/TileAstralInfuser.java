@@ -4,9 +4,12 @@ import java.util.ArrayList;
 
 import jcm2606.mods.jccore.block.tile.TileEntityJC;
 import jcm2606.mods.jccore.core.util.GeneralUtil;
+import jcm2606.mods.jccore.core.util.RenderUtil;
+import jcm2606.mods.sorcerycraft.api.IMedallionPerceptionOverlayHandler;
 import jcm2606.mods.sorcerycraft.api.energy.IEnergyCapacitor;
-import jcm2606.mods.sorcerycraft.api.energy.IEnergyConsumer;
+import jcm2606.mods.sorcerycraft.api.energy.IEnergyReciever;
 import jcm2606.mods.sorcerycraft.client.fx.FXFissure;
+import jcm2606.mods.sorcerycraft.core.helper.SCHelper;
 import jcm2606.mods.sorcerycraft.core.network.PacketHandler;
 import jcm2606.mods.sorcerycraft.core.network.PacketType;
 import jcm2606.mods.sorcerycraft.core.network.packet.PacketDrawAstralEnergyBeam;
@@ -17,10 +20,14 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
+import net.minecraft.util.MovingObjectPosition;
 import net.minecraftforge.common.ForgeDirection;
+
+import org.lwjgl.opengl.GL11;
+
 import cpw.mods.fml.common.network.PacketDispatcher;
 
-public class TileAstralInfuser extends TileEntityJC implements IInventory, IEnergyConsumer
+public class TileAstralInfuser extends TileEntityJC implements IInventory, IEnergyReciever, IMedallionPerceptionOverlayHandler
 {
     public ItemStack[] stacks;
     
@@ -104,9 +111,9 @@ public class TileAstralInfuser extends TileEntityJC implements IInventory, IEner
             {
                 IEnergyCapacitor capacitor = ((IEnergyCapacitor) GeneralUtil.getBlockTileFromNeighbour(xCoord, yCoord, zCoord, side, worldObj));
                 
-                if (capacitor.hasEnergy() && capacitor.getEnergyStored() >= this.getEnergyUse())
+                if (capacitor.hasEnergy() && capacitor.getEnergyStored() >= this.getEnergyRequirement())
                 {
-                    capacitor.capacitorProvideEnergy(this.getEnergyUse());
+                    capacitor.capacitorProvideEnergy(this.getEnergyRequirement());
                     
                     if (GeneralUtil.isClient())
                     {
@@ -242,7 +249,7 @@ public class TileAstralInfuser extends TileEntityJC implements IInventory, IEner
             {
                 IEnergyCapacitor capacitor = ((IEnergyCapacitor) GeneralUtil.getBlockTileFromNeighbour(xCoord, yCoord, zCoord, side, worldObj));
                 
-                if (capacitor.hasEnergy() && capacitor.getEnergyStored() >= this.getEnergyUse())
+                if (capacitor.hasEnergy() && capacitor.getEnergyStored() >= this.getEnergyRequirement())
                 {
                     foundSource = true;
                 }
@@ -253,8 +260,37 @@ public class TileAstralInfuser extends TileEntityJC implements IInventory, IEner
     }
     
     @Override
-    public int getEnergyUse()
+    public void recieveEnergy(int energy)
+    {
+    }
+    
+    @Override
+    public int getEnergyRequirement()
     {
         return 1;
+    }
+    
+    @Override
+    public void renderMedallionOverlay(Minecraft mc, EntityPlayer player)
+    {
+        MovingObjectPosition mop = GeneralUtil.getTargetBlock(player.worldObj, player, false, 5.0f);
+        
+        if (mop == null)
+        {
+            return;
+        }
+        
+        int x = mop.blockX;
+        int y = mop.blockY;
+        int z = mop.blockZ;
+        
+        if(SCHelper.playerHasPerceptionMedallion(player))
+        {
+            GL11.glPushMatrix();
+            GL11.glScaled(0.5, 0.5, 0.5);
+            Minecraft.getMinecraft().fontRenderer.drawString("\2477-" + this.getEnergyRequirement() + " AE/t", RenderUtil.width + 8, RenderUtil.height + 8, 0xffffff);
+            GL11.glScaled(1, 1, 1);
+            GL11.glPopMatrix();
+        }
     }
 }

@@ -74,7 +74,7 @@ public class ContainerAstralInfuser extends Container
     @Override
     public boolean canInteractWith(EntityPlayer par1EntityPlayer)
     {
-        return worldObj.getBlockId(posX, posY, posZ) != SCObjects.astralinfuser.blockID ? false : par1EntityPlayer.getDistanceSq(posX + 0.5D,
+        return worldObj.getBlockId(posX, posY, posZ) != SCObjects.astralInfuser.blockID ? false : par1EntityPlayer.getDistanceSq(posX + 0.5D,
                 posY + 0.5D, posZ + 0.5D) <= 64.0D;
     }
     

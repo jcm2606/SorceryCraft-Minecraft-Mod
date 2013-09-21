@@ -2,6 +2,7 @@ package jcm2606.mods.sorcerycraft.block.main;
 
 import java.util.Random;
 
+import jcm2606.mods.sorcerycraft.api.IEnergyInfused;
 import jcm2606.mods.sorcerycraft.api.ITransmutable;
 import jcm2606.mods.sorcerycraft.block.SCOre;
 import jcm2606.mods.sorcerycraft.core.SCObjects;
@@ -11,7 +12,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
-public class BlockOreAuric extends SCOre implements ITransmutable
+public class BlockOreAuric extends SCOre implements ITransmutable, IEnergyInfused
 {
     public BlockOreAuric(int par1)
     {
@@ -36,7 +37,7 @@ public class BlockOreAuric extends SCOre implements ITransmutable
     @Override
     public int idDropped(int par1, Random par2Random, int par3)
     {
-        return SCObjects.auragem.itemID;
+        return SCObjects.gemAura.itemID;
     }
     
     @Override
@@ -49,7 +50,7 @@ public class BlockOreAuric extends SCOre implements ITransmutable
     public Item[] getRequiredDevices()
     {
         return new Item[]
-        { SCObjects.astralstone };
+        { SCObjects.stoneAstral };
     }
     
     @Override
@@ -72,7 +73,24 @@ public class BlockOreAuric extends SCOre implements ITransmutable
     @Override
     public int getMetadataToChangeTo()
     {
-        // TODO Auto-generated method stub
         return 0;
+    }
+    
+    @Override
+    public boolean destroyBlockWhenExtracted()
+    {
+        return true;
+    }
+    
+    @Override
+    public int getCharge()
+    {
+        return 2;
+    }
+    
+    @Override
+    public int getDestroyChance()
+    {
+        return 10;
     }
 }

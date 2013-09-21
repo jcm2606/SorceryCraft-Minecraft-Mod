@@ -74,8 +74,8 @@ public class StructureAstralGate extends WorldGenerator
         world.setBlock(i + 0, j - 1, k + 4, Block.obsidian.blockID);
         world.setBlock(i + 1, j + 0, k + 1, Block.obsidian.blockID);
         world.setBlock(i + 1, j + 0, k + 3, Block.obsidian.blockID);
-        world.setBlock(i + 1, j + world.rand.nextInt(2), k + 1, SCObjects.astraltotem1.blockID);
-        world.setBlock(i + 1, j + world.rand.nextInt(2), k + 3, SCObjects.astraltotem1.blockID);
+        world.setBlock(i + 1, j + world.rand.nextInt(2), k + 1, SCObjects.astralTotem1.blockID);
+        world.setBlock(i + 1, j + world.rand.nextInt(2), k + 3, SCObjects.astralTotem1.blockID);
         world.setBlock(i + 1, j - 1, k + 0, Block.obsidian.blockID);
         world.setBlock(i + 1, j - 1, k + 1, Block.obsidian.blockID);
         world.setBlock(i + 1, j - 1, k + 2, Block.obsidian.blockID);
@@ -83,7 +83,7 @@ public class StructureAstralGate extends WorldGenerator
         world.setBlock(i + 1, j - 1, k + 4, Block.obsidian.blockID);
         world.setBlock(i + 2, j - 1, k + 0, Block.obsidian.blockID);
         world.setBlock(i + 2, j - 1, k + 1, Block.obsidian.blockID);
-        world.setBlock(i + 2, j - 1, k + 2, SCObjects.astralobsidian.blockID);
+        world.setBlock(i + 2, j - 1, k + 2, SCObjects.astralObsidian.blockID);
         world.setBlock(i + 2, j - 1, k + 3, Block.obsidian.blockID);
         world.setBlock(i + 2, j - 1, k + 4, Block.obsidian.blockID);
         world.setBlock(i + 3, j - 1, k + 0, Block.obsidian.blockID);
@@ -98,8 +98,8 @@ public class StructureAstralGate extends WorldGenerator
         world.setBlock(i + 4, j - 1, k + 4, Block.obsidian.blockID);
         world.setBlock(i + 3, j + 0, k + 1, Block.obsidian.blockID);
         world.setBlock(i + 3, j + 0, k + 3, Block.obsidian.blockID);
-        world.setBlock(i + 3, j + world.rand.nextInt(2), k + 1, SCObjects.astraltotem1.blockID);
-        world.setBlock(i + 3, j + world.rand.nextInt(2), k + 3, SCObjects.astraltotem1.blockID);
+        world.setBlock(i + 3, j + world.rand.nextInt(2), k + 1, SCObjects.astralTotem1.blockID);
+        world.setBlock(i + 3, j + world.rand.nextInt(2), k + 3, SCObjects.astralTotem1.blockID);
         System.out.println("ASTRAL GATE GENERATED AT " + i + ", " + k);
         return true;
     }

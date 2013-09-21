@@ -3,7 +3,6 @@ package jcm2606.mods.sorcerycraft.tick;
 import jcm2606.mods.jccore.tick.TickHandlerClientBase;
 import jcm2606.mods.sorcerycraft.core.SorceryCraft;
 import jcm2606.mods.sorcerycraft.core.config.Settings;
-import jcm2606.mods.sorcerycraft.research.ResearchData;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.item.ItemStack;
@@ -38,10 +37,6 @@ public class ClientTickHandler extends TickHandlerClientBase
         if (mc.currentScreen == null)
         {
             ItemStack currentItem = mc.thePlayer.inventory.getCurrentItem();
-            
-            ResearchData researchProps = (ResearchData) mc.thePlayer.getExtendedProperties(ResearchData.NAME);
-            
-            System.out.println(researchProps.getResearchPoints());
         }
     }
     

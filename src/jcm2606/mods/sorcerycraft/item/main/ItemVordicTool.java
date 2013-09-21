@@ -16,11 +16,12 @@ public class ItemVordicTool extends ItemVordicDevice
     @Override
     public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int par7, float par8, float par9, float par10)
     {
-//        ToolHandler.performBlockWorking(stack, player, world, x, y, z);
+        // ToolHandler.performBlockWorking(stack, player, world, x, y, z);
         
-        if(!player.worldObj.isRemote)
+        if (!player.worldObj.isRemote)
         {
-            ((ResearchData) player.getExtendedProperties(ResearchData.NAME)).setResearchPoints(((ResearchData) player.getExtendedProperties(ResearchData.NAME)).getResearchPoints() + 1);
+            ((ResearchData) player.getExtendedProperties(ResearchData.NAME)).setResearchPoints(((ResearchData) player
+                    .getExtendedProperties(ResearchData.NAME)).getResearchPoints() + 1);
         }
         
         return true;

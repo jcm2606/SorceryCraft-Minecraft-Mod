@@ -17,8 +17,8 @@ import net.minecraft.network.packet.Packet250CustomPayload;
  */
 public enum PacketType
 {
-    DRAW_ASTRAL_ENERGY_BEAM(PacketDrawAstralEnergyBeam.class), KEY(PacketKeyPress.class), WAND_USE(PacketWandUse.class),
-    SYNC_RESEARCH_DATA(PacketSyncResearchData.class);
+    DRAW_ASTRAL_ENERGY_BEAM(PacketDrawAstralEnergyBeam.class), KEY(PacketKeyPress.class), WAND_USE(PacketWandUse.class), SYNC_RESEARCH_DATA(
+            PacketSyncResearchData.class);
     
     private Class<? extends PacketBase> clazz;
     

@@ -8,16 +8,21 @@ import jcm2606.mods.sorcerycraft.astral.gauntlet.ModePyrokenisis;
 import jcm2606.mods.sorcerycraft.block.tile.TileEntityArcaneWorkbench;
 import jcm2606.mods.sorcerycraft.block.tile.TileEntityCrystal;
 import jcm2606.mods.sorcerycraft.block.tile.TileEntityInfuseTablet;
-import jcm2606.mods.sorcerycraft.block.tile.TileEntityTeleporter;
-import jcm2606.mods.sorcerycraft.block.tile.astral.TileAstralBattery;
+import jcm2606.mods.sorcerycraft.block.tile.astral.TileAstralCapacitorCPU;
+import jcm2606.mods.sorcerycraft.block.tile.astral.TileAstralCapacitorHousing;
+import jcm2606.mods.sorcerycraft.block.tile.astral.TileAstralCapacitorIOInterface;
 import jcm2606.mods.sorcerycraft.block.tile.astral.TileAstralCraftingNode;
 import jcm2606.mods.sorcerycraft.block.tile.astral.TileAstralCrystalBlock;
+import jcm2606.mods.sorcerycraft.block.tile.astral.TileAstralEnergyExtractor;
 import jcm2606.mods.sorcerycraft.block.tile.astral.TileAstralEnergyGate;
 import jcm2606.mods.sorcerycraft.block.tile.astral.TileAstralEnergyNode;
 import jcm2606.mods.sorcerycraft.block.tile.astral.TileAstralInfuser;
+import jcm2606.mods.sorcerycraft.block.tile.astral.TileAstralKineticGenerator;
 import jcm2606.mods.sorcerycraft.block.tile.astral.TileAstralMechanismBlock;
 import jcm2606.mods.sorcerycraft.block.tile.astral.TileAstralObsidian;
 import jcm2606.mods.sorcerycraft.block.tile.astral.TileAstralOre;
+import jcm2606.mods.sorcerycraft.block.tile.astral.TileAstralStructure;
+import jcm2606.mods.sorcerycraft.block.tile.astral.TileAstralThermalkineticConvertor;
 import jcm2606.mods.sorcerycraft.block.tile.astral.TileAstralTotem1;
 import jcm2606.mods.sorcerycraft.block.tile.astral.TileAstralViewer;
 import jcm2606.mods.sorcerycraft.core.handler.CraftingHandlerAchievement;
@@ -41,7 +46,6 @@ public class SCCommonProxy implements IProxyCommon
         GameRegistry.registerTileEntity(TileEntityArcaneWorkbench.class, "tileSCArcaneWorkbench");
         GameRegistry.registerTileEntity(TileEntityInfuseTablet.class, "tileSCInfuseTablet");
         GameRegistry.registerTileEntity(TileEntityCrystal.class, "tileSCCrystal");
-        GameRegistry.registerTileEntity(TileEntityTeleporter.class, "tileSCTeleporter");
         GameRegistry.registerTileEntity(TileAstralOre.class, "tileSCOreAstral");
         GameRegistry.registerTileEntity(TileAstralViewer.class, "tileSCAstralViewer");
         GameRegistry.registerTileEntity(TileAstralObsidian.class, "tileSCAstralObsidian");
@@ -52,7 +56,13 @@ public class SCCommonProxy implements IProxyCommon
         GameRegistry.registerTileEntity(TileAstralEnergyNode.class, "tileSCAstralEnergyNode");
         GameRegistry.registerTileEntity(TileAstralCraftingNode.class, "tileSCAstralCraftingNode");
         GameRegistry.registerTileEntity(TileAstralInfuser.class, "tileSCAstralInfuser");
-        GameRegistry.registerTileEntity(TileAstralBattery.class, "tileSCAstralBattery");
+        GameRegistry.registerTileEntity(TileAstralCapacitorCPU.class, "tileSCAstralBatteryCore");
+        GameRegistry.registerTileEntity(TileAstralStructure.class, "tileSCAstralStructure");
+        GameRegistry.registerTileEntity(TileAstralCapacitorHousing.class, "tileSCAstralBatteryHousing");
+        GameRegistry.registerTileEntity(TileAstralCapacitorIOInterface.class, "tileSCAstralCapacitorIOInterface");
+        GameRegistry.registerTileEntity(TileAstralEnergyExtractor.class, "tileSCAstralEnergyExtractor");
+        GameRegistry.registerTileEntity(TileAstralKineticGenerator.class, "tileSCAstralKineticGenerator");
+        GameRegistry.registerTileEntity(TileAstralThermalkineticConvertor.class, "tileSCAstralThermalkineticGenerator");
     }
     
     @Override

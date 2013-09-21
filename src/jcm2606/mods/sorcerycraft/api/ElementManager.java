@@ -99,6 +99,6 @@ public class ElementManager
     
     public static ItemStack getElementGemFor(IElement element)
     {
-        return new ItemStack(SCObjects.elementalgem, 1, getListSlotNumFor(element));
+        return new ItemStack(SCObjects.gemElemental, 1, getListSlotNumFor(element));
     }
 }

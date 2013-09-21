@@ -34,6 +34,9 @@ public class FXFissure extends FXSC
      */
     public int outterColour;
     
+    public boolean spawnFissureOnDeath;
+    public boolean infiniteSpawning;
+    
     public FXFissure(World par1World, double par2, double par4, double par6, int par7)
     {
         super(par1World, 0, 0, 0);
@@ -50,6 +53,7 @@ public class FXFissure extends FXSC
         this.ignoreAge = false;
         this.innerColour = 16777215;
         this.outterColour = 16711935;
+        this.spawnFissureOnDeath = false;
     }
     
     @Override
@@ -137,6 +141,15 @@ public class FXFissure extends FXSC
         
         if (this.particleAge++ >= this.particleMaxAge)
         {
+            if (this.spawnFissureOnDeath)
+            {
+                FXFissure fx = new FXFissure(this.worldObj, this.posX, this.posY, this.posZ, this.particleMaxAge);
+                if (this.infiniteSpawning)
+                {
+                    this.spawnFissureOnDeath = true;
+                }
+            }
+            
             this.setDead();
         }
     }

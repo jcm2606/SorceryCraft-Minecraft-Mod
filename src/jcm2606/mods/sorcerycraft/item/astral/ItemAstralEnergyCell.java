@@ -66,11 +66,11 @@ public class ItemAstralEnergyCell extends SCItem
     @Override
     public void getSubItems(int itemID, CreativeTabs tab, List list)
     {
-        ItemStack stack = new ItemStack(SCObjects.astralenergycell, 1, 0);
+        ItemStack stack = new ItemStack(SCObjects.astralCellEnergy, 1, 0);
         this.setEnergy(stack, 0);
         list.add(stack);
         
-        ItemStack stack2 = new ItemStack(SCObjects.astralenergycell, 1, 1000);
+        ItemStack stack2 = new ItemStack(SCObjects.astralCellEnergy, 1, 1000);
         this.setEnergy(stack2, 1000);
         list.add(stack2);
     }

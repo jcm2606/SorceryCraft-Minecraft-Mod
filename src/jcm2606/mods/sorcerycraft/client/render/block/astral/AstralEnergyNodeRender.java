@@ -1,7 +1,7 @@
 package jcm2606.mods.sorcerycraft.client.render.block.astral;
 
 import jcm2606.mods.jccore.core.util.GeneralUtil;
-import jcm2606.mods.sorcerycraft.api.energy.IEnergyConsumer;
+import jcm2606.mods.sorcerycraft.api.energy.IEnergyReciever;
 import jcm2606.mods.sorcerycraft.block.tile.astral.TileAstralEnergyNode;
 import jcm2606.mods.sorcerycraft.client.model.ModelAstralEnergyNode;
 import jcm2606.mods.sorcerycraft.client.model.ModelAstralEnergyNodeGuide;
@@ -33,7 +33,7 @@ public class AstralEnergyNodeRender extends TileEntitySpecialRenderer
         GL11.glPushMatrix();
         GL11.glTranslated(0, -1, 0);
         
-        if (GeneralUtil.getBlockTileFromNeighbour(tile.xCoord, tile.yCoord, tile.zCoord, ForgeDirection.NORTH, tile.worldObj) instanceof IEnergyConsumer)
+        if (GeneralUtil.getBlockTileFromNeighbour(tile.xCoord, tile.yCoord, tile.zCoord, ForgeDirection.NORTH, tile.worldObj) instanceof IEnergyReciever)
         {
             GL11.glPushMatrix();
             GL11.glTranslated(0, 0, 1);
@@ -45,7 +45,7 @@ public class AstralEnergyNodeRender extends TileEntitySpecialRenderer
             GL11.glPopMatrix();
         }
         
-        if (GeneralUtil.getBlockTileFromNeighbour(tile.xCoord, tile.yCoord, tile.zCoord, ForgeDirection.SOUTH, tile.worldObj) instanceof IEnergyConsumer)
+        if (GeneralUtil.getBlockTileFromNeighbour(tile.xCoord, tile.yCoord, tile.zCoord, ForgeDirection.SOUTH, tile.worldObj) instanceof IEnergyReciever)
         {
             GL11.glPushMatrix();
             GL11.glTranslated(0, 0, -1);
@@ -57,7 +57,7 @@ public class AstralEnergyNodeRender extends TileEntitySpecialRenderer
             GL11.glPopMatrix();
         }
         
-        if (GeneralUtil.getBlockTileFromNeighbour(tile.xCoord, tile.yCoord, tile.zCoord, ForgeDirection.EAST, tile.worldObj) instanceof IEnergyConsumer)
+        if (GeneralUtil.getBlockTileFromNeighbour(tile.xCoord, tile.yCoord, tile.zCoord, ForgeDirection.EAST, tile.worldObj) instanceof IEnergyReciever)
         {
             GL11.glPushMatrix();
             GL11.glTranslated(-1, 0, 0);
@@ -69,7 +69,7 @@ public class AstralEnergyNodeRender extends TileEntitySpecialRenderer
             GL11.glPopMatrix();
         }
         
-        if (GeneralUtil.getBlockTileFromNeighbour(tile.xCoord, tile.yCoord, tile.zCoord, ForgeDirection.WEST, tile.worldObj) instanceof IEnergyConsumer)
+        if (GeneralUtil.getBlockTileFromNeighbour(tile.xCoord, tile.yCoord, tile.zCoord, ForgeDirection.WEST, tile.worldObj) instanceof IEnergyReciever)
         {
             GL11.glPushMatrix();
             GL11.glTranslated(1, 0, 0);
@@ -81,7 +81,7 @@ public class AstralEnergyNodeRender extends TileEntitySpecialRenderer
             GL11.glPopMatrix();
         }
         
-        if (GeneralUtil.getBlockTileFromNeighbour(tile.xCoord, tile.yCoord, tile.zCoord, ForgeDirection.UP, tile.worldObj) instanceof IEnergyConsumer)
+        if (GeneralUtil.getBlockTileFromNeighbour(tile.xCoord, tile.yCoord, tile.zCoord, ForgeDirection.UP, tile.worldObj) instanceof IEnergyReciever)
         {
             GL11.glPushMatrix();
             GL11.glTranslated(0, 1.9, 0);
@@ -92,7 +92,7 @@ public class AstralEnergyNodeRender extends TileEntitySpecialRenderer
             GL11.glPopMatrix();
         }
         
-        if (GeneralUtil.getBlockTileFromNeighbour(tile.xCoord, tile.yCoord, tile.zCoord, ForgeDirection.DOWN, tile.worldObj) instanceof IEnergyConsumer)
+        if (GeneralUtil.getBlockTileFromNeighbour(tile.xCoord, tile.yCoord, tile.zCoord, ForgeDirection.DOWN, tile.worldObj) instanceof IEnergyReciever)
         {
             GL11.glPushMatrix();
             GL11.glTranslated(0, 1, 0);

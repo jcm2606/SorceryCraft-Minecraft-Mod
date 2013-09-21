@@ -2,7 +2,7 @@ package jcm2606.mods.sorcerycraft.block.astral;
 
 import jcm2606.mods.jccore.core.util.ConvertUtil;
 import jcm2606.mods.jccore.core.util.GeneralUtil;
-import jcm2606.mods.sorcerycraft.api.energy.IEnergyCapacitor;
+import jcm2606.mods.sorcerycraft.api.energy.IEnergyReadable;
 import jcm2606.mods.sorcerycraft.block.SCBlock;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
@@ -46,13 +46,16 @@ public class BlockAstralGraphMatrix extends SCBlock
             {
                 if (GeneralUtil.getBlockTileFromNeighbour(x, y, z, direction, player.worldObj) != null)
                 {
-                    if (GeneralUtil.getBlockTileFromNeighbour(x, y, z, direction, player.worldObj) instanceof IEnergyCapacitor)
+                    if (GeneralUtil.getBlockTileFromNeighbour(x, y, z, direction, player.worldObj) instanceof IEnergyReadable)
                     {
-                        IEnergyCapacitor capacitor = (IEnergyCapacitor) GeneralUtil.getBlockTileFromNeighbour(x, y, z, direction, player.worldObj);
+                        IEnergyReadable readable = (IEnergyReadable) GeneralUtil.getBlockTileFromNeighbour(x, y, z, direction, player.worldObj);
                         
                         if (world.isRemote)
                         {
-                            player.sendChatToPlayer(ConvertUtil.getChatMessageComponent(capacitor.getEnergyStored() + " [" + direction.name() + "]"));
+                            if (readable.getMessage() != "")
+                            {
+                                player.sendChatToPlayer(ConvertUtil.getChatMessageComponent(readable.getMessage() + " [" + direction.name() + "]"));
+                            }
                         }
                     }
                 }

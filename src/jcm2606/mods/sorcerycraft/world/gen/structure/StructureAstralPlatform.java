@@ -71,7 +71,7 @@ public class StructureAstralPlatform extends WorldGenerator
         world.setBlock(i + 0, j - 1, k + 1, Block.obsidian.blockID);
         world.setBlock(i + 0, j - 1, k + 2, Block.obsidian.blockID);
         world.setBlock(i + 1, j - 1, k + 0, Block.obsidian.blockID);
-        world.setBlock(i + 1, j - 1, k + 1, SCObjects.astralobsidian.blockID);
+        world.setBlock(i + 1, j - 1, k + 1, SCObjects.astralObsidian.blockID);
         world.setBlock(i + 1, j - 1, k + 2, Block.obsidian.blockID);
         world.setBlock(i + 2, j - 1, k + 0, Block.obsidian.blockID);
         world.setBlock(i + 2, j - 1, k + 1, Block.obsidian.blockID);

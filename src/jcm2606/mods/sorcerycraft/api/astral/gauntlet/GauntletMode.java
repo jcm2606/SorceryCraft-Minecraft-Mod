@@ -92,7 +92,7 @@ public abstract class GauntletMode
             
             if (stack != null)
             {
-                if (stack.getItem() == SCObjects.astralenergycell)
+                if (stack.getItem() == SCObjects.astralCellEnergy)
                 {
                     ItemAstralEnergyCell cell = (ItemAstralEnergyCell) stack.getItem();
                     

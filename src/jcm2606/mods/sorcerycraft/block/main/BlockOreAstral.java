@@ -2,6 +2,7 @@ package jcm2606.mods.sorcerycraft.block.main;
 
 import java.util.Random;
 
+import jcm2606.mods.sorcerycraft.api.IEnergyInfused;
 import jcm2606.mods.sorcerycraft.block.SCBlockContainer;
 import jcm2606.mods.sorcerycraft.block.tile.astral.TileAstralOre;
 import jcm2606.mods.sorcerycraft.core.SCObjects;
@@ -13,7 +14,7 @@ import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class BlockOreAstral extends SCBlockContainer
+public class BlockOreAstral extends SCBlockContainer implements IEnergyInfused
 {
     public BlockOreAstral(int par1)
     {
@@ -31,7 +32,7 @@ public class BlockOreAstral extends SCBlockContainer
     @Override
     public int idDropped(int par1, Random par2Random, int par3)
     {
-        return SCObjects.astralorecrystal.itemID;
+        return SCObjects.astralCrystal.itemID;
     }
     
     /**
@@ -142,5 +143,23 @@ public class BlockOreAstral extends SCBlockContainer
             SCParticle.spawnAstralEnergyFX(par2 + 0.5 - (rand.nextGaussian()), par3 + 0.5 - (rand.nextGaussian()),
                     par4 + 0.5 - (rand.nextGaussian()), par2 + 0.5, par3 + 0.5, par4 + 0.5, 30, true, false, true, true);
         }
+    }
+    
+    @Override
+    public boolean destroyBlockWhenExtracted()
+    {
+        return true;
+    }
+    
+    @Override
+    public int getCharge()
+    {
+        return 1;
+    }
+    
+    @Override
+    public int getDestroyChance()
+    {
+        return 2;
     }
 }

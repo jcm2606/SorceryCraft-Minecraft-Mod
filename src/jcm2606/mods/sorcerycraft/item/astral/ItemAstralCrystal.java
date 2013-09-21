@@ -28,7 +28,7 @@ public class ItemAstralCrystal extends SCItem
     {
         if (world.getBlockId(x, y, z) == Block.blockIron.blockID)
         {
-            world.setBlock(x, y, z, SCObjects.astralsteelblock.blockID, 1, 2);
+            world.setBlock(x, y, z, SCObjects.blockAstralSteel.blockID, 1, 2);
             
             if (!player.capabilities.isCreativeMode)
             {

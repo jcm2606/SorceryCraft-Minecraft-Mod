@@ -69,7 +69,7 @@ public class BlockEmberstone extends SCBlock
                 {
                     for (int i = 0; i < 1 + world.rand.nextInt(1); i++)
                     {
-                        ret.add(new ItemStack(SCObjects.firepowder, 1, 0));
+                        ret.add(new ItemStack(SCObjects.dustSear, 1, 0));
                     }
                 }
             }
@@ -80,7 +80,7 @@ public class BlockEmberstone extends SCBlock
                 {
                     for (int i = 0; i < 1 + world.rand.nextInt(1); i++)
                     {
-                        ret.add(new ItemStack(SCObjects.firepowder, 1, 0));
+                        ret.add(new ItemStack(SCObjects.dustSear, 1, 0));
                     }
                 }
             }
@@ -91,7 +91,7 @@ public class BlockEmberstone extends SCBlock
                 {
                     for (int i = 0; i < 1 + world.rand.nextInt(1); i++)
                     {
-                        ret.add(new ItemStack(SCObjects.firepowder, 1, 0));
+                        ret.add(new ItemStack(SCObjects.dustSear, 1, 0));
                     }
                 }
             }
@@ -101,7 +101,7 @@ public class BlockEmberstone extends SCBlock
             {
                 for (int i = 0; i < 1 + world.rand.nextInt(1); i++)
                 {
-                    ret.add(new ItemStack(SCObjects.firepowder, 1, 0));
+                    ret.add(new ItemStack(SCObjects.dustSear, 1, 0));
                 }
             }
         }

@@ -17,12 +17,12 @@ public class CraftingHandlerMain extends CraftingHandlerBase
     @Override
     public void onCraftingMatrixChange(EntityPlayer player, ItemStack stack, Item item, ItemStack resultStack, int slot, IInventory iinv)
     {
-        if (item == SCObjects.creationtablet)
+        if (item == SCObjects.tabletCrafting)
         {
-            keepItemInMatrix(SCObjects.creationtablet, slot, iinv);
+            keepItemInMatrix(SCObjects.tabletCrafting, slot, iinv);
         }
         
-        if (item == SCObjects.vordictool)
+        if (item == SCObjects.toolVordic)
         {
             if (stack.getItemDamage() >= stack.getMaxDamage())
             {
@@ -32,14 +32,14 @@ public class CraftingHandlerMain extends CraftingHandlerBase
             keepItemInMatrixAndDamage(stack, slot, iinv);
         }
         
-        if (item == SCObjects.ringmagma)
+        if (item == SCObjects.ringMagma)
         {
             if (stack.getItemDamage() >= stack.getMaxDamage())
             {
                 return;
             }
             
-            if (stack.itemID == Item.gunpowder.itemID || stack.itemID == Item.redstone.itemID || stack.itemID == SCObjects.firepowder.itemID)
+            if (stack.itemID == Item.gunpowder.itemID || stack.itemID == Item.redstone.itemID || stack.itemID == SCObjects.dustSear.itemID)
             {
                 keepItemInMatrixAndDamage(stack, slot, iinv);
             }

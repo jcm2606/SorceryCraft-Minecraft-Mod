@@ -7,6 +7,6 @@ public class SCHelper
 {
     public static boolean playerHasPerceptionMedallion(EntityPlayer player)
     {
-        return player.inventory.hasItem(SCObjects.medallionperception.itemID);
+        return player.inventory.hasItem(SCObjects.medallionDualPerception.itemID);
     }
 }
