@@ -187,9 +187,9 @@ public class CraftingManagerArcaneWorkbench
             return new ItemStack(var4.itemID, 1, var10);
         } else
         {
-            for (var6 = 0; var6 < this.recipes.size(); ++var6)
+            for (var6 = 0; var6 < CraftingManagerArcaneWorkbench.recipes.size(); ++var6)
             {
-                IRecipe var12 = (IRecipe) this.recipes.get(var6);
+                IRecipe var12 = (IRecipe) CraftingManagerArcaneWorkbench.recipes.get(var6);
                 
                 if (var12.matches(par1InventoryCrafting, par2World))
                 {
@@ -206,6 +206,6 @@ public class CraftingManagerArcaneWorkbench
      */
     public List getRecipeList()
     {
-        return this.recipes;
+        return CraftingManagerArcaneWorkbench.recipes;
     }
 }

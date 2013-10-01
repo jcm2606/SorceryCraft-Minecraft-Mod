@@ -13,17 +13,23 @@ public class TileAstralThermalkineticConvertor extends TileAstralKineticConverto
     {
         int num = 0;
         
-        if(BiomeDictionary.isBiomeOfType(this.worldObj.getBiomeGenForCoords(xCoord, zCoord), Type.DESERT) || BiomeDictionary.isBiomeOfType(this.worldObj.getBiomeGenForCoords(xCoord, zCoord), Type.NETHER))
+        if (BiomeDictionary.isBiomeOfType(this.worldObj.getBiomeGenForCoords(xCoord, zCoord), Type.DESERT) || BiomeDictionary.isBiomeOfType(
+                this.worldObj.getBiomeGenForCoords(xCoord, zCoord), Type.NETHER))
         {
             num += 1;
         }
         
-        for(ForgeDirection direction : ForgeDirection.VALID_DIRECTIONS)
+        for (ForgeDirection direction : ForgeDirection.VALID_DIRECTIONS)
         {
-            if(GeneralUtil.getBlockIdFromNeighbour(xCoord, yCoord, zCoord, direction, worldObj) == Block.furnaceBurning.blockID)
+            if (GeneralUtil.getBlockIdFromNeighbour(xCoord, yCoord, zCoord, direction, worldObj) == Block.furnaceBurning.blockID)
             {
                 num += 1;
             }
+        }
+        
+        if (GeneralUtil.getBlockIdFromNeighbour(xCoord, yCoord, zCoord, ForgeDirection.SOUTH, worldObj) == Block.fire.blockID)
+        {
+            num += 5;
         }
         
         return num;

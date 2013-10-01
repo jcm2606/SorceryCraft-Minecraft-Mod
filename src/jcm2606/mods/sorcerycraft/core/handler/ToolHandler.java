@@ -1,7 +1,7 @@
 package jcm2606.mods.sorcerycraft.core.handler;
 
+import jcm2606.mods.jccore.compat.container.CompatibilityContainer;
 import jcm2606.mods.sorcerycraft.api.IWorkable;
-import jcm2606.mods.sorcerycraft.api.compat.CompatContainerSC;
 import jcm2606.mods.sorcerycraft.api.compat.HandlerMethodID;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
@@ -62,7 +62,7 @@ public class ToolHandler
                         world.setBlock(x, y, z, block.blockID, 0, 0x02);
                         i.onWorking(stack, block, player, world, x, y, z);
                         
-                        CompatContainerSC.postUpdate(HandlerMethodID.VORDIC_WORKING_TOOL_USE, null);
+                        CompatibilityContainer.postUpdate(HandlerMethodID.VORDIC_WORKING_TOOL_USE, null);
                         
                         // world.playSoundAtEntity(player,
                         // "sorcerycraft.transmutation", 1.0f, 1.0f);

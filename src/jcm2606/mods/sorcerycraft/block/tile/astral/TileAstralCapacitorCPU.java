@@ -4,10 +4,12 @@ import jcm2606.mods.jccore.block.tile.TileEntityMultiblock;
 import jcm2606.mods.jccore.core.util.Coord;
 import jcm2606.mods.jccore.core.util.GeneralUtil;
 import jcm2606.mods.jccore.core.util.RenderUtil;
-import jcm2606.mods.sorcerycraft.api.IMedallionPerceptionOverlayHandler;
+import jcm2606.mods.sorcerycraft.api.IExpandedSightHandler;
 import jcm2606.mods.sorcerycraft.api.energy.IEnergyCapacitor;
 import jcm2606.mods.sorcerycraft.block.astral.BlockAstralCapacitorCPU;
 import jcm2606.mods.sorcerycraft.core.SCObjects;
+import jcm2606.mods.sorcerycraft.core.helper.RenderHandlerSC;
+import jcm2606.mods.sorcerycraft.core.lib.Reference;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
@@ -19,7 +21,7 @@ import net.minecraftforge.common.ForgeDirection;
 
 import org.lwjgl.opengl.GL11;
 
-public class TileAstralCapacitorCPU extends TileEntityMultiblock implements IEnergyCapacitor, IMedallionPerceptionOverlayHandler
+public class TileAstralCapacitorCPU extends TileEntityMultiblock implements IEnergyCapacitor, IExpandedSightHandler
 {
     public int energyStored;
     public int timer;
@@ -209,21 +211,32 @@ public class TileAstralCapacitorCPU extends TileEntityMultiblock implements IEne
         
         return true;
     }
-
+    
     @Override
-    public void renderMedallionOverlay(Minecraft mc, EntityPlayer player)
+    public void renderOverlay(Minecraft mc, EntityPlayer player, boolean hasMedallion)
     {
-        if(!this.isValid)
+        if (!this.isValid)
         {
             return;
         }
         
+        RenderHandlerSC.bindTexture(Reference.PATH_TEXTURES_GUI_HUD + "overlay.png");
+        
+        RenderUtil.instance().drawTextureRect(RenderUtil.width / 4 - 19, RenderUtil.height / 2 + 3, 0, 28, 25, 34, 2.5f, 1.0f, 1.0f);
+        
         IEnergyCapacitor capacitor = (IEnergyCapacitor) player.worldObj.getBlockTileEntity(this.xCoord, this.yCoord, this.zCoord);
-    
+        
         GL11.glPushMatrix();
         GL11.glScaled(0.5, 0.5, 0.5);
-        Minecraft.getMinecraft().fontRenderer.drawString("\2477" + capacitor.getEnergyStored() + " AE / " + capacitor.getEnergyLimit() + " AE", RenderUtil.width + 8, RenderUtil.height + 8, 0xffffff);
+        Minecraft.getMinecraft().fontRenderer.drawString("\2477" + capacitor.getEnergyStored() + " AE / " + capacitor.getEnergyLimit() + " AE",
+                RenderUtil.width + 25, RenderUtil.height + 10, 0xffffff);
         GL11.glScaled(1, 1, 1);
         GL11.glPopMatrix();
+    }
+    
+    @Override
+    public boolean canRender(Minecraft mc, EntityPlayer player, boolean hasMedallion)
+    {
+        return hasMedallion || player.capabilities.isCreativeMode;
     }
 }

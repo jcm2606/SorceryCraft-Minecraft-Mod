@@ -12,6 +12,7 @@ import jcm2606.mods.sorcerycraft.core.network.PacketType;
 import jcm2606.mods.sorcerycraft.core.network.packet.PacketKeyPress;
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.item.ItemStack;
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.client.registry.KeyBindingRegistry;
@@ -100,20 +101,19 @@ public class ClientKeyBindingHandler extends KeyBindingRegistry.KeyHandler
                         
                         if (currentItem != null)
                         {
-                            if (this.isKeyBindClientSided(kb.keyDescription))
+                            if (ClientKeyBindingHandler.isKeyBindClientSided(kb.keyDescription))
                             {
                                 PacketDispatcher.sendPacketToServer(PacketType.populatePacket(new PacketKeyPress(kb.keyDescription),
                                         PacketHandler.CHANNEL_SC));
-                            } else
-                            {
-                                ((IKeyBound) currentItem.getItem()).doKeyBindingAction(player, currentItem, kb.keyDescription);
                             }
+                            
+                            ((IKeyBound) currentItem.getItem()).doKeyBindingAction(player, currentItem, kb.keyDescription);
                         }
                     }
                     
                     if (kb.keyDescription.equals(Reference.KEY_BIND_HOTBAR_ITEM_DESC))
                     {
-                        for (int i = 0; i < player.inventory.getHotbarSize(); i++)
+                        for (int i = 0; i < InventoryPlayer.getHotbarSize(); i++)
                         {
                             ItemStack stack = player.inventory.getStackInSlot(i);
                             ItemStack currentItem = FMLClientHandler.instance().getClient().thePlayer.getCurrentEquippedItem();
@@ -128,7 +128,7 @@ public class ClientKeyBindingHandler extends KeyBindingRegistry.KeyHandler
                             
                             if (stack != null)
                             {
-                                if (this.isKeyBindClientSided(kb.keyDescription))
+                                if (ClientKeyBindingHandler.isKeyBindClientSided(kb.keyDescription))
                                 {
                                     PacketDispatcher.sendPacketToServer(PacketType.populatePacket(new PacketKeyPress(kb.keyDescription),
                                             PacketHandler.CHANNEL_SC));

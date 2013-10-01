@@ -13,6 +13,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
@@ -33,13 +34,13 @@ public class ItemAstralEnergyCell extends SCItem
     @Override
     public boolean hasEffect(ItemStack stack)
     {
-        return getEnergy(stack) != 1000;
+        return getEnergy(stack) != 0;
     }
     
     @Override
     public void onUpdate(ItemStack stack, World world, Entity player, int slot, boolean isCurrentItem)
     {
-        stack.setItemDamage(this.getEnergy(stack));
+        stack.setItemDamage(1000 - this.getEnergy(stack));
     }
     
     public void setEnergy(ItemStack stack, int energy)
@@ -49,7 +50,18 @@ public class ItemAstralEnergyCell extends SCItem
     
     public int getEnergy(ItemStack stack)
     {
-        return NBTHelper.getInt(NBTHelper.getNBTCompoundForItemStack(stack), NBT_ENERGY);
+        int energy = 0;
+        
+        NBTTagCompound tag = NBTHelper.getNBTCompoundForItemStack(stack);
+        
+        if(tag.hasKey(NBT_ENERGY))
+        {
+            energy = tag.getInteger(NBT_ENERGY);
+        } else {
+            energy = 1000;
+        }
+        
+        return energy;
     }
     
     @Override
@@ -59,7 +71,7 @@ public class ItemAstralEnergyCell extends SCItem
      */
     public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean par4)
     {
-        list.add("Storing " + (1000 - this.getEnergy(stack)) + " Astral energy");
+        list.add("Storing " + this.getEnergy(stack) + " Astral energy");
     }
     
     @SideOnly(Side.CLIENT)
@@ -67,11 +79,11 @@ public class ItemAstralEnergyCell extends SCItem
     public void getSubItems(int itemID, CreativeTabs tab, List list)
     {
         ItemStack stack = new ItemStack(SCObjects.astralCellEnergy, 1, 0);
-        this.setEnergy(stack, 0);
+        this.setEnergy(stack, 1000);
         list.add(stack);
         
         ItemStack stack2 = new ItemStack(SCObjects.astralCellEnergy, 1, 1000);
-        this.setEnergy(stack2, 1000);
+        this.setEnergy(stack2, 0);
         list.add(stack2);
     }
     
@@ -82,9 +94,9 @@ public class ItemAstralEnergyCell extends SCItem
         {
             if (world.isRemote)
             {
-                if (this.getEnergy(stack) < 1000)
+                if (this.getEnergy(stack) > 0)
                 {
-                    for (int i = 0; i < (1000 - this.getEnergy(stack)) / 5; i++)
+                    for (int i = 0; i < this.getEnergy(stack) / 5; i++)
                     {
                         float r1 = player.worldObj.rand.nextFloat() * 360.0F;
                         float mx = -MathHelper.sin(r1 / 180.0F * 3.141593F) / 5.0F;
@@ -104,7 +116,7 @@ public class ItemAstralEnergyCell extends SCItem
                 }
             }
             
-            this.setEnergy(stack, 1000);
+            this.setEnergy(stack, 0);
         }
         
         return stack;

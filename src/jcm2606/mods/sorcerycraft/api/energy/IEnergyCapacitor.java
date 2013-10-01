@@ -43,11 +43,14 @@ public interface IEnergyCapacitor
     public boolean hasSpace();
     
     /**
-     * This one is used in situations where an overload may occur. You can use this method instead to also make sure the buffer has enough space while not overloading itself.
+     * This one is used in situations where an overload may occur. You can use
+     * this method instead to also make sure the buffer has enough space while
+     * not overloading itself.
      * 
      * @param amount
      * @param allowOverload
-     * @return Does this capacitor have any space left in it's buffer for the amount required.
+     * @return Does this capacitor have any space left in it's buffer for the
+     *         amount required.
      */
     public boolean hasSpace(int amount);
 }

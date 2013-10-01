@@ -50,7 +50,7 @@ public class ItemAstralFlightDriveAir extends SCItemShine
                     if (item != null && item == stack)
                     {
                         
-                        if (!(AstralManager.getTotalEnergyForPlayer(player) > 0) && !player.capabilities.isCreativeMode)
+                        if (!(AstralManager.getTotalEnergy(player) > 0) && !player.capabilities.isCreativeMode)
                         {
                             return;
                         }

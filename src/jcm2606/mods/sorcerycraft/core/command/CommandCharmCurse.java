@@ -50,13 +50,13 @@ public class CommandCharmCurse
                 {
                     ItemCharm charm = (ItemCharm) currentItem.getItem();
                     
-                    if (charm.getCurseName(currentItem).equals(args[2]))
+                    if (ItemCharm.getCurseName(currentItem).equals(args[2]))
                     {
                         ChatUtil.sendTextToCommandSender(commandSender, "That charm already has the curse '" + args[2] + "'.");
                     } else
                     {
-                        charm.setCurseName(currentItem, args[2]);
-                        charm.setCurseOwner(currentItem, commandSender.getCommandSenderName());
+                        ItemCharm.setCurseName(currentItem, args[2]);
+                        ItemCharm.setCurseOwner(currentItem, commandSender.getCommandSenderName());
                         ChatUtil.sendTextToCommandSender(commandSender, "Charm has successfully been cursed with '" + args[2] + "'.");
                         System.out
                                 .println("CHARM @ SLOT " + ServerUtil.getPlayer(commandSender.getCommandSenderName()).inventory.currentItem + " ON PLAYER '" + commandSender
@@ -92,10 +92,10 @@ public class CommandCharmCurse
             {
                 ItemCharm charm = (ItemCharm) currentItem.getItem();
                 
-                if (!charm.getCurseName(currentItem).equals(""))
+                if (!ItemCharm.getCurseName(currentItem).equals(""))
                 {
-                    charm.setCurseName(currentItem, "");
-                    charm.setCurseOwner(currentItem, "");
+                    ItemCharm.setCurseName(currentItem, "");
+                    ItemCharm.setCurseOwner(currentItem, "");
                     ChatUtil.sendTextToCommandSender(commandSender, "Charm has successfully been cleansed of all curses.");
                     System.out
                             .println("CHARM @ SLOT " + ServerUtil.getPlayer(commandSender.getCommandSenderName()).inventory.currentItem + " ON PLAYER '" + commandSender

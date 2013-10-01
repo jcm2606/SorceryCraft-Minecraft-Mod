@@ -16,19 +16,19 @@ public class BlockAstralEnergyFieldDrain extends SCBlock implements IEnergyInfus
         this.renderAsNormalBlock = false;
         this.renderID = RenderID.renderIDAstralEnergyFieldDrain;
     }
-
+    
     @Override
     public boolean destroyBlockWhenExtracted()
     {
         return false;
     }
-
+    
     @Override
     public int getCharge()
     {
         return 1;
     }
-
+    
     @Override
     public int getDestroyChance()
     {

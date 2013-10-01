@@ -22,7 +22,8 @@ public class SCAchievements
     {
         modUseFirst = new Achievement(START_ID, "modUseFirst", 0, 0, SCObjects.arcaneCompendium, null).registerAchievement();
         vordicDustGet = new Achievement(START_ID + 1, "vordicDustGet", 2, 2, SCObjects.dustVordic, modUseFirst).registerAchievement();
-        refVordicDustGet = new Achievement(START_ID + 2, "refVordicDustGet", 2, -1, SCObjects.dustVordicStabilised, vordicDustGet).registerAchievement();
+        refVordicDustGet = new Achievement(START_ID + 2, "refVordicDustGet", 2, -1, SCObjects.dustVordicStabilised, vordicDustGet)
+                .registerAchievement();
         vimDustGet = new Achievement(START_ID + 3, "vimDustGet", 4, 1, SCObjects.dustVim, refVordicDustGet).registerAchievement();
         alchStoneGet = new Achievement(START_ID + 4, "alchStoneGet", 4, -2, SCObjects.stoneArcane, vimDustGet).registerAchievement();
         arcaneWorkbenchGet = new Achievement(START_ID + 5, "arcaneWorkbenchGet", -1, -2, SCObjects.workbenchArcane, alchStoneGet)

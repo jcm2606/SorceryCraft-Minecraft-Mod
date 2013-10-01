@@ -4,14 +4,11 @@ import java.util.List;
 import java.util.Random;
 
 import jcm2606.mods.sorcerycraft.api.AstralManager;
-import jcm2606.mods.sorcerycraft.api.SCApi;
 import jcm2606.mods.sorcerycraft.api.astral.gauntlet.EnumUseType;
 import jcm2606.mods.sorcerycraft.api.astral.gauntlet.GauntletMode;
 import jcm2606.mods.sorcerycraft.client.fx.FXSearFlame;
-import jcm2606.mods.sorcerycraft.core.SCObjects;
 import jcm2606.mods.sorcerycraft.core.SCParticle;
 import jcm2606.mods.sorcerycraft.core.config.Settings;
-import jcm2606.mods.sorcerycraft.item.astral.ItemAstralGauntlet;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.EntityLivingBase;
@@ -19,10 +16,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
-import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
-import net.minecraftforge.event.ForgeSubscribe;
-import net.minecraftforge.event.entity.living.LivingHurtEvent;
 
 public class ModePyrokenisis extends GauntletMode
 {
@@ -57,7 +51,7 @@ public class ModePyrokenisis extends GauntletMode
     @Override
     public void onGauntletItemUpdateTick(ItemStack stack, EntityPlayer player, World world, int slot, boolean isCurrentItem)
     {
-        if (isCurrentItem && world.isRemote && SCApi.astralManager.getTotalEnergyForPlayer(player) > 0)
+        if (isCurrentItem && world.isRemote && AstralManager.getTotalEnergy(player) > 0)
         {
             double adjAngle = 25.0D;
             double dist = 0.4D;
@@ -210,43 +204,5 @@ public class ModePyrokenisis extends GauntletMode
     @Override
     public void addInfoToItemMouseover(EntityPlayer player, ItemStack stack, boolean isSneaking, List list)
     {
-    }
-    
-    @ForgeSubscribe
-    public void onPlayerHurt(LivingHurtEvent event)
-    {
-        if (event.isCancelable())
-        {
-            if (event.entityLiving instanceof EntityPlayer)
-            {
-                EntityPlayer player = (EntityPlayer) event.entityLiving;
-                
-                for (int i = 0; i < player.inventory.getHotbarSize(); i++)
-                {
-                    ItemStack stack = player.inventory.mainInventory[i];
-                    
-                    if (stack != null)
-                    {
-                        if (stack.getItem() == SCObjects.gauntletAstral)
-                        {
-                            ItemAstralGauntlet gauntlet = (ItemAstralGauntlet) stack.getItem();
-                            
-                            if (AstralManager.getMode(gauntlet.getMode(stack)).name == this.name)
-                            {
-                                if (event.source == DamageSource.lava || event.source == DamageSource.onFire || event.source == DamageSource.inFire)
-                                {
-                                    event.setCanceled(true);
-                                    
-                                    if (player.worldObj.rand.nextInt(100) <= 30)
-                                    {
-                                        AstralManager.setChargeForCellsInInv(player, AstralManager.getEnergyForPlayer(player) - 1);
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
     }
 }

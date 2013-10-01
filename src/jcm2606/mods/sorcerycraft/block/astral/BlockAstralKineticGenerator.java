@@ -13,7 +13,7 @@ public class BlockAstralKineticGenerator extends SCBlockMultiblock
     {
         super(par1, Material.iron, "astralKineticGenerator", Rarities.ADVANCED);
     }
-
+    
     @Override
     public TileEntity createNewTileEntity(World world)
     {

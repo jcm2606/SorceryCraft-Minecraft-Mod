@@ -3,8 +3,8 @@ package jcm2606.mods.sorcerycraft.item.special;
 import java.util.ArrayList;
 import java.util.List;
 
+import jcm2606.mods.jccore.compat.container.CompatibilityContainer;
 import jcm2606.mods.jccore.core.helper.RarityHelper;
-import jcm2606.mods.sorcerycraft.api.compat.CompatContainerSC;
 import jcm2606.mods.sorcerycraft.api.compat.HandlerMethodID;
 import jcm2606.mods.sorcerycraft.core.helper.SCHelper;
 import jcm2606.mods.sorcerycraft.core.lib.Rarities;
@@ -56,7 +56,7 @@ public class ItemSceptorAscension extends SCItem
                 {
                     if (!(ent instanceof EntityPlayer))
                     {
-                        CompatContainerSC.postUpdate(HandlerMethodID.SCEPTOR_ASCENSION_USE, null);
+                        CompatibilityContainer.postUpdate(HandlerMethodID.SCEPTOR_ASCENSION_USE, null);
                         ent.addVelocity(0.0D, velUp, 0.0D);
                     }
                 }

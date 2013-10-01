@@ -6,9 +6,7 @@ import net.minecraft.entity.Entity;
 
 public class ModelCube extends ModelBase
 {
-    public static ModelCube INSTANCE = new ModelCube();
-    
-    // fields
+    //fields
     ModelRenderer Shape1;
     
     public ModelCube()
@@ -17,8 +15,7 @@ public class ModelCube extends ModelBase
         textureHeight = 32;
         
         Shape1 = new ModelRenderer(this, 0, 0);
-        Shape1.addBox(0F, 0F, 0F, 16, 16, 16);
-        Shape1.setRotationPoint(-8F, 8F, -8F);
+        Shape1.addBox(-8F, -8F, -8F, 16, 16, 16);
         Shape1.setTextureSize(64, 32);
         Shape1.mirror = true;
         setRotation(Shape1, 0F, 0F, 0F);

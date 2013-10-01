@@ -96,14 +96,13 @@ public abstract class GauntletMode
                 {
                     ItemAstralEnergyCell cell = (ItemAstralEnergyCell) stack.getItem();
                     
-                    if ((1000 - cell.getEnergy(stack)) >= this.energyRequired(type, player))
+                    if ((cell.getEnergy(stack)) >= this.energyRequired(type, player))
                     {
-                        cell.setEnergy(stack, cell.getEnergy(stack) + this.energyRequired(type, player));
+                        cell.setEnergy(stack, cell.getEnergy(stack) - this.energyRequired(type, player));
                         break;
                     }
                 }
             }
         }
-        
     }
 }

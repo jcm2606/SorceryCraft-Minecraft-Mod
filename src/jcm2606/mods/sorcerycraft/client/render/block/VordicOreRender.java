@@ -28,12 +28,14 @@ public class VordicOreRender implements ISimpleBlockRenderingHandler
         float g = 1;
         float b = 1;
         GL11.glColor3f(r, g, b);
-        RenderUtil.instance().drawFaces(renderer, block, ((BlockOreVord) SCObjects.oreVordic).textureGlow, true);
+        RenderUtil.instance();
+        RenderUtil.drawFaces(renderer, block, ((BlockOreVord) SCObjects.oreVordic).textureGlow, true);
         GL11.glColor3f(1f, 1f, 1f);
         
         renderer.clearOverrideBlockTexture();
         
-        RenderUtil.instance().drawFaces(renderer, block, renderer.getBlockIcon(block), false);
+        RenderUtil.instance();
+        RenderUtil.drawFaces(renderer, block, renderer.getBlockIcon(block), false);
         
         renderer.setRenderBoundsFromBlock(block);
         GL11.glPopMatrix();

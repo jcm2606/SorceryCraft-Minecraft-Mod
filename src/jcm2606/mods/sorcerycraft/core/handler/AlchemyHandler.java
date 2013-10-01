@@ -2,8 +2,8 @@ package jcm2606.mods.sorcerycraft.core.handler;
 
 import java.util.Random;
 
+import jcm2606.mods.jccore.compat.container.CompatibilityContainer;
 import jcm2606.mods.sorcerycraft.api.ITransmutable;
-import jcm2606.mods.sorcerycraft.api.compat.CompatContainerSC;
 import jcm2606.mods.sorcerycraft.api.compat.HandlerMethodID;
 import jcm2606.mods.sorcerycraft.client.fx.FXFissure;
 import jcm2606.mods.sorcerycraft.enchant.Enchantments;
@@ -86,7 +86,7 @@ public class AlchemyHandler
                     
                     world.setBlock(x, y, z, block.blockID, i.getMetadataToChangeTo(), 0x02);
                     i.onTransmute(stack, block, player, world, x, y, z);
-                    CompatContainerSC.postUpdate(HandlerMethodID.ALCH_STONE_TRANSMUTE, null);
+                    CompatibilityContainer.postUpdate(HandlerMethodID.ALCH_STONE_TRANSMUTE, null);
                     
                     world.playSoundAtEntity(player, "sorcerycraft:transmutation", 0.3f + (world.rand.nextFloat() / 4), 1.0f);
                     
@@ -119,7 +119,7 @@ public class AlchemyHandler
         }
         
         world.playSoundAtEntity(player, "sorcerycraft:magic_fail", 0.2f, 1.0f);
-        CompatContainerSC.postUpdate(HandlerMethodID.ALCH_STONE_TRANSMUTE_FAIL, null);
+        CompatibilityContainer.postUpdate(HandlerMethodID.ALCH_STONE_TRANSMUTE_FAIL, null);
         
         return false;
     }

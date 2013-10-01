@@ -3,25 +3,17 @@ package jcm2606.mods.sorcerycraft.client.gui.overlay;
 import java.util.Collection;
 import java.util.HashMap;
 
-import jcm2606.mods.jccore.core.util.GeneralUtil;
 import jcm2606.mods.jccore.core.util.RenderUtil;
 import jcm2606.mods.sorcerycraft.api.AstralManager;
-import jcm2606.mods.sorcerycraft.api.IMedallionPerceptionOverlayHandler;
 import jcm2606.mods.sorcerycraft.api.astral.gauntlet.EnumUseType;
 import jcm2606.mods.sorcerycraft.api.astral.gauntlet.GauntletMode;
 import jcm2606.mods.sorcerycraft.core.SCObjects;
-import jcm2606.mods.sorcerycraft.core.SorceryCraft;
-import jcm2606.mods.sorcerycraft.core.config.Settings;
-import jcm2606.mods.sorcerycraft.core.helper.RenderHandlerSC;
-import jcm2606.mods.sorcerycraft.core.helper.SCHelper;
-import jcm2606.mods.sorcerycraft.core.lib.Reference;
 import jcm2606.mods.sorcerycraft.item.astral.ItemAstralEnergyCell;
 import jcm2606.mods.sorcerycraft.item.astral.ItemAstralGauntlet;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.MovingObjectPosition;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent.ElementType;
 import net.minecraftforge.event.EventPriority;
@@ -52,91 +44,6 @@ public class GuiOverlayAstral extends Gui
             {
                 renderAstralGauntletOverlay(mc, mc.thePlayer, mc.thePlayer.getCurrentEquippedItem());
             }
-        }
-        
-        if (mc.thePlayer.inventory.hasItem(SCObjects.astralCellEnergy.itemID))
-        {
-            if (mc.thePlayer.getCurrentEquippedItem() != null)
-            {
-                if (mc.thePlayer.getCurrentEquippedItem().getItem() == SCObjects.gauntletAstral)
-                {
-                    return;
-                }
-            }
-            
-            this.renderAstralEnergyOverlay(mc, mc.thePlayer);
-        }
-        
-        this.renderInWorldEnergy(mc, mc.thePlayer);
-    }
-    
-    private void renderAstralEnergyOverlay(Minecraft minecraft, EntityPlayer player)
-    {
-        int maxEnergy = 0;
-        int currentEnergy = 0;
-        int cellsInInv = 0;
-        int fullCellsInInv = 0;
-        
-        int offsetX = 0;
-        int offsetText = 0;
-        
-        HashMap<Integer, ItemStack> stackList = new HashMap<Integer, ItemStack>();
-        
-        for (int i = 0; i < player.inventory.mainInventory.length; i++)
-        {
-            ItemStack stack2 = player.inventory.mainInventory[i];
-            
-            if (stack2 != null)
-            {
-                if (stack2.getItem() == SCObjects.astralCellEnergy)
-                {
-                    ItemAstralEnergyCell cell = (ItemAstralEnergyCell) stack2.getItem();
-                    
-                    maxEnergy = maxEnergy + 1000;
-                    currentEnergy = currentEnergy + (1000 - cell.getEnergy(stack2));
-                    cellsInInv++;
-                    
-                    if (!(cellsInInv > 4))
-                    {
-                        stackList.put(i, stack2);
-                    }
-                }
-            }
-        }
-        
-        Collection<ItemStack> stackCollection = stackList.values();
-        
-        for (ItemStack stack : stackCollection)
-        {
-            ItemAstralEnergyCell cell = (ItemAstralEnergyCell) stack.getItem();
-            int currentCellEnergy = 1000 - cell.getEnergy(stack);
-            
-            RenderHandlerSC.bindTexture(Reference.PATH_TEXTURES_GUI_HUD + "astral_energy_cell_hud.png");
-            
-            if (SorceryCraft.instance.specialPlayers.containsKey(player.username))
-            {
-                RenderUtil.instance().drawTextureRect(1, 1 + offsetX, 0, 0, 256, 256, 0.05f, 0.05f, 0.05f,
-                        Settings.SPECIAL_PLAYER_ASTRAL_ENERGY_ORB_EMPTY_COLOUR_RED, Settings.SPECIAL_PLAYER_ASTRAL_ENERGY_ORB_EMPTY_COLOUR_GREEN,
-                        Settings.SPECIAL_PLAYER_ASTRAL_ENERGY_ORB_EMPTY_COLOUR_BLUE);
-            } else
-            {
-                RenderUtil.instance().drawTextureRect(1, 1 + offsetX, 0, 0, 256, 256, 0.05f, 0.05f, 0.05f, 0.5, 0.5, 0.5);
-            }
-            
-            if (cell.getEnergy(stack) < 1000)
-            {
-                fullCellsInInv++;
-                
-                int scale = currentCellEnergy / 4;
-                
-                RenderHandlerSC.bindTexture(Reference.PATH_TEXTURES_GUI_HUD + "astral_energy_cell_hud.png");
-                RenderUtil.instance().drawTextureRect(1, 1 + offsetX, 0, 0, scale, 256, 0.05f, 0.05f, 0.05f, 1.0, 1.0, 1.0);
-            }
-            
-            minecraft.fontRenderer.drawStringWithShadow("\2477" + currentCellEnergy, 16, 3 + offsetText, 0xffffff);
-            
-            offsetX += 256 + 48;
-            offsetText += 15;
         }
     }
     
@@ -211,35 +118,6 @@ public class GuiOverlayAstral extends Gui
             }
             
             offsetText += 10;
-        }
-        
-        this.renderAstralEnergyOverlay(minecraft, player);
-    }
-    
-    private void renderInWorldEnergy(Minecraft minecraft, EntityPlayer player)
-    {
-        MovingObjectPosition mop = GeneralUtil.getTargetBlock(player.worldObj, player, false, 5.0f);
-        
-        if (mop == null)
-        {
-            return;
-        }
-        
-        int x = mop.blockX;
-        int y = mop.blockY;
-        int z = mop.blockZ;
-        
-        if(SCHelper.playerHasPerceptionMedallion(player) || player.capabilities.isCreativeMode)
-        {
-            if(player.worldObj.getBlockTileEntity(x, y, z) != null)
-            {
-                if(player.worldObj.getBlockTileEntity(x, y, z) instanceof IMedallionPerceptionOverlayHandler)
-                {
-                    IMedallionPerceptionOverlayHandler handler = (IMedallionPerceptionOverlayHandler) player.worldObj.getBlockTileEntity(x, y, z);
-                
-                    handler.renderMedallionOverlay(minecraft, player);
-                }
-            }
         }
     }
 }

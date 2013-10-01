@@ -5,6 +5,7 @@ import jcm2606.mods.sorcerycraft.core.SCObjects;
 import jcm2606.mods.sorcerycraft.item.special.ItemInvisCloak;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
+import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent.ElementType;
@@ -29,7 +30,7 @@ public class GuiOverlayInvisCloak extends Gui
             return;
         }
         
-        for (int i = 0; i < mc.thePlayer.inventory.getHotbarSize(); i++)
+        for (int i = 0; i < InventoryPlayer.getHotbarSize(); i++)
         {
             ItemStack stack = mc.thePlayer.inventory.getStackInSlot(i);
             

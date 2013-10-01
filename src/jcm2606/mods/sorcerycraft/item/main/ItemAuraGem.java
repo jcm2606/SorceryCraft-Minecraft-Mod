@@ -51,7 +51,7 @@ public class ItemAuraGem extends ItemMeta
     {
         if (SCHelper.playerHasPerceptionMedallion(player))
         {
-            list.add("\2478\247o" + this.types[stack.getItemDamage()]);
+            list.add("\2478\247o" + ItemAuraGem.types[stack.getItemDamage()]);
         }
     }
 }

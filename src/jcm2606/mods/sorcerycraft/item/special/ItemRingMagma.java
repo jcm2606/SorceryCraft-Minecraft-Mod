@@ -2,8 +2,8 @@ package jcm2606.mods.sorcerycraft.item.special;
 
 import java.util.List;
 
+import jcm2606.mods.jccore.compat.container.CompatibilityContainer;
 import jcm2606.mods.jccore.core.helper.RarityHelper;
-import jcm2606.mods.sorcerycraft.api.compat.CompatContainerSC;
 import jcm2606.mods.sorcerycraft.api.compat.HandlerMethodID;
 import jcm2606.mods.sorcerycraft.client.fx.FXFissure;
 import jcm2606.mods.sorcerycraft.core.SCParticle;
@@ -219,7 +219,7 @@ public class ItemRingMagma extends SCItem
             }
         }
         
-        CompatContainerSC.postUpdate(HandlerMethodID.RING_MAGMA_USE, null);
+        CompatibilityContainer.postUpdate(HandlerMethodID.RING_MAGMA_USE, null);
         
         stack.damageItem(1, player);
     }

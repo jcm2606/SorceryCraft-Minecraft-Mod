@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import jcm2606.mods.jccore.block.tile.TileEntityJC;
 import jcm2606.mods.jccore.core.util.GeneralUtil;
 import jcm2606.mods.jccore.core.util.RenderUtil;
-import jcm2606.mods.sorcerycraft.api.IMedallionPerceptionOverlayHandler;
+import jcm2606.mods.sorcerycraft.api.IExpandedSightHandler;
 import jcm2606.mods.sorcerycraft.api.energy.IEnergyCapacitor;
 import jcm2606.mods.sorcerycraft.api.energy.IEnergyReciever;
 import jcm2606.mods.sorcerycraft.client.fx.FXFissure;
@@ -27,7 +27,7 @@ import org.lwjgl.opengl.GL11;
 
 import cpw.mods.fml.common.network.PacketDispatcher;
 
-public class TileAstralInfuser extends TileEntityJC implements IInventory, IEnergyReciever, IMedallionPerceptionOverlayHandler
+public class TileAstralInfuser extends TileEntityJC implements IInventory, IEnergyReciever, IExpandedSightHandler
 {
     public ItemStack[] stacks;
     
@@ -271,7 +271,7 @@ public class TileAstralInfuser extends TileEntityJC implements IInventory, IEner
     }
     
     @Override
-    public void renderMedallionOverlay(Minecraft mc, EntityPlayer player)
+    public void renderOverlay(Minecraft mc, EntityPlayer player, boolean hasMedallion)
     {
         MovingObjectPosition mop = GeneralUtil.getTargetBlock(player.worldObj, player, false, 5.0f);
         
@@ -284,13 +284,20 @@ public class TileAstralInfuser extends TileEntityJC implements IInventory, IEner
         int y = mop.blockY;
         int z = mop.blockZ;
         
-        if(SCHelper.playerHasPerceptionMedallion(player))
+        if (SCHelper.playerHasPerceptionMedallion(player))
         {
             GL11.glPushMatrix();
             GL11.glScaled(0.5, 0.5, 0.5);
-            Minecraft.getMinecraft().fontRenderer.drawString("\2477-" + this.getEnergyRequirement() + " AE/t", RenderUtil.width + 8, RenderUtil.height + 8, 0xffffff);
+            Minecraft.getMinecraft().fontRenderer.drawString("\2477-" + this.getEnergyRequirement() + " AE/t", RenderUtil.width + 8,
+                    RenderUtil.height + 8, 0xffffff);
             GL11.glScaled(1, 1, 1);
             GL11.glPopMatrix();
         }
+    }
+    
+    @Override
+    public boolean canRender(Minecraft mc, EntityPlayer player, boolean hasMedallion)
+    {
+        return hasMedallion || player.capabilities.isCreativeMode;
     }
 }

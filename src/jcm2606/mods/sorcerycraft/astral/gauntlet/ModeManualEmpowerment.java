@@ -48,23 +48,23 @@ public class ModeManualEmpowerment extends GauntletMode
             double y2 = vec3.yCoord;
             double z2 = vec3.zCoord;
             
+            double adjAngle = 25.0D;
+            double dist = 0.4D;
+            
+            EntityPlayer center = player;
+            
+            double posX = center.posX - Math.cos((-center.rotationYaw + adjAngle) * 0.01745329D) * dist;
+            double posY = center.posY - Math.sin(center.rotationPitch / 540.0F * Math.PI) * dist;
+            double posZ = center.posZ + Math.sin((-center.rotationYaw + adjAngle) * 0.01745329D) * dist;
+            
+            if (world.isRemote)
+            {
+                PacketDispatcher.sendPacketToAllAround(player.posX, player.posY, player.posZ, 64, player.dimension, PacketType.populatePacket(
+                        new PacketDrawAstralEnergyBeam(posX, posY, posZ, x2, y2, z2, 1, true), PacketHandler.CHANNEL_SC));
+            }
+            
             if (world.getBlockId(mop.blockX, mop.blockY, mop.blockZ) > 0)
             {
-                double adjAngle = 25.0D;
-                double dist = 0.4D;
-                
-                EntityPlayer center = player;
-                
-                double posX = center.posX - Math.cos((-center.rotationYaw + adjAngle) * 0.01745329D) * dist;
-                double posY = center.posY - Math.sin(center.rotationPitch / 540.0F * Math.PI) * dist;
-                double posZ = center.posZ + Math.sin((-center.rotationYaw + adjAngle) * 0.01745329D) * dist;
-                
-                if (world.isRemote)
-                {
-                    PacketDispatcher.sendPacketToAllAround(player.posX, player.posY, player.posZ, 64, player.dimension, PacketType.populatePacket(
-                            new PacketDrawAstralEnergyBeam(posX, posY, posZ, x2, y2, z2, 1, true), PacketHandler.CHANNEL_SC));
-                }
-                
                 if (world.getBlockTileEntity(mop.blockX, mop.blockY, mop.blockZ) != null)
                 {
                     TileEntity te = world.getBlockTileEntity(mop.blockX, mop.blockY, mop.blockZ);

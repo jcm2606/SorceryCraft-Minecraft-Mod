@@ -51,7 +51,7 @@ public class EnchantmentElementalDamage extends Enchantment
     @Override
     public boolean canApplyTogether(Enchantment par1Enchantment)
     {
-        return this != par1Enchantment && this != par1Enchantment.sharpness;
+        return this != par1Enchantment && this != Enchantment.sharpness;
     }
     
     @Override

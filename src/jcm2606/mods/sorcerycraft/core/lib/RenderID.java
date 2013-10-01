@@ -9,4 +9,6 @@ public class RenderID
     public static int renderIDAstralCapacitor;
     public static int renderIDAstralCapacitorCPU;
     public static int renderIDAstralEnergyFieldDrain;
+    public static int renderIDAstralThermalkineticConvertor;
+    public static int renderIDAstralZoneCharger;
 }

@@ -1,6 +1,7 @@
 package jcm2606.mods.sorcerycraft.client;
 
 import jcm2606.mods.jccore.core.IProxyClient;
+import jcm2606.mods.sorcerycraft.api.SCApi;
 import jcm2606.mods.sorcerycraft.block.tile.TileEntityCrystal;
 import jcm2606.mods.sorcerycraft.block.tile.TileEntityInfuseTablet;
 import jcm2606.mods.sorcerycraft.block.tile.astral.TileAstralCraftingNode;
@@ -14,7 +15,9 @@ import jcm2606.mods.sorcerycraft.block.tile.astral.TileAstralOre;
 import jcm2606.mods.sorcerycraft.block.tile.astral.TileAstralTotem1;
 import jcm2606.mods.sorcerycraft.block.tile.astral.TileAstralViewer;
 import jcm2606.mods.sorcerycraft.client.gui.overlay.GuiOverlayAstral;
+import jcm2606.mods.sorcerycraft.client.gui.overlay.GuiOverlayExpandedSight;
 import jcm2606.mods.sorcerycraft.client.gui.overlay.GuiOverlayInvisCloak;
+import jcm2606.mods.sorcerycraft.client.gui.overlay.TileExpandedSightHandler;
 import jcm2606.mods.sorcerycraft.client.keybind.ClientKeyBindingHandler;
 import jcm2606.mods.sorcerycraft.client.keybind.KeyBindingSC;
 import jcm2606.mods.sorcerycraft.client.render.block.CrystalRender;
@@ -30,6 +33,8 @@ import jcm2606.mods.sorcerycraft.client.render.block.astral.AstralEnergyFieldDra
 import jcm2606.mods.sorcerycraft.client.render.block.astral.AstralEnergyNodeRender;
 import jcm2606.mods.sorcerycraft.client.render.block.astral.AstralInfuserRender;
 import jcm2606.mods.sorcerycraft.client.render.block.astral.AstralStructureRender;
+import jcm2606.mods.sorcerycraft.client.render.block.astral.AstralThermalkineticConvertorRender;
+import jcm2606.mods.sorcerycraft.client.render.block.astral.AstralZoneChargerRender;
 import jcm2606.mods.sorcerycraft.client.render.item.astral.AstralBlockRenderItem;
 import jcm2606.mods.sorcerycraft.client.render.item.astral.AstralCraftingNodeRenderItem;
 import jcm2606.mods.sorcerycraft.client.render.item.astral.AstralEnergyNodeRenderItem;
@@ -69,7 +74,7 @@ public class SCClientProxy extends SCCommonProxy implements IProxyClient
     {
         MinecraftForgeClient.registerItemRenderer(SCObjects.oreAstral.blockID, new AstralBlockRenderItem("textures/blocks/ore_astral_anim.png"));
         MinecraftForgeClient
-                .registerItemRenderer(SCObjects.astralViewer.blockID, new AstralBlockRenderItem("textures/blocks/astral_viewer_anim.png"));
+        .registerItemRenderer(SCObjects.astralViewer.blockID, new AstralBlockRenderItem("textures/blocks/astral_viewer_anim.png"));
         MinecraftForgeClient.registerItemRenderer(SCObjects.astralObsidian.blockID, new AstralBlockRenderItem(
                 "textures/blocks/astral_obsidian_anim.png"));
         MinecraftForgeClient.registerItemRenderer(SCObjects.blockAstralCrystal.blockID, new AstralBlockRenderItem(
@@ -92,6 +97,8 @@ public class SCClientProxy extends SCCommonProxy implements IProxyClient
         RenderingRegistry.registerBlockHandler(new AstralCapacitorStructureRender());
         RenderingRegistry.registerBlockHandler(new AstralCapacitorCPURender());
         RenderingRegistry.registerBlockHandler(new AstralEnergyFieldDrainRender());
+        RenderingRegistry.registerBlockHandler(new AstralThermalkineticConvertorRender());
+        RenderingRegistry.registerBlockHandler(new AstralZoneChargerRender());
     }
     
     @Override
@@ -104,6 +111,8 @@ public class SCClientProxy extends SCCommonProxy implements IProxyClient
         RenderID.renderIDAstralCapacitor = RenderingRegistry.getNextAvailableRenderId();
         RenderID.renderIDAstralCapacitorCPU = RenderingRegistry.getNextAvailableRenderId();
         RenderID.renderIDAstralEnergyFieldDrain = RenderingRegistry.getNextAvailableRenderId();
+        RenderID.renderIDAstralThermalkineticConvertor = RenderingRegistry.getNextAvailableRenderId();
+        RenderID.renderIDAstralZoneCharger = RenderingRegistry.getNextAvailableRenderId();
     }
     
     @Override
@@ -148,6 +157,9 @@ public class SCClientProxy extends SCCommonProxy implements IProxyClient
         KeyBindingRegistry.registerKeyBinding(new ClientKeyBindingHandler());
         MinecraftForge.EVENT_BUS.register(new GuiOverlayAstral(Minecraft.getMinecraft()));
         MinecraftForge.EVENT_BUS.register(new GuiOverlayInvisCloak(Minecraft.getMinecraft()));
+        MinecraftForge.EVENT_BUS.register(new GuiOverlayExpandedSight(Minecraft.getMinecraft()));
+        SCApi.instance().registerExpandedSightHandler(new TileExpandedSightHandler());
+        SCApi.instance().registerExpandedSightHandler(new SCOverlayHandler());
     }
     
     @Override

@@ -1,6 +1,6 @@
 package jcm2606.mods.sorcerycraft.core.network;
 
-import jcm2606.mods.sorcerycraft.api.compat.CompatContainerSC;
+import jcm2606.mods.jccore.compat.container.CompatibilityContainer;
 import jcm2606.mods.sorcerycraft.api.compat.HandlerMethodID;
 import jcm2606.mods.sorcerycraft.api.compat.eventargs.PacketRecieveEvent;
 import net.minecraft.network.INetworkManager;
@@ -18,7 +18,7 @@ public class PacketHandler implements IPacketHandler
         PacketBase packetBase = PacketType.buildPacket(packet.data);
         
         PacketRecieveEvent packetRecievedEvent = new PacketRecieveEvent(packet.channel, packet.data, packetBase);
-        CompatContainerSC.postUpdate(HandlerMethodID.PACKET_RECIEVE, packetRecievedEvent);
+        CompatibilityContainer.postUpdate(HandlerMethodID.PACKET_RECIEVE, packetRecievedEvent);
         
         packetBase.execute(manager, player);
     }

@@ -7,8 +7,10 @@ import jcm2606.mods.jccore.compat.ModCompatibility;
 import jcm2606.mods.jccore.compat.container.CompatibilityContainer;
 import jcm2606.mods.jccore.core.util.LoggerBase;
 import jcm2606.mods.sorcerycraft.api.ElementManager;
+import jcm2606.mods.sorcerycraft.api.IExpandedSightHandler;
 import jcm2606.mods.sorcerycraft.api.SCApi;
 import jcm2606.mods.sorcerycraft.api.compat.CompatContainerSC;
+import jcm2606.mods.sorcerycraft.client.gui.overlay.GuiOverlayExpandedSight;
 import jcm2606.mods.sorcerycraft.core.command.CommandSC;
 import jcm2606.mods.sorcerycraft.core.config.Config;
 import jcm2606.mods.sorcerycraft.core.handler.GuiHandler;
@@ -28,6 +30,7 @@ import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
+import cpw.mods.fml.common.event.FMLInterModComms;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
@@ -117,6 +120,70 @@ public class SorceryCraft
         proxy.loadRendering();
         
         logger.info("Mod loading has completed.");
+    }
+    
+    @EventHandler
+    public void imcCallback(FMLInterModComms.IMCEvent event)
+    {
+        for(final FMLInterModComms.IMCMessage message : event.getMessages())
+        {
+            if(message.key.equalsIgnoreCase("expanded-sight-handler"))
+            {
+                if(message.isStringMessage())
+                {
+                    String classPath = message.getStringValue();
+                    
+                    Class<?> clazz = null;
+                    Object obj = null;
+                    
+                    try
+                    {
+                        clazz = Class.forName(classPath);
+                    }
+                    catch (ClassNotFoundException e)
+                    {
+                        e.printStackTrace();
+                    }
+                    
+                    try
+                    {
+                        obj = clazz.newInstance();
+                    }
+                    catch (InstantiationException e)
+                    {
+                        e.printStackTrace();
+                    }
+                    catch (IllegalAccessException e)
+                    {
+                        e.printStackTrace();
+                    }
+                    
+                    if(obj == null)
+                    {
+                        throw new NullPointerException("Attempted register of expanded sight handler failed.");
+                    }
+                    
+                    if(obj instanceof IExpandedSightHandler)
+                    {
+                        IExpandedSightHandler handler = (IExpandedSightHandler) obj;
+                        
+                        System.out.println("1");
+                        for(int i = 0; i < 1024; i++)
+                        {
+                            if(GuiOverlayExpandedSight.handlerList[i] == null)
+                            {
+                                System.out.println("3");
+                                System.out.println(handler.getClass().getSimpleName());
+                                GuiOverlayExpandedSight.handlerList[i] = handler;
+                                break;
+                            }
+                        }
+                    } else {
+                        throw new RuntimeException("Recieved invalid handler.");
+                    }
+                }
+            }
+        }
     }
     
     @SideOnly(Side.CLIENT)

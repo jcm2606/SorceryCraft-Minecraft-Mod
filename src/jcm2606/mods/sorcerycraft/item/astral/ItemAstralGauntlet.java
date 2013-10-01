@@ -2,13 +2,13 @@ package jcm2606.mods.sorcerycraft.item.astral;
 
 import java.util.List;
 
+import jcm2606.mods.jccore.compat.container.CompatibilityContainer;
 import jcm2606.mods.jccore.core.helper.NBTHelper;
 import jcm2606.mods.jccore.core.helper.RarityHelper;
 import jcm2606.mods.sorcerycraft.api.AstralManager;
 import jcm2606.mods.sorcerycraft.api.IKeyBound;
 import jcm2606.mods.sorcerycraft.api.astral.gauntlet.EnumUseType;
 import jcm2606.mods.sorcerycraft.api.astral.gauntlet.GauntletMode;
-import jcm2606.mods.sorcerycraft.api.compat.CompatContainerSC;
 import jcm2606.mods.sorcerycraft.api.compat.HandlerMethodID;
 import jcm2606.mods.sorcerycraft.core.helper.SCHelper;
 import jcm2606.mods.sorcerycraft.core.lib.Rarities;
@@ -186,7 +186,7 @@ public class ItemAstralGauntlet extends SCItem implements IKeyBound
                 setMode(stack, getMode(stack) + 1);
             }
             
-            CompatContainerSC.postUpdate(HandlerMethodID.ASTRAL_GAUNTLET_MODE_SWITCH, null);
+            CompatibilityContainer.postUpdate(HandlerMethodID.ASTRAL_GAUNTLET_MODE_SWITCH, null);
         }
     }
     

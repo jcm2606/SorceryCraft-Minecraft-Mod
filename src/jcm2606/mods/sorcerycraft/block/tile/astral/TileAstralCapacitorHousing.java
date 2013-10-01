@@ -1,13 +1,19 @@
 package jcm2606.mods.sorcerycraft.block.tile.astral;
 
-import jcm2606.mods.sorcerycraft.api.IMedallionPerceptionOverlayHandler;
+import jcm2606.mods.sorcerycraft.api.IExpandedSightHandler;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 
-public class TileAstralCapacitorHousing extends TileAstralCapacitorStructure implements IMedallionPerceptionOverlayHandler
+public class TileAstralCapacitorHousing extends TileAstralCapacitorStructure implements IExpandedSightHandler
 {
     @Override
-    public void renderMedallionOverlay(Minecraft mc, EntityPlayer player)
+    public void renderOverlay(Minecraft mc, EntityPlayer player, boolean hasMedallion)
     {
+    }
+    
+    @Override
+    public boolean canRender(Minecraft mc, EntityPlayer player, boolean hasMedallion)
+    {
+        return hasMedallion || player.capabilities.isCreativeMode;
     }
 }

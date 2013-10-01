@@ -135,12 +135,12 @@ public class ItemCharmMortality extends ItemCharm
     @Override
     public int getEntityLifespan(ItemStack itemStack, World world)
     {
-        if (this.getStoredHealth(itemStack) == 0)
+        if (ItemCharmMortality.getStoredHealth(itemStack) == 0)
         {
             return 1200;
         }
         
-        return 1200 * (this.getStoredHealth(itemStack) / 4);
+        return 1200 * (ItemCharmMortality.getStoredHealth(itemStack) / 4);
     }
     
     /**
@@ -157,7 +157,7 @@ public class ItemCharmMortality extends ItemCharm
     @Override
     public void onUsingItemTick(ItemStack stack, EntityPlayer player, int count)
     {
-        this.onCursedUse(stack, player, player.worldObj, this.getCurseName(stack));
+        this.onCursedUse(stack, player, player.worldObj, ItemCharm.getCurseName(stack));
     }
     
     @Override

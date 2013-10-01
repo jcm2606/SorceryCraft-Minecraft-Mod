@@ -4,11 +4,13 @@ import jcm2606.mods.jccore.block.tile.TileEntityMultiblock;
 import jcm2606.mods.jccore.core.util.GeneralUtil;
 import jcm2606.mods.jccore.core.util.RenderUtil;
 import jcm2606.mods.sorcerycraft.api.IEnergyInfused;
-import jcm2606.mods.sorcerycraft.api.IMedallionPerceptionOverlayHandler;
+import jcm2606.mods.sorcerycraft.api.IExpandedSightHandler;
 import jcm2606.mods.sorcerycraft.api.energy.IEnergyCapacitor;
 import jcm2606.mods.sorcerycraft.api.energy.IEnergyReadable;
 import jcm2606.mods.sorcerycraft.client.fx.FXAstralEnergyBeam;
 import jcm2606.mods.sorcerycraft.core.SCObjects;
+import jcm2606.mods.sorcerycraft.core.helper.RenderHandlerSC;
+import jcm2606.mods.sorcerycraft.core.lib.Reference;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
@@ -20,7 +22,7 @@ import net.minecraft.util.MovingObjectPosition;
 
 import org.lwjgl.opengl.GL11;
 
-public class TileAstralEnergyExtractor extends TileEntityMultiblock implements IEnergyCapacitor, IEnergyReadable, IMedallionPerceptionOverlayHandler
+public class TileAstralEnergyExtractor extends TileEntityMultiblock implements IEnergyCapacitor, IEnergyReadable, IExpandedSightHandler
 {
     public int energyStored;
     
@@ -115,11 +117,12 @@ public class TileAstralEnergyExtractor extends TileEntityMultiblock implements I
                         
                         generating += amount;
                         
-                        if(this.hasSpace(amount))
+                        if (this.hasSpace(amount))
                         {
                             this.capacitorRequestEnergy(amount, false);
                             
-                            if (((IEnergyInfused) this.getBlockAtCoords(x2, y2, z2)).destroyBlockWhenExtracted() && this.worldObj.rand.nextInt(10000) <= ((IEnergyInfused) this.getBlockAtCoords(x2, y2, z2)).getDestroyChance())
+                            if (((IEnergyInfused) this.getBlockAtCoords(x2, y2, z2)).destroyBlockWhenExtracted() && this.worldObj.rand.nextInt(10000) <= ((IEnergyInfused) this
+                                    .getBlockAtCoords(x2, y2, z2)).getDestroyChance())
                             {
                                 this.worldObj.setBlock(x2, y2, z2, 0);
                             }
@@ -293,11 +296,11 @@ public class TileAstralEnergyExtractor extends TileEntityMultiblock implements I
         
         return "";
     }
-
+    
     @Override
-    public void renderMedallionOverlay(Minecraft mc, EntityPlayer player)
+    public void renderOverlay(Minecraft mc, EntityPlayer player, boolean hasMedallion)
     {
-        if(!this.isValid)
+        if (!this.isValid)
         {
             return;
         }
@@ -330,19 +333,31 @@ public class TileAstralEnergyExtractor extends TileEntityMultiblock implements I
         int y = mop.blockY;
         int z = mop.blockZ;
         
-        if(player.worldObj.getBlockTileEntity(x, y, z) != null)
+        if (player.worldObj.getBlockTileEntity(x, y, z) != null)
         {
-            if(player.worldObj.getBlockTileEntity(x, y, z) instanceof IEnergyCapacitor)
+            if (player.worldObj.getBlockTileEntity(x, y, z) instanceof IEnergyCapacitor)
             {
                 IEnergyCapacitor capacitor = (IEnergyCapacitor) player.worldObj.getBlockTileEntity(x, y, z);
-            
+                
+                RenderHandlerSC.bindTexture(Reference.PATH_TEXTURES_GUI_HUD + "overlay.png");
+                
+                RenderUtil.instance().drawTextureRect(RenderUtil.width / 4 - 7, RenderUtil.height / 4 - 4, 0, 28, 25, 34, 2.2f, 2.2f, 1.0f);
+                
                 GL11.glPushMatrix();
                 GL11.glScaled(0.5, 0.5, 0.5);
-                Minecraft.getMinecraft().fontRenderer.drawString("\2477" + capacitor.getEnergyStored() + " AE / " + capacitor.getEnergyLimit() + " AE", RenderUtil.width + 8, RenderUtil.height + 8, 0xffffff);
-                Minecraft.getMinecraft().fontRenderer.drawString("\2477+" + generating + " AE/t", RenderUtil.width + 8, RenderUtil.height + 17, 0xffffff);
+                Minecraft.getMinecraft().fontRenderer.drawString("\2477" + capacitor.getEnergyStored() + " AE / " + capacitor.getEnergyLimit() + " AE",
+                        RenderUtil.width + 23, RenderUtil.height + 13, 0xffffff);
+                Minecraft.getMinecraft().fontRenderer.drawString("\2477+" + generating + " AE/t",
+                        RenderUtil.width + 23, RenderUtil.height + 23, 0xffffff);
                 GL11.glScaled(1, 1, 1);
                 GL11.glPopMatrix();
             }
         }
+    }
+    
+    @Override
+    public boolean canRender(Minecraft mc, EntityPlayer player, boolean hasMedallion)
+    {
+        return hasMedallion || player.capabilities.isCreativeMode;
     }
 }

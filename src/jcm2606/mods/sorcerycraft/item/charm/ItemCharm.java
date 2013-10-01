@@ -54,7 +54,7 @@ public class ItemCharm extends SCItem
         {
             EntityLivingBase living = (EntityLiving) par3Entity;
             EntityPlayer player = (EntityPlayer) living;
-            this.onCursedUse(par1ItemStack, player, par2World, this.getCurseName(par1ItemStack));
+            this.onCursedUse(par1ItemStack, player, par2World, ItemCharm.getCurseName(par1ItemStack));
         }
     }
     
@@ -147,7 +147,7 @@ public class ItemCharm extends SCItem
     @Override
     public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer)
     {
-        this.onCursedUse(par1ItemStack, par3EntityPlayer, par2World, this.getCurseName(par1ItemStack));
+        this.onCursedUse(par1ItemStack, par3EntityPlayer, par2World, ItemCharm.getCurseName(par1ItemStack));
         
         return par1ItemStack;
     }
@@ -186,7 +186,7 @@ public class ItemCharm extends SCItem
      */
     public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean par4)
     {
-        if (this.displayInfo || this.getCurseName(stack) != "")
+        if (this.displayInfo || ItemCharm.getCurseName(stack) != "")
         {
             if (Keyboard.isKeyDown(Minecraft.getMinecraft().gameSettings.keyBindSneak.keyCode))
             {

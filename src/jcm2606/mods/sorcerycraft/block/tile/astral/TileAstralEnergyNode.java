@@ -5,13 +5,15 @@ import jcm2606.mods.jccore.core.util.ConvertUtil;
 import jcm2606.mods.jccore.core.util.Coord;
 import jcm2606.mods.jccore.core.util.GeneralUtil;
 import jcm2606.mods.jccore.core.util.RenderUtil;
+import jcm2606.mods.sorcerycraft.api.IExpandedSightHandler;
 import jcm2606.mods.sorcerycraft.api.ILinkable;
-import jcm2606.mods.sorcerycraft.api.IMedallionPerceptionOverlayHandler;
 import jcm2606.mods.sorcerycraft.api.energy.IEnergyCapacitor;
 import jcm2606.mods.sorcerycraft.api.energy.IEnergyProvider;
 import jcm2606.mods.sorcerycraft.api.energy.IEnergyReadable;
 import jcm2606.mods.sorcerycraft.api.energy.IEnergyReciever;
 import jcm2606.mods.sorcerycraft.client.fx.FXAstralEnergyBeam;
+import jcm2606.mods.sorcerycraft.core.helper.RenderHandlerSC;
+import jcm2606.mods.sorcerycraft.core.lib.Reference;
 import jcm2606.mods.sorcerycraft.item.astral.ItemAstralLinkingCard;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
@@ -28,7 +30,8 @@ import net.minecraftforge.common.ForgeDirection;
 
 import org.lwjgl.opengl.GL11;
 
-public class TileAstralEnergyNode extends TileEntityJC implements IEnergyCapacitor, IEnergyProvider, ILinkable, IEnergyReadable, IEnergyReciever, IMedallionPerceptionOverlayHandler
+public class TileAstralEnergyNode extends TileEntityJC implements IEnergyCapacitor, IEnergyProvider, ILinkable, IEnergyReadable, IEnergyReciever,
+IExpandedSightHandler
 {
     public int energyStored;
     public boolean isConnectedToSource;
@@ -88,6 +91,8 @@ public class TileAstralEnergyNode extends TileEntityJC implements IEnergyCapacit
     @Override
     public void updateEntity()
     {
+        super.updateEntity();
+        
         if (this.worldObj.isRemote)
         {
             int divide = 5;
@@ -149,18 +154,21 @@ public class TileAstralEnergyNode extends TileEntityJC implements IEnergyCapacit
                         {
                             IEnergyCapacitor capacitor = (IEnergyCapacitor) worldObj.getBlockTileEntity(x, y, z);
                             
-                            if (this.hasEnergy() && capacitor.hasSpace())
+                            if(this.getDistanceFrom(x, y, z) <= 272.75)
                             {
-                                capacitor.capacitorRequestEnergy(1, false);
-                                this.capacitorProvideEnergy(1);
-                            }
-                            
-                            if (this.worldObj.isRemote)
-                            {
-                                FXAstralEnergyBeam fx = new FXAstralEnergyBeam(this.worldObj, xCoord + 0.5, yCoord + 0.5, zCoord + 0.5, x + 0.5,
-                                        y + 0.5, z + 0.5, 2);
+                                if (this.hasEnergy() && capacitor.hasSpace())
+                                {
+                                    capacitor.capacitorRequestEnergy(1, false);
+                                    this.capacitorProvideEnergy(1);
+                                }
                                 
-                                Minecraft.getMinecraft().effectRenderer.addEffect(fx);
+                                if (this.worldObj.isRemote)
+                                {
+                                    FXAstralEnergyBeam fx = new FXAstralEnergyBeam(this.worldObj, xCoord + 0.5, yCoord + 0.5, zCoord + 0.5, x + 0.5,
+                                            y + 0.5, z + 0.5, 2);
+                                    
+                                    Minecraft.getMinecraft().effectRenderer.addEffect(fx);
+                                }
                             }
                         }
                     }
@@ -171,13 +179,17 @@ public class TileAstralEnergyNode extends TileEntityJC implements IEnergyCapacit
             }
         }
         
-        for(ForgeDirection direction : ForgeDirection.VALID_DIRECTIONS)
+        for (ForgeDirection direction : ForgeDirection.VALID_DIRECTIONS)
         {
-            if(GeneralUtil.getBlockTileFromNeighbour(xCoord, yCoord, zCoord, direction, worldObj) != null)
+            if (GeneralUtil.getBlockTileFromNeighbour(xCoord, yCoord, zCoord, direction, worldObj) != null)
             {
-                if(GeneralUtil.getBlockTileFromNeighbour(xCoord, yCoord, zCoord, direction, worldObj) instanceof IEnergyProvider)
+                if (GeneralUtil.getBlockTileFromNeighbour(xCoord, yCoord, zCoord, direction, worldObj) instanceof IEnergyProvider)
                 {
-                    this.capacitorRequestEnergy(((IEnergyProvider) GeneralUtil.getBlockTileFromNeighbour(xCoord, yCoord, zCoord, direction, worldObj)).provide(), false);
+                    if(this.hasSpace())
+                    {
+                        this.capacitorRequestEnergy(
+                                ((IEnergyProvider) GeneralUtil.getBlockTileFromNeighbour(xCoord, yCoord, zCoord, direction, worldObj)).provide(), false);
+                    }
                 }
             }
         }
@@ -339,11 +351,19 @@ public class TileAstralEnergyNode extends TileEntityJC implements IEnergyCapacit
         
         ItemStack stack2 = stack.copy();
         
-        node.setStackInIndex(node.getNextFreeIndex(), stack2);
-        
-        if (!world.isRemote)
+        if(this.getDistanceFrom(card.getCoordFromStack(stack2).x, card.getCoordFromStack(stack2).y, card.getCoordFromStack(stack2).z) <= 272.75)
         {
-            player.sendChatToPlayer(ConvertUtil.getChatMessageComponent("Written data from linking card to node."));
+            node.setStackInIndex(node.getNextFreeIndex(), stack2);
+            
+            if (!world.isRemote)
+            {
+                player.sendChatToPlayer(ConvertUtil.getChatMessageComponent("Written data from linking card to node."));
+            }
+        } else {
+            if (!world.isRemote)
+            {
+                player.sendChatToPlayer(ConvertUtil.getChatMessageComponent("The connection distance is too great."));
+            }
         }
     }
     
@@ -364,9 +384,9 @@ public class TileAstralEnergyNode extends TileEntityJC implements IEnergyCapacit
     {
         return 0;
     }
-
+    
     @Override
-    public void renderMedallionOverlay(Minecraft mc, EntityPlayer player)
+    public void renderOverlay(Minecraft mc, EntityPlayer player, boolean hasMedallion)
     {
         MovingObjectPosition mop = GeneralUtil.getTargetBlock(player.worldObj, player, false, 5.0f);
         
@@ -379,18 +399,29 @@ public class TileAstralEnergyNode extends TileEntityJC implements IEnergyCapacit
         int y = mop.blockY;
         int z = mop.blockZ;
         
-        if(player.worldObj.getBlockTileEntity(x, y, z) != null)
+        if (player.worldObj.getBlockTileEntity(x, y, z) != null)
         {
-            if(player.worldObj.getBlockTileEntity(x, y, z) instanceof IEnergyCapacitor)
+            if (player.worldObj.getBlockTileEntity(x, y, z) instanceof IEnergyCapacitor)
             {
                 IEnergyCapacitor capacitor = (IEnergyCapacitor) player.worldObj.getBlockTileEntity(x, y, z);
-            
+                
+                RenderHandlerSC.bindTexture(Reference.PATH_TEXTURES_GUI_HUD + "overlay.png");
+                
+                RenderUtil.instance().drawTextureRect(RenderUtil.width / 4 + 3, RenderUtil.height / 2 + 3, 0, 28, 25, 34, 2f, 1.0f, 1.0f);
+                
                 GL11.glPushMatrix();
                 GL11.glScaled(0.5, 0.5, 0.5);
-                Minecraft.getMinecraft().fontRenderer.drawString("\2477" + capacitor.getEnergyStored() + " AE / " + capacitor.getEnergyLimit() + " AE", RenderUtil.width + 8, RenderUtil.height + 8, 0xffffff);
+                Minecraft.getMinecraft().fontRenderer.drawString("\2477" + capacitor.getEnergyStored() + " AE / " + capacitor.getEnergyLimit() + " AE",
+                        RenderUtil.width + 23, RenderUtil.height + 10, 0xffffff);
                 GL11.glScaled(1, 1, 1);
                 GL11.glPopMatrix();
             }
         }
+    }
+    
+    @Override
+    public boolean canRender(Minecraft mc, EntityPlayer player, boolean hasMedallion)
+    {
+        return hasMedallion || player.capabilities.isCreativeMode;
     }
 }

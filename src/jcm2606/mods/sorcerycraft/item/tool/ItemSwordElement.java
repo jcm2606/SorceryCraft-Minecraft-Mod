@@ -10,7 +10,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.EntityDamageSource;
+import net.minecraft.util.DamageSource;
 
 public class ItemSwordElement extends SCSword
 {
@@ -42,7 +42,7 @@ public class ItemSwordElement extends SCSword
             damage = (int) this.toolMaterial.getDamageVsEntity() * 2;
         }
         
-        entity.attackEntityFrom(EntityDamageSource.causePlayerDamage(player), damage);
+        entity.attackEntityFrom(DamageSource.causePlayerDamage(player), damage);
         
         return true;
     }

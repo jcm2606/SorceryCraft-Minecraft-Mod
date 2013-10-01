@@ -3,6 +3,7 @@ package jcm2606.mods.sorcerycraft.api;
 import jcm2606.mods.jccore.compat.ModCompatibility;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
+import cpw.mods.fml.common.event.FMLInterModComms;
 
 public final class SCApi
 {
@@ -12,6 +13,8 @@ public final class SCApi
     public static Class<?> scObjects;
     
     public static AstralManager astralManager;
+    
+    private final static IExpandedSightHandler[] handlerList = new IExpandedSightHandler[1024];
     
     static
     {
@@ -27,10 +30,10 @@ public final class SCApi
     {
         try
         {
-            this.scClass = getClass().getClassLoader().loadClass("jcm2606.mods.sorcerycraft.core.SorceryCraft");
-            this.scObjects = getClass().getClassLoader().loadClass("jcm2606.mods.sorcerycraft.core.SCObjects");
+            SCApi.scClass = getClass().getClassLoader().loadClass("jcm2606.mods.sorcerycraft.core.SorceryCraft");
+            SCApi.scObjects = getClass().getClassLoader().loadClass("jcm2606.mods.sorcerycraft.core.SCObjects");
             
-            this.astralManager = new AstralManager();
+            SCApi.astralManager = new AstralManager();
         }
         catch (Exception e)
         {
@@ -46,5 +49,12 @@ public final class SCApi
     public static Block getBlock(String valueName)
     {
         return ModCompatibility.get().getBlock(scObjects.getName(), valueName);
+    }
+    
+    public static IExpandedSightHandler registerExpandedSightHandler(IExpandedSightHandler handler)
+    {
+        FMLInterModComms.sendMessage("SorceryCraft", "expanded-sight-handler", handler.getClass().getName());
+        
+        return handler;
     }
 }

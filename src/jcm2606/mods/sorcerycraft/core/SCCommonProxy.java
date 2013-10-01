@@ -25,6 +25,7 @@ import jcm2606.mods.sorcerycraft.block.tile.astral.TileAstralStructure;
 import jcm2606.mods.sorcerycraft.block.tile.astral.TileAstralThermalkineticConvertor;
 import jcm2606.mods.sorcerycraft.block.tile.astral.TileAstralTotem1;
 import jcm2606.mods.sorcerycraft.block.tile.astral.TileAstralViewer;
+import jcm2606.mods.sorcerycraft.block.tile.astral.TileAstralZoneCharger;
 import jcm2606.mods.sorcerycraft.core.handler.CraftingHandlerAchievement;
 import jcm2606.mods.sorcerycraft.core.handler.CraftingHandlerMain;
 import net.minecraft.nbt.NBTTagCompound;
@@ -33,7 +34,8 @@ import cpw.mods.fml.common.registry.GameRegistry;
 
 public class SCCommonProxy implements IProxyCommon
 {
-    public static final Map<String, NBTTagCompound> entityPropertiesMap = new HashMap<String, NBTTagCompound>();
+    public static final Map<String, NBTTagCompound> researchPointsDeathMap = new HashMap<String, NBTTagCompound>();
+    public static final Map<String, NBTTagCompound> abilitiesDeathMap = new HashMap<String, NBTTagCompound>();
     
     @Override
     public void loadRendering()
@@ -63,6 +65,7 @@ public class SCCommonProxy implements IProxyCommon
         GameRegistry.registerTileEntity(TileAstralEnergyExtractor.class, "tileSCAstralEnergyExtractor");
         GameRegistry.registerTileEntity(TileAstralKineticGenerator.class, "tileSCAstralKineticGenerator");
         GameRegistry.registerTileEntity(TileAstralThermalkineticConvertor.class, "tileSCAstralThermalkineticGenerator");
+        GameRegistry.registerTileEntity(TileAstralZoneCharger.class, "tileSCAstralZoneCharger");
     }
     
     @Override
@@ -94,13 +97,23 @@ public class SCCommonProxy implements IProxyCommon
     {
     }
     
-    public void savePlayerData(String name, NBTTagCompound tag)
+    public void saveResearchPoints(String name, NBTTagCompound tag)
     {
-        this.entityPropertiesMap.put(name, tag);
+        SCCommonProxy.researchPointsDeathMap.put(name, tag);
     }
     
-    public NBTTagCompound getPlayerData(String name)
+    public NBTTagCompound getResearchPoints(String name)
     {
-        return this.entityPropertiesMap.remove(name);
+        return SCCommonProxy.researchPointsDeathMap.remove(name);
+    }
+    
+    public void saveAbilities(String name, NBTTagCompound tag)
+    {
+        SCCommonProxy.abilitiesDeathMap.put(name, tag);
+    }
+    
+    public NBTTagCompound getAbilities(String name)
+    {
+        return SCCommonProxy.abilitiesDeathMap.remove(name);
     }
 }

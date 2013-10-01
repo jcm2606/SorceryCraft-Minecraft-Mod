@@ -1,5 +1,6 @@
 package jcm2606.mods.sorcerycraft.core;
 
+import jcm2606.mods.sorcerycraft.item.charm.ItemCharm;
 import jcm2606.mods.sorcerycraft.item.charm.ItemCharmMortality;
 import jcm2606.mods.sorcerycraft.research.ResearchData;
 import net.minecraft.entity.Entity;
@@ -84,14 +85,14 @@ public class SCEventHandler
             {
                 EntityPlayer player = (EntityPlayer) living;
                 
-                NBTTagCompound playerData = SorceryCraft.proxy.getPlayerData(player.username);
+                NBTTagCompound playerData = SorceryCraft.proxy.getResearchPoints(player.username);
                 
                 if (playerData != null)
                 {
                     ((ResearchData) player.getExtendedProperties(ResearchData.NAME)).loadNBTData(playerData);
                 }
                 
-                if (!player.worldObj.isRemote)
+                if (player.worldObj.isRemote)
                 {
                     ((ResearchData) player.getExtendedProperties(ResearchData.NAME)).syncExtendedProperties();
                 }
@@ -110,7 +111,7 @@ public class SCEventHandler
             
             ((ResearchData) event.entity.getExtendedProperties(ResearchData.NAME)).saveNBTData(playerData);
             
-            SorceryCraft.proxy.savePlayerData(((EntityPlayer) event.entity).username, playerData);
+            SorceryCraft.proxy.saveResearchPoints(((EntityPlayer) event.entity).username, playerData);
         }
     }
     
@@ -131,16 +132,16 @@ public class SCEventHandler
                 
                 int randInt = event.player.worldObj.rand.nextInt(100);
                 
-                if (charm.getBoundPlayer(event.entityItem.getEntityItem()).equals(event.player.username) && randInt <= 50 && !charm.getCurseName(
+                if (ItemCharmMortality.getBoundPlayer(event.entityItem.getEntityItem()).equals(event.player.username) && randInt <= 50 && !ItemCharm.getCurseName(
                         event.entityItem.getEntityItem()).equals("disarm"))
                 {
-                    charm.setBoundPlayer(event.entityItem.getEntityItem(), "");
+                    ItemCharmMortality.setBoundPlayer(event.entityItem.getEntityItem(), "");
                     
-                    int damageAmount = (charm.getStoredHealth(event.entityItem.getEntityItem()) / 2) + event.player.worldObj.rand.nextInt(3);
+                    int damageAmount = (ItemCharmMortality.getStoredHealth(event.entityItem.getEntityItem()) / 2) + event.player.worldObj.rand.nextInt(3);
                     
                     event.player.attackEntityFrom(DamageSource.magic, damageAmount);
                     System.out
-                            .println("PLAYER '" + event.player.username.toUpperCase() + "' DAMAGED BY THROWING CHARM @ SLOT " + event.player.inventory.currentItem + " BY " + damageAmount + "HP");
+                    .println("PLAYER '" + event.player.username.toUpperCase() + "' DAMAGED BY THROWING CHARM @ SLOT " + event.player.inventory.currentItem + " BY " + damageAmount + "HP");
                     
                     if (!event.player.worldObj.isRemote)
                     {

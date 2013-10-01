@@ -12,6 +12,7 @@ public class SCItemShine extends SCItem
         super(par1, par2);
     }
     
+    @Override
     @SideOnly(Side.CLIENT)
     public boolean hasEffect(ItemStack par1ItemStack)
     {

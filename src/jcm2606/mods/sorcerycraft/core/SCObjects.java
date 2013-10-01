@@ -5,7 +5,6 @@ import jcm2606.mods.jccore.core.util.BiomeUtil;
 import jcm2606.mods.jccore.core.util.GeneralUtil;
 import jcm2606.mods.sorcerycraft.api.ElementManager;
 import jcm2606.mods.sorcerycraft.api.SCApi;
-import jcm2606.mods.sorcerycraft.astral.gauntlet.ModeHailkenisis;
 import jcm2606.mods.sorcerycraft.block.astral.BlockAstralCapacitorCPU;
 import jcm2606.mods.sorcerycraft.block.astral.BlockAstralCapacitorCPUItem;
 import jcm2606.mods.sorcerycraft.block.astral.BlockAstralCapacitorHousing;
@@ -16,6 +15,7 @@ import jcm2606.mods.sorcerycraft.block.astral.BlockAstralEnergyExtractor;
 import jcm2606.mods.sorcerycraft.block.astral.BlockAstralEnergyFieldDrain;
 import jcm2606.mods.sorcerycraft.block.astral.BlockAstralEnergyGate;
 import jcm2606.mods.sorcerycraft.block.astral.BlockAstralEnergyNode;
+import jcm2606.mods.sorcerycraft.block.astral.BlockAstralEnergyNodeItem;
 import jcm2606.mods.sorcerycraft.block.astral.BlockAstralGraphMatrix;
 import jcm2606.mods.sorcerycraft.block.astral.BlockAstralInfuser;
 import jcm2606.mods.sorcerycraft.block.astral.BlockAstralKineticGenerator;
@@ -27,6 +27,7 @@ import jcm2606.mods.sorcerycraft.block.astral.BlockAstralStructure;
 import jcm2606.mods.sorcerycraft.block.astral.BlockAstralThermalkineticConvertor;
 import jcm2606.mods.sorcerycraft.block.astral.BlockAstralTotem1;
 import jcm2606.mods.sorcerycraft.block.astral.BlockAstralViewer;
+import jcm2606.mods.sorcerycraft.block.astral.BlockAstralZoneCharger;
 import jcm2606.mods.sorcerycraft.block.fluid.BlockFluidVordic;
 import jcm2606.mods.sorcerycraft.block.main.BlockAlchMetal;
 import jcm2606.mods.sorcerycraft.block.main.BlockArcaneWorkbench;
@@ -61,7 +62,7 @@ import jcm2606.mods.sorcerycraft.item.astral.ItemAstralCrystalPlate;
 import jcm2606.mods.sorcerycraft.item.astral.ItemAstralCrystalShard;
 import jcm2606.mods.sorcerycraft.item.astral.ItemAstralDust;
 import jcm2606.mods.sorcerycraft.item.astral.ItemAstralEnergyCell;
-import jcm2606.mods.sorcerycraft.item.astral.ItemAstralEnergyPearl;
+import jcm2606.mods.sorcerycraft.item.astral.ItemAstralEnergyManipulationDrive;
 import jcm2606.mods.sorcerycraft.item.astral.ItemAstralGauntlet;
 import jcm2606.mods.sorcerycraft.item.astral.ItemAstralLinkingCard;
 import jcm2606.mods.sorcerycraft.item.astral.ItemAstralMechanismDrive;
@@ -159,7 +160,6 @@ public class SCObjects implements IObjectCore
     public static Item wandAscension;
     public static Item gauntletAstral;
     public static Item astralCellEnergy;
-    public static Item astralPearlEnergy;
     public static Item astralMechanismDrive;
     public static Item quartzDark;
     public static Item plateAstralCrystal;
@@ -172,6 +172,7 @@ public class SCObjects implements IObjectCore
     public static Item wandAir;
     public static Item starElemental;
     public static Item astralLinkingCard;
+    public static Item astralEnergyManipulationDrive;
     
     public static Block oreVordic;
     public static Block blockArcaneSteel;
@@ -213,6 +214,7 @@ public class SCObjects implements IObjectCore
     public static Block astralEnergyFieldDrain;
     public static Block astralKineticGenerator;
     public static Block astralThermalKineticConvertor;
+    public static Block astralZoneCharger;
     
     public static Item swordfire;
     public static Item alchmetalpick;
@@ -253,7 +255,6 @@ public class SCObjects implements IObjectCore
     public static int ID_SCEPTOR_ASCENSION;
     public static int ID_ASTRAL_GAUNTLET;
     public static int ID_ASTRAL_ENERGY_CELL;
-    public static int ID_ASTRAL_ENERGY_PEARL;
     public static int ID_ASTRAL_MECHANISM_DRIVE;
     public static int ID_DARK_QUARTZ;
     public static int ID_ASTRAL_CRYSTAL_PLATE;
@@ -266,6 +267,7 @@ public class SCObjects implements IObjectCore
     public static int ID_WAND_AIR;
     public static int ID_ELEMENTAL_STAR;
     public static int ID_ASTRAL_LINKING_CARD;
+    public static int ID_ASTRAL_ENERGY_MANIPULATION_DRIVE;
     
     public static int ID_ORE_VORDIC;
     public static int ID_ALCH_METAL;
@@ -307,6 +309,7 @@ public class SCObjects implements IObjectCore
     public static int ID_ASTRAL_ENERGY_FIELD_DRAIN;
     public static int ID_ASTRAL_KINETIC_GENERATOR;
     public static int ID_ASTRAL_THERMALKINETIC_CONVERTOR;
+    public static int ID_ASTRAL_ZONE_CHARGER;
     
     public static int ID_SWORD_FIRE;
     public static int ID_ALCH_METAL_PICK;
@@ -364,7 +367,6 @@ public class SCObjects implements IObjectCore
         wandAscension = new ItemSceptorAscension(ID_SCEPTOR_ASCENSION);
         gauntletAstral = new ItemAstralGauntlet(ID_ASTRAL_GAUNTLET);
         astralCellEnergy = new ItemAstralEnergyCell(ID_ASTRAL_ENERGY_CELL);
-        astralPearlEnergy = new ItemAstralEnergyPearl(ID_ASTRAL_ENERGY_PEARL);
         astralMechanismDrive = new ItemAstralMechanismDrive(ID_ASTRAL_MECHANISM_DRIVE);
         quartzDark = new ItemDarkQuartz(ID_DARK_QUARTZ);
         plateAstralCrystal = new ItemAstralCrystalPlate(ID_ASTRAL_CRYSTAL_PLATE);
@@ -377,6 +379,7 @@ public class SCObjects implements IObjectCore
         wandAir = new ItemWandAir(ID_WAND_AIR);
         starElemental = new ItemElementalStar(ID_ELEMENTAL_STAR);
         astralLinkingCard = new ItemAstralLinkingCard(ID_ASTRAL_LINKING_CARD);
+        astralEnergyManipulationDrive = new ItemAstralEnergyManipulationDrive(ID_ASTRAL_ENERGY_MANIPULATION_DRIVE);
         
         // Blocks
         oreVordic = new BlockOreVord(ID_ORE_VORDIC);
@@ -419,6 +422,7 @@ public class SCObjects implements IObjectCore
         astralEnergyFieldDrain = new BlockAstralEnergyFieldDrain(ID_ASTRAL_ENERGY_FIELD_DRAIN);
         astralKineticGenerator = new BlockAstralKineticGenerator(ID_ASTRAL_KINETIC_GENERATOR);
         astralThermalKineticConvertor = new BlockAstralThermalkineticConvertor(ID_ASTRAL_THERMALKINETIC_CONVERTOR);
+        astralZoneCharger = new BlockAstralZoneCharger(ID_ASTRAL_ZONE_CHARGER);
         
         // Tools
         swordfire = new ItemSwordFire(ID_SWORD_FIRE);
@@ -434,7 +438,6 @@ public class SCObjects implements IObjectCore
         
         ItemCharm.registerCurses();
         SCApi.astralManager.loadCoreModes();
-        ModeHailkenisis.loadCoolingEntries();
         
         registerBlocks();
         loadEnchantments();
@@ -470,7 +473,7 @@ public class SCObjects implements IObjectCore
         GeneralUtil.registerBlock(blockDarkQuartz);
         GeneralUtil.registerBlock(brickDarkQuartz, BlockDarkQuartzBrickItem.class);
         GeneralUtil.registerBlock(astralEnergyGate);
-        GeneralUtil.registerBlock(astralEnergyNode);
+        GeneralUtil.registerBlock(astralEnergyNode, BlockAstralEnergyNodeItem.class);
         GeneralUtil.registerBlock(oreDarkQuartz);
         GeneralUtil.registerBlock(glowBrick1, BlockGlowBrickItem.class);
         GeneralUtil.registerBlock(glowBrick2, BlockGlowBrickItem.class);
@@ -488,6 +491,7 @@ public class SCObjects implements IObjectCore
         GeneralUtil.registerBlock(astralEnergyFieldDrain);
         GeneralUtil.registerBlock(astralKineticGenerator);
         GeneralUtil.registerBlock(astralThermalKineticConvertor);
+        GeneralUtil.registerBlock(astralZoneCharger);
     }
     
     @Override
@@ -522,7 +526,6 @@ public class SCObjects implements IObjectCore
         ID_SCEPTOR_ASCENSION = Config.getItemId("sceptorAscension", Reference.ITEM_ID_START_VALUE).getInt();
         ID_ASTRAL_GAUNTLET = Config.getItemId("astralGantlet", Reference.ITEM_ID_START_VALUE).getInt();
         ID_ASTRAL_ENERGY_CELL = Config.getItemId("astralEnergyCell", Reference.ITEM_ID_START_VALUE).getInt();
-        ID_ASTRAL_ENERGY_PEARL = Config.getItemId("astralEnergyPearl", Reference.ITEM_ID_START_VALUE).getInt();
         ID_ASTRAL_MECHANISM_DRIVE = Config.getItemId("astralMechanismDrive", Reference.ITEM_ID_START_VALUE).getInt();
         ID_DARK_QUARTZ = Config.getItemId("darkQuartz", Reference.ITEM_ID_START_VALUE).getInt();
         ID_ASTRAL_CRYSTAL_PLATE = Config.getItemId("astralCrystalPlate", Reference.ITEM_ID_START_VALUE).getInt();
@@ -535,6 +538,7 @@ public class SCObjects implements IObjectCore
         ID_WAND_AIR = Config.getWandId("wandAir", Reference.ITEM_ID_START_VALUE).getInt();
         ID_ELEMENTAL_STAR = Config.getItemId("elementalStar", Reference.ITEM_ID_START_VALUE).getInt();
         ID_ASTRAL_LINKING_CARD = Config.getItemId("astralLinkingCard", Reference.ITEM_ID_START_VALUE).getInt();
+        ID_ASTRAL_ENERGY_MANIPULATION_DRIVE = Config.getItemId("astralEnergyManipulationDrive", Reference.ITEM_ID_START_VALUE).getInt();
         
         // Blocks
         ID_ORE_VORDIC = Config.getBlockId("oreVordic", Reference.BLOCK_ID_START_VALUE).getInt();
@@ -577,6 +581,7 @@ public class SCObjects implements IObjectCore
         ID_ASTRAL_ENERGY_FIELD_DRAIN = Config.getBlockId("astralEnergyFieldDrain", Reference.BLOCK_ID_START_VALUE).getInt();
         ID_ASTRAL_KINETIC_GENERATOR = Config.getBlockId("astralKineticGenerator", Reference.BLOCK_ID_START_VALUE).getInt();
         ID_ASTRAL_THERMALKINETIC_CONVERTOR = Config.getBlockId("astralThermalkineticConvertor", Reference.BLOCK_ID_START_VALUE).getInt();
+        ID_ASTRAL_ZONE_CHARGER = Config.getBlockId("astralZoneCharger", Reference.BLOCK_ID_START_VALUE).getInt();
         
         // Tools
         ID_SWORD_FIRE = Config.getToolId("swordFire", Reference.ITEM_TOOL_ID_START_VALUE).getInt();
@@ -596,9 +601,9 @@ public class SCObjects implements IObjectCore
     {
         Enchantments i = new Enchantments();
         
-        i.rottingTouch = new EnchantmentRottingTouch(ID_ENCHANTMENT);
-        i.elementalDamage = new EnchantmentElementalDamage(ID_ENCHANTMENT + 1);
-        i.astralTransmutation = new EnchantmentAstralTransmutation(ID_ENCHANTMENT + 2);
+        Enchantments.rottingTouch = new EnchantmentRottingTouch(ID_ENCHANTMENT);
+        Enchantments.elementalDamage = new EnchantmentElementalDamage(ID_ENCHANTMENT + 1);
+        Enchantments.astralTransmutation = new EnchantmentAstralTransmutation(ID_ENCHANTMENT + 2);
     }
     
     @Override
@@ -655,7 +660,6 @@ public class SCObjects implements IObjectCore
         LanguageRegistry.addName(wandAscension, "Sceptor of Ascension");
         LanguageRegistry.addName(gauntletAstral, "Astral Gauntlet");
         LanguageRegistry.addName(astralCellEnergy, "Astral Energy Cell");
-        LanguageRegistry.addName(astralPearlEnergy, "Astral Energy Pearl");
         LanguageRegistry.addName(astralMechanismDrive, "Astral Mechanism Drive");
         LanguageRegistry.addName(quartzDark, "Dark Quartz");
         LanguageRegistry.addName(plateAstralCrystal, "Astral Crystal Plate");
@@ -674,6 +678,7 @@ public class SCObjects implements IObjectCore
         LanguageRegistry.addName(wandAir, "Wand of Streaming Air");
         LanguageRegistry.addName(starElemental, "Elemental Star");
         LanguageRegistry.addName(astralLinkingCard, "Astral Linking Card");
+        LanguageRegistry.addName(astralEnergyManipulationDrive, "Astral Energy Manipulation Drive");
         
         LanguageRegistry.addName(oreVordic, "Solid Vord Stone");
         LanguageRegistry.addName(blockArcaneSteel, "Arcane Steel Block");
@@ -709,11 +714,12 @@ public class SCObjects implements IObjectCore
         LanguageRegistry.addName(astralCapacitorCPU, "Astral Capacitor CPU");
         LanguageRegistry.addName(astralStructure, "Astral Structure");
         LanguageRegistry.addName(astralCapacitorHousing, "Astral Capacitor Housing");
-        LanguageRegistry.addName(astralCapacitorIOInterface, "Astral Capacitor IO Interfacing Port");
+        LanguageRegistry.addName(astralCapacitorIOInterface, "Astral Capacitor I/O Interfacing Port");
         LanguageRegistry.addName(astralEnergyExtractionGridCore, "Astral Energy Extraction Grid Core");
         LanguageRegistry.addName(astralEnergyFieldDrain, "Astral Energy Field Point Drain");
         LanguageRegistry.addName(astralKineticGenerator, "Astral Kinetic Generator");
-        LanguageRegistry.addName(this.astralThermalKineticConvertor, "Astral Thermalkinetic Convertor");
+        LanguageRegistry.addName(astralThermalKineticConvertor, "Astral Thermalkinetic Convertor");
+        LanguageRegistry.addName(astralZoneCharger, "Astral Zone Charger");
         
         LanguageRegistry.addName(swordfire, "Sword of Incandescence");
         LanguageRegistry.addName(alchmetalpick, "Arcane Steel Pickaxe");
@@ -727,59 +733,26 @@ public class SCObjects implements IObjectCore
     @Override
     public void addRecipes()
     {
-        GameRegistry.addRecipe(new ItemStack(this.stoneSphereWeighted, 1), new Object[] {
-            "AAA",
-            "ABA",
-            "AAA",
-            'A', Block.stone,
-            'B', Item.goldNugget
-        });
+        GameRegistry.addRecipe(new ItemStack(SCObjects.stoneSphereWeighted, 1), new Object[]
+                { "AAA", "ABA", "AAA", 'A', Block.stone, 'B', Item.goldNugget });
         
-        GameRegistry.addRecipe(new ItemStack(this.stoneSphereWeighted, 1), new Object[] {
-            "AAA",
-            "ABA",
-            "AAA",
-            'A', Block.cobblestone,
-            'B', Item.goldNugget
-        });
+        GameRegistry.addRecipe(new ItemStack(SCObjects.stoneSphereWeighted, 1), new Object[]
+                { "AAA", "ABA", "AAA", 'A', Block.cobblestone, 'B', Item.goldNugget });
         
-        GameRegistry.addShapelessRecipe(new ItemStack(this.dustVim, 3), new Object[] {
-            this.dustVordic,
-            this.dustVordicStabilised,
-            Item.redstone
-        });
+        GameRegistry.addShapelessRecipe(new ItemStack(SCObjects.dustVim, 3), new Object[]
+                { SCObjects.dustVordic, SCObjects.dustVordicStabilised, Item.redstone });
         
-        GameRegistry.addRecipe(new ItemStack(this.stoneArcane, 1), new Object[] {
-            "ABA",
-            "BCB",
-            "ABA",
-            'A', this.dustVim,
-            'B', this.dustVordicStabilised,
-            'C', this.stoneSphereWeighted
-        });
+        GameRegistry.addRecipe(new ItemStack(SCObjects.stoneArcane, 1), new Object[]
+                { "ABA", "BCB", "ABA", 'A', SCObjects.dustVim, 'B', SCObjects.dustVordicStabilised, 'C', SCObjects.stoneSphereWeighted });
         
-        GameRegistry.addRecipe(new ItemStack(this.stoneArcane, 1), new Object[] {
-            "ABA",
-            "BCB",
-            "ABA",
-            'B', this.dustVim,
-            'A', this.dustVordicStabilised,
-            'C', this.stoneSphereWeighted
-        });
+        GameRegistry.addRecipe(new ItemStack(SCObjects.stoneArcane, 1), new Object[]
+                { "ABA", "BCB", "ABA", 'B', SCObjects.dustVim, 'A', SCObjects.dustVordicStabilised, 'C', SCObjects.stoneSphereWeighted });
         
-        GameRegistry.addRecipe(new ItemStack(this.workbenchArcane, 1), new Object[] {
-            "BAB",
-            "CBC",
-            "CDC",
-            'A', this.stoneArcane,
-            'B', this.dustVordicStabilised,
-            'C', this.dustVordic,
-            'D', Block.workbench
-        });
+        GameRegistry.addRecipe(new ItemStack(SCObjects.workbenchArcane, 1), new Object[]
+                { "BAB", "CBC", "CDC", 'A', SCObjects.stoneArcane, 'B', SCObjects.dustVordicStabilised, 'C', SCObjects.dustVordic, 'D', Block.workbench });
         
-        GameRegistry.addShapelessRecipe(new ItemStack(this.ingotArcaneSteel, 9), new Object[] {
-            this.blockArcaneSteel
-        });
+        GameRegistry.addShapelessRecipe(new ItemStack(SCObjects.ingotArcaneSteel, 9), new Object[]
+                { SCObjects.blockArcaneSteel });
     }
     
     @Override

@@ -21,7 +21,7 @@ public class BlockCrystal extends SCBlockContainer
     {
         super(par1, par2Material, "vordicGem", Rarities.BASIC);
         this.setHardness(1.0f);
-        this.setStepSound(this.soundGlassFootstep);
+        this.setStepSound(Block.soundGlassFootstep);
         this.setBlockBounds(0.2f, 0f, 0.2f, 0.8f, 1.3f, 0.8f);
         this.setCreativeTab(SorceryCraft.tabBlocks);
         this.useIconIndex = false;

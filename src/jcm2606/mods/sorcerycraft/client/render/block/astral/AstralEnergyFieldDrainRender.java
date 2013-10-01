@@ -30,12 +30,14 @@ public class AstralEnergyFieldDrainRender implements ISimpleBlockRenderingHandle
         float g = c.getGreen() / 255.0F;
         float b = c.getBlue() / 255.0F;
         GL11.glColor3f(r, g, b);
-        RenderUtil.instance().drawFaces(renderer, block, ((BlockGlowBrick) SCObjects.glowBrick1).textureBackground, true);
+        RenderUtil.instance();
+        RenderUtil.drawFaces(renderer, block, ((BlockGlowBrick) SCObjects.glowBrick1).textureBackground, true);
         GL11.glColor3f(1f, 1f, 1f);
         
         renderer.clearOverrideBlockTexture();
         
-        RenderUtil.instance().drawFaces(renderer, block, renderer.getBlockIcon(block), false);
+        RenderUtil.instance();
+        RenderUtil.drawFaces(renderer, block, renderer.getBlockIcon(block), false);
         
         renderer.setRenderBoundsFromBlock(block);
         GL11.glPopMatrix();

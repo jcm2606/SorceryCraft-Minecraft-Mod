@@ -11,7 +11,6 @@ import org.lwjgl.opengl.GL11;
 
 public class AstralEnergyNodeRenderItem extends ItemRendererBase
 {
-    
     private final ModelAstralEnergyNode model;
     
     public AstralEnergyNodeRenderItem()
@@ -40,12 +39,11 @@ public class AstralEnergyNodeRenderItem extends ItemRendererBase
     {
         Tessellator tesselator = Tessellator.instance;
         GL11.glPushMatrix();
-        RenderHandlerSC.bindTexture(Reference.PATH_TEXTURES_MODELS + "astralEnergyNode.png"); // texture
-        GL11.glTranslatef(0.5f, 1.5f, 0.5f); // size
-        GL11.glRotatef(90, 0.0F, 1.0F, 0.0F); // rotate based on metadata
-        GL11.glScalef(1.0F, -1F, -1F); // if you read this comment out this line
-        // and you can see what happens
-        model.renderModel(0.0625F);
+        RenderHandlerSC.bindTexture(Reference.PATH_TEXTURES_MODELS + "astralEnergyNode.png");
+        GL11.glTranslatef(0.5f, 2f, 0.5f);
+        GL11.glRotatef(90, 0.0F, 1.0F, 0.0F);
+        GL11.glScalef(1.0F, -1F, -1F);
+        model.renderModel();
         GL11.glPopMatrix();
     }
     
@@ -54,12 +52,11 @@ public class AstralEnergyNodeRenderItem extends ItemRendererBase
     {
         Tessellator tesselator = Tessellator.instance;
         GL11.glPushMatrix();
-        RenderHandlerSC.bindTexture(Reference.PATH_TEXTURES_MODELS + "astralEnergyNode.png"); // texture
-        GL11.glTranslatef(0.5f, 1.5f, 0.5f); // size
-        GL11.glRotatef(90, 0.0F, 1.0F, 0.0F); // rotate based on metadata
-        GL11.glScalef(1.0F, -1F, -1F); // if you read this comment out this line
-        // and you can see what happens
-        model.renderModel(0.0625F);
+        RenderHandlerSC.bindTexture(Reference.PATH_TEXTURES_MODELS + "astralEnergyNode.png");
+        GL11.glTranslatef(0.5f, 2f, 0.5f);
+        GL11.glRotatef(90, 0.0F, 1.0F, 0.0F);
+        GL11.glScalef(1.0F, -1F, -1F);
+        model.renderModel();
         GL11.glPopMatrix();
     }
     
@@ -68,12 +65,11 @@ public class AstralEnergyNodeRenderItem extends ItemRendererBase
     {
         Tessellator tesselator = Tessellator.instance;
         GL11.glPushMatrix();
-        RenderHandlerSC.bindTexture(Reference.PATH_TEXTURES_MODELS + "astralEnergyNode.png"); // texture
-        GL11.glTranslatef(0, 1, 0); // size
-        GL11.glRotatef(90, 0.0F, 1.0F, 0.0F); // rotate based on metadata
-        GL11.glScalef(1.0F, -1F, -1F); // if you read this comment out this line
-        // and you can see what happens
-        model.renderModel(0.0625F);
+        RenderHandlerSC.bindTexture(Reference.PATH_TEXTURES_MODELS + "astralEnergyNode.png");
+        GL11.glTranslatef(0, 1, 0);
+        GL11.glRotatef(90, 0.0F, 1.0F, 0.0F);
+        GL11.glScalef(1.0F, -1F, -1F);
+        model.renderModel();
         GL11.glPopMatrix();
     }
     
@@ -82,12 +78,11 @@ public class AstralEnergyNodeRenderItem extends ItemRendererBase
     {
         Tessellator tesselator = Tessellator.instance;
         GL11.glPushMatrix();
-        RenderHandlerSC.bindTexture(Reference.PATH_TEXTURES_MODELS + "astralEnergyNode.png"); // texture
-        GL11.glTranslatef(0.3f, 1.2f, 0.3f); // size
-        GL11.glRotatef(90, 0.0F, 1.0F, 0.0F); // rotate based on metadata
-        GL11.glScalef(1.0F, -1F, -1F); // if you read this comment out this line
-        // and you can see what happens
-        model.renderModel(0.0625F);
+        RenderHandlerSC.bindTexture(Reference.PATH_TEXTURES_MODELS + "astralEnergyNode.png");
+        GL11.glTranslatef(0.3f, 1.2f, 0.3f);
+        GL11.glRotatef(90, 0.0F, 1.0F, 0.0F);
+        GL11.glScalef(1.0F, -1F, -1F);
+        model.renderModel();
         GL11.glPopMatrix();
     }
 }
