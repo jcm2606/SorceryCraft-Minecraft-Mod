@@ -1,5 +1,7 @@
 package jcm2606.mods.sorcerycraft.client.render.item.astral;
 
+import java.awt.Color;
+
 import jcm2606.mods.jccore.client.render.ItemRendererBase;
 import jcm2606.mods.sorcerycraft.client.model.ModelAstralEnergyNode;
 import jcm2606.mods.sorcerycraft.core.helper.RenderHandlerSC;
@@ -11,11 +13,11 @@ import org.lwjgl.opengl.GL11;
 
 public class AstralEnergyNodeRenderItem extends ItemRendererBase
 {
-    private final ModelAstralEnergyNode model;
+    private final ModelAstralEnergyNode node;
     
     public AstralEnergyNodeRenderItem()
     {
-        model = new ModelAstralEnergyNode();
+        node = new ModelAstralEnergyNode();
         
         this.entityX = 0;
         this.entityY = 1;
@@ -39,11 +41,13 @@ public class AstralEnergyNodeRenderItem extends ItemRendererBase
     {
         Tessellator tesselator = Tessellator.instance;
         GL11.glPushMatrix();
-        RenderHandlerSC.bindTexture(Reference.PATH_TEXTURES_MODELS + "astralEnergyNode.png");
         GL11.glTranslatef(0.5f, 2f, 0.5f);
         GL11.glRotatef(90, 0.0F, 1.0F, 0.0F);
         GL11.glScalef(1.0F, -1F, -1F);
-        model.renderModel();
+        
+        this.renderNodeBackground();
+        this.renderNode();
+        
         GL11.glPopMatrix();
     }
     
@@ -52,11 +56,13 @@ public class AstralEnergyNodeRenderItem extends ItemRendererBase
     {
         Tessellator tesselator = Tessellator.instance;
         GL11.glPushMatrix();
-        RenderHandlerSC.bindTexture(Reference.PATH_TEXTURES_MODELS + "astralEnergyNode.png");
         GL11.glTranslatef(0.5f, 2f, 0.5f);
         GL11.glRotatef(90, 0.0F, 1.0F, 0.0F);
         GL11.glScalef(1.0F, -1F, -1F);
-        model.renderModel();
+        
+        this.renderNodeBackground();
+        this.renderNode();
+        
         GL11.glPopMatrix();
     }
     
@@ -65,11 +71,13 @@ public class AstralEnergyNodeRenderItem extends ItemRendererBase
     {
         Tessellator tesselator = Tessellator.instance;
         GL11.glPushMatrix();
-        RenderHandlerSC.bindTexture(Reference.PATH_TEXTURES_MODELS + "astralEnergyNode.png");
         GL11.glTranslatef(0, 1, 0);
         GL11.glRotatef(90, 0.0F, 1.0F, 0.0F);
         GL11.glScalef(1.0F, -1F, -1F);
-        model.renderModel();
+        
+        this.renderNodeBackground();
+        this.renderNode();
+        
         GL11.glPopMatrix();
     }
     
@@ -78,11 +86,40 @@ public class AstralEnergyNodeRenderItem extends ItemRendererBase
     {
         Tessellator tesselator = Tessellator.instance;
         GL11.glPushMatrix();
-        RenderHandlerSC.bindTexture(Reference.PATH_TEXTURES_MODELS + "astralEnergyNode.png");
         GL11.glTranslatef(0.3f, 1.2f, 0.3f);
         GL11.glRotatef(90, 0.0F, 1.0F, 0.0F);
         GL11.glScalef(1.0F, -1F, -1F);
-        model.renderModel();
+        
+        this.renderNodeBackground();
+        this.renderNode();
+        
+        GL11.glPopMatrix();
+    }
+    
+    private void renderNode()
+    {
+        GL11.glPushMatrix();
+        
+        GL11.glColor3f(1, 1, 1);
+        
+        RenderHandlerSC.bindTexture(Reference.PATH_TEXTURES_MODELS + "astralEnergyNode.png");
+        node.renderModel();
+        
+        GL11.glPopMatrix();
+    }
+    
+    private void renderNodeBackground()
+    {
+        RenderHandlerSC.bindTexture(Reference.PATH_TEXTURES_MODELS + "astralEnergyNodeBG.png");
+        
+        GL11.glPushMatrix();
+        Color c = new Color(0x4B0082);
+        float r = c.getRed() / 255.0F;
+        float g = c.getGreen() / 255.0F;
+        float b = c.getBlue() / 255.0F;
+        GL11.glColor3f(r, g, b);
+        node.renderModel();
+        
         GL11.glPopMatrix();
     }
 }

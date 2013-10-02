@@ -2,10 +2,10 @@ package jcm2606.mods.sorcerycraft.item.astral;
 
 import jcm2606.mods.jccore.core.helper.NBTHelper;
 import jcm2606.mods.jccore.core.util.GeneralUtil;
-import jcm2606.mods.sorcerycraft.api.AstralManager;
 import jcm2606.mods.sorcerycraft.api.IItemUseTickHandler;
 import jcm2606.mods.sorcerycraft.api.IKeyBound;
 import jcm2606.mods.sorcerycraft.api.energy.IEnergyCapacitor;
+import jcm2606.mods.sorcerycraft.astral.AstralManager;
 import jcm2606.mods.sorcerycraft.core.SCObjects;
 import jcm2606.mods.sorcerycraft.core.lib.Reference;
 import jcm2606.mods.sorcerycraft.core.network.PacketHandler;
@@ -99,8 +99,7 @@ public class ItemAstralEnergyManipulationDrive extends SCItem implements IKeyBou
                     {
                         IEnergyCapacitor link = (IEnergyCapacitor) te;
                         
-                        link.capacitorRequestEnergy(1, true);
-                        this.useEnergy(player, 1);
+                        this.useEnergy(player, link.capacitorRequestEnergy(1, true));
                     }
                 }
             }
@@ -149,8 +148,7 @@ public class ItemAstralEnergyManipulationDrive extends SCItem implements IKeyBou
                     
                     if(link.hasEnergy() && AstralManager.getTotalEnergy(player) < AstralManager.getMaxEnergy(player))
                     {
-                        link.capacitorRequestEnergy(-1, true);
-                        this.useEnergy(player, -1);
+                        this.useEnergy(player, -link.capacitorProvideEnergy(1));
                     }
                 }
             }

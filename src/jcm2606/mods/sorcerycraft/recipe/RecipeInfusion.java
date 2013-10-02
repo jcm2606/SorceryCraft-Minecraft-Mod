@@ -11,7 +11,7 @@ public class RecipeInfusion
     public RecipeInfusion(ItemStack result, ItemStack[] components)
     {
         this.result = result;
-        this.name = result.getItemName();
+        this.name = result.getDisplayName();
         this.components = components;
     }
     

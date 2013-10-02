@@ -35,7 +35,7 @@ public class ItemCharmMortality extends ItemCharm
                 {
                     setStoredHealth(par1ItemStack, getStoredHealth(par1ItemStack) + 1);
                     par1ItemStack.damageItem(1, par3EntityPlayer);
-                    par3EntityPlayer.setEntityHealth(par3EntityPlayer.prevHealth - 1);
+                    par3EntityPlayer.setHealth(par3EntityPlayer.prevHealth - 1);
                 }
             } else
             {
@@ -44,7 +44,7 @@ public class ItemCharmMortality extends ItemCharm
                 {
                     setStoredHealth(par1ItemStack, getStoredHealth(par1ItemStack) - 1);
                     par1ItemStack.damageItem(1, par3EntityPlayer);
-                    par3EntityPlayer.setEntityHealth(par3EntityPlayer.prevHealth + 1);
+                    par3EntityPlayer.setHealth(par3EntityPlayer.prevHealth + 1);
                 }
             }
             

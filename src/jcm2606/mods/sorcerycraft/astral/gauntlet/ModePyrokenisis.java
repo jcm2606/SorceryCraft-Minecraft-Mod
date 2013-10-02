@@ -1,11 +1,14 @@
-package jcm2606.mods.sorcerycraft.astral.gauntlet;
+// TODO: Remaining as future reference for code.
+
+
+/*package jcm2606.mods.sorcerycraft.astral.gauntlet;
 
 import java.util.List;
 import java.util.Random;
 
-import jcm2606.mods.sorcerycraft.api.AstralManager;
 import jcm2606.mods.sorcerycraft.api.astral.gauntlet.EnumUseType;
 import jcm2606.mods.sorcerycraft.api.astral.gauntlet.GauntletMode;
+import jcm2606.mods.sorcerycraft.astral.AstralManager;
 import jcm2606.mods.sorcerycraft.client.fx.FXSearFlame;
 import jcm2606.mods.sorcerycraft.core.SCParticle;
 import jcm2606.mods.sorcerycraft.core.config.Settings;
@@ -206,3 +209,4 @@ public class ModePyrokenisis extends GauntletMode
     {
     }
 }
+ */

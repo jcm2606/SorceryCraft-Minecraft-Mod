@@ -14,7 +14,6 @@ import jcm2606.mods.sorcerycraft.block.tile.astral.TileAstralObsidian;
 import jcm2606.mods.sorcerycraft.block.tile.astral.TileAstralOre;
 import jcm2606.mods.sorcerycraft.block.tile.astral.TileAstralTotem1;
 import jcm2606.mods.sorcerycraft.block.tile.astral.TileAstralViewer;
-import jcm2606.mods.sorcerycraft.client.gui.overlay.GuiOverlayAstral;
 import jcm2606.mods.sorcerycraft.client.gui.overlay.GuiOverlayExpandedSight;
 import jcm2606.mods.sorcerycraft.client.gui.overlay.GuiOverlayInvisCloak;
 import jcm2606.mods.sorcerycraft.client.gui.overlay.TileExpandedSightHandler;
@@ -155,7 +154,6 @@ public class SCClientProxy extends SCCommonProxy implements IProxyClient
         MinecraftForge.EVENT_BUS.register(new SoundHandler());
         TickRegistry.registerTickHandler(new ClientTickHandler(), Side.CLIENT);
         KeyBindingRegistry.registerKeyBinding(new ClientKeyBindingHandler());
-        MinecraftForge.EVENT_BUS.register(new GuiOverlayAstral(Minecraft.getMinecraft()));
         MinecraftForge.EVENT_BUS.register(new GuiOverlayInvisCloak(Minecraft.getMinecraft()));
         MinecraftForge.EVENT_BUS.register(new GuiOverlayExpandedSight(Minecraft.getMinecraft()));
         SCApi.instance().registerExpandedSightHandler(new TileExpandedSightHandler());

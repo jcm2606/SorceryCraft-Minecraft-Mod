@@ -1,30 +1,11 @@
 package jcm2606.mods.sorcerycraft.api;
 
 import jcm2606.mods.sorcerycraft.core.SCObjects;
-import jcm2606.mods.sorcerycraft.element.ElementAir;
-import jcm2606.mods.sorcerycraft.element.ElementDark;
-import jcm2606.mods.sorcerycraft.element.ElementEarth;
-import jcm2606.mods.sorcerycraft.element.ElementEnergy;
-import jcm2606.mods.sorcerycraft.element.ElementFire;
-import jcm2606.mods.sorcerycraft.element.ElementIce;
-import jcm2606.mods.sorcerycraft.element.ElementLight;
-import jcm2606.mods.sorcerycraft.element.ElementMagic;
-import jcm2606.mods.sorcerycraft.element.ElementWater;
 import net.minecraft.item.ItemStack;
 
 public class ElementManager
 {
     public static IElement[] elementList = new IElement[1024];
-    
-    public static IElement fire = new ElementFire();
-    public static IElement water = new ElementWater();
-    public static IElement earth = new ElementEarth();
-    public static IElement air = new ElementAir();
-    public static IElement ice = new ElementIce();
-    public static IElement energy = new ElementEnergy();
-    public static IElement magic = new ElementMagic();
-    public static IElement light = new ElementLight();
-    public static IElement dark = new ElementDark();
     
     public static int getTotalNumberOfElements()
     {
@@ -39,11 +20,6 @@ public class ElementManager
         }
         
         return num;
-    }
-    
-    public static void loadElements()
-    {
-        registerElements(fire, water, earth, air, ice, energy, magic, light, dark);
     }
     
     public static IElement[] getElementList()

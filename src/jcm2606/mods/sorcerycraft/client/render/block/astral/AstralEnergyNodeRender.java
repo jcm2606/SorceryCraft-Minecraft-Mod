@@ -64,9 +64,14 @@ public class AstralEnergyNodeRender extends TileEntitySpecialRenderer
         RenderHandlerSC.bindTexture(Reference.PATH_TEXTURES_MODELS + "cubeAstralCrystal.png");
         
         GL11.glRotatef(tile.getTicks() * 2, 0, 1, 0);
-        GL11.glRotatef(36f + tile.getTicks() * 2, 0, 1, 1);
+        GL11.glRotatef(-(tile.getTicks() * 2), 1, 1, 0);
+        GL11.glRotatef(36f + tile.getTicks(), 0, 1, 1);
+        GL11.glRotatef(36f + 36f + tile.getTicks() * 2, 1, 1, 0);
+        GL11.glRotatef(tile.getTicks(), 1, 1, 1);
         
-        GL11.glScaled(0.3, 0.3, 0.3);
+        double scale = 0.35;
+        
+        GL11.glScaled(scale, scale, scale);
         
         cube.renderModel();
         

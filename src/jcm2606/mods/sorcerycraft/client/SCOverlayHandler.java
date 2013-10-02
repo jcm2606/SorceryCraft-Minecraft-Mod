@@ -1,8 +1,8 @@
 package jcm2606.mods.sorcerycraft.client;
 
 import jcm2606.mods.jccore.core.util.RenderUtil;
-import jcm2606.mods.sorcerycraft.api.AstralManager;
 import jcm2606.mods.sorcerycraft.api.IExpandedSightHandler;
+import jcm2606.mods.sorcerycraft.astral.AstralManager;
 import jcm2606.mods.sorcerycraft.core.helper.RenderHandlerSC;
 import jcm2606.mods.sorcerycraft.core.lib.Reference;
 import jcm2606.mods.sorcerycraft.item.astral.ItemAstralEnergyManipulationDrive;

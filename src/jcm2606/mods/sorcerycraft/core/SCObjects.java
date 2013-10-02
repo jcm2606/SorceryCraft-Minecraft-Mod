@@ -4,7 +4,7 @@ import jcm2606.mods.jccore.core.IObjectCore;
 import jcm2606.mods.jccore.core.util.BiomeUtil;
 import jcm2606.mods.jccore.core.util.GeneralUtil;
 import jcm2606.mods.sorcerycraft.api.ElementManager;
-import jcm2606.mods.sorcerycraft.api.SCApi;
+import jcm2606.mods.sorcerycraft.api.IElement;
 import jcm2606.mods.sorcerycraft.block.astral.BlockAstralCapacitorCPU;
 import jcm2606.mods.sorcerycraft.block.astral.BlockAstralCapacitorCPUItem;
 import jcm2606.mods.sorcerycraft.block.astral.BlockAstralCapacitorHousing;
@@ -51,6 +51,15 @@ import jcm2606.mods.sorcerycraft.block.main.BlockStoneResistant;
 import jcm2606.mods.sorcerycraft.block.main.BlockVordicTorch;
 import jcm2606.mods.sorcerycraft.core.config.Config;
 import jcm2606.mods.sorcerycraft.core.lib.Reference;
+import jcm2606.mods.sorcerycraft.element.ElementAir;
+import jcm2606.mods.sorcerycraft.element.ElementDark;
+import jcm2606.mods.sorcerycraft.element.ElementEarth;
+import jcm2606.mods.sorcerycraft.element.ElementEnergy;
+import jcm2606.mods.sorcerycraft.element.ElementFire;
+import jcm2606.mods.sorcerycraft.element.ElementIce;
+import jcm2606.mods.sorcerycraft.element.ElementLight;
+import jcm2606.mods.sorcerycraft.element.ElementMagic;
+import jcm2606.mods.sorcerycraft.element.ElementWater;
 import jcm2606.mods.sorcerycraft.enchant.EnchantmentAstralTransmutation;
 import jcm2606.mods.sorcerycraft.enchant.EnchantmentElementalDamage;
 import jcm2606.mods.sorcerycraft.enchant.EnchantmentRottingTouch;
@@ -130,6 +139,16 @@ public class SCObjects implements IObjectCore
     public static EnumToolMaterial SWORD_VORPAL;
     public static EnumToolMaterial SWORD_END;
     public static EnumToolMaterial SWORD_ELEMENT;
+    
+    public static IElement elementFire = new ElementFire();
+    public static IElement elementWater = new ElementWater();
+    public static IElement elementEarth = new ElementEarth();
+    public static IElement elementAir = new ElementAir();
+    public static IElement elementIce = new ElementIce();
+    public static IElement elementEnergy = new ElementEnergy();
+    public static IElement elementMagic = new ElementMagic();
+    public static IElement elementLight = new ElementLight();
+    public static IElement elementDark = new ElementDark();
     
     // VARIABLES
     public static Item dustVordic;
@@ -437,7 +456,6 @@ public class SCObjects implements IObjectCore
         valerianforest = new BiomeGenValerianForest(BiomeUtil.getFreeBiomeID(Reference.BIOME_ID_START_VALUE));
         
         ItemCharm.registerCurses();
-        SCApi.astralManager.loadCoreModes();
         
         registerBlocks();
         loadEnchantments();

@@ -283,7 +283,7 @@ public class TileAstralEnergyExtractor extends TileEntityMultiblock implements I
     @Override
     public void onDataPacket(INetworkManager net, Packet132TileEntityData pkt)
     {
-        this.readFromNBT(pkt.customParam1);
+        this.readFromNBT(pkt.data);
     }
     
     @Override

@@ -3,7 +3,6 @@ package jcm2606.mods.sorcerycraft.client.render.block.astral;
 import java.awt.Color;
 
 import jcm2606.mods.jccore.core.util.RenderUtil;
-import jcm2606.mods.sorcerycraft.api.ElementManager;
 import jcm2606.mods.sorcerycraft.block.main.BlockGlowBrick;
 import jcm2606.mods.sorcerycraft.core.SCObjects;
 import jcm2606.mods.sorcerycraft.core.lib.RenderID;
@@ -26,7 +25,7 @@ public class AstralThermalkineticConvertorRender implements ISimpleBlockRenderin
         
         Tessellator t = Tessellator.instance;
         
-        Color c = new Color(ElementManager.fire.getColour());
+        Color c = new Color(SCObjects.elementFire.getColour());
         float r = c.getRed() / 255.0F;
         float g = c.getGreen() / 255.0F;
         float b = c.getBlue() / 255.0F;
@@ -52,7 +51,7 @@ public class AstralThermalkineticConvertorRender implements ISimpleBlockRenderin
         renderer.setRenderBoundsFromBlock(block);
         
         Tessellator t = Tessellator.instance;
-        t.setColorOpaque_I(ElementManager.fire.getColour());
+        t.setColorOpaque_I(SCObjects.elementFire.getColour());
         t.setBrightness(255);
         RenderUtil.instance().renderAllSides(world, x, y, z, block, renderer, ((BlockGlowBrick) SCObjects.glowBrick1).textureBackground, true);
         

@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import jcm2606.mods.jccore.core.IProxyCommon;
-import jcm2606.mods.sorcerycraft.astral.gauntlet.ModePyrokenisis;
 import jcm2606.mods.sorcerycraft.block.tile.TileEntityArcaneWorkbench;
 import jcm2606.mods.sorcerycraft.block.tile.TileEntityCrystal;
 import jcm2606.mods.sorcerycraft.block.tile.TileEntityInfuseTablet;
@@ -78,7 +77,6 @@ public class SCCommonProxy implements IProxyCommon
     {
         GameRegistry.registerCraftingHandler(new CraftingHandlerMain());
         GameRegistry.registerCraftingHandler(new CraftingHandlerAchievement());
-        MinecraftForge.EVENT_BUS.register(new ModePyrokenisis());
         MinecraftForge.EVENT_BUS.register(new SCEventHandler());
     }
     

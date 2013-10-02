@@ -1,6 +1,7 @@
 package jcm2606.mods.sorcerycraft.api;
 
 import jcm2606.mods.jccore.compat.ModCompatibility;
+import jcm2606.mods.sorcerycraft.astral.AstralManager;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import cpw.mods.fml.common.event.FMLInterModComms;

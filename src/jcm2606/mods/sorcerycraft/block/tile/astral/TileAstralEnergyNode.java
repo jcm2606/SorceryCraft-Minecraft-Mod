@@ -38,6 +38,51 @@ IExpandedSightHandler
     
     public ItemStack[] stackList = new ItemStack[8];
     
+    public EnumRedstoneState redstoneState = EnumRedstoneState.NOTHING;
+    
+    public boolean isReceivingRedstoneSignal = false;
+    
+    private static enum EnumRedstoneState {
+        NOTHING,
+        CUT_PROVIDING,
+        CUT_REQUESTING,
+        BOTH
+    }
+    
+    private String[] stateStrings = {
+            "Nothing",
+            "Stop providing",
+            "Stop requesting",
+            "Both"
+    };
+    
+    @Override
+    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float par7, float par8, float par9)
+    {
+        if(player.getCurrentEquippedItem() != null)
+        {
+            return false;
+        }
+        
+        int num = 0;
+        
+        if(this.redstoneState.ordinal() >= 3)
+        {
+            num = 0;
+        } else {
+            num = this.redstoneState.ordinal() + 1;
+        }
+        
+        this.redstoneState = EnumRedstoneState.values()[num];
+        
+        if(!this.worldObj.isRemote)
+        {
+            player.sendChatToPlayer(ConvertUtil.getChatMessageComponent("Redstone interaction behaviour: " + this.stateStrings[num]));
+        }
+        
+        return true;
+    }
+    
     @Override
     public void readFromNBT(NBTTagCompound tag)
     {
@@ -45,6 +90,14 @@ IExpandedSightHandler
         
         energyStored = tag.getInteger("energyStored");
         isConnectedToSource = tag.getBoolean("hasSource");
+        
+        for(EnumRedstoneState state : EnumRedstoneState.values())
+        {
+            if(state.ordinal() == tag.getInteger("redstoneState"))
+            {
+                this.redstoneState = EnumRedstoneState.values()[state.ordinal()];
+            }
+        }
         
         NBTTagList tagList = tag.getTagList("StackList");
         
@@ -68,6 +121,7 @@ IExpandedSightHandler
         
         tag.setBoolean("hasSource", this.isConnectedToSource);
         tag.setInteger("energyStored", this.energyStored);
+        tag.setInteger("redstoneState", this.redstoneState.ordinal());
         
         NBTTagList tagList = new NBTTagList();
         
@@ -92,6 +146,13 @@ IExpandedSightHandler
     public void updateEntity()
     {
         super.updateEntity();
+        
+        if(this.worldObj.isBlockIndirectlyGettingPowered(xCoord, yCoord, zCoord))
+        {
+            this.isReceivingRedstoneSignal = true;
+        } else {
+            this.isReceivingRedstoneSignal = false;
+        }
         
         if (this.worldObj.isRemote)
         {
@@ -167,6 +228,8 @@ IExpandedSightHandler
                                     FXAstralEnergyBeam fx = new FXAstralEnergyBeam(this.worldObj, xCoord + 0.5, yCoord + 0.5, zCoord + 0.5, x + 0.5,
                                             y + 0.5, z + 0.5, 2);
                                     
+                                    fx.slide = true;
+                                    
                                     Minecraft.getMinecraft().effectRenderer.addEffect(fx);
                                 }
                             }
@@ -206,7 +269,7 @@ IExpandedSightHandler
     @Override
     public void onDataPacket(INetworkManager net, Packet132TileEntityData pkt)
     {
-        this.readFromNBT(pkt.customParam1);
+        this.readFromNBT(pkt.data);
     }
     
     @Override
@@ -242,6 +305,14 @@ IExpandedSightHandler
     @Override
     public int capacitorRequestEnergy(int amount, boolean ignoreLimit)
     {
+        if(this.isReceivingRedstoneSignal)
+        {
+            if(this.redstoneState == EnumRedstoneState.CUT_REQUESTING || this.redstoneState == EnumRedstoneState.BOTH)
+            {
+                return 0;
+            }
+        }
+        
         if (ignoreLimit)
         {
             this.energyStored += amount;
@@ -262,6 +333,14 @@ IExpandedSightHandler
     @Override
     public int capacitorProvideEnergy(int amount)
     {
+        if(this.isReceivingRedstoneSignal)
+        {
+            if(this.redstoneState == EnumRedstoneState.CUT_PROVIDING || this.redstoneState == EnumRedstoneState.BOTH)
+            {
+                return 0;
+            }
+        }
+        
         if (this.getEnergyStored() > 0)
         {
             this.energyStored -= amount;
