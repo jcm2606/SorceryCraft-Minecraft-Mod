@@ -28,8 +28,8 @@ public class BlockDarkQuartzBrick extends SCBlock
     {
         this.iconBuffer = new Icon[2];
         
-        this.iconBuffer[0] = par1IconRegister.registerIcon("SorceryCraft:" + name);
-        this.iconBuffer[1] = par1IconRegister.registerIcon("SorceryCraft:" + name + "Top");
+        this.iconBuffer[0] = par1IconRegister.registerIcon("SorceryCraft:" + this.name);
+        this.iconBuffer[1] = par1IconRegister.registerIcon("SorceryCraft:" + this.name + "Top");
     }
     
     @Override

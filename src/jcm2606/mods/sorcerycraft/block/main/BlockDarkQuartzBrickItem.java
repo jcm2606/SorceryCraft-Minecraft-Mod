@@ -14,8 +14,8 @@ public class BlockDarkQuartzBrickItem extends ItemBlock
     public BlockDarkQuartzBrickItem(int par1)
     {
         super(par1);
-        setMaxDamage(0);
-        setHasSubtypes(true);
+        this.setMaxDamage(0);
+        this.setHasSubtypes(true);
     }
     
     @Override
@@ -27,6 +27,6 @@ public class BlockDarkQuartzBrickItem extends ItemBlock
     @Override
     public void addInformation(ItemStack stack, EntityPlayer par2EntityPlayer, List list, boolean par4)
     {
-        list.add(types[(stack.getItemDamage() % 16)]);
+        list.add(this.types[(stack.getItemDamage() % 16)]);
     }
 }

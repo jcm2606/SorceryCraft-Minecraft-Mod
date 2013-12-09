@@ -44,6 +44,6 @@ public class PacketSyncResearchData extends PacketBase
     {
         ResearchData researchProps = ((ResearchData) ((EntityPlayer) player).getExtendedProperties(ResearchData.NAME));
         
-        researchProps.setResearchPoints(points);
+        researchProps.setResearchPoints(this.points);
     }
 }

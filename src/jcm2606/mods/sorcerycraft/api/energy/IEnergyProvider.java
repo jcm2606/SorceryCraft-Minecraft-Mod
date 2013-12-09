@@ -1,7 +1,7 @@
 package jcm2606.mods.sorcerycraft.api.energy;
 
 /**
- * Interface for TE-based (TileEntity Based) energy providers.
+ * Interface for any energy providers.
  */
 public interface IEnergyProvider
 {

@@ -18,6 +18,7 @@ public class SCOverlayHandler implements IExpandedSightHandler
     {
         this.drawEnergyHUD(mc, player, hasMedallion);
         this.drawEnergyManipulationDriveHUD(mc, player, hasMedallion);
+        this.drawWandOverlay(mc, player);
     }
     
     public void drawEnergyHUD(Minecraft mc, EntityPlayer player, boolean hasMedallion)
@@ -26,8 +27,8 @@ public class SCOverlayHandler implements IExpandedSightHandler
         
         GL11.glPushMatrix();
         
-        RenderUtil.instance().drawTextureRect(RenderUtil.width - 125, 1, 0, 0, 124, 7, 1.0f);
-        RenderUtil.instance().drawTextureRect(RenderUtil.width - 121, 2, 4, 10, AstralManager.getEnergyPercentage(player), 7, 1.0f);
+        RenderUtil.instance().drawTextureRect(RenderUtil.width - 130, 5, 0, 0, 124, 7, 1.0f);
+        RenderUtil.instance().drawTextureRect(RenderUtil.width - 126, 6, 4, 10, AstralManager.getEnergyPercentage(player), 7, 1.0f);
         
         GL11.glPopMatrix();
         
@@ -35,12 +36,8 @@ public class SCOverlayHandler implements IExpandedSightHandler
         
         GL11.glScaled(0.5, 0.5, 0.5);
         
-        if(!player.isSneaking())
-        {
-            mc.fontRenderer.drawString("\2477" + AstralManager.getTotalEnergy(player), RenderUtil.width * 2 - 16 - (mc.fontRenderer.getStringWidth("" + AstralManager.getTotalEnergy(player))), 5, 0xffffff);
-        } else {
-            mc.fontRenderer.drawString("\2477" + AstralManager.getEnergyPercentage(player) + "%", RenderUtil.width * 2 - 16 - (mc.fontRenderer.getStringWidth(AstralManager.getEnergyPercentage(player) + "%")), 5, 0xffffff);
-        }
+        mc.fontRenderer.drawString("\2477" + AstralManager.getTotalEnergy(player), RenderUtil.width * 2 - 27 - (mc.fontRenderer
+                .getStringWidth("" + AstralManager.getTotalEnergy(player))), 13, 0xffffff);
         
         GL11.glScaled(1, 1, 1);
         
@@ -53,20 +50,39 @@ public class SCOverlayHandler implements IExpandedSightHandler
         
         RenderHandlerSC.bindTexture(Reference.PATH_TEXTURES_GUI_HUD + "overlay.png");
         
-        if(player.inventory.getCurrentItem() != null)
+        if (player.inventory.getCurrentItem() != null)
         {
-            if(player.inventory.getCurrentItem().getItem() instanceof ItemAstralEnergyManipulationDrive)
+            if (player.inventory.getCurrentItem().getItem() instanceof ItemAstralEnergyManipulationDrive)
             {
                 ItemAstralEnergyManipulationDrive drive = (ItemAstralEnergyManipulationDrive) player.inventory.getCurrentItem().getItem();
                 
-                if(drive.getMode(player.inventory.getCurrentItem()) == "INJECT")
+                if (drive.getMode(player.inventory.getCurrentItem()) == "INJECT")
                 {
                     RenderUtil.instance().drawTextureRect(RenderUtil.width - 138, 1, 13, 17, 24, 9, 1.0f);
-                } else {
+                } else
+                {
                     RenderUtil.instance().drawTextureRect(RenderUtil.width - 138, 1, 0, 17, 12, 10, 1.0f);
                 }
             }
         }
+        
+        GL11.glPopMatrix();
+    }
+    
+    public void drawWandOverlay(Minecraft mc, EntityPlayer player)
+    {
+        GL11.glPushMatrix();
+        
+        /*if(player.getCurrentEquippedItem() != null)
+        {
+            if(player.getCurrentEquippedItem().getItem() instanceof ItemWand)
+            {
+                ItemStack stack = player.getCurrentEquippedItem();
+                ItemWand wand = ((ItemWand) stack.getItem());
+                
+                mc.fontRenderer.drawString(wand.getSelectedAbility(stack).getName(), 0, 0, 0xffffff);
+            }
+        }*/
         
         GL11.glPopMatrix();
     }

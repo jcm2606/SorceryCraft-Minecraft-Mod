@@ -89,15 +89,15 @@ public class SCTool extends ItemTool
     {
         if (ForgeHooks.isToolEffective(stack, block, meta))
         {
-            return efficiencyOnProperMaterial;
+            return this.efficiencyOnProperMaterial;
         }
-        return getStrVsBlock(stack, block);
+        return this.getStrVsBlock(stack, block);
     }
     
     @Override
     @SideOnly(Side.CLIENT)
     public void registerIcons(IconRegister par1IconRegister)
     {
-        this.itemIcon = par1IconRegister.registerIcon("SorceryCraft:" + name);
+        this.itemIcon = par1IconRegister.registerIcon("SorceryCraft:" + this.name);
     }
 }

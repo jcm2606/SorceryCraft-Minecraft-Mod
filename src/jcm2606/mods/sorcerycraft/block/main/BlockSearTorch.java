@@ -98,8 +98,8 @@ public class BlockSearTorch extends SCBlock
     public boolean canPlaceBlockAt(World par1World, int par2, int par3, int par4)
     {
         return par1World.isBlockSolidOnSide(par2 - 1, par3, par4, EAST, true) || par1World.isBlockSolidOnSide(par2 + 1, par3, par4, WEST, true) || par1World
-                .isBlockSolidOnSide(par2, par3, par4 - 1, SOUTH, true) || par1World.isBlockSolidOnSide(par2, par3, par4 + 1, NORTH, true) || canPlaceTorchOn(
-                par1World, par2, par3 - 1, par4);
+                .isBlockSolidOnSide(par2, par3, par4 - 1, SOUTH, true) || par1World.isBlockSolidOnSide(par2, par3, par4 + 1, NORTH, true) || this
+                .canPlaceTorchOn(par1World, par2, par3 - 1, par4);
     }
     
     /**
@@ -303,32 +303,32 @@ public class BlockSearTorch extends SCBlock
         double var15 = 0.27000001072883606D;
         int limit = 1;
         
-        if (var6 == 1 && count == limit)
+        if (var6 == 1 && this.count == limit)
         {
             EntityFX fx = new FXSearFlame(par1World, var7 - var15, var9 + var13, var11, 0.0D, 0.001D, 0.0D);
             
             Minecraft.getMinecraft().effectRenderer.addEffect(fx);
         } else
-            if (var6 == 2 && count == limit)
+            if (var6 == 2 && this.count == limit)
             {
                 EntityFX fx = new FXSearFlame(par1World, var7 + var15, var9 + var13, var11, 0.0D, 0.001D, 0.0D);
                 
                 Minecraft.getMinecraft().effectRenderer.addEffect(fx);
             } else
-                if (var6 == 3 && count == limit)
+                if (var6 == 3 && this.count == limit)
                 {
                     EntityFX fx = new FXSearFlame(par1World, var7, var9 + var13, var11 - var15, 0.0D, 0.001D, 0.0D);
                     
                     Minecraft.getMinecraft().effectRenderer.addEffect(fx);
                 } else
-                    if (var6 == 4 && count == limit)
+                    if (var6 == 4 && this.count == limit)
                     {
                         EntityFX fx = new FXSearFlame(par1World, var7, var9 + var13, var11 + var15, 0.0D, 0.001, 0.0D);
                         
                         Minecraft.getMinecraft().effectRenderer.addEffect(fx);
                     } else
                     {
-                        if (count == limit)
+                        if (this.count == limit)
                         {
                             EntityFX fx = new FXSearFlame(par1World, var7, var9, var11, 0.0D, 0.001, 0.0D);
                             
@@ -336,11 +336,11 @@ public class BlockSearTorch extends SCBlock
                         }
                     }
         
-        if (count >= limit)
+        if (this.count >= limit)
         {
-            count = 0;
+            this.count = 0;
         }
         
-        count++;
+        this.count++;
     }
 }

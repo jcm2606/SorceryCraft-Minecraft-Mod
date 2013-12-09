@@ -64,27 +64,18 @@ public class Config
         return config.get(CATEGORY_TOOL_ID, key + ".id", id);
     }
     
-    public static Property getItemId(String key, int value)
+    public static Property getItemId(String key)
     {
-        int id = value + Reference.ITEM_ID_SHIFT_VALUE;
+        int id = Reference.ITEM_ID_START_VALUE + Reference.ITEM_ID_SHIFT_VALUE;
         
         Reference.ITEM_ID_SHIFT_VALUE++;
         
         return config.get(CATEGORY_ITEM_ID, key + ".id", id);
     }
     
-    public static Property getWandId(String key, int value)
+    public static Property getBlockId(String key)
     {
-        int id = value + Reference.ITEM_WAND_ID_SHIFT_VALUE;
-        
-        Reference.ITEM_WAND_ID_SHIFT_VALUE++;
-        
-        return config.get(CATEGORY_ITEM_ID, key + ".id", id);
-    }
-    
-    public static Property getBlockId(String key, int value)
-    {
-        int id = value + Reference.BLOCK_ID_SHIFT_VALUE;
+        int id = Reference.BLOCK_ID_START_VALUE + Reference.BLOCK_ID_SHIFT_VALUE;
         
         Reference.BLOCK_ID_SHIFT_VALUE++;
         

@@ -15,7 +15,7 @@ public class AstralInfuserRenderItem extends ItemRendererBase
     
     public AstralInfuserRenderItem()
     {
-        aModel = new ModelAstralInfuser();
+        this.aModel = new ModelAstralInfuser();
     }
     
     @Override
@@ -53,14 +53,14 @@ public class AstralInfuserRenderItem extends ItemRendererBase
         GL11.glTranslatef(posX + 0.5F, posY + 1.5F, posZ + 0.5F);
         GL11.glRotatef(j, 0.0F, 1.0F, 0.0F);
         GL11.glScalef(1.0F, -1F, -1F);
-        aModel.render(0.0625F);
+        this.aModel.render(0.0625F);
         GL11.glPopMatrix();
         
-        renderCircle("astralInfuserCircle2", tessellator, posX, posY, posZ);
-        renderCircle("astralInfuserCircle5", tessellator, posX, posY, posZ);
-        renderCircle("astralInfuserCircle3", tessellator, posX, posY, posZ);
-        renderCircle("astralInfuserCircle4", tessellator, posX, posY, posZ);
-        renderCircle("astralInfuserCircle1", tessellator, posX, posY, posZ);
+        this.renderCircle("astralInfuserCircle2", tessellator, posX, posY, posZ);
+        this.renderCircle("astralInfuserCircle5", tessellator, posX, posY, posZ);
+        this.renderCircle("astralInfuserCircle3", tessellator, posX, posY, posZ);
+        this.renderCircle("astralInfuserCircle4", tessellator, posX, posY, posZ);
+        this.renderCircle("astralInfuserCircle1", tessellator, posX, posY, posZ);
     }
     
     private void renderCircle(String texture, Tessellator tessellator, double x, double y, double z)

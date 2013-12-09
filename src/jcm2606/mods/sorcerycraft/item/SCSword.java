@@ -252,6 +252,6 @@ public class SCSword extends ItemSword
     @SideOnly(Side.CLIENT)
     public void registerIcons(IconRegister par1IconRegister)
     {
-        this.itemIcon = par1IconRegister.registerIcon("SorceryCraft:" + name);
+        this.itemIcon = par1IconRegister.registerIcon("SorceryCraft:" + this.name);
     }
 }

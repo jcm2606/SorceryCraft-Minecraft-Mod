@@ -19,12 +19,12 @@ public class ResearchBase
     
     public String getName()
     {
-        return name;
+        return this.name;
     }
     
     public String getLocalisedName()
     {
-        return localisedName;
+        return this.localisedName;
     }
     
     public int getCost()

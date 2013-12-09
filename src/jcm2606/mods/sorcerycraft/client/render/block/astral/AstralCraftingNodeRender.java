@@ -12,6 +12,6 @@ public class AstralCraftingNodeRender extends TileEntitySpecialRenderer
     @Override
     public void renderTileEntityAt(TileEntity tileentity, double x, double y, double z, float f)
     {
-        RenderHandlerSC.drawAstralParticleField(tileentity, x, y, z, f, side, side, side, side, top, side);
+        RenderHandlerSC.drawAstralParticleField(tileentity, x, y, z, f, this.side, this.side, this.side, this.side, this.top, this.side);
     }
 }

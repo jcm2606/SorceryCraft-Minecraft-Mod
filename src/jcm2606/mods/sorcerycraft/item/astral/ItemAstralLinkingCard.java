@@ -32,7 +32,7 @@ public class ItemAstralLinkingCard extends SCItem
     @Override
     public EnumRarity getRarity(ItemStack stack)
     {
-        return RarityHelper.getCustomRarityType(Rarities.ADVANCED);
+        return RarityHelper.getCustomRarityType(Rarities.BASIC);
     }
     
     @Override

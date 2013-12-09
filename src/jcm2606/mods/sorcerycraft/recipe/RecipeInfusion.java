@@ -27,9 +27,9 @@ public class RecipeInfusion
     
     public boolean componentsMatch(Object[] materials)
     {
-        int matching = components.length;
+        int matching = this.components.length;
         
-        for (ItemStack stack1 : components)
+        for (ItemStack stack1 : this.components)
         {
             for (Object obj : materials)
             {
@@ -47,12 +47,12 @@ public class RecipeInfusion
     
     public ItemStack getResult(Object materials[])
     {
-        return componentsMatch(materials) ? this.result : null;
+        return this.componentsMatch(materials) ? this.result : null;
     }
     
     public boolean isComponent(ItemStack stack)
     {
-        for (ItemStack stack2 : components)
+        for (ItemStack stack2 : this.components)
         {
             if (stack.itemID == stack2.itemID && (stack.getItemDamage() == stack2.getItemDamage() || stack.getItemDamage() == -1))
             {

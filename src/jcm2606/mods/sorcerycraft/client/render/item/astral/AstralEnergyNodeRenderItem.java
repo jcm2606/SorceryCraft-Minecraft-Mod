@@ -17,7 +17,7 @@ public class AstralEnergyNodeRenderItem extends ItemRendererBase
     
     public AstralEnergyNodeRenderItem()
     {
-        node = new ModelAstralEnergyNode();
+        this.node = new ModelAstralEnergyNode();
         
         this.entityX = 0;
         this.entityY = 1;
@@ -103,7 +103,7 @@ public class AstralEnergyNodeRenderItem extends ItemRendererBase
         GL11.glColor3f(1, 1, 1);
         
         RenderHandlerSC.bindTexture(Reference.PATH_TEXTURES_MODELS + "astralEnergyNode.png");
-        node.renderModel();
+        this.node.renderModel();
         
         GL11.glPopMatrix();
     }
@@ -118,7 +118,7 @@ public class AstralEnergyNodeRenderItem extends ItemRendererBase
         float g = c.getGreen() / 255.0F;
         float b = c.getBlue() / 255.0F;
         GL11.glColor3f(r, g, b);
-        node.renderModel();
+        this.node.renderModel();
         
         GL11.glPopMatrix();
     }

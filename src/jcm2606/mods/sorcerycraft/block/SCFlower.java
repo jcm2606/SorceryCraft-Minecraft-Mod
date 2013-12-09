@@ -32,27 +32,27 @@ public class SCFlower extends BlockFlower
     @SideOnly(Side.CLIENT)
     public void registerIcons(IconRegister par1IconRegister)
     {
-        if (useIconIndex)
+        if (this.useIconIndex)
         {
-            this.blockIcon = par1IconRegister.registerIcon("SorceryCraft:" + name);
+            this.blockIcon = par1IconRegister.registerIcon("SorceryCraft:" + this.name);
         }
     }
     
     @Override
     public int getRenderType()
     {
-        return renderID;
+        return this.renderID;
     }
     
     @Override
     public boolean isOpaqueCube()
     {
-        return isOpaqueCube;
+        return this.isOpaqueCube;
     }
     
     @Override
     public boolean renderAsNormalBlock()
     {
-        return renderAsNormalBlock;
+        return this.renderAsNormalBlock;
     }
 }

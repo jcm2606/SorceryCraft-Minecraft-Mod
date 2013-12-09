@@ -41,9 +41,9 @@ public class FXFissure extends FXSC
     {
         super(par1World, 0, 0, 0);
         
-        this.prevPosX = posX = par2;
-        this.prevPosY = posY = par4;
-        this.prevPosZ = posZ = par6;
+        this.prevPosX = this.posX = par2;
+        this.prevPosY = this.posY = par4;
+        this.prevPosZ = this.posZ = par6;
         
         this.motionX = this.motionY = this.motionZ = 0;
         this.noClip = true;
@@ -72,12 +72,12 @@ public class FXFissure extends FXSC
         float fa = f1;
         float f2 = 0.0F;
         
-        if (ignoreAge)
+        if (this.ignoreAge)
         {
             fa = 0.9f;
         }
         
-        if (!ignoreAge && f1 > 0.8F)
+        if (!this.ignoreAge && f1 > 0.8F)
         {
             f2 = (f1 - 0.8F) / 0.2F;
         }
@@ -91,7 +91,7 @@ public class FXFissure extends FXSC
         GL11.glEnable(GL11.GL_CULL_FACE);
         GL11.glDepthMask(false);
         GL11.glPushMatrix();
-        GL11.glScalef(scale, scale, scale);
+        GL11.glScalef(this.scale, this.scale, this.scale);
         
         for (int i = 0; i < (fa + fa * fa) / 2.0F * 60.0F; ++i)
         {
@@ -104,10 +104,10 @@ public class FXFissure extends FXSC
             tessellator.startDrawing(6);
             float f3 = random.nextFloat() * 20.0F + 5.0F + f2 * 10.0F;
             float f4 = random.nextFloat() * 2.0F + 1.0F + f2 * 2.0F;
-            tessellator.setColorRGBA_I(innerColour, (int) (255.0F * (1.0F - f2)));
-            tessellator.setBrightness(brightness);
+            tessellator.setColorRGBA_I(this.innerColour, (int) (255.0F * (1.0F - f2)));
+            tessellator.setBrightness(this.brightness);
             tessellator.addVertex(0.0D, 0.0D, 0.0D);
-            tessellator.setColorRGBA_I(outterColour, 0);
+            tessellator.setColorRGBA_I(this.outterColour, 0);
             tessellator.addVertex(-0.866D * f4, f3, -0.5F * f4);
             tessellator.addVertex(0.866D * f4, f3, -0.5F * f4);
             tessellator.addVertex(0.0D, f3, 1.0F * f4);

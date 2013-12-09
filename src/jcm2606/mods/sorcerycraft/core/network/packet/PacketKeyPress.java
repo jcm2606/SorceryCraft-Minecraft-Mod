@@ -29,13 +29,13 @@ public class PacketKeyPress extends PacketBase
     @Override
     public void readData(DataInputStream data) throws IOException
     {
-        key = data.readUTF();
+        this.key = data.readUTF();
     }
     
     @Override
     public void writeData(DataOutputStream dos) throws IOException
     {
-        dos.writeUTF(key);
+        dos.writeUTF(this.key);
     }
     
     @Override
@@ -45,7 +45,7 @@ public class PacketKeyPress extends PacketBase
         
         if (thePlayer.getCurrentEquippedItem() != null && thePlayer.getCurrentEquippedItem().getItem() instanceof IKeyBound)
         {
-            ((IKeyBound) thePlayer.getCurrentEquippedItem().getItem()).doKeyBindingAction(thePlayer, thePlayer.getCurrentEquippedItem(), key);
+            ((IKeyBound) thePlayer.getCurrentEquippedItem().getItem()).doKeyBindingAction(thePlayer, thePlayer.getCurrentEquippedItem(), this.key);
         }
     }
 }

@@ -32,7 +32,7 @@ public class BlockFlowerGlow extends SCFlower
     @SideOnly(Side.CLIENT)
     public void registerIcons(IconRegister par1IconRegister)
     {
-        this.blockIcon = par1IconRegister.registerIcon("SorceryCraft:" + name);
+        this.blockIcon = par1IconRegister.registerIcon("SorceryCraft:" + this.name);
         this.textureGlow = par1IconRegister.registerIcon("SorceryCraft:flowerGlowPetalGlow");
     }
     

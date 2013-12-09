@@ -34,7 +34,7 @@ public class PacketItemUseTick extends PacketBase
     @Override
     public void writeData(DataOutputStream dos) throws IOException
     {
-        dos.writeInt(count);
+        dos.writeInt(this.count);
     }
     
     @Override
@@ -44,7 +44,8 @@ public class PacketItemUseTick extends PacketBase
         
         if (thePlayer.getCurrentEquippedItem() != null && thePlayer.getCurrentEquippedItem().getItem() instanceof IItemUseTickHandler)
         {
-            ((IItemUseTickHandler) thePlayer.getCurrentEquippedItem().getItem()).serverItemUseTick(thePlayer.getCurrentEquippedItem(), thePlayer, count);
+            ((IItemUseTickHandler) thePlayer.getCurrentEquippedItem().getItem()).serverItemUseTick(thePlayer.getCurrentEquippedItem(), thePlayer,
+                    this.count);
         }
     }
 }

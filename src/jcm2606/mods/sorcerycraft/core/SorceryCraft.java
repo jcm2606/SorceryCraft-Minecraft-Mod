@@ -6,25 +6,22 @@ import java.util.HashMap;
 import jcm2606.mods.jccore.compat.ModCompatibility;
 import jcm2606.mods.jccore.compat.container.CompatibilityContainer;
 import jcm2606.mods.jccore.core.util.LoggerBase;
-import jcm2606.mods.sorcerycraft.api.ElementManager;
 import jcm2606.mods.sorcerycraft.api.IExpandedSightHandler;
 import jcm2606.mods.sorcerycraft.api.SCApi;
+import jcm2606.mods.sorcerycraft.api.book.BookTab;
 import jcm2606.mods.sorcerycraft.api.compat.CompatContainerSC;
+import jcm2606.mods.sorcerycraft.astral.ability.AstralAbilityBase;
 import jcm2606.mods.sorcerycraft.client.gui.overlay.GuiOverlayExpandedSight;
 import jcm2606.mods.sorcerycraft.core.command.CommandSC;
 import jcm2606.mods.sorcerycraft.core.config.Config;
 import jcm2606.mods.sorcerycraft.core.handler.GuiHandler;
-import jcm2606.mods.sorcerycraft.core.helper.ForgeHookHandler;
 import jcm2606.mods.sorcerycraft.core.lib.CapeTypes;
 import jcm2606.mods.sorcerycraft.core.network.PacketHandler;
 import jcm2606.mods.sorcerycraft.core.util.SpecialPlayer;
 import jcm2606.mods.sorcerycraft.world.gen.GenCore;
 import net.minecraft.client.Minecraft;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.item.ItemStack;
 import net.minecraft.server.MinecraftServer;
-import net.minecraftforge.common.ChestGenHooks;
-import net.minecraftforge.common.MinecraftForge;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
@@ -77,11 +74,12 @@ public class SorceryCraft
         logger.info("SorceryCraft v" + version + " by jcm2606 installed.");
         logger.info("Mod loading has commenced, be patient!");
         
-        ElementManager.registerElements(SCObjects.elementFire, SCObjects.elementWater, SCObjects.elementEarth, SCObjects.elementAir, SCObjects.elementEnergy, SCObjects.elementIce, SCObjects.elementMagic, SCObjects.elementLight, SCObjects.elementDark);
-        
         CompatibilityContainer.registerContainer(new CompatContainerSC());
         
         GameRegistry.registerPlayerTracker(new SCPlayerTracker());
+        
+        AstralAbilityBase.registerAbilities();
+        BookTab.loadDefaultTabs();
         
         logger.info("Loading configuration.");
         Config.init(event.getSuggestedConfigurationFile());
@@ -105,11 +103,9 @@ public class SorceryCraft
         
         ModCompatibility.get().startObjectLoadingInClass(SCObjects.class);
         
-        loadChestGenHooks();
+        this.loadChestGenHooks();
         
         GameRegistry.registerWorldGenerator(new GenCore());
-        
-        MinecraftForge.addGrassPlant(SCObjects.flowerGlowpetal, 0, 5);
         
         SCAchievements.loadAchievements();
     }
@@ -125,11 +121,11 @@ public class SorceryCraft
     @EventHandler
     public void imcCallback(FMLInterModComms.IMCEvent event)
     {
-        for(final FMLInterModComms.IMCMessage message : event.getMessages())
+        for (final FMLInterModComms.IMCMessage message : event.getMessages())
         {
-            if(message.key.equalsIgnoreCase("expanded-sight-handler"))
+            if (message.key.equalsIgnoreCase("expanded-sight-handler-register"))
             {
-                if(message.isStringMessage())
+                if (message.isStringMessage())
                 {
                     String classPath = message.getStringValue();
                     
@@ -158,27 +154,25 @@ public class SorceryCraft
                         e.printStackTrace();
                     }
                     
-                    if(obj == null)
+                    if (obj == null)
                     {
                         throw new NullPointerException("Attempted register of expanded sight handler failed.");
                     }
                     
-                    if(obj instanceof IExpandedSightHandler)
+                    if (obj instanceof IExpandedSightHandler)
                     {
                         IExpandedSightHandler handler = (IExpandedSightHandler) obj;
                         
-                        System.out.println("1");
-                        for(int i = 0; i < 1024; i++)
+                        for (int i = 0; i < 1024; i++)
                         {
-                            if(GuiOverlayExpandedSight.handlerList[i] == null)
+                            if (GuiOverlayExpandedSight.handlerList[i] == null)
                             {
-                                System.out.println("3");
-                                System.out.println(handler.getClass().getSimpleName());
                                 GuiOverlayExpandedSight.handlerList[i] = handler;
                                 break;
                             }
                         }
-                    } else {
+                    } else
+                    {
                         throw new RuntimeException("Recieved invalid handler.");
                     }
                 }
@@ -204,20 +198,6 @@ public class SorceryCraft
     
     public void loadChestGenHooks()
     {
-        ForgeHookHandler.addCustomChestGenContent(ChestGenHooks.VILLAGE_BLACKSMITH, new ItemStack(SCObjects.ingotArcaneSteel), 1, 7, 030);
-        ForgeHookHandler.addCustomChestGenContent(ChestGenHooks.VILLAGE_BLACKSMITH, new ItemStack(SCObjects.blockArcaneSteel), 1, 2, 010);
-        ForgeHookHandler.addCustomChestGenContent(ChestGenHooks.VILLAGE_BLACKSMITH, new ItemStack(SCObjects.toolVordic), 1, 1, 001);
-        
-        ForgeHookHandler.addCustomChestGenContent(ChestGenHooks.MINESHAFT_CORRIDOR, new ItemStack(SCObjects.dustVordic), 1, 5, 040);
-        ForgeHookHandler.addCustomChestGenContent(ChestGenHooks.MINESHAFT_CORRIDOR, new ItemStack(SCObjects.blockVordicGem), 1, 3, 010);
-        
-        ForgeHookHandler.addCustomChestGenContent(ChestGenHooks.STRONGHOLD_CORRIDOR, new ItemStack(SCObjects.arcaneMatter), 7, 27, 030);
-        
-        ForgeHookHandler.addCustomChestGenContent(ChestGenHooks.DUNGEON_CHEST, new ItemStack(SCObjects.arcaneCompendium), 1, 1, 001);
-        ForgeHookHandler.addCustomChestGenContent(ChestGenHooks.DUNGEON_CHEST, new ItemStack(SCObjects.dustVordic), 1, 3, 060);
-        ForgeHookHandler.addCustomChestGenContent(ChestGenHooks.DUNGEON_CHEST, new ItemStack(SCObjects.dustVordicStabilised), 1, 2, 030);
-        ForgeHookHandler.addCustomChestGenContent(ChestGenHooks.DUNGEON_CHEST, new ItemStack(SCObjects.stoneArcane), 1, 1, 005);
-        ForgeHookHandler.addCustomChestGenContent(ChestGenHooks.DUNGEON_CHEST, new ItemStack(SCObjects.arcaneMatter), 1, 7, 010);
     }
     
     @EventHandler

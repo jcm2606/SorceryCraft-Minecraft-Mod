@@ -2,11 +2,8 @@ package jcm2606.mods.sorcerycraft.item.astral;
 
 import java.util.List;
 
-import jcm2606.mods.jccore.core.helper.RarityHelper;
-import jcm2606.mods.sorcerycraft.core.lib.Rarities;
 import jcm2606.mods.sorcerycraft.item.SCItem;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
 
 public class ItemAstralMechanismDrive extends SCItem
@@ -20,12 +17,6 @@ public class ItemAstralMechanismDrive extends SCItem
     public boolean hasEffect(ItemStack stack)
     {
         return false;
-    }
-    
-    @Override
-    public EnumRarity getRarity(ItemStack stack)
-    {
-        return RarityHelper.getCustomRarityType(Rarities.ADVANCED);
     }
     
     @Override

@@ -18,8 +18,8 @@ public class BlockGlowBrickItem extends ItemBlock
     public BlockGlowBrickItem(int par1)
     {
         super(par1);
-        setMaxDamage(0);
-        setHasSubtypes(true);
+        this.setMaxDamage(0);
+        this.setHasSubtypes(true);
     }
     
     @Override
@@ -37,6 +37,6 @@ public class BlockGlowBrickItem extends ItemBlock
     @Override
     public void addInformation(ItemStack stack, EntityPlayer par2EntityPlayer, List list, boolean par4)
     {
-        list.add(colours[(stack.getItemDamage() % 16)]);
+        list.add(this.colours[(stack.getItemDamage() % 16)]);
     }
 }

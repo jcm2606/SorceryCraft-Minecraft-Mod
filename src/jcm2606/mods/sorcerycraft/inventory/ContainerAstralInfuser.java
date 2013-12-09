@@ -2,7 +2,6 @@ package jcm2606.mods.sorcerycraft.inventory;
 
 import jcm2606.mods.jccore.client.slot.SlotLocked;
 import jcm2606.mods.sorcerycraft.block.tile.astral.TileAstralInfuser;
-import jcm2606.mods.sorcerycraft.core.SCObjects;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
@@ -20,34 +19,34 @@ public class ContainerAstralInfuser extends Container
     
     public ContainerAstralInfuser(InventoryPlayer par1InventoryPlayer, World par2World, int par3, int par4, int par5)
     {
-        worldObj = par2World;
-        posX = par3;
-        posY = par4;
-        posZ = par5;
-        tile = (TileAstralInfuser) par2World.getBlockTileEntity(par3, par4, par5);
+        this.worldObj = par2World;
+        this.posX = par3;
+        this.posY = par4;
+        this.posZ = par5;
+        this.tile = (TileAstralInfuser) par2World.getBlockTileEntity(par3, par4, par5);
         
-        addSlotToContainer(new SlotLocked(tile, 5, 79, 71));
+        this.addSlotToContainer(new SlotLocked(this.tile, 5, 79, 71));
         
-        addSlotToContainer(new Slot(tile, 0, 80, 16));
-        addSlotToContainer(new Slot(tile, 1, 132, 54));
-        addSlotToContainer(new Slot(tile, 2, 111, 118));
-        addSlotToContainer(new Slot(tile, 3, 49, 117));
-        addSlotToContainer(new Slot(tile, 4, 25, 54));
+        this.addSlotToContainer(new Slot(this.tile, 0, 80, 16));
+        this.addSlotToContainer(new Slot(this.tile, 1, 132, 54));
+        this.addSlotToContainer(new Slot(this.tile, 2, 111, 118));
+        this.addSlotToContainer(new Slot(this.tile, 3, 49, 117));
+        this.addSlotToContainer(new Slot(this.tile, 4, 25, 54));
         
         for (int i = 0; i < 3; i++)
         {
             for (int k = 0; k < 9; k++)
             {
-                addSlotToContainer(new Slot(par1InventoryPlayer, k + i * 9 + 9, 8 + k * 18, 158 + i * 18));
+                this.addSlotToContainer(new Slot(par1InventoryPlayer, k + i * 9 + 9, 8 + k * 18, 158 + i * 18));
             }
         }
         
         for (int j = 0; j < 9; j++)
         {
-            addSlotToContainer(new Slot(par1InventoryPlayer, j, 8 + j * 18, 216));
+            this.addSlotToContainer(new Slot(par1InventoryPlayer, j, 8 + j * 18, 216));
         }
         
-        detectAndSendChanges();
+        this.detectAndSendChanges();
     }
     
     /**
@@ -74,8 +73,7 @@ public class ContainerAstralInfuser extends Container
     @Override
     public boolean canInteractWith(EntityPlayer par1EntityPlayer)
     {
-        return worldObj.getBlockId(posX, posY, posZ) != SCObjects.astralInfuser.blockID ? false : par1EntityPlayer.getDistanceSq(posX + 0.5D,
-                posY + 0.5D, posZ + 0.5D) <= 64.0D;
+        return true;
     }
     
     @Override

@@ -1,16 +1,16 @@
 package jcm2606.mods.sorcerycraft.core;
 
-import jcm2606.mods.sorcerycraft.item.charm.ItemCharm;
-import jcm2606.mods.sorcerycraft.item.charm.ItemCharmMortality;
+import jcm2606.mods.sorcerycraft.api.IAbility;
+import jcm2606.mods.sorcerycraft.astral.ability.AstralAbilityBase;
 import jcm2606.mods.sorcerycraft.research.ResearchData;
+import jcm2606.mods.sorcerycraft.skill.SkillData;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.DamageSource;
 import net.minecraftforge.client.event.DrawBlockHighlightEvent;
+import net.minecraftforge.client.event.RenderWorldLastEvent;
 import net.minecraftforge.event.ForgeSubscribe;
 import net.minecraftforge.event.entity.EntityEvent.EntityConstructing;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
@@ -21,6 +21,8 @@ import net.minecraftforge.event.entity.player.EntityInteractEvent;
 import net.minecraftforge.event.entity.player.EntityItemPickupEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.world.WorldEvent;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class SCEventHandler
 {
@@ -51,11 +53,6 @@ public class SCEventHandler
     {
         EntityItem item = event.item;
         int id = item.getEntityItem().itemID;
-        
-        if (id == SCObjects.dustVordic.itemID)
-        {
-            event.entityPlayer.addStat(SCAchievements.vordicDustGet, 1);
-        }
     }
     
     @ForgeSubscribe
@@ -69,6 +66,16 @@ public class SCEventHandler
         if (event.entity instanceof EntityPlayer && event.entity.getExtendedProperties(ResearchData.NAME) == null)
         {
             event.entity.registerExtendedProperties(ResearchData.NAME, new ResearchData((EntityPlayer) event.entity));
+        }
+        
+        if (event.entity instanceof EntityPlayer && event.entity.getExtendedProperties(AstralAbilityBase.NAME) == null)
+        {
+            event.entity.registerExtendedProperties(AstralAbilityBase.NAME, new AstralAbilityBase((EntityPlayer) event.entity));
+        }
+        
+        if (event.entity instanceof EntityPlayer && event.entity.getExtendedProperties(SkillData.NAME) == null)
+        {
+            event.entity.registerExtendedProperties(SkillData.NAME, new SkillData((EntityPlayer) event.entity));
         }
     }
     
@@ -92,10 +99,28 @@ public class SCEventHandler
                     ((ResearchData) player.getExtendedProperties(ResearchData.NAME)).loadNBTData(playerData);
                 }
                 
-                if (player.worldObj.isRemote)
+                ((ResearchData) player.getExtendedProperties(ResearchData.NAME)).syncExtendedProperties();
+                
+                playerData = SorceryCraft.proxy.getAbilities(player.username);
+                
+                if (playerData != null)
                 {
-                    ((ResearchData) player.getExtendedProperties(ResearchData.NAME)).syncExtendedProperties();
+                    ((AstralAbilityBase) player.getExtendedProperties(AstralAbilityBase.NAME)).loadNBTData(playerData);
                 }
+                
+                for (IAbility ability : ((AstralAbilityBase) player.getExtendedProperties(AstralAbilityBase.NAME)).list)
+                {
+                    ((AstralAbilityBase) player.getExtendedProperties(AstralAbilityBase.NAME)).syncLearn(ability);
+                }
+                
+                playerData = SorceryCraft.proxy.getSkillPoints(player.username);
+                
+                if (playerData != null)
+                {
+                    ((SkillData) player.getExtendedProperties(SkillData.NAME)).loadNBTData(playerData);
+                }
+                
+                ((SkillData) player.getExtendedProperties(SkillData.NAME)).sync();
             }
         }
     }
@@ -112,6 +137,18 @@ public class SCEventHandler
             ((ResearchData) event.entity.getExtendedProperties(ResearchData.NAME)).saveNBTData(playerData);
             
             SorceryCraft.proxy.saveResearchPoints(((EntityPlayer) event.entity).username, playerData);
+            
+            playerData = new NBTTagCompound();
+            
+            ((AstralAbilityBase) event.entity.getExtendedProperties(AstralAbilityBase.NAME)).saveNBTData(playerData);
+            
+            SorceryCraft.proxy.saveAbilities(((EntityPlayer) event.entity).username, playerData);
+            
+            playerData = new NBTTagCompound();
+            
+            ((SkillData) event.entity.getExtendedProperties(SkillData.NAME)).saveNBTData(playerData);
+            
+            SorceryCraft.proxy.saveSkillPoints(((EntityPlayer) event.entity).username, playerData);
         }
     }
     
@@ -123,32 +160,11 @@ public class SCEventHandler
     @ForgeSubscribe
     public void onItemThrow(ItemTossEvent event)
     {
-        if (event.entityItem.getEntityItem() != null)
-        {
-            if (event.entityItem.getEntityItem().getItem() == SCObjects.charmHealing)
-            {
-                Item item = event.entityItem.getEntityItem().getItem();
-                ItemCharmMortality charm = (ItemCharmMortality) item;
-                
-                int randInt = event.player.worldObj.rand.nextInt(100);
-                
-                if (ItemCharmMortality.getBoundPlayer(event.entityItem.getEntityItem()).equals(event.player.username) && randInt <= 50 && !ItemCharm.getCurseName(
-                        event.entityItem.getEntityItem()).equals("disarm"))
-                {
-                    ItemCharmMortality.setBoundPlayer(event.entityItem.getEntityItem(), "");
-                    
-                    int damageAmount = (ItemCharmMortality.getStoredHealth(event.entityItem.getEntityItem()) / 2) + event.player.worldObj.rand.nextInt(3);
-                    
-                    event.player.attackEntityFrom(DamageSource.magic, damageAmount);
-                    System.out
-                    .println("PLAYER '" + event.player.username.toUpperCase() + "' DAMAGED BY THROWING CHARM @ SLOT " + event.player.inventory.currentItem + " BY " + damageAmount + "HP");
-                    
-                    if (!event.player.worldObj.isRemote)
-                    {
-                        event.player.addChatMessage("\247oYou feel a strange surge of energy being ripped from within you.");
-                    }
-                }
-            }
-        }
+    }
+    
+    @ForgeSubscribe
+    @SideOnly(Side.CLIENT)
+    public void onRenderWorldLast(RenderWorldLastEvent event)
+    {
     }
 }

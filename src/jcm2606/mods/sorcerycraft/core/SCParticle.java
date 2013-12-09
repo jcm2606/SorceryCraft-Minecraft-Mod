@@ -2,7 +2,7 @@ package jcm2606.mods.sorcerycraft.core;
 
 import jcm2606.mods.jccore.core.util.Coord;
 import jcm2606.mods.sorcerycraft.client.fx.FXAstralEnergy;
-import jcm2606.mods.sorcerycraft.client.fx.FXAstralEnergyBeam;
+import jcm2606.mods.sorcerycraft.client.fx.FXBeam;
 import jcm2606.mods.sorcerycraft.client.fx.FXSearFlame;
 import jcm2606.mods.sorcerycraft.client.fx.FXVordicFlame;
 import net.minecraft.client.Minecraft;
@@ -62,11 +62,11 @@ public class SCParticle
         return fx;
     }
     
-    public static EntityFX spawnAstralEnergyBeamFX(Coord coordStart, Coord coordEnd, int age, boolean noClip, boolean fade,
+    public static EntityFX spawnBeam(Coord coordStart, Coord coordEnd, int age, boolean noClip, boolean fade, String texture,
             boolean handleParticleSettings)
     {
-        FXAstralEnergyBeam fx = new FXAstralEnergyBeam(Minecraft.getMinecraft().theWorld, coordStart.x, coordStart.y, coordStart.z, coordEnd.x,
-                coordEnd.y, coordEnd.z, age);
+        FXBeam fx = new FXBeam(Minecraft.getMinecraft().theWorld, coordStart.x, coordStart.y, coordStart.z, coordEnd.x, coordEnd.y, coordEnd.z, age,
+                texture);
         
         spawnParticle(fx, handleParticleSettings);
         return fx;

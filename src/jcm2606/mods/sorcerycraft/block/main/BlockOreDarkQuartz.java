@@ -3,7 +3,6 @@ package jcm2606.mods.sorcerycraft.block.main;
 import java.util.Random;
 
 import jcm2606.mods.sorcerycraft.block.SCOre;
-import jcm2606.mods.sorcerycraft.core.SCObjects;
 
 public class BlockOreDarkQuartz extends SCOre
 {
@@ -22,6 +21,6 @@ public class BlockOreDarkQuartz extends SCOre
     @Override
     public int idDropped(int par1, Random par2Random, int par3)
     {
-        return SCObjects.quartzDark.itemID;
+        return this.blockID;
     }
 }

@@ -25,7 +25,7 @@ public class AstralThermalkineticConvertorRender implements ISimpleBlockRenderin
         
         Tessellator t = Tessellator.instance;
         
-        Color c = new Color(SCObjects.elementFire.getColour());
+        Color c = new Color(0xFF4719);
         float r = c.getRed() / 255.0F;
         float g = c.getGreen() / 255.0F;
         float b = c.getBlue() / 255.0F;
@@ -51,7 +51,7 @@ public class AstralThermalkineticConvertorRender implements ISimpleBlockRenderin
         renderer.setRenderBoundsFromBlock(block);
         
         Tessellator t = Tessellator.instance;
-        t.setColorOpaque_I(SCObjects.elementFire.getColour());
+        t.setColorOpaque_I(0xFF4719);
         t.setBrightness(255);
         RenderUtil.instance().renderAllSides(world, x, y, z, block, renderer, ((BlockGlowBrick) SCObjects.glowBrick1).textureBackground, true);
         

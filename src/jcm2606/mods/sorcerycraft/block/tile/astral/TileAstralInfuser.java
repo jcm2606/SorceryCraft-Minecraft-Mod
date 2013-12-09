@@ -9,10 +9,6 @@ import jcm2606.mods.sorcerycraft.api.IExpandedSightHandler;
 import jcm2606.mods.sorcerycraft.api.energy.IEnergyCapacitor;
 import jcm2606.mods.sorcerycraft.api.energy.IEnergyReciever;
 import jcm2606.mods.sorcerycraft.client.fx.FXFissure;
-import jcm2606.mods.sorcerycraft.core.helper.SCHelper;
-import jcm2606.mods.sorcerycraft.core.network.PacketHandler;
-import jcm2606.mods.sorcerycraft.core.network.PacketType;
-import jcm2606.mods.sorcerycraft.core.network.packet.PacketDrawAstralEnergyBeam;
 import jcm2606.mods.sorcerycraft.manager.CraftingManagerAstralInfuser;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
@@ -24,8 +20,6 @@ import net.minecraft.util.MovingObjectPosition;
 import net.minecraftforge.common.ForgeDirection;
 
 import org.lwjgl.opengl.GL11;
-
-import cpw.mods.fml.common.network.PacketDispatcher;
 
 public class TileAstralInfuser extends TileEntityJC implements IInventory, IEnergyReciever, IExpandedSightHandler
 {
@@ -93,7 +87,7 @@ public class TileAstralInfuser extends TileEntityJC implements IInventory, IEner
     {
         super.updateEntity();
         
-        if (hasSource())
+        if (this.hasSource())
         {
             if (GeneralUtil.isClient())
             {
@@ -107,20 +101,14 @@ public class TileAstralInfuser extends TileEntityJC implements IInventory, IEner
         
         for (ForgeDirection side : ForgeDirection.VALID_DIRECTIONS)
         {
-            if (GeneralUtil.getBlockTileFromNeighbour(xCoord, yCoord, zCoord, side, worldObj) instanceof IEnergyCapacitor)
+            if (GeneralUtil.getBlockTileFromNeighbour(this.xCoord, this.yCoord, this.zCoord, side, this.worldObj) instanceof IEnergyCapacitor)
             {
-                IEnergyCapacitor capacitor = ((IEnergyCapacitor) GeneralUtil.getBlockTileFromNeighbour(xCoord, yCoord, zCoord, side, worldObj));
+                IEnergyCapacitor capacitor = ((IEnergyCapacitor) GeneralUtil.getBlockTileFromNeighbour(this.xCoord, this.yCoord, this.zCoord, side,
+                        this.worldObj));
                 
                 if (capacitor.hasEnergy() && capacitor.getEnergyStored() >= this.getEnergyRequirement())
                 {
-                    capacitor.capacitorProvideEnergy(this.getEnergyRequirement());
-                    
-                    if (GeneralUtil.isClient())
-                    {
-                        PacketDispatcher.sendPacketToAllPlayers(PacketType.populatePacket(new PacketDrawAstralEnergyBeam(xCoord + 0.5 + side.offsetX,
-                                yCoord + 0.5 + side.offsetY, zCoord + 0.5 + side.offsetZ, xCoord + 0.5, yCoord + 0.5, zCoord + 0.5, 3, false),
-                                PacketHandler.CHANNEL_SC));
-                    }
+                    capacitor.takeEnergy(this.getEnergyRequirement());
                     
                     break;
                 }
@@ -143,18 +131,18 @@ public class TileAstralInfuser extends TileEntityJC implements IInventory, IEner
     @Override
     public ItemStack decrStackSize(int slot, int amt)
     {
-        ItemStack stack = getStackInSlot(slot);
+        ItemStack stack = this.getStackInSlot(slot);
         if (stack != null)
         {
             if (stack.stackSize <= amt)
             {
-                setInventorySlotContents(slot, null);
+                this.setInventorySlotContents(slot, null);
             } else
             {
                 stack = stack.splitStack(amt);
                 if (stack.stackSize == 0)
                 {
-                    setInventorySlotContents(slot, null);
+                    this.setInventorySlotContents(slot, null);
                 }
             }
         }
@@ -171,9 +159,9 @@ public class TileAstralInfuser extends TileEntityJC implements IInventory, IEner
     public void setInventorySlotContents(int i, ItemStack itemstack)
     {
         this.stacks[i] = itemstack;
-        if ((itemstack != null) && (itemstack.stackSize > getInventoryStackLimit()))
+        if ((itemstack != null) && (itemstack.stackSize > this.getInventoryStackLimit()))
         {
-            itemstack.stackSize = getInventoryStackLimit();
+            itemstack.stackSize = this.getInventoryStackLimit();
         }
     }
     
@@ -245,9 +233,10 @@ public class TileAstralInfuser extends TileEntityJC implements IInventory, IEner
         
         for (ForgeDirection side : ForgeDirection.VALID_DIRECTIONS)
         {
-            if (GeneralUtil.getBlockTileFromNeighbour(xCoord, yCoord, zCoord, side, worldObj) instanceof IEnergyCapacitor)
+            if (GeneralUtil.getBlockTileFromNeighbour(this.xCoord, this.yCoord, this.zCoord, side, this.worldObj) instanceof IEnergyCapacitor)
             {
-                IEnergyCapacitor capacitor = ((IEnergyCapacitor) GeneralUtil.getBlockTileFromNeighbour(xCoord, yCoord, zCoord, side, worldObj));
+                IEnergyCapacitor capacitor = ((IEnergyCapacitor) GeneralUtil.getBlockTileFromNeighbour(this.xCoord, this.yCoord, this.zCoord, side,
+                        this.worldObj));
                 
                 if (capacitor.hasEnergy() && capacitor.getEnergyStored() >= this.getEnergyRequirement())
                 {
@@ -284,15 +273,12 @@ public class TileAstralInfuser extends TileEntityJC implements IInventory, IEner
         int y = mop.blockY;
         int z = mop.blockZ;
         
-        if (SCHelper.playerHasPerceptionMedallion(player))
-        {
-            GL11.glPushMatrix();
-            GL11.glScaled(0.5, 0.5, 0.5);
-            Minecraft.getMinecraft().fontRenderer.drawString("\2477-" + this.getEnergyRequirement() + " AE/t", RenderUtil.width + 8,
-                    RenderUtil.height + 8, 0xffffff);
-            GL11.glScaled(1, 1, 1);
-            GL11.glPopMatrix();
-        }
+        GL11.glPushMatrix();
+        GL11.glScaled(0.5, 0.5, 0.5);
+        Minecraft.getMinecraft().fontRenderer.drawString("\2477-" + this.getEnergyRequirement() + " Psy/t", RenderUtil.width + 8,
+                RenderUtil.height + 8, 0xffffff);
+        GL11.glScaled(1, 1, 1);
+        GL11.glPopMatrix();
     }
     
     @Override

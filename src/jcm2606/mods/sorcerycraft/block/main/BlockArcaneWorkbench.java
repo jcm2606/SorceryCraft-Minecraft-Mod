@@ -54,6 +54,6 @@ public class BlockArcaneWorkbench extends SCBlockContainer
     @Override
     public Icon getIcon(int blockSide, int par2)
     {
-        return blockSide == 0 ? iconBuffer[2] : (blockSide == 1 ? iconBuffer[0] : iconBuffer[1]);
+        return blockSide == 0 ? this.iconBuffer[2] : (blockSide == 1 ? this.iconBuffer[0] : this.iconBuffer[1]);
     }
 }

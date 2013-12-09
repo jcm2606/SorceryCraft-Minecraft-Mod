@@ -22,7 +22,7 @@ public class TileExpandedSightHandler implements IExpandedSightHandler
         int y = mop.blockY;
         int z = mop.blockZ;
         
-        if(mc.theWorld.getBlockTileEntity(x, y, z) instanceof IExpandedSightHandler)
+        if (mc.theWorld.getBlockTileEntity(x, y, z) instanceof IExpandedSightHandler)
         {
             ((IExpandedSightHandler) mc.theWorld.getBlockTileEntity(x, y, z)).renderOverlay(mc, player, hasMedallion);
         }
@@ -42,7 +42,7 @@ public class TileExpandedSightHandler implements IExpandedSightHandler
         int y = mop.blockY;
         int z = mop.blockZ;
         
-        if(mc.theWorld.getBlockTileEntity(x, y, z) instanceof IExpandedSightHandler)
+        if (mc.theWorld.getBlockTileEntity(x, y, z) instanceof IExpandedSightHandler)
         {
             return ((IExpandedSightHandler) mc.theWorld.getBlockTileEntity(x, y, z)).canRender(mc, player, hasMedallion);
         }

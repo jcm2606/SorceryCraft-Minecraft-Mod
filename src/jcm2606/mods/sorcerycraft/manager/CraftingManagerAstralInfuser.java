@@ -22,12 +22,12 @@ public class CraftingManagerAstralInfuser
     
     private CraftingManagerAstralInfuser()
     {
-        recipes = new ArrayList<RecipeInfusion>();
+        this.recipes = new ArrayList<RecipeInfusion>();
     }
     
     public void addInfusion(ItemStack result, ItemStack[] materials)
     {
-        recipes.add(new RecipeInfusion(result, materials));
+        this.recipes.add(new RecipeInfusion(result, materials));
     }
     
     public ItemStack getResult(Object[] materials)
@@ -36,9 +36,9 @@ public class CraftingManagerAstralInfuser
         
         int index = -1;
         
-        for (int i = 0; i < recipes.size(); i++)
+        for (int i = 0; i < this.recipes.size(); i++)
         {
-            RecipeInfusion recipe = recipes.get(i);
+            RecipeInfusion recipe = this.recipes.get(i);
             
             if (recipe.getResult(materials) != null)
             {
@@ -48,7 +48,7 @@ public class CraftingManagerAstralInfuser
         
         if (index >= 0)
         {
-            RecipeInfusion recipe = recipes.get(index);
+            RecipeInfusion recipe = this.recipes.get(index);
             
             result = recipe.getResult();
         }
@@ -60,9 +60,9 @@ public class CraftingManagerAstralInfuser
     {
         ItemStack[] components = null;
         
-        for (int i = 0; i < recipes.size(); i++)
+        for (int i = 0; i < this.recipes.size(); i++)
         {
-            RecipeInfusion recipe = recipes.get(i);
+            RecipeInfusion recipe = this.recipes.get(i);
             
             components = recipe.getComponents();
         }

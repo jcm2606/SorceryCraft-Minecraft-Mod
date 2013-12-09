@@ -27,7 +27,7 @@ public class SCCreativeTab
          */
         public int getTabIconItemIndex()
         {
-            return SCObjects.workbenchArcane.blockID;
+            return SCObjects.astralStructure.blockID;
         }
     }
     
@@ -52,7 +52,7 @@ public class SCCreativeTab
          */
         public int getTabIconItemIndex()
         {
-            return SCObjects.brickDarkQuartz.blockID;
+            return SCObjects.glowBrick1.blockID;
         }
     }
     
@@ -77,7 +77,7 @@ public class SCCreativeTab
          */
         public int getTabIconItemIndex()
         {
-            return SCObjects.stoneArcane.itemID;
+            return SCObjects.channelingStaff.itemID;
         }
     }
 }

@@ -32,7 +32,7 @@ public abstract class PacketBase
         
         try
         {
-            dos.writeByte(packetType.ordinal());
+            dos.writeByte(this.packetType.ordinal());
             this.writeData(dos);
         }
         catch (IOException e)

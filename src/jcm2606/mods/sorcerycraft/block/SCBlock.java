@@ -24,7 +24,7 @@ public class SCBlock extends BlockJC
     public SCBlock(int par1, Material par3Material, String par4, String par5)
     {
         super(par1, par3Material, par5);
-        setCreativeTab(SorceryCraft.tabBlocks);
+        this.setCreativeTab(SorceryCraft.tabBlocks);
         this.setUnlocalizedName("sc" + par4);
         this.name = par4;
         this.useIconIndex = true;
@@ -34,7 +34,7 @@ public class SCBlock extends BlockJC
     public SCBlock(int par1, Material par3Material, String par4)
     {
         super(par1, par3Material);
-        setCreativeTab(SorceryCraft.tabBlocks);
+        this.setCreativeTab(SorceryCraft.tabBlocks);
         this.setUnlocalizedName("sc" + par4);
         this.name = par4;
         this.useIconIndex = true;
@@ -45,28 +45,28 @@ public class SCBlock extends BlockJC
     @SideOnly(Side.CLIENT)
     public void registerIcons(IconRegister par1IconRegister)
     {
-        if (useIconIndex)
+        if (this.useIconIndex)
         {
-            this.blockIcon = par1IconRegister.registerIcon("SorceryCraft:" + name);
+            this.blockIcon = par1IconRegister.registerIcon("SorceryCraft:" + this.name);
         }
     }
     
     @Override
     public int getRenderType()
     {
-        return renderID;
+        return this.renderID;
     }
     
     @Override
     public boolean isOpaqueCube()
     {
-        return isOpaqueCube;
+        return this.isOpaqueCube;
     }
     
     @Override
     public boolean renderAsNormalBlock()
     {
-        return renderAsNormalBlock;
+        return this.renderAsNormalBlock;
     }
     
     @Override

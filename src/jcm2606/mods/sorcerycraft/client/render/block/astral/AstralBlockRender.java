@@ -16,6 +16,6 @@ public class AstralBlockRender extends TileEntitySpecialRenderer
     @Override
     public void renderTileEntityAt(TileEntity tileentity, double x, double y, double z, float f)
     {
-        RenderHandlerSC.drawAstralParticleField(tileentity, x, y, z, f, texture);
+        RenderHandlerSC.drawAstralParticleField(tileentity, x, y, z, f, this.texture);
     }
 }

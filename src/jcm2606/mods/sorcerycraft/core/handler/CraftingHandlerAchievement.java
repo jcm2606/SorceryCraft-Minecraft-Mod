@@ -1,7 +1,6 @@
 package jcm2606.mods.sorcerycraft.core.handler;
 
 import jcm2606.mods.jccore.core.util.CraftingHandlerBase;
-import jcm2606.mods.sorcerycraft.core.SCObjects;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.Item;
@@ -22,9 +21,5 @@ public class CraftingHandlerAchievement extends CraftingHandlerBase
     @Override
     public void onSmelt(Object result, EntityPlayer player)
     {
-        if (result == SCObjects.dustVordicStabilised)
-        {
-            // player.addStat(SCAchievements.refVordicDustGet, 1);
-        }
     }
 }

@@ -33,7 +33,7 @@ class CustomBiomeDecorator extends BiomeDecorator
         
         Builder bigMushroomsPerChunk(int val)
         {
-            bigMushroomsPerChunk = val;
+            this.bigMushroomsPerChunk = val;
             return this;
         }
         
@@ -44,62 +44,62 @@ class CustomBiomeDecorator extends BiomeDecorator
         
         Builder cactiPerChunk(int val)
         {
-            cactiPerChunk = val;
+            this.cactiPerChunk = val;
             return this;
         }
         
         Builder clayPerChunk(int val)
         {
-            clayPerChunk = val;
+            this.clayPerChunk = val;
             return this;
         }
         
         Builder deadBushPerChunk(int val)
         {
-            deadBushPerChunk = val;
+            this.deadBushPerChunk = val;
             return this;
         }
         
         Builder flowersPerChunk(int val)
         {
-            flowersPerChunk = val;
+            this.flowersPerChunk = val;
             return this;
         }
         
         Builder grassPerChunk(int val)
         {
-            grassPerChunk = val;
+            this.grassPerChunk = val;
             return this;
         }
         
         Builder mushroomsPerChunk(int val)
         {
-            mushroomsPerChunk = val;
+            this.mushroomsPerChunk = val;
             return this;
         }
         
         Builder reedsPerChunk(int val)
         {
-            reedsPerChunk = val;
+            this.reedsPerChunk = val;
             return this;
         }
         
         Builder sandPerChunk(int val, int val2)
         {
-            sandPerChunk = val;
-            sandPerChunk2 = val2;
+            this.sandPerChunk = val;
+            this.sandPerChunk2 = val2;
             return this;
         }
         
         Builder treesPerChunk(int val)
         {
-            treesPerChunk = val;
+            this.treesPerChunk = val;
             return this;
         }
         
         Builder waterlilyPerChunk(int val)
         {
-            waterlilyPerChunk = val;
+            this.waterlilyPerChunk = val;
             return this;
         }
     }
@@ -113,18 +113,18 @@ class CustomBiomeDecorator extends BiomeDecorator
     {
         super(builder.biome);
         
-        waterlilyPerChunk = builder.waterlilyPerChunk;
-        treesPerChunk = builder.treesPerChunk;
-        flowersPerChunk = builder.flowersPerChunk;
-        grassPerChunk = builder.grassPerChunk;
-        deadBushPerChunk = builder.deadBushPerChunk;
-        mushroomsPerChunk = builder.mushroomsPerChunk;
-        reedsPerChunk = builder.reedsPerChunk;
-        cactiPerChunk = builder.cactiPerChunk;
-        sandPerChunk = builder.sandPerChunk;
-        sandPerChunk2 = builder.sandPerChunk2;
-        clayPerChunk = builder.clayPerChunk;
-        bigMushroomsPerChunk = builder.bigMushroomsPerChunk;
+        this.waterlilyPerChunk = builder.waterlilyPerChunk;
+        this.treesPerChunk = builder.treesPerChunk;
+        this.flowersPerChunk = builder.flowersPerChunk;
+        this.grassPerChunk = builder.grassPerChunk;
+        this.deadBushPerChunk = builder.deadBushPerChunk;
+        this.mushroomsPerChunk = builder.mushroomsPerChunk;
+        this.reedsPerChunk = builder.reedsPerChunk;
+        this.cactiPerChunk = builder.cactiPerChunk;
+        this.sandPerChunk = builder.sandPerChunk;
+        this.sandPerChunk2 = builder.sandPerChunk2;
+        this.clayPerChunk = builder.clayPerChunk;
+        this.bigMushroomsPerChunk = builder.bigMushroomsPerChunk;
     }
     
 }

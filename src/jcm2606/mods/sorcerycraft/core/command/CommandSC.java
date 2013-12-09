@@ -24,17 +24,21 @@ public class CommandSC extends CommandBase
             {
                 CommandVersion.processCommand(icommandsender, args);
             } else
-                if (args[0].equalsIgnoreCase(Commands.COMMAND_CHARM_CURSE))
+                if (args[0].equalsIgnoreCase(Commands.COMMAND_CREDITS))
                 {
-                    CommandCharmCurse.processCommand(icommandsender, args);
+                    CommandCredits.processCommand(icommandsender, args);
                 } else
-                    if (args[0].equalsIgnoreCase(Commands.COMMAND_CREDITS))
+                    if (args[0].equalsIgnoreCase(Commands.COMMAND_ASTRAL_ABILITY))
                     {
-                        CommandCredits.processCommand(icommandsender, args);
+                        CommandAbility.processCommand(icommandsender, args);
                     } else
-                    {
-                        throw new WrongUsageException("Command entered is not valid.");
-                    }
+                        if (args[0].equalsIgnoreCase(Commands.COMMAND_ACHIEVEMENT))
+                        {
+                            CommandAchievement.processCommand(icommandsender, args);
+                        } else
+                        {
+                            throw new WrongUsageException("Command entered is not valid.");
+                        }
         } else
         {
             throw new WrongUsageException("This command has been used incorrectly. Commands have to be entered like: /sc <command> <command args>");
@@ -50,15 +54,22 @@ public class CommandSC extends CommandBase
             case 1:
             {
                 return getListOfStringsMatchingLastWord(args, new String[]
-                { Commands.COMMAND_VERSION, Commands.COMMAND_CHARM_CURSE, Commands.COMMAND_CREDITS });
+                { Commands.COMMAND_VERSION, Commands.COMMAND_CHARM_CURSE, Commands.COMMAND_CREDITS, Commands.COMMAND_ASTRAL_ABILITY,
+                        Commands.COMMAND_ACHIEVEMENT });
             }
             
             case 2:
             {
-                if (args[0].equals(Commands.COMMAND_CHARM_CURSE))
+                if (args[0].equalsIgnoreCase(Commands.COMMAND_ASTRAL_ABILITY))
                 {
                     return getListOfStringsMatchingLastWord(args, new String[]
-                    { Commands.COMMAND_CHARM_CURSE_SET, Commands.COMMAND_CHARM_CURSE_REMOVE, Commands.COMMAND_CHARM_CURSE_LIST });
+                    { Commands.COMMAND_ASTRAL_ABILITY_FORGET, Commands.COMMAND_ASTRAL_ABILITY_LEARN });
+                }
+                
+                if (args[0].equalsIgnoreCase(Commands.COMMAND_ACHIEVEMENT))
+                {
+                    return getListOfStringsMatchingLastWord(args, new String[]
+                    { Commands.COMMAND_ACHIEVEMENT_GIVE });
                 }
             }
             

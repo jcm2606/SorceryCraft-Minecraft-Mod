@@ -32,7 +32,7 @@ public class AstralBlockRenderItem extends ItemRendererBase
                 scBlock.isOpaqueCube = true;
                 
                 RenderHelper.disableStandardItemLighting();
-                RenderHandlerSC.drawAstralParticleFieldStationary(posX, posY, posZ, 2.0f, texture);
+                RenderHandlerSC.drawAstralParticleFieldStationary(posX, posY, posZ, 2.0f, this.texture);
                 RenderHelper.enableStandardItemLighting();
                 
                 scBlock.renderID = -1;
@@ -58,7 +58,7 @@ public class AstralBlockRenderItem extends ItemRendererBase
                 scBlock.isOpaqueCube = true;
                 
                 RenderHelper.disableStandardItemLighting();
-                RenderHandlerSC.drawAstralParticleFieldStationary(posX, posY, posZ, 2.0f, texture);
+                RenderHandlerSC.drawAstralParticleFieldStationary(posX, posY, posZ, 2.0f, this.texture);
                 RenderHelper.enableStandardItemLighting();
                 
                 scBlock.renderID = -1;
@@ -84,7 +84,7 @@ public class AstralBlockRenderItem extends ItemRendererBase
                 scBlock.isOpaqueCube = true;
                 
                 RenderHelper.disableStandardItemLighting();
-                RenderHandlerSC.drawAstralParticleFieldStationary(posX + 0.5, posY + 0.5, posZ + 0.5, 2.0f, texture);
+                RenderHandlerSC.drawAstralParticleFieldStationary(posX + 0.5, posY + 0.5, posZ + 0.5, 2.0f, this.texture);
                 RenderHelper.enableStandardItemLighting();
                 
                 scBlock.renderID = -1;
@@ -110,7 +110,7 @@ public class AstralBlockRenderItem extends ItemRendererBase
                 scBlock.isOpaqueCube = true;
                 
                 RenderHelper.disableStandardItemLighting();
-                RenderHandlerSC.drawAstralParticleFieldStationary(posX, posY, posZ, 2.0f, texture);
+                RenderHandlerSC.drawAstralParticleFieldStationary(posX, posY, posZ, 2.0f, this.texture);
                 RenderHelper.enableStandardItemLighting();
                 
                 scBlock.renderID = -1;

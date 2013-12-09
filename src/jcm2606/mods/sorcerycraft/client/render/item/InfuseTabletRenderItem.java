@@ -15,7 +15,7 @@ public class InfuseTabletRenderItem extends ItemRendererBase
     
     public InfuseTabletRenderItem()
     {
-        model = new ModelInfuseTablet();
+        this.model = new ModelInfuseTablet();
         
         this.invY = 1;
         
@@ -34,7 +34,7 @@ public class InfuseTabletRenderItem extends ItemRendererBase
         GL11.glPushMatrix(); // start
         GL11.glTranslatef(posX, posY, posZ); // size
         GL11.glScalef(1.0F, -1F, -1F);
-        model.renderModel(0.0625F);
+        this.model.renderModel(0.0625F);
         GL11.glPopMatrix(); // end
     }
     
@@ -46,7 +46,7 @@ public class InfuseTabletRenderItem extends ItemRendererBase
         GL11.glPushMatrix(); // start
         GL11.glTranslatef(posX, posY, posZ); // size
         GL11.glScalef(1.0F, -1F, -1F);
-        model.renderModel(0.0625F);
+        this.model.renderModel(0.0625F);
         GL11.glPopMatrix(); // end
     }
     
@@ -58,7 +58,7 @@ public class InfuseTabletRenderItem extends ItemRendererBase
         GL11.glPushMatrix(); // start
         GL11.glTranslatef(posX, posY, posZ); // size
         GL11.glScalef(1.0F, -1F, -1F);
-        model.renderModel(0.0625F);
+        this.model.renderModel(0.0625F);
         GL11.glPopMatrix(); // end
     }
     
@@ -70,7 +70,7 @@ public class InfuseTabletRenderItem extends ItemRendererBase
         GL11.glPushMatrix(); // start
         GL11.glTranslatef(posX, posY, posZ); // size
         GL11.glScalef(1.0F, -1F, -1F);
-        model.renderModel(0.0625F);
+        this.model.renderModel(0.0625F);
         GL11.glPopMatrix(); // end
     }
 }

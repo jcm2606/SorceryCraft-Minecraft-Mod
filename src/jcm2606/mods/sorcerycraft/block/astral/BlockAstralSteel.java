@@ -5,14 +5,12 @@ import java.util.List;
 import jcm2606.mods.sorcerycraft.api.IEnergyInfused;
 import jcm2606.mods.sorcerycraft.api.ITransmutable;
 import jcm2606.mods.sorcerycraft.block.SCBlock;
-import jcm2606.mods.sorcerycraft.core.SCObjects;
 import jcm2606.mods.sorcerycraft.core.lib.Rarities;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Icon;
 import net.minecraft.world.World;
@@ -23,7 +21,7 @@ public class BlockAstralSteel extends SCBlock implements ITransmutable, IEnergyI
 {
     public BlockAstralSteel(int par1)
     {
-        super(par1, Material.iron, "astralSteelBlock", Rarities.BASIC);
+        super(par1, Material.iron, "blockAstralSteel", Rarities.BASIC);
         this.setHardness(4.0f);
         this.setResistance(32.0f);
     }
@@ -34,8 +32,8 @@ public class BlockAstralSteel extends SCBlock implements ITransmutable, IEnergyI
     {
         this.iconBuffer = new Icon[2];
         
-        this.iconBuffer[0] = par1IconRegister.registerIcon("SorceryCraft:" + name);
-        this.iconBuffer[1] = par1IconRegister.registerIcon("SorceryCraft:" + name + "Partial");
+        this.iconBuffer[0] = par1IconRegister.registerIcon("SorceryCraft:" + this.name);
+        this.iconBuffer[1] = par1IconRegister.registerIcon("SorceryCraft:" + this.name + "Partial");
     }
     
     @Override
@@ -63,35 +61,18 @@ public class BlockAstralSteel extends SCBlock implements ITransmutable, IEnergyI
     @Override
     public Block getRequiredBlock(ItemStack stack)
     {
-        if (stack.getItem() == SCObjects.stoneAstral)
-        {
-            return Block.blockIron;
-        }
-        
         return this;
     }
     
     @Override
     public int getRequiredBlockMetadata(ItemStack stack)
     {
-        return stack.getItem() == SCObjects.stoneArcane ? 1 : 0;
-    }
-    
-    @Override
-    public Item[] getRequiredDevices()
-    {
-        return new Item[]
-        { SCObjects.stoneArcane, SCObjects.stoneAstral };
+        return 1;
     }
     
     @Override
     public int getTransmuteCost(ItemStack stack, Block block)
     {
-        if (block == Block.blockIron)
-        {
-            return 32;
-        }
-        
         return 16;
     }
     

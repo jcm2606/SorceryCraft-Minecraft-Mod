@@ -4,7 +4,7 @@ import java.awt.Color;
 
 import jcm2606.mods.jccore.core.util.RenderUtil;
 import jcm2606.mods.sorcerycraft.block.main.BlockGlowBrick;
-import jcm2606.mods.sorcerycraft.block.tile.astral.TileAstralZoneCharger;
+import jcm2606.mods.sorcerycraft.block.tile.psyaic.TilePsyaicZoneCharger;
 import jcm2606.mods.sorcerycraft.core.SCObjects;
 import jcm2606.mods.sorcerycraft.core.lib.RenderID;
 import net.minecraft.block.Block;
@@ -56,9 +56,9 @@ public class AstralZoneChargerRender implements ISimpleBlockRenderingHandler
         
         if (world.getBlockTileEntity(x, y, z) != null)
         {
-            if (world.getBlockTileEntity(x, y, z) instanceof TileAstralZoneCharger)
+            if (world.getBlockTileEntity(x, y, z) instanceof TilePsyaicZoneCharger)
             {
-                if (((TileAstralZoneCharger) world.getBlockTileEntity(x, y, z)).isValid)
+                if (((TilePsyaicZoneCharger) world.getBlockTileEntity(x, y, z)).isValid)
                 {
                     t.setBrightness(255);
                 }

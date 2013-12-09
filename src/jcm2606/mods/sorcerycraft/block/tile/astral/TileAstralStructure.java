@@ -30,12 +30,13 @@ public class TileAstralStructure extends TileEntityJC
     {
         super.updateEntity();
         
-        if (coreTileEntity == null)
+        if (this.coreTileEntity == null)
         {
             this.isFormed = false;
         } else
         {
-            this.coreTileEntity = this.worldObj.getBlockTileEntity(coreTileEntity.xCoord, coreTileEntity.yCoord, coreTileEntity.zCoord);
+            this.coreTileEntity = this.worldObj
+                    .getBlockTileEntity(this.coreTileEntity.xCoord, this.coreTileEntity.yCoord, this.coreTileEntity.zCoord);
         }
     }
     

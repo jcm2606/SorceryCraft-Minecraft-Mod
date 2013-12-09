@@ -24,7 +24,7 @@ public class GlowBrickRender implements ISimpleBlockRenderingHandler
     @Override
     public void renderInventoryBlock(Block block, int metadata, int modelID, RenderBlocks renderer)
     {
-        int colour = colours[metadata];
+        int colour = this.colours[metadata];
         
         GL11.glPushMatrix();
         block.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
@@ -55,7 +55,7 @@ public class GlowBrickRender implements ISimpleBlockRenderingHandler
     @Override
     public boolean renderWorldBlock(IBlockAccess world, int x, int y, int z, Block block, int modelId, RenderBlocks renderer)
     {
-        int colour = colours[FMLClientHandler.instance().getClient().theWorld.getBlockMetadata(x, y, z)];
+        int colour = this.colours[FMLClientHandler.instance().getClient().theWorld.getBlockMetadata(x, y, z)];
         
         GL11.glPushMatrix();
         block.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);

@@ -52,7 +52,7 @@ public class BlockGlowBrick extends SCBlock
     @Override
     public void registerIcons(IconRegister par1IconRegister)
     {
-        this.blockIcon = par1IconRegister.registerIcon("SorceryCraft:" + texture);
+        this.blockIcon = par1IconRegister.registerIcon("SorceryCraft:" + this.texture);
         this.textureBackground = par1IconRegister.registerIcon("SorceryCraft:glowBrickBG");
     }
     

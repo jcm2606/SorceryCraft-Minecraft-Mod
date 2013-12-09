@@ -8,7 +8,6 @@ import jcm2606.mods.sorcerycraft.api.compat.HandlerMethodID;
 import jcm2606.mods.sorcerycraft.client.fx.FXFissure;
 import jcm2606.mods.sorcerycraft.core.SCParticle;
 import jcm2606.mods.sorcerycraft.core.config.Settings;
-import jcm2606.mods.sorcerycraft.core.helper.SCHelper;
 import jcm2606.mods.sorcerycraft.core.lib.Rarities;
 import jcm2606.mods.sorcerycraft.item.SCItem;
 import net.minecraft.block.Block;
@@ -80,7 +79,7 @@ public class ItemRingMagma extends SCItem
         
         if (player.isSneaking())
         {
-            attemptSmeltingAt(world, player, stack, x, y, z, id);
+            this.attemptSmeltingAt(world, player, stack, x, y, z, id);
             world.playSound(x, y, z, "mob.ghast.fireball", 0.5f, 1.0f, false);
             return true;
         }
@@ -103,7 +102,7 @@ public class ItemRingMagma extends SCItem
                         break;
                     }
                     
-                    attemptSmeltingAt(world, player, stack, xCur, yCur, zCur, id);
+                    this.attemptSmeltingAt(world, player, stack, xCur, yCur, zCur, id);
                 }
             }
         } else
@@ -123,7 +122,7 @@ public class ItemRingMagma extends SCItem
                             break;
                         }
                         
-                        attemptSmeltingAt(world, player, stack, xCur, yCur, zCur, id);
+                        this.attemptSmeltingAt(world, player, stack, xCur, yCur, zCur, id);
                     }
                 }
             } else
@@ -143,7 +142,7 @@ public class ItemRingMagma extends SCItem
                                 break;
                             }
                             
-                            attemptSmeltingAt(world, player, stack, xCur, yCur, zCur, id);
+                            this.attemptSmeltingAt(world, player, stack, xCur, yCur, zCur, id);
                         }
                     }
                 }
@@ -227,9 +226,5 @@ public class ItemRingMagma extends SCItem
     @Override
     public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean par4)
     {
-        if (SCHelper.playerHasPerceptionMedallion(player))
-        {
-            list.add("\2478\247o" + (stack.getMaxDamage() - stack.getItemDamage()) + " / " + stack.getMaxDamage());
-        }
     }
 }

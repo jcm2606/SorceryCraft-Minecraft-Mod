@@ -51,7 +51,7 @@ public class ResearchData implements IExtendedEntityProperties
     public final void syncExtendedProperties()
     {
         PacketDispatcher.sendPacketToPlayer(
-                PacketType.populatePacket(new PacketSyncResearchData(this.getResearchPoints()), PacketHandler.CHANNEL_SC), (Player) player);
+                PacketType.populatePacket(new PacketSyncResearchData(this.getResearchPoints()), PacketHandler.CHANNEL_SC), (Player) this.player);
     }
     
     public void setResearchPoints(int points)

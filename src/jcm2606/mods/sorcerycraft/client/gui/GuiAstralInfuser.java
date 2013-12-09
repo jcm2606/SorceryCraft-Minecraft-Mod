@@ -53,9 +53,9 @@ public class GuiAstralInfuser extends GuiContainer
         this.drawTexturedModalRect(var5, var6, 0, 0, this.xSize, this.ySize);
         
         float f = 0.25f;
-        if (this.mc.theWorld.getBlockTileEntity(x, y, z) != null)
+        if (this.mc.theWorld.getBlockTileEntity(this.x, this.y, this.z) != null)
         {
-            TileAstralInfuser tile = (TileAstralInfuser) this.mc.theWorld.getBlockTileEntity(x, y, z);
+            TileAstralInfuser tile = (TileAstralInfuser) this.mc.theWorld.getBlockTileEntity(this.x, this.y, this.z);
             
             if (tile.hasSource())
             {

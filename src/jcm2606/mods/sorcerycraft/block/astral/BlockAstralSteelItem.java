@@ -11,8 +11,8 @@ public class BlockAstralSteelItem extends ItemBlock
     public BlockAstralSteelItem(int par1)
     {
         super(par1);
-        setMaxDamage(0);
-        setHasSubtypes(true);
+        this.setMaxDamage(0);
+        this.setHasSubtypes(true);
     }
     
     @Override

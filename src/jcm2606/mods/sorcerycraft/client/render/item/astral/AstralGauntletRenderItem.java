@@ -49,7 +49,7 @@ public class AstralGauntletRenderItem extends ItemRendererBase
             GL11.glRotatef(-135f, 1, 0, 0);
         }
         
-        gauntletModel.render(0.0, 0.0, 0.0);
+        this.gauntletModel.render(0.0, 0.0, 0.0);
         
         GL11.glPopMatrix();
     }
@@ -80,7 +80,7 @@ public class AstralGauntletRenderItem extends ItemRendererBase
             }
         }
         
-        gauntletModel.render(0.0, 0.0, 0.0);
+        this.gauntletModel.render(0.0, 0.0, 0.0);
         
         GL11.glPopAttrib();
         GL11.glPopMatrix();

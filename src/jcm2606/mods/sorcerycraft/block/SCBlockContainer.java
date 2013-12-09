@@ -133,10 +133,12 @@ public abstract class SCBlockContainer extends SCBlock implements ITileEntityPro
     }
     
     @Override
-    public void onBlockDestroyedByPlayer(World world, int x, int y, int z, int meta) {
+    public void onBlockDestroyedByPlayer(World world, int x, int y, int z, int meta)
+    {
         if (world.getBlockTileEntity(x, y, z) instanceof TileEntityJC)
         {
-            ((TileEntityJC) world.getBlockTileEntity(x, y, z)).onBlockDestroyedByPlayer(world, x, y, z, meta);;
+            ((TileEntityJC) world.getBlockTileEntity(x, y, z)).onBlockDestroyedByPlayer(world, x, y, z, meta);
+            ;
         }
     }
 }

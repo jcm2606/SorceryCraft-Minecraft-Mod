@@ -13,7 +13,11 @@ public class Reference
     public static final String PATH_TEXTURES_MODELS = PATH_TEXTURES + "model/";
     
     public static final String SPRITE_PARTICLES = PATH_TEXTURES_FX + "particles.png";
-    public static final String SPRITE_ASTRAL_BEAM = PATH_TEXTURES_FX + "astralEnergyBeam.png";
+    public static final String SPRITE_BEAM_1 = PATH_TEXTURES_FX + "beam1.png";
+    public static final String SPRITE_BEAM_2 = PATH_TEXTURES_FX + "beam2.png";
+    public static final String SPRITE_BEAM_3 = PATH_TEXTURES_FX + "beam3.png";
+    
+    public static final int ASTRAL_ENERGY_BEAM_COLOUR = 0xe7d6e6;
     
     public static int BLOCK_ID_START_VALUE = 600;
     public static int BLOCK_ID_SHIFT_VALUE = 0;

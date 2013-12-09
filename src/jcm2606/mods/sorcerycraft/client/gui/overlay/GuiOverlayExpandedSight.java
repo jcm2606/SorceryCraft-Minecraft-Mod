@@ -1,7 +1,6 @@
 package jcm2606.mods.sorcerycraft.client.gui.overlay;
 
 import jcm2606.mods.sorcerycraft.api.IExpandedSightHandler;
-import jcm2606.mods.sorcerycraft.core.SCObjects;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
@@ -23,18 +22,18 @@ public class GuiOverlayExpandedSight extends Gui
     @ForgeSubscribe(priority = EventPriority.NORMAL)
     public void drawOverlay(RenderGameOverlayEvent event)
     {
-        if (event.isCancelable() || event.type != ElementType.HOTBAR || minecraft.gameSettings.showDebugInfo)
+        if (event.isCancelable() || event.type != ElementType.HOTBAR || this.minecraft.gameSettings.showDebugInfo)
         {
             return;
         }
         
-        for(IExpandedSightHandler handler : handlerList)
+        for (IExpandedSightHandler handler : handlerList)
         {
-            if(handler != null)
+            if (handler != null)
             {
-                if(handler.canRender(minecraft, minecraft.thePlayer, minecraft.thePlayer.inventory.hasItem(SCObjects.medallionDualPerception.itemID)))
+                if (handler.canRender(this.minecraft, this.minecraft.thePlayer, true))
                 {
-                    handler.renderOverlay(minecraft, minecraft.thePlayer, minecraft.thePlayer.inventory.hasItem(SCObjects.medallionDualPerception.itemID));
+                    handler.renderOverlay(this.minecraft, this.minecraft.thePlayer, true);
                 }
             }
         }

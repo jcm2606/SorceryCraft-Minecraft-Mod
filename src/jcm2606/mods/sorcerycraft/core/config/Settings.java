@@ -5,15 +5,6 @@ import net.minecraftforge.common.Property;
 
 public class Settings
 {
-    public static boolean ENTITY_DETECTOR_PLAYER_DAMAGE;
-    public static Property ENTITY_DETECTOR_PLAYER_DAMAGE_PROP;
-    
-    public static int ENTITY_DETECTOR_DAMAGE;
-    public static Property ENTITY_DETECTOR_DAMAGE_PROP;
-    
-    public static boolean ENTITY_DETECTOR_MESSAGE_REVACTION_STONE;
-    public static Property ENTITY_DETECTOR_MESSAGE_REVACTION_STONE_PROP;
-    
     public static boolean EXTRA_OUTPUT;
     public static Property EXTRA_OUTPUT_PROP;
     
@@ -38,6 +29,9 @@ public class Settings
     public static double SPECIAL_PLAYER_ASTRAL_ENERGY_ORB_EMPTY_COLOUR_BLUE;
     public static Property SPECIAL_PLAYER_ASTRAL_ENERGY_ORB_EMPTY_COLOUR_BLUE_PROP;
     
+    public static boolean LOW_FX;
+    public static Property LOW_FX_PROP;
+    
     public static void loadSettings()
     {
         Configuration config = Config.config;
@@ -53,18 +47,6 @@ public class Settings
         CREATIVE_TAB_ID_PROP = config.get(Configuration.CATEGORY_GENERAL, "creativeTab.id", 12);
         CREATIVE_TAB_ID = CREATIVE_TAB_ID_PROP.getInt(12);
         CREATIVE_TAB_ID_PROP.comment = "The ID the creative tab will use when automatic ID searching is disabled. WARNING: Any tab that was in this slot WILL be overwritten!!!";
-        
-        ENTITY_DETECTOR_DAMAGE_PROP = config.get(Configuration.CATEGORY_GENERAL, "entityDetector.damage", 4);
-        ENTITY_DETECTOR_DAMAGE = ENTITY_DETECTOR_DAMAGE_PROP.getInt(4);
-        ENTITY_DETECTOR_DAMAGE_PROP.comment = "The amount of damage (in half hearts) that the Mundane Entity Detector will deal to living entities walking over it.";
-        
-        ENTITY_DETECTOR_PLAYER_DAMAGE_PROP = config.get(Configuration.CATEGORY_GENERAL, "entityDetector.damagePlayer", true);
-        ENTITY_DETECTOR_PLAYER_DAMAGE = ENTITY_DETECTOR_PLAYER_DAMAGE_PROP.getBoolean(true);
-        ENTITY_DETECTOR_PLAYER_DAMAGE_PROP.comment = "Should players be damaged by the Mundane Entity Detector. If enabled, only players with a Revaction Stone in their hotbar will be invulnerable.";
-        
-        ENTITY_DETECTOR_MESSAGE_REVACTION_STONE_PROP = config.get(Configuration.CATEGORY_GENERAL, "entityDetector.revactionStoneInform", true);
-        ENTITY_DETECTOR_MESSAGE_REVACTION_STONE = ENTITY_DETECTOR_MESSAGE_REVACTION_STONE_PROP.getBoolean(true);
-        ENTITY_DETECTOR_MESSAGE_REVACTION_STONE_PROP.comment = "Should the Mundane Entity Detector send a message to the player walking over it if that have a Revaction Stone in their hotbar.";
         
         WORLD_LOAD_MESSAGE_PROP = config.get(Config.CATEGORY_WORLD, "output.onWorldLoad", true);
         WORLD_LOAD_MESSAGE = WORLD_LOAD_MESSAGE_PROP.getBoolean(true);
@@ -88,5 +70,9 @@ public class Settings
                 "astralEnergy.overlay.orb.depleted.colour.blue", 0.5);
         SPECIAL_PLAYER_ASTRAL_ENERGY_ORB_EMPTY_COLOUR_BLUE = SPECIAL_PLAYER_ASTRAL_ENERGY_ORB_EMPTY_COLOUR_BLUE_PROP.getDouble(0.5);
         SPECIAL_PLAYER_ASTRAL_ENERGY_ORB_EMPTY_COLOUR_BLUE_PROP.comment = "The blue value for the colour used for depleted Astral energy orbs on the overlay for special users.";
+        
+        LOW_FX_PROP = config.get(Config.CATEGORY_GRAPHICS, "fx.low", false);
+        LOW_FX = LOW_FX_PROP.getBoolean(false);
+        LOW_FX_PROP.comment = "Should SorceryCraft use low graphics settings?";
     }
 }

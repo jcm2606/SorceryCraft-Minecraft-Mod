@@ -35,7 +35,7 @@ public class FXAstralEnergy extends FXSC
         
         this.particleScaleOverTime = this.particleScale = 2.5f;
         this.particleRed = this.particleGreen = this.particleBlue = 0.25F;
-        this.particleMaxAge = maxAge = par14;
+        this.particleMaxAge = this.maxAge = par14;
         this.speed = par15;
         this.fade = false;
         
@@ -43,9 +43,9 @@ public class FXAstralEnergy extends FXSC
         double dy = par10 - this.posY;
         double dz = par12 - this.posZ;
         
-        this.motionX = (dx / speed);
-        this.motionY = (dy / speed);
-        this.motionZ = (dz / speed);
+        this.motionX = (dx / this.speed);
+        this.motionY = (dy / this.speed);
+        this.motionZ = (dz / this.speed);
         
         this.noClip = true;
         this.dieOnTravelCompletion = true;
@@ -96,7 +96,7 @@ public class FXAstralEnergy extends FXSC
         
         this.motionY -= 0.04D * this.particleGravity;
         
-        moveEntity(this.motionX, this.motionY, this.motionZ);
+        this.moveEntity(this.motionX, this.motionY, this.motionZ);
         
         if (this.particleAge++ >= this.particleMaxAge)
         {

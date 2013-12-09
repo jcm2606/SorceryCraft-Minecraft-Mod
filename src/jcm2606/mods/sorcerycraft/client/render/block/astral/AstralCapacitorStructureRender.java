@@ -4,7 +4,7 @@ import java.awt.Color;
 
 import jcm2606.mods.jccore.core.util.RenderUtil;
 import jcm2606.mods.sorcerycraft.block.main.BlockGlowBrick;
-import jcm2606.mods.sorcerycraft.block.tile.astral.TileAstralCapacitorStructure;
+import jcm2606.mods.sorcerycraft.block.tile.psyaic.TileAstralCapacitorStructure;
 import jcm2606.mods.sorcerycraft.core.SCObjects;
 import jcm2606.mods.sorcerycraft.core.lib.RenderID;
 import net.minecraft.block.Block;

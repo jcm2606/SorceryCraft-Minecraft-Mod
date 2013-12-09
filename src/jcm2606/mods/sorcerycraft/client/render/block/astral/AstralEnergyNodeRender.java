@@ -3,7 +3,7 @@ package jcm2606.mods.sorcerycraft.client.render.block.astral;
 import java.awt.Color;
 
 import jcm2606.mods.jccore.core.util.RenderUtil;
-import jcm2606.mods.sorcerycraft.block.tile.astral.TileAstralEnergyNode;
+import jcm2606.mods.sorcerycraft.block.tile.psyaic.TileAstralEnergyNode;
 import jcm2606.mods.sorcerycraft.client.model.ModelAstralEnergyNode;
 import jcm2606.mods.sorcerycraft.client.model.ModelAstralEnergyNodeGuide;
 import jcm2606.mods.sorcerycraft.client.model.ModelCube;
@@ -32,7 +32,7 @@ public class AstralEnergyNodeRender extends TileEntitySpecialRenderer
         GL11.glTranslated(x + 0.5, y + 1.5, z + 0.5);
         GL11.glScalef(1.0F, -1F, -1F);
         
-        RenderUtil.instance().setBrightness(tile.worldObj, tile.xCoord, tile.yCoord, tile.zCoord, SCObjects.astralEnergyNode, Tessellator.instance);
+        RenderUtil.instance().setBrightness(tile.worldObj, tile.xCoord, tile.yCoord, tile.zCoord, SCObjects.psyonicNode, Tessellator.instance);
         
         this.renderNodeBackground(tile);
         this.renderNode(tile);
@@ -45,7 +45,7 @@ public class AstralEnergyNodeRender extends TileEntitySpecialRenderer
     @Override
     public void renderTileEntityAt(TileEntity tileentity, double d, double d1, double d2, float f)
     {
-        renderAModelAt((TileAstralEnergyNode) tileentity, d, d1, d2, f);
+        this.renderAModelAt((TileAstralEnergyNode) tileentity, d, d1, d2, f);
     }
     
     private void renderSpinningCube(TileAstralEnergyNode tile)
@@ -69,7 +69,7 @@ public class AstralEnergyNodeRender extends TileEntitySpecialRenderer
         GL11.glRotatef(36f + 36f + tile.getTicks() * 2, 1, 1, 0);
         GL11.glRotatef(tile.getTicks(), 1, 1, 1);
         
-        double scale = 0.35;
+        double scale = 0.25;
         
         GL11.glScaled(scale, scale, scale);
         
@@ -91,52 +91,53 @@ public class AstralEnergyNodeRender extends TileEntitySpecialRenderer
         
         int meta = tile.worldObj.getBlockMetadata(tile.xCoord, tile.yCoord, tile.zCoord);
         
-        if(meta == 0)
+        if (meta == 0)
         {
             GL11.glPushMatrix();
             GL11.glRotated(180, 1, 0, 0);
             GL11.glTranslated(0, -2, 0);
             
-            node.renderModel();
+            this.node.renderModel();
             GL11.glPopMatrix();
         } else
-            if(meta == 2)
+            if (meta == 2)
             {
                 GL11.glPushMatrix();
                 GL11.glRotated(-90, 1, 0, 0);
                 GL11.glTranslated(0, -1, 1);
                 
-                node.renderModel();
+                this.node.renderModel();
                 GL11.glPopMatrix();
             } else
-                if(meta == 3)
+                if (meta == 3)
                 {
                     GL11.glPushMatrix();
                     GL11.glRotated(90, 1, 0, 0);
                     GL11.glTranslated(0, -1, -1);
                     
-                    node.renderModel();
+                    this.node.renderModel();
                     GL11.glPopMatrix();
                 } else
-                    if(meta == 4)
+                    if (meta == 4)
                     {
                         GL11.glPushMatrix();
                         GL11.glRotated(-90, 0, 0, 1);
                         GL11.glTranslated(-1, -1, 0);
                         
-                        node.renderModel();
+                        this.node.renderModel();
                         GL11.glPopMatrix();
                     } else
-                        if(meta == 5)
+                        if (meta == 5)
                         {
                             GL11.glPushMatrix();
                             GL11.glRotated(90, 0, 0, 1);
                             GL11.glTranslated(1, -1, 0);
                             
-                            node.renderModel();
+                            this.node.renderModel();
                             GL11.glPopMatrix();
-                        } else {
-                            node.renderModel();
+                        } else
+                        {
+                            this.node.renderModel();
                         }
         
         GL11.glPopMatrix();
@@ -153,54 +154,60 @@ public class AstralEnergyNodeRender extends TileEntitySpecialRenderer
         float b = c.getBlue() / 255.0F;
         GL11.glColor3f(r, g, b);
         
+        if(tile.isReceivingRedstoneSignal)
+        {
+            GL11.glColor3f(200f, 0f, 0f);
+        }
+        
         int meta = tile.worldObj.getBlockMetadata(tile.xCoord, tile.yCoord, tile.zCoord);
         
-        if(meta == 0)
+        if (meta == 0)
         {
             GL11.glPushMatrix();
             GL11.glRotated(180, 1, 0, 0);
             GL11.glTranslated(0, -2, 0);
             
-            node.renderModel();
+            this.node.renderModel();
             GL11.glPopMatrix();
         } else
-            if(meta == 2)
+            if (meta == 2)
             {
                 GL11.glPushMatrix();
                 GL11.glRotated(-90, 1, 0, 0);
                 GL11.glTranslated(0, -1, 1);
                 
-                node.renderModel();
+                this.node.renderModel();
                 GL11.glPopMatrix();
             } else
-                if(meta == 3)
+                if (meta == 3)
                 {
                     GL11.glPushMatrix();
                     GL11.glRotated(90, 1, 0, 0);
                     GL11.glTranslated(0, -1, -1);
                     
-                    node.renderModel();
+                    this.node.renderModel();
                     GL11.glPopMatrix();
                 } else
-                    if(meta == 4)
+                    if (meta == 4)
                     {
                         GL11.glPushMatrix();
                         GL11.glRotated(-90, 0, 0, 1);
                         GL11.glTranslated(-1, -1, 0);
                         
-                        node.renderModel();
+                        this.node.renderModel();
                         GL11.glPopMatrix();
                     } else
-                        if(meta == 5)
+                        if (meta == 5)
                         {
                             GL11.glPushMatrix();
                             GL11.glRotated(90, 0, 0, 1);
                             GL11.glTranslated(1, -1, 0);
                             
-                            node.renderModel();
+                            this.node.renderModel();
                             GL11.glPopMatrix();
-                        } else {
-                            node.renderModel();
+                        } else
+                        {
+                            this.node.renderModel();
                         }
         
         GL11.glPopMatrix();

@@ -24,7 +24,7 @@ public class AstralInfuserRender extends TileEntitySpecialRenderer
     
     public AstralInfuserRender()
     {
-        aModel = new ModelAstralInfuser();
+        this.aModel = new ModelAstralInfuser();
     }
     
     private void renderAModelAt(TileAstralInfuser tile, double d, double d1, double d2, float f)
@@ -59,7 +59,7 @@ public class AstralInfuserRender extends TileEntitySpecialRenderer
         GL11.glTranslatef((float) d + 0.5F, (float) d1 + 1.5F, (float) d2 + 0.5F);
         GL11.glRotatef(j, 0.0F, 1.0F, 0.0F);
         GL11.glScalef(1.0F, -1F, -1F);
-        aModel.render(0.0625F);
+        this.aModel.render(0.0625F);
         GL11.glPopMatrix();
         
         if (tile.hasSource())
@@ -83,18 +83,18 @@ public class AstralInfuserRender extends TileEntitySpecialRenderer
         
         if (tile.hasSource())
         {
-            renderCircle("astralInfuserCircle2", tessellator, tile, d, d1, d2, true, -28, 0, 771, 771);
-            renderCircle("astralInfuserCircle5", tessellator, tile, d, d1, d2, true, -28, 0, 771, 1);
-            renderCircle("astralInfuserCircle3", tessellator, tile, d, d1, d2, true, -angle, 0, 771, 1);
-            renderCircle("astralInfuserCircle4", tessellator, tile, d, d1, d2, false, -angle, 0, 771, 1);
-            renderCircle("astralInfuserCircle1", tessellator, tile, d, d1, d2, true, angle / 2, 0, 771, 1);
+            this.renderCircle("astralInfuserCircle2", tessellator, tile, d, d1, d2, true, -28, 0, 771, 771);
+            this.renderCircle("astralInfuserCircle5", tessellator, tile, d, d1, d2, true, -28, 0, 771, 1);
+            this.renderCircle("astralInfuserCircle3", tessellator, tile, d, d1, d2, true, -this.angle, 0, 771, 1);
+            this.renderCircle("astralInfuserCircle4", tessellator, tile, d, d1, d2, false, -this.angle, 0, 771, 1);
+            this.renderCircle("astralInfuserCircle1", tessellator, tile, d, d1, d2, true, this.angle / 2, 0, 771, 1);
         } else
         {
-            renderCircle("astralInfuserCircle2", tessellator, tile, d, d1, d2, true, -28, 0, 771, 771);
-            renderCircle("astralInfuserCircle5", tessellator, tile, d, d1, d2, true, -28, 0, 771, 1);
-            renderCircle("astralInfuserCircle3", tessellator, tile, d, d1, d2, false, -angle, 0, 771, 1);
-            renderCircle("astralInfuserCircle4", tessellator, tile, d, d1, d2, false, -angle, 0, 771, 1);
-            renderCircle("astralInfuserCircle1", tessellator, tile, d, d1, d2, false, angle, 0, 771, 1);
+            this.renderCircle("astralInfuserCircle2", tessellator, tile, d, d1, d2, true, -28, 0, 771, 771);
+            this.renderCircle("astralInfuserCircle5", tessellator, tile, d, d1, d2, true, -28, 0, 771, 1);
+            this.renderCircle("astralInfuserCircle3", tessellator, tile, d, d1, d2, false, -this.angle, 0, 771, 1);
+            this.renderCircle("astralInfuserCircle4", tessellator, tile, d, d1, d2, false, -this.angle, 0, 771, 1);
+            this.renderCircle("astralInfuserCircle1", tessellator, tile, d, d1, d2, false, this.angle, 0, 771, 1);
         }
     }
     
@@ -170,7 +170,7 @@ public class AstralInfuserRender extends TileEntitySpecialRenderer
         {
             if (Minecraft.isFancyGraphicsEnabled() || entityItem.getEntityItem().getItem() instanceof ItemBlock)
             {
-                GL11.glRotatef(angle * 8, 0.0F, 1.0F, 0.0F);
+                GL11.glRotatef(this.angle * 8, 0.0F, 1.0F, 0.0F);
             }
         }
         
@@ -204,7 +204,7 @@ public class AstralInfuserRender extends TileEntitySpecialRenderer
     @Override
     public void renderTileEntityAt(TileEntity tileentity, double d, double d1, double d2, float f)
     {
-        renderAModelAt((TileAstralInfuser) tileentity, d, d1, d2, f);
+        this.renderAModelAt((TileAstralInfuser) tileentity, d, d1, d2, f);
     }
     
     private final ModelAstralInfuser aModel;

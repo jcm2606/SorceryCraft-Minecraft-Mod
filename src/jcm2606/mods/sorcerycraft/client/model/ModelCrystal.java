@@ -17,28 +17,28 @@ public class ModelCrystal extends ModelBase
     
     public ModelCrystal()
     {
-        textureWidth = 128;
-        textureHeight = 128;
+        this.textureWidth = 128;
+        this.textureHeight = 128;
         
-        Shape1 = new ModelRenderer(this, 0, 0);
-        Shape1.addBox(0F, 0F, 0F, 7, 4, 7);
-        Shape1.setRotationPoint(-4F, 1.5F, 0F);
-        Shape1.setTextureSize(128, 128);
-        Shape1.mirror = true;
-        setRotation(Shape1, 0.7853982F, 0.7853982F, 0.8028515F);
+        this.Shape1 = new ModelRenderer(this, 0, 0);
+        this.Shape1.addBox(0F, 0F, 0F, 7, 4, 7);
+        this.Shape1.setRotationPoint(-4F, 1.5F, 0F);
+        this.Shape1.setTextureSize(128, 128);
+        this.Shape1.mirror = true;
+        this.setRotation(this.Shape1, 0.7853982F, 0.7853982F, 0.8028515F);
     }
     
     @Override
     public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
     {
         super.render(entity, f, f1, f2, f3, f4, f5);
-        setRotationAngles(f, f1, f2, f3, f4, f5, entity);
-        Shape1.render(f5);
+        this.setRotationAngles(f, f1, f2, f3, f4, f5, entity);
+        this.Shape1.render(f5);
     }
     
     public void renderModel(float f5)
     {
-        Shape1.render(f5);
+        this.Shape1.render(f5);
     }
     
     private void setRotation(ModelRenderer model, float x, float y, float z)

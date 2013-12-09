@@ -47,73 +47,73 @@ public class Button extends GuiButton
     public Button(int par1, int par2, int par3, int par4, int par5, String par6Str)
     {
         super(par1, par2, par3, par4, par5, par6Str);
-        width = 200;
-        height = 20;
-        enabled = true;
-        drawButton = true;
-        id = par1;
-        xPosition = par2;
-        yPosition = par3;
-        width = par4;
-        height = par5;
-        displayStringIdle = par6Str;
-        displayStringHover = "\247e" + par6Str;
-        customColours = false;
+        this.width = 200;
+        this.height = 20;
+        this.enabled = true;
+        this.drawButton = true;
+        this.id = par1;
+        this.xPosition = par2;
+        this.yPosition = par3;
+        this.width = par4;
+        this.height = par5;
+        this.displayStringIdle = par6Str;
+        this.displayStringHover = "\247e" + par6Str;
+        this.customColours = false;
     }
     
     public Button(int par1, int par2, int par3, int par4, int par5, String par6Str, int par7Colour1, int par8Colour2)
     {
         super(par1, par2, par3, par4, par5, par6Str);
-        width = 200;
-        height = 20;
-        enabled = true;
-        drawButton = true;
-        id = par1;
-        xPosition = par2;
-        yPosition = par3;
-        width = par4;
-        height = par5;
-        displayStringIdle = par6Str;
-        displayStringHover = "\247e" + par6Str;
-        colour1 = par7Colour1;
-        colour2 = par8Colour2;
-        customColours = true;
+        this.width = 200;
+        this.height = 20;
+        this.enabled = true;
+        this.drawButton = true;
+        this.id = par1;
+        this.xPosition = par2;
+        this.yPosition = par3;
+        this.width = par4;
+        this.height = par5;
+        this.displayStringIdle = par6Str;
+        this.displayStringHover = "\247e" + par6Str;
+        this.colour1 = par7Colour1;
+        this.colour2 = par8Colour2;
+        this.customColours = true;
     }
     
     public Button(int par1, int par2, int par3, int par4, int par5, String par6StrIdle, String par6StrActive, int par7Colour1, int par8Colour2)
     {
         super(par1, par2, par3, par4, par5, par6StrIdle);
-        width = 200;
-        height = 20;
-        enabled = true;
-        drawButton = true;
-        id = par1;
-        xPosition = par2;
-        yPosition = par3;
-        width = par4;
-        height = par5;
-        displayStringIdle = par6StrIdle;
-        displayStringHover = par6StrActive;
-        colour1 = par7Colour1;
-        colour2 = par8Colour2;
-        customColours = true;
+        this.width = 200;
+        this.height = 20;
+        this.enabled = true;
+        this.drawButton = true;
+        this.id = par1;
+        this.xPosition = par2;
+        this.yPosition = par3;
+        this.width = par4;
+        this.height = par5;
+        this.displayStringIdle = par6StrIdle;
+        this.displayStringHover = par6StrActive;
+        this.colour1 = par7Colour1;
+        this.colour2 = par8Colour2;
+        this.customColours = true;
     }
     
     public Button(int par1, int par2, int par3, int par4, int par5, String par6StrIdle, String par6StrActive)
     {
         super(par1, par2, par3, par4, par5, par6StrIdle);
-        width = 200;
-        height = 20;
-        enabled = true;
-        drawButton = true;
-        id = par1;
-        xPosition = par2;
-        yPosition = par3;
-        width = par4;
-        height = par5;
-        displayStringIdle = par6StrIdle;
-        displayStringHover = par6StrActive;
-        customColours = false;
+        this.width = 200;
+        this.height = 20;
+        this.enabled = true;
+        this.drawButton = true;
+        this.id = par1;
+        this.xPosition = par2;
+        this.yPosition = par3;
+        this.width = par4;
+        this.height = par5;
+        this.displayStringIdle = par6StrIdle;
+        this.displayStringHover = par6StrActive;
+        this.customColours = false;
     }
     
     /**
@@ -125,7 +125,7 @@ public class Button extends GuiButton
     {
         byte var2 = 1;
         
-        if (!enabled)
+        if (!this.enabled)
         {
             var2 = 0;
         } else
@@ -143,38 +143,42 @@ public class Button extends GuiButton
     @Override
     public void drawButton(Minecraft par1Minecraft, int par2, int par3)
     {
-        if (drawButton)
+        if (this.drawButton)
         {
             FontRenderer var4 = par1Minecraft.fontRenderer;
-            if (!customColours)
+            if (!this.customColours)
             {
                 RenderUtil.instance().bindTexture("minecraft", "gui/gui.png");
             }
             GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-            field_82253_i = par2 >= xPosition && par3 >= yPosition && par2 < xPosition + width && par3 < yPosition + height;
-            int var5 = getHoverState(field_82253_i);
-            if (customColours)
+            this.field_82253_i = par2 >= this.xPosition && par3 >= this.yPosition && par2 < this.xPosition + this.width && par3 < this.yPosition + this.height;
+            int var5 = this.getHoverState(this.field_82253_i);
+            if (this.customColours)
             {
-                drawRect(xPosition, yPosition, 0, 46 + var5 * 20, colour1);
+                drawRect(this.xPosition, this.yPosition, 0, 46 + var5 * 20, this.colour1);
             } else
             {
-                drawTexturedModalRect(xPosition, yPosition, 0, 46 + var5 * 20, width / 2, height);
-                drawTexturedModalRect(xPosition + width / 2, yPosition, 200 - width / 2, 46 + var5 * 20, width / 2, height);
+                this.drawTexturedModalRect(this.xPosition, this.yPosition, 0, 46 + var5 * 20, this.width / 2, this.height);
+                this.drawTexturedModalRect(this.xPosition + this.width / 2, this.yPosition, 200 - this.width / 2, 46 + var5 * 20, this.width / 2,
+                        this.height);
             }
-            mouseDragged(par1Minecraft, par2, par3);
+            this.mouseDragged(par1Minecraft, par2, par3);
             int var6 = 14737632;
             
-            if (!enabled)
+            if (!this.enabled)
             {
-                drawCenteredString(var4, "\2478" + displayStringIdle, xPosition + width / 2, yPosition + (height - 8) / 2, var6);
+                this.drawCenteredString(var4, "\2478" + this.displayStringIdle, this.xPosition + this.width / 2,
+                        this.yPosition + (this.height - 8) / 2, var6);
             } else
             {
-                if (getHoverState(field_82253_i) == 2)
+                if (this.getHoverState(this.field_82253_i) == 2)
                 {
-                    drawCenteredString(var4, displayStringHover, xPosition + width / 2, yPosition + (height - 8) / 2, var6);
+                    this.drawCenteredString(var4, this.displayStringHover, this.xPosition + this.width / 2, this.yPosition + (this.height - 8) / 2,
+                            var6);
                 } else
                 {
-                    drawCenteredString(var4, displayStringIdle, xPosition + width / 2, yPosition + (height - 8) / 2, var6);
+                    this.drawCenteredString(var4, this.displayStringIdle, this.xPosition + this.width / 2, this.yPosition + (this.height - 8) / 2,
+                            var6);
                 }
             }
         }
@@ -205,13 +209,13 @@ public class Button extends GuiButton
     @Override
     public boolean mousePressed(Minecraft par1Minecraft, int par2, int par3)
     {
-        return enabled && drawButton && par2 >= xPosition && par3 >= yPosition && par2 < xPosition + width && par3 < yPosition + height;
+        return this.enabled && this.drawButton && par2 >= this.xPosition && par3 >= this.yPosition && par2 < this.xPosition + this.width && par3 < this.yPosition + this.height;
     }
     
     @Override
     public boolean func_82252_a()
     {
-        return field_82253_i;
+        return this.field_82253_i;
     }
     
     @Override

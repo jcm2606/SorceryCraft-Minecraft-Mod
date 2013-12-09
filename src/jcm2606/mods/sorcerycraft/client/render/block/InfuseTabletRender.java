@@ -18,7 +18,7 @@ public class InfuseTabletRender extends TileEntitySpecialRenderer
     
     public InfuseTabletRender()
     {
-        aModel = new ModelInfuseTablet();
+        this.aModel = new ModelInfuseTablet();
     }
     
     public void renderAModelAt(TileEntityInfuseTablet tile, double d, double d1, double d2, float f)
@@ -52,8 +52,8 @@ public class InfuseTabletRender extends TileEntitySpecialRenderer
         GL11.glRotatef(j, 0.0F, 1.0F, 0.0F); // rotate based on metadata
         GL11.glScalef(1.0F, -1F, -1F); // if you read this comment out this line
                                        // and you can see what happens
-        aModel.renderModel(0.0625F); // renders and yes 0.0625 is a random
-                                     // number
+        this.aModel.renderModel(0.0625F); // renders and yes 0.0625 is a random
+        // number
         GL11.glPopMatrix(); // end
         
     }
@@ -61,7 +61,7 @@ public class InfuseTabletRender extends TileEntitySpecialRenderer
     @Override
     public void renderTileEntityAt(TileEntity tileentity, double d, double d1, double d2, float f)
     {
-        renderAModelAt((TileEntityInfuseTablet) tileentity, d, d1, d2, f);
+        this.renderAModelAt((TileEntityInfuseTablet) tileentity, d, d1, d2, f);
     }
     
     private final ModelInfuseTablet aModel;

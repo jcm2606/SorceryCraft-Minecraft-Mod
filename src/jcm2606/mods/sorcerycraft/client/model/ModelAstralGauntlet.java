@@ -13,12 +13,12 @@ public class ModelAstralGauntlet
     
     public ModelAstralGauntlet()
     {
-        gauntletModel = AdvancedModelLoader.loadModel("/assets/sorcerycraft/" + Reference.PATH_MODELS + "AstralGauntlet.obj");
+        this.gauntletModel = AdvancedModelLoader.loadModel("/assets/sorcerycraft/" + Reference.PATH_MODELS + "AstralGauntlet.obj");
     }
     
     private void render()
     {
-        gauntletModel.renderAll();
+        this.gauntletModel.renderAll();
     }
     
     public void render(double x, double y, double z)

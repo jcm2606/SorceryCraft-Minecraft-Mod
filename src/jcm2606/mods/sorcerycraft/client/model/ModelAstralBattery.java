@@ -17,45 +17,45 @@ public class ModelAstralBattery extends ModelBase
     
     public ModelAstralBattery()
     {
-        textureWidth = 128;
-        textureHeight = 64;
+        this.textureWidth = 128;
+        this.textureHeight = 64;
         
-        Shape1 = new ModelRenderer(this, 0, 0);
-        Shape1.addBox(0F, 0F, 0F, 15, 4, 15);
-        Shape1.setRotationPoint(-7.5F, 20F, -7.5F);
-        Shape1.setTextureSize(128, 64);
-        Shape1.mirror = true;
-        setRotation(Shape1, 0F, 0F, 0F);
-        Shape2 = new ModelRenderer(this, 0, 20);
-        Shape2.addBox(0F, 0F, 0F, 14, 2, 14);
-        Shape2.setRotationPoint(-7F, 18F, -7F);
-        Shape2.setTextureSize(128, 64);
-        Shape2.mirror = true;
-        setRotation(Shape2, 0F, 0F, 0F);
-        Shape3 = new ModelRenderer(this, 61, 0);
-        Shape3.addBox(0F, 0F, 0F, 2, 3, 2);
-        Shape3.setRotationPoint(-6.5F, 15F, 4.5F);
-        Shape3.setTextureSize(128, 64);
-        Shape3.mirror = true;
-        setRotation(Shape3, 0F, 0F, 0F);
-        Shape4 = new ModelRenderer(this, 61, 0);
-        Shape4.addBox(0F, 0F, 0F, 2, 3, 2);
-        Shape4.setRotationPoint(-6.5F, 15F, -6.5F);
-        Shape4.setTextureSize(128, 64);
-        Shape4.mirror = true;
-        setRotation(Shape4, 0F, 0F, 0F);
-        Shape5 = new ModelRenderer(this, 61, 0);
-        Shape5.addBox(0F, 0F, 0F, 2, 3, 2);
-        Shape5.setRotationPoint(4.5F, 15F, -6.5F);
-        Shape5.setTextureSize(128, 64);
-        Shape5.mirror = true;
-        setRotation(Shape5, 0F, 0F, 0F);
-        Shape6 = new ModelRenderer(this, 61, 0);
-        Shape6.addBox(0F, 0F, 0F, 2, 3, 2);
-        Shape6.setRotationPoint(4.5F, 15F, 4.5F);
-        Shape6.setTextureSize(128, 64);
-        Shape6.mirror = true;
-        setRotation(Shape6, 0F, 0F, 0F);
+        this.Shape1 = new ModelRenderer(this, 0, 0);
+        this.Shape1.addBox(0F, 0F, 0F, 15, 4, 15);
+        this.Shape1.setRotationPoint(-7.5F, 20F, -7.5F);
+        this.Shape1.setTextureSize(128, 64);
+        this.Shape1.mirror = true;
+        this.setRotation(this.Shape1, 0F, 0F, 0F);
+        this.Shape2 = new ModelRenderer(this, 0, 20);
+        this.Shape2.addBox(0F, 0F, 0F, 14, 2, 14);
+        this.Shape2.setRotationPoint(-7F, 18F, -7F);
+        this.Shape2.setTextureSize(128, 64);
+        this.Shape2.mirror = true;
+        this.setRotation(this.Shape2, 0F, 0F, 0F);
+        this.Shape3 = new ModelRenderer(this, 61, 0);
+        this.Shape3.addBox(0F, 0F, 0F, 2, 3, 2);
+        this.Shape3.setRotationPoint(-6.5F, 15F, 4.5F);
+        this.Shape3.setTextureSize(128, 64);
+        this.Shape3.mirror = true;
+        this.setRotation(this.Shape3, 0F, 0F, 0F);
+        this.Shape4 = new ModelRenderer(this, 61, 0);
+        this.Shape4.addBox(0F, 0F, 0F, 2, 3, 2);
+        this.Shape4.setRotationPoint(-6.5F, 15F, -6.5F);
+        this.Shape4.setTextureSize(128, 64);
+        this.Shape4.mirror = true;
+        this.setRotation(this.Shape4, 0F, 0F, 0F);
+        this.Shape5 = new ModelRenderer(this, 61, 0);
+        this.Shape5.addBox(0F, 0F, 0F, 2, 3, 2);
+        this.Shape5.setRotationPoint(4.5F, 15F, -6.5F);
+        this.Shape5.setTextureSize(128, 64);
+        this.Shape5.mirror = true;
+        this.setRotation(this.Shape5, 0F, 0F, 0F);
+        this.Shape6 = new ModelRenderer(this, 61, 0);
+        this.Shape6.addBox(0F, 0F, 0F, 2, 3, 2);
+        this.Shape6.setRotationPoint(4.5F, 15F, 4.5F);
+        this.Shape6.setTextureSize(128, 64);
+        this.Shape6.mirror = true;
+        this.setRotation(this.Shape6, 0F, 0F, 0F);
     }
     
     @Override
@@ -66,12 +66,12 @@ public class ModelAstralBattery extends ModelBase
     
     public void renderModel(float f5)
     {
-        Shape1.render(f5);
-        Shape2.render(f5);
-        Shape3.render(f5);
-        Shape4.render(f5);
-        Shape5.render(f5);
-        Shape6.render(f5);
+        this.Shape1.render(f5);
+        this.Shape2.render(f5);
+        this.Shape3.render(f5);
+        this.Shape4.render(f5);
+        this.Shape5.render(f5);
+        this.Shape6.render(f5);
     }
     
     private void setRotation(ModelRenderer model, float x, float y, float z)

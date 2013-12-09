@@ -28,7 +28,8 @@ public class AstralCraftingNodeRenderItem extends ItemRendererBase
                 scBlock.isOpaqueCube = true;
                 
                 RenderHelper.disableStandardItemLighting();
-                RenderHandlerSC.drawAstralParticleFieldStationary(posX, posY, posZ, 2.0f, side, side, side, side, top, side);
+                RenderHandlerSC.drawAstralParticleFieldStationary(posX, posY, posZ, 2.0f, this.side, this.side, this.side, this.side, this.top,
+                        this.side);
                 RenderHelper.enableStandardItemLighting();
                 
                 scBlock.renderID = -1;
@@ -54,7 +55,8 @@ public class AstralCraftingNodeRenderItem extends ItemRendererBase
                 scBlock.isOpaqueCube = true;
                 
                 RenderHelper.disableStandardItemLighting();
-                RenderHandlerSC.drawAstralParticleFieldStationary(posX, posY, posZ, 2.0f, side, side, side, side, top, side);
+                RenderHandlerSC.drawAstralParticleFieldStationary(posX, posY, posZ, 2.0f, this.side, this.side, this.side, this.side, this.top,
+                        this.side);
                 RenderHelper.enableStandardItemLighting();
                 
                 scBlock.renderID = -1;
@@ -80,7 +82,8 @@ public class AstralCraftingNodeRenderItem extends ItemRendererBase
                 scBlock.isOpaqueCube = true;
                 
                 RenderHelper.disableStandardItemLighting();
-                RenderHandlerSC.drawAstralParticleFieldStationary(posX + 0.5, posY + 0.5, posZ + 0.5, 2.0f, side, side, side, side, top, side);
+                RenderHandlerSC.drawAstralParticleFieldStationary(posX + 0.5, posY + 0.5, posZ + 0.5, 2.0f, this.side, this.side, this.side,
+                        this.side, this.top, this.side);
                 RenderHelper.enableStandardItemLighting();
                 
                 scBlock.renderID = -1;
@@ -106,7 +109,8 @@ public class AstralCraftingNodeRenderItem extends ItemRendererBase
                 scBlock.isOpaqueCube = true;
                 
                 RenderHelper.disableStandardItemLighting();
-                RenderHandlerSC.drawAstralParticleFieldStationary(posX, posY, posZ, 2.0f, side, side, side, side, top, side);
+                RenderHandlerSC.drawAstralParticleFieldStationary(posX, posY, posZ, 2.0f, this.side, this.side, this.side, this.side, this.top,
+                        this.side);
                 RenderHelper.enableStandardItemLighting();
                 
                 scBlock.renderID = -1;

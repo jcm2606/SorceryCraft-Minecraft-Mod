@@ -3,10 +3,12 @@ package jcm2606.mods.sorcerycraft.core.network;
 import java.io.ByteArrayInputStream;
 import java.io.DataInputStream;
 
-import jcm2606.mods.sorcerycraft.core.network.packet.PacketDrawAstralEnergyBeam;
 import jcm2606.mods.sorcerycraft.core.network.packet.PacketItemUseTick;
 import jcm2606.mods.sorcerycraft.core.network.packet.PacketKeyPress;
+import jcm2606.mods.sorcerycraft.core.network.packet.PacketPlayerForgetAstralAbilitySync;
+import jcm2606.mods.sorcerycraft.core.network.packet.PacketPlayerForgetAbilitySync;
 import jcm2606.mods.sorcerycraft.core.network.packet.PacketSyncResearchData;
+import jcm2606.mods.sorcerycraft.core.network.packet.PacketSyncSkillData;
 import jcm2606.mods.sorcerycraft.core.network.packet.PacketWandUse;
 import net.minecraft.network.packet.Packet;
 import net.minecraft.network.packet.Packet250CustomPayload;
@@ -18,9 +20,9 @@ import net.minecraft.network.packet.Packet250CustomPayload;
  */
 public enum PacketType
 {
-    DRAW_ASTRAL_ENERGY_BEAM(PacketDrawAstralEnergyBeam.class), KEY(PacketKeyPress.class), WAND_USE(PacketWandUse.class), SYNC_RESEARCH_DATA(
-            PacketSyncResearchData.class),
-            ITEM_USE_TICK(PacketItemUseTick.class);
+    KEY(PacketKeyPress.class), WAND_USE(PacketWandUse.class), SYNC_RESEARCH_DATA(PacketSyncResearchData.class), ITEM_USE_TICK(PacketItemUseTick.class), SYNC_PLAYER_ABILITY_LEARN(
+            PacketPlayerForgetAbilitySync.class), SYNC_PLAYER_ABILITY_FORGET(PacketPlayerForgetAstralAbilitySync.class), SYNC_SKILL_DATA(
+                    PacketSyncSkillData.class);
     
     private Class<? extends PacketBase> clazz;
     

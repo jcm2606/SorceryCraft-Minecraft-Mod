@@ -1,11 +1,12 @@
 package jcm2606.mods.sorcerycraft.api.energy;
 
+/**
+ * Enumeration for all energy types. Contains a minimum amount and a maximum
+ * amount.
+ */
 public enum EnumEnergyType
 {
-    LOW(1, 10),
-    MID(10, 50),
-    HIGH(50, 200),
-    ULTRA(200, 1000);
+    LOW(1, 10), MID(10, 50), HIGH(50, 200), ULTRA(200, 1000);
     
     public int min;
     public int max;
@@ -28,6 +29,6 @@ public enum EnumEnergyType
     
     public boolean isInRange(int amount)
     {
-        return amount >= min && amount <= max;
+        return amount >= this.min && amount <= this.max;
     }
 }

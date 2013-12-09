@@ -18,7 +18,7 @@ public class CrystalRender extends TileEntitySpecialRenderer
     
     public CrystalRender()
     {
-        aModel = new ModelCrystal();
+        this.aModel = new ModelCrystal();
     }
     
     public void renderAModelAt(TileEntityCrystal tile, double d, double d1, double d2, float f)
@@ -54,7 +54,7 @@ public class CrystalRender extends TileEntitySpecialRenderer
         GL11.glColor4d(1.0, 1.0, 1.0, 0.75);
         GL11.glRotatef(j, 0.0F, 1.0F, 0.0F);
         GL11.glScalef(1.1F, -3.5f, -1.0f);
-        aModel.renderModel(0.0625F);
+        this.aModel.renderModel(0.0625F);
         GL11.glDisable(GL11.GL_BLEND);
         GL11.glEnable(GL11.GL_LIGHTING);
         GL11.glPopMatrix();
@@ -63,7 +63,7 @@ public class CrystalRender extends TileEntitySpecialRenderer
     @Override
     public void renderTileEntityAt(TileEntity tileentity, double d, double d1, double d2, float f)
     {
-        renderAModelAt((TileEntityCrystal) tileentity, d, d1, d2, f);
+        this.renderAModelAt((TileEntityCrystal) tileentity, d, d1, d2, f);
     }
     
     private final ModelCrystal aModel;

@@ -1,7 +1,7 @@
 package jcm2606.mods.sorcerycraft.api.energy;
 
 /**
- * Interface for TE-based (TileEntity Based) energy recievers.
+ * Interface for any energy recievers.
  */
 public interface IEnergyReciever
 {

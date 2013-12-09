@@ -16,7 +16,7 @@ public class CrystalRendererItem extends ItemRendererBase
     
     public CrystalRendererItem()
     {
-        model = new ModelCrystal();
+        this.model = new ModelCrystal();
         
         this.entityX = 0;
         this.entityY = 1;
@@ -43,7 +43,7 @@ public class CrystalRendererItem extends ItemRendererBase
         GL11.glPushMatrix(); // start
         GL11.glTranslatef(posX, posY, posZ); // size
         GL11.glScalef(1.0F, -3.4F, -1F);
-        model.renderModel(0.0625F);
+        this.model.renderModel(0.0625F);
         GL11.glPopMatrix(); // end
     }
     
@@ -55,7 +55,7 @@ public class CrystalRendererItem extends ItemRendererBase
         GL11.glPushMatrix(); // start
         GL11.glTranslatef(posX, posY, posZ); // size
         GL11.glScalef(1.0F, -3.4F, -1F);
-        model.renderModel(0.0625F);
+        this.model.renderModel(0.0625F);
         GL11.glPopMatrix(); // end
     }
     
@@ -67,7 +67,7 @@ public class CrystalRendererItem extends ItemRendererBase
         GL11.glPushMatrix(); // start
         GL11.glTranslatef(posX, posY, posZ); // size
         GL11.glScalef(1.0F, -3.4F, -1F);
-        model.renderModel(0.0625F);
+        this.model.renderModel(0.0625F);
         GL11.glPopMatrix(); // end
     }
     
@@ -79,7 +79,7 @@ public class CrystalRendererItem extends ItemRendererBase
         GL11.glPushMatrix(); // start
         GL11.glTranslatef(posX, posY, posZ); // size
         GL11.glScalef(1.0F, -3.4F, -1F);
-        model.renderModel(0.0625F);
+        this.model.renderModel(0.0625F);
         GL11.glPopMatrix(); // end
     }
 }

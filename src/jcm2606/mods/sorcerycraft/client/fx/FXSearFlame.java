@@ -25,7 +25,7 @@ public class FXSearFlame extends FXSC
         this.particleRed = 1.0F;
         this.particleGreen = (float) (0.75 + Math.random());
         this.particleBlue = (float) (0.75 + Math.random());
-        this.particleMaxAge = maxAge;
+        this.particleMaxAge = this.maxAge;
         this.noClip = true;
         this.blendMode = 1;
         this.setAlphaF(0.8f);
@@ -51,7 +51,7 @@ public class FXSearFlame extends FXSC
     @Override
     public float getBrightness(float par1)
     {
-        float var2 = (this.particleAge + par1) / maxAge;
+        float var2 = (this.particleAge + par1) / this.maxAge;
         
         if (var2 < 0.0F)
         {
@@ -77,7 +77,7 @@ public class FXSearFlame extends FXSC
         this.prevPosY = this.posY;
         this.prevPosZ = this.posZ;
         
-        if (this.particleAge++ >= maxAge)
+        if (this.particleAge++ >= this.maxAge)
         {
             this.setDead();
         }
